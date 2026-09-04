@@ -3,159 +3,275 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private Plot Owners & Dealers CRM | Bin Taha Associates</title>
+  <title>Global PropTech Enterprise Engine | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
-    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.25); }
+    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- Top Bar -->
-  <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="font-bold text-white">Bin Taha Private Backend CRM (Owner & Dealer Directory)</span>
+  <!-- Master Security Login Gate -->
+  <div id="securityGate" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/50 p-8 rounded-3xl max-w-sm w-full space-y-6 shadow-2xl text-center gold-glow">
+      <div class="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl mx-auto flex items-center justify-center font-black text-2xl shadow">
+        <i class="fa-solid fa-earth-americas"></i>
       </div>
       <div>
-        <a href="accounting.html" class="text-amber-400 hover:text-amber-300 font-bold"><i class="fa-solid fa-calculator mr-1"></i> Accounting</a>
+        <h2 class="text-xl font-black text-white">Global PropTech Engine</h2>
+        <p class="text-xs text-amber-400 font-bold mt-1">CEO Taha Mobeen Bhutta • Bin Taha Associates</p>
       </div>
+      <input type="password" id="masterPin" placeholder="Enter Master PIN (taha123)" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
+      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg">
+        Unlock Global Engine
+      </button>
+      <p id="pinError" class="text-rose-400 text-xs font-bold hidden">Incorrect PIN! Access Denied.</p>
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center font-black text-lg">
-          <i class="fa-solid fa-user-secret"></i>
-        </div>
-        <div>
-          <h1 class="text-lg font-black text-white leading-tight">Private Owner & Dealer Lookup</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Confidential Data - Client Hidden</p>
-        </div>
-      </div>
-      <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs font-bold px-4 py-2.5 rounded-xl transition border border-slate-700">
-        <i class="fa-solid fa-house mr-1"></i> Main Website
-      </a>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
+  <!-- Main Global Enterprise App -->
+  <div id="globalApp" class="hidden flex-1 flex flex-col justify-between">
     
-    <!-- Search Box for Plot Number -->
-    <div class="bg-slate-900 border border-amber-500/40 p-6 sm:p-8 rounded-3xl shadow-2xl gold-glow">
-      <h3 class="text-base font-black text-white mb-3 flex items-center gap-2">
-        <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Quick Search Plot / Dealer By Number or Plot ID
-      </h3>
-      <div class="flex gap-3">
-        <input type="text" id="lookupInput" onkeyup="searchOwnerDirectory()" placeholder="Type Plot No (e.g. 798) or Dealer Name / Phone..." class="flex-1 bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-xs text-white font-semibold">
-        <button onclick="searchOwnerDirectory()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-6 py-3.5 rounded-xl text-xs transition shadow">
-          Search Owner
-        </button>
-      </div>
-    </div>
+    <!-- Top Header: Branding, World Clocks & Global Currency Converter -->
+    <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<i class=\'fa-solid fa-chess-rook text-amber-400 text-lg\'></i>';">
+          </div>
+          <div>
+            <h1 class="text-base font-black text-white">Bin Taha Associates • Global PropTech Engine</h1>
+            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Multi-Currency, World Clocks & Account Management Active</p>
+          </div>
+        </div>
 
-    <!-- Owner / Dealer Results List -->
-    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl">
-      <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
-        <h3 class="text-base font-black text-white">Private Directory & WhatsApp Leads Database</h3>
-        <span class="text-xs text-slate-400" id="recordCount">Total Records: Loading...</span>
+        <!-- World Clocks -->
+        <div class="flex items-center gap-2 flex-wrap text-[11px]">
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+        </div>
       </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
-            <tr>
-              <th class="p-3.5">Plot / Property Details</th>
-              <th class="p-3.5">Society / Block</th>
-              <th class="p-3.5">Owner / Dealer Name</th>
-              <th class="p-3.5">Estate Name / Agency</th>
-              <th class="p-3.5">Contact Number</th>
-              <th class="p-3.5 text-right">Action</th>
-            </tr>
-          </thead>
-          <tbody id="ownerTableBody" class="divide-y divide-slate-800/60">
-            <!-- Dynamic Data -->
-          </tbody>
-        </table>
+
+      <!-- Navigation & Global Currency Converter -->
+      <div class="flex justify-between items-center gap-2 pt-2 flex-wrap">
+        <div class="flex gap-2 flex-wrap">
+          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="crm-dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-amber-500 text-slate-950 text-xs px-4 py-2 rounded-xl font-black transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Global Owners CRM</a>
+        </div>
+
+        <!-- World Currency Widget -->
+        <div class="bg-slate-950 border border-slate-800 px-3 py-1 rounded-xl flex items-center gap-2 text-xs">
+          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Global Currency:</span>
+          <select id="currSelect" onchange="convertGlobalCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
+            <option value="USD">USD ($)</option>
+            <option value="AED">AED (Dh)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="SAR">SAR (SR)</option>
+          </select>
+          <input type="number" id="currVal" value="50000" onkeyup="convertGlobalCurrency()" class="w-20 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
+          <span id="currResult" class="text-emerald-400 font-bold">= PKR 14,000,000</span>
+        </div>
       </div>
-    </div>
+    </header>
 
-  </main>
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-6">
+      
+      <!-- Account Management & Financial Vault Summary (3 Colored Boxes) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-slate-900 border border-amber-500/40 p-5 rounded-3xl shadow-xl flex items-center justify-between">
+          <div>
+            <p class="text-[11px] text-amber-400 font-bold uppercase tracking-wider">Total Deal Portfolio</p>
+            <h3 id="statTotalDeals" class="text-2xl font-black text-amber-400 mt-1">PKR 155,500,000</h3>
+          </div>
+          <div class="bg-amber-500/20 text-amber-400 p-3 rounded-2xl"><i class="fa-solid fa-briefcase text-lg"></i></div>
+        </div>
+        <div class="bg-slate-900 border border-emerald-500/40 p-5 rounded-3xl shadow-xl flex items-center justify-between">
+          <div>
+            <p class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider">Total Received Payments (Vault)</p>
+            <h3 id="statTotalReceived" class="text-2xl font-black text-emerald-400 mt-1">PKR 37,500,000</h3>
+          </div>
+          <div class="bg-emerald-500/20 text-emerald-400 p-3 rounded-2xl"><i class="fa-solid fa-vault text-lg"></i></div>
+        </div>
+        <div class="bg-slate-900 border border-rose-500/40 p-5 rounded-3xl shadow-xl flex items-center justify-between">
+          <div>
+            <p class="text-[11px] text-rose-400 font-bold uppercase tracking-wider">Total Pending Balances</p>
+            <h3 id="statTotalPending" class="text-2xl font-black text-rose-400 mt-1">PKR 118,000,000</h3>
+          </div>
+          <div class="bg-rose-500/20 text-rose-400 p-3 rounded-2xl"><i class="fa-solid fa-file-invoice-dollar text-lg"></i></div>
+        </div>
+      </div>
 
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center">
-    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. Private Confidential Backend CRM.</p>
-  </footer>
+      <!-- Search & Unique Multi-Category Database Lookup -->
+      <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl shadow-2xl gold-glow space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-3">
+          <h3 class="text-sm font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-database text-amber-400"></i> Unique Multi-Category Database & GPS / Call Logs
+          </h3>
+          <div class="flex gap-1.5 flex-wrap">
+            <button onclick="filterCategory('All')" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg text-xs font-black shadow">All Records</button>
+            <button onclick="filterCategory('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Property</button>
+            <button onclick="filterCategory('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Construction</button>
+            <button onclick="filterCategory('Material')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Material & Services</button>
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <input type="text" id="globalSearchInput" onkeyup="searchGlobalDirectory()" placeholder="Search by Plot No (e.g. 798), Owner Name, Phone or Society..." class="flex-1 bg-slate-950 border border-slate-700 p-3 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500">
+        </div>
+      </div>
+
+      <!-- Confidential Directory, GPS & Automatic WhatsApp Drip -->
+      <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+          <h3 class="text-sm font-black text-white">Global Enterprise Leads, GPS & Automatic WhatsApp Drip</h3>
+          <span class="text-xs text-amber-400 font-bold" id="recordCount">Total Records: Loading...</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3.5">Property / Plot & GPS</th>
+                <th class="p-3.5">Category & Society</th>
+                <th class="p-3.5">Owner / Client Name</th>
+                <th class="p-3.5">Account & Deal Balance</th>
+                <th class="p-3.5">Contact Number</th>
+                <th class="p-3.5 text-right">Automatic WhatsApp / Call</th>
+              </tr>
+            </thead>
+            <tbody id="globalTableBody" class="divide-y divide-slate-800/60">
+              <!-- Dynamic Data -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-6 text-xs border-t border-slate-800 text-center">
+      <p>&copy; 2026 Bin Taha Associates. Global PropTech Enterprise Engine secured for CEO Taha Mobeen Bhutta.</p>
+    </footer>
+
+  </div>
 
   <script>
-    // Master Confidential Database extracted from WhatsApp dealer messages
-    const privateOwnerDatabase = [
-      { plot: "Plot 798 D", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "850 Lakh" },
-      { plot: "Plot 422 K", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "400 Lakh" },
-      { plot: "Plot 41 A", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "270 Lakh" },
-      { plot: "Plot 1049 A", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "260 Lakh" },
-      { plot: "Plot 938 C", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "175 Lakh" },
-      { plot: "Johar Town House R1", society: "Johar Town", owner: "Warees", estate: "Jubilee Town Dealer", phone: "0321-5015279", price: "Rent Available" },
-      { plot: "Plot 36, 37 D1", society: "LDA Avenue 1", owner: "Muhammad Umer Amin", estate: "Umer Associate's & Builder's", phone: "0307-4646144", price: "135 Lakh each" },
-      { plot: "Plot 79A K", society: "LDA Avenue 1", owner: "Khizer Hayat", estate: "Galaxy Estate & Builder", phone: "0307-9437564", price: "1.42 Lac" },
-      { plot: "Plot 831 G", society: "LDA Avenue 1", owner: "Khizer Hayat", estate: "Galaxy Estate & Builder", phone: "0307-9437564", price: "1.25 Lac" },
-      { plot: "Plot 890 A", society: "LDA Avenue 1", owner: "Suleman Gujjar", estate: "City Life Real Estate", phone: "0321-9126628", price: "210 Lac" },
-      { plot: "Plot 447 H", society: "LDA Avenue 1", owner: "Suleman Gujjar", estate: "City Life Real Estate", phone: "0321-9126628", price: "238 Lac" },
-      { plot: "Plot 570 D", society: "LDA Avenue 1", owner: "Shakeel Kharal", estate: "Direct Owner Deal", phone: "0321-9977218", price: "190 Lac" },
-      { plot: "Plot 480 F", society: "LDA Avenue 1", owner: "Shakeel Kharal", estate: "Direct Owner Deal", phone: "0321-9977218", price: "195 Lac" },
-      { plot: "Plot 63-64 D", society: "LDA Avenue 1", owner: "Mian Waqas Talib", estate: "Karam Estate", phone: "0321-9417907", price: "470 Lac" },
-      { plot: "Plot 85A F", society: "LDA Avenue 1", owner: "Mian Waqas Talib", estate: "Karam Estate", phone: "0321-9417907", price: "240 Lac" },
-      { plot: "Plot 1589 C", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "220 Lakh" },
-      { plot: "Plot 991 J", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "175 Lakh" },
-      { plot: "Plot 704/A J", society: "LDA Avenue 1", owner: "Dilbar Hussain", estate: "ANS Property Advisers", phone: "0333-8880965", price: "165 Lakh" },
-      { plot: "Plot 857 L", society: "LDA Avenue 1", owner: "Dilbar Hussain", estate: "ANS Property Advisers", phone: "0333-8880965", price: "102 Lakh" }
-    ];
-
-    function renderOwnerTable(data) {
-      const tbody = document.getElementById('ownerTableBody');
-      document.getElementById('recordCount').innerText = `Total Records: ${data.length}`;
-
-      if (data.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-500 italic">No confidential owner records found.</td></tr>`;
-        return;
+    function verifyMasterPin() {
+      const pin = document.getElementById('masterPin').value.trim();
+      if(pin === 'taha123' || pin === '03219404812') {
+        document.getElementById('securityGate').classList.add('hidden');
+        document.getElementById('globalApp').classList.remove('hidden');
+        localStorage.setItem('binTahaGlobalUnlocked', 'true');
+      } else {
+        document.getElementById('pinError').classList.remove('hidden');
       }
-
-      tbody.innerHTML = data.map(item => `
-        <tr class="hover:bg-slate-800/40 transition">
-          <td class="p-3.5 font-bold text-white"><i class="fa-solid fa-map-pin text-amber-400 mr-1.5"></i>${item.plot} <span class="text-[10px] text-emerald-400 font-semibold block">${item.price}</span></td>
-          <td class="p-3.5 text-blue-300 font-semibold">${item.society}</td>
-          <td class="p-3.5 font-bold text-amber-300">${item.owner}</td>
-          <td class="p-3.5 text-slate-300">${item.estate}</td>
-          <td class="p-3.5 font-mono font-bold text-white bg-slate-950/60 rounded px-2">${item.phone}</td>
-          <td class="p-3.5 text-right">
-            <a href="tel:${item.phone}" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition inline-flex items-center gap-1 shadow">
-              <i class="fa-solid fa-phone"></i> Call Owner
-            </a>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function searchOwnerDirectory() {
-      const query = document.getElementById('lookupInput').value.toLowerCase().trim();
-      const filtered = privateOwnerDatabase.filter(item => 
-        item.plot.toLowerCase().includes(query) || 
-        item.owner.toLowerCase().includes(query) || 
-        item.estate.toLowerCase().includes(query) || 
-        item.phone.includes(query) ||
-        item.society.toLowerCase().includes(query)
-      );
-      renderOwnerTable(filtered);
     }
 
     window.onload = function() {
-      renderOwnerTable(privateOwnerDatabase);
+      if(localStorage.getItem('binTahaGlobalUnlocked') === 'true') {
+        document.getElementById('securityGate').classList.add('hidden');
+        document.getElementById('globalApp').classList.remove('hidden');
+      }
+      renderGlobalTable(globalDatabase);
+      updateWorldClocks();
+      convertGlobalCurrency();
     };
+
+    function updateWorldClocks() {
+      const now = new Date();
+      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateWorldClocks, 1000);
+
+    function convertGlobalCurrency() {
+      const type = document.getElementById('currSelect').value;
+      const val = parseFloat(document.getElementById('currVal').value) || 0;
+      let rate = 280;
+      if(type === 'AED') rate = 76;
+      if(type === 'GBP') rate = 355;
+      if(type === 'SAR') rate = 75;
+      let total = val * rate;
+      document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
+    }
+
+    const globalDatabase = [
+      { id: 1, plot: "Plot 798 D", gps: "LDA Ave 1, Block D", category: "Property", owner: "Ch. Ali Raza", society: "LDA Avenue 1", phone: "03040000350", deal: 85000000, paid: 15000000, callStatus: "Verified" },
+      { id: 2, plot: "Plot 422 K", gps: "LDA Ave 1, Block K", category: "Property", owner: "Ch. Ali Raza", society: "LDA Avenue 1", phone: "03040000350", deal: 40000000, paid: 10000000, callStatus: "Interested" },
+      { id: 3, plot: "Gray Structure Build", gps: "Jubilee Town Sector A", category: "Construction", owner: "Dr. Tariq Mahmood", society: "Jubilee Town", phone: "03219404812", deal: 12000000, paid: 4000000, callStatus: "Visit Booked" },
+      { id: 4, plot: "Cement & Steel Supply", gps: "Bugtia Chowk Raiwind Rd", category: "Material", owner: "Chaudhry Akram", society: "Raiwind Road", phone: "03219404812", deal: 5000000, paid: 5000000, callStatus: "Delivered" },
+      { id: 5, plot: "Plot 36 D1", gps: "LDA Ave 1, Block D1", category: "Property", owner: "Muhammad Umer Amin", society: "LDA Avenue 1", phone: "03074646144", deal: 13500000, paid: 3500000, callStatus: "Pending Token" }
+    ];
+
+    function renderGlobalTable(data) {
+      const tbody = document.getElementById('globalTableBody');
+      document.getElementById('recordCount').innerText = `Total Records: ${data.length}`;
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-500 italic">No records found matching criteria.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(item => {
+        let balance = (item.deal || 0) - (item.paid || 0);
+        let waMessage = `Hello ${item.owner}, regarding your property/project (${item.plot}) at Bin Taha Associates. Total Deal: PKR ${(item.deal||0).toLocaleString()}, Paid: PKR ${(item.paid||0).toLocaleString()}. Let's proceed!`;
+        
+        return `
+          <tr class="hover:bg-slate-800/40 transition">
+            <td class="p-3.5 font-bold text-white">
+              <i class="fa-solid fa-map-pin text-amber-400 mr-1.5"></i>${item.plot}
+              <span class="text-[10px] text-slate-400 font-semibold block"><i class="fa-solid fa-location-crosshairs text-emerald-400"></i> ${item.gps}</span>
+            </td>
+            <td class="p-3.5">
+              <span class="bg-slate-950 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-800">${item.category}</span>
+              <span class="text-blue-300 font-semibold block mt-1">${item.society}</span>
+            </td>
+            <td class="p-3.5 font-bold text-white">${item.owner}</td>
+            <td class="p-3.5 space-y-0.5">
+              <div class="text-white font-bold">Deal: ${(item.deal||0).toLocaleString()}</div>
+              <div class="text-emerald-400 text-[11px]">Paid: ${(item.paid||0).toLocaleString()}</div>
+              <div class="text-rose-400 text-[11px]">Bal: ${balance.toLocaleString()}</div>
+            </td>
+            <td class="p-3.5 font-mono font-bold text-white bg-slate-950/60 rounded px-2">${item.phone}</td>
+            <td class="p-3.5 text-right space-x-1">
+              <a href="tel:${item.phone}" class="bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition inline-flex items-center gap-1 shadow">
+                <i class="fa-solid fa-phone"></i> Call
+              </a>
+              <a href="https://wa.me/92${item.phone.replace(/^0/, '')}?text=${encodeURIComponent(waMessage)}" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 px-2.5 py-1.5 rounded-xl text-[11px] font-black transition inline-flex items-center gap-1 shadow">
+                <i class="fa-brands fa-whatsapp"></i> Auto-WA
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterCategory(cat) {
+      if(cat === 'All') {
+        renderGlobalTable(globalDatabase);
+      } else {
+        const filtered = globalDatabase.filter(item => item.category === cat);
+        renderGlobalTable(filtered);
+      }
+    }
+
+    function searchGlobalDirectory() {
+      const query = document.getElementById('globalSearchInput').value.toLowerCase().trim();
+      const filtered = globalDatabase.filter(item => 
+        item.plot.toLowerCase().includes(query) || 
+        item.owner.toLowerCase().includes(query) || 
+        item.society.toLowerCase().includes(query) || 
+        item.phone.includes(query) ||
+        item.category.toLowerCase().includes(query)
+      );
+      renderGlobalTable(filtered);
+    }
   </script>
 </body>
 </html>
