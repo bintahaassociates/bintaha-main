@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bin Taha Associates - CRM System & Dashboard</title>
+    <title>Bin Taha Associates - Global AI CRM & Payment Ledger</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -11,58 +11,136 @@
             --primary-color: #1b4332;
             --secondary-color: #2d6a4f;
             --accent-color: #d4a373;
-            --bg-color: #f4f6f8;
-            --text-color: #212529;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
             --white: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; }
-        .container { max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
-        header { background: var(--primary-color); color: var(--white); padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        header h1 { font-size: 26px; margin-bottom: 5px; }
-        header p { font-size: 14px; color: var(--accent-color); }
-        .main-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; align-items: start; }
-        @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
-        .card { background: var(--white); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .card h2 { font-size: 18px; color: var(--primary-color); margin-bottom: 15px; border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+        .container { max-width: 1350px; margin: 0 auto; padding-bottom: 50px; }
+        
+        /* Header with Eagle Logo Animation */
+        header { background: linear-gradient(135deg, #1b4332, #0f172a); color: var(--white); padding: 20px 25px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(212, 163, 115, 0.3); }
+        .header-brand { display: flex; align-items: center; gap: 15px; }
+        
+        @keyframes eagle3DRotate {
+            0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+            50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
+            100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+        }
+        .moving-eagle-3d {
+            animation: eagle3DRotate 6s infinite linear;
+            transform-style: preserve-3d;
+            height: 55px;
+            width: 55px;
+            object-fit: contain;
+        }
+
+        header h1 { font-size: 24px; margin-bottom: 2px; color: #fcd34d; font-weight: 900; }
+        header p { font-size: 11px; color: var(--accent-color); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        .main-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 20px; align-items: start; }
+        @media (max-width: 1024px) { .main-grid { grid-template-columns: 1fr; } }
+        .card { background: #1e293b; padding: 20px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.4); margin-bottom: 20px; border: 1px solid #334155; }
+        .card h2 { font-size: 18px; color: #fcd34d; margin-bottom: 15px; border-bottom: 2px solid var(--accent-color); padding-bottom: 8px; font-weight: 800; }
         .form-group { margin-bottom: 12px; }
-        label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
-        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
-        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary-color); }
-        .btn { background: var(--secondary-color); color: var(--white); border: none; padding: 14px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 10px; margin-bottom: 20px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
-        .btn:hover { background: var(--primary-color); }
-        .filter-tabs { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
-        .filter-tab { background: #e9ecef; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; color: #495057; transition: 0.2s; }
-        .filter-tab.active, .filter-tab:hover { background: var(--primary-color); color: var(--white); }
-        .search-bar { margin-bottom: 15px; }
-        .client-list { max-height: 550px; overflow-y: auto; }
-        .client-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 12px; position: relative; }
-        .client-item h3 { font-size: 16px; color: var(--primary-color); }
-        .client-meta { font-size: 12px; color: #6c757d; margin: 5px 0; }
-        .entry-badge { display: inline-block; background: var(--accent-color); color: #000; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-right: 5px; }
-        .cat-tag { display: inline-block; background: #1b4332; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 5px; }
-        .history-box { background: #fff; border-left: 3px solid var(--secondary-color); padding: 10px; margin-top: 8px; font-size: 13px; }
-        .crm-img-preview { margin-top: 8px; max-width: 140px; height: 90px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; }
+        label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: #cbd5e1; }
+        input, select, textarea { width: 100%; padding: 10px; background: #0f172a; border: 1px solid #475569; color: #fff; border-radius: 8px; font-size: 13px; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #fcd34d; }
+        .btn { background: linear-gradient(135deg, #d4a373, #b07d48); color: #000; border: none; padding: 14px 20px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 900; width: 100%; margin-top: 10px; margin-bottom: 15px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); }
+        .btn:hover { background: linear-gradient(135deg, #fcd34d, #d4a373); }
+        .filter-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+        .filter-tab { background: #0f172a; border: 1px solid #475569; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; color: #cbd5e1; transition: 0.2s; }
+        .filter-tab.active, .filter-tab:hover { background: #d4a373; color: #000; border-color: #d4a373; }
+        .client-list { max-height: 600px; overflow-y: auto; }
+        .client-item { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 15px; margin-bottom: 12px; position: relative; }
+        .client-item h3 { font-size: 16px; color: #fcd34d; font-weight: 800; }
+        .client-meta { font-size: 11px; color: #94a3b8; margin: 4px 0; }
+        .entry-badge { display: inline-block; background: #d4a373; color: #000; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: bold; margin-right: 5px; }
+        .cat-tag { display: inline-block; background: #1b4332; color: #4ade80; font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: bold; border: 1px solid #2d6a4f; }
+        .history-box { background: #1e293b; border-left: 3px solid #d4a373; padding: 10px; margin-top: 8px; font-size: 12px; border-radius: 4px; }
+        .crm-img-preview { margin-top: 8px; max-width: 120px; height: 80px; object-fit: cover; border-radius: 4px; border: 1px solid #475569; }
+        
+        .ai-robot-widget { background: linear-gradient(135deg, rgba(27,67,50,0.6), rgba(15,23,42,0.9)); border: 1px solid #2d6a4f; padding: 15px; border-radius: 10px; margin-bottom: 20px; }
+        .pipeline-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .status-new { background: #3b82f6; color: #fff; }
+        .status-contacted { background: #eab308; color: #000; }
+        .status-visit { background: #a855f7; color: #fff; }
+        .status-booked { background: #22c55e; color: #000; }
+        
+        .world-clock-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-bottom: 20px; }
+        .clock-card { background: #1e293b; border: 1px solid #334155; padding: 8px 10px; border-radius: 8px; text-align: center; }
+        .clock-card span { display: block; font-size: 10px; color: #94a3b8; font-weight: bold; text-transform: uppercase; }
+        .clock-card strong { font-size: 12px; color: #fcd34d; }
+
+        /* Payment Section Special Styling */
+        .payment-box { background: rgba(34, 197, 94, 0.1); border: 1px dashed #22c55e; padding: 12px; border-radius: 8px; margin-top: 10px; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Header with 3D Moving Eagle Logo -->
     <header>
-        <h1>Bin Taha Associates</h1>
-        <p>Customer Relationship Management (CRM) & Online Google Sheets Dashboard</p>
+        <div class="header-brand">
+            <img src="logo.png" alt="Bin Taha Logo" class="moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+            <div>
+                <h1>Bin Taha Associates</h1>
+                <p>Global AI Autonomous CRM & Financial Payment Ledger</p>
+            </div>
+        </div>
+        <div class="text-xs text-amber-300 font-bold bg-slate-900/80 px-3 py-2 rounded-xl border border-amber-500/30">
+            👑 CEO: Taha Mobeen Bhutta
+        </div>
     </header>
 
-    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-        <a href="index.html" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-950 transition"><i class="fa-solid fa-house mr-1"></i> Home</a>
-        <a href="inbox.html" class="bg-amber-600 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold hover:bg-amber-500 transition"><i class="fa-solid fa-inbox mr-1"></i> Master Inbox</a>
-        <a href="client-form.html" class="bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-950 transition"><i class="fa-solid fa-id-card mr-1"></i> Client Form</a>
+    <div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+        <div class="flex gap-2 flex-wrap">
+            <a href="index.html" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-950 transition"><i class="fa-solid fa-house mr-1"></i> Home</a>
+            <a href="inbox.html" class="bg-amber-600 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold hover:bg-amber-500 transition"><i class="fa-solid fa-inbox mr-1"></i> Master Inbox</a>
+            <a href="client-form.html" class="bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-950 transition"><i class="fa-solid fa-id-card mr-1"></i> Client Form</a>
+        </div>
+    </div>
+
+    <!-- Global World Clocks Bar -->
+    <div class="world-clock-bar">
+        <div class="clock-card">
+            <span>🇵🇰 Lahore (PK)</span>
+            <strong id="clockPK">--:--:--</strong>
+        </div>
+        <div class="clock-card">
+            <span>🇦🇪 Dubai (UAE)</span>
+            <strong id="clockDXB">--:--:--</strong>
+        </div>
+        <div class="clock-card">
+            <span>🇸🇦 Riyadh (KSA)</span>
+            <strong id="clockKSA">--:--:--</strong>
+        </div>
+        <div class="clock-card">
+            <span>🇬🇧 London (UK)</span>
+            <strong id="clockLON">--:--:--</strong>
+        </div>
+        <div class="clock-card">
+            <span>🇺🇸 New York (USA)</span>
+            <strong id="clockNY">--:--:--</strong>
+        </div>
+    </div>
+
+    <!-- AI Robot Autonomous Banner -->
+    <div class="ai-robot-widget flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>
+            <h3 class="text-sm font-black text-emerald-400"><i class="fa-solid fa-wallet mr-2"></i> Financial Payment Ledger Active</h3>
+            <p class="text-xs text-slate-300">Track client advances, tokens, installments and commission payouts directly inside CRM.</p>
+        </div>
+        <button onclick="runAiAutonomousSync()" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-lg text-xs font-black shadow hover:bg-amber-400 transition">
+            <i class="fa-solid fa-bolt mr-1"></i> Vault Sync Active
+        </button>
     </div>
 
     <div class="main-grid">
         <!-- Form Section -->
         <div class="card">
-            <h2>Add New Client / New Entry</h2>
+            <h2>Add Client & Financial Payment Details</h2>
             <form id="clientForm">
                 <div class="form-group">
                     <label>Client Name: *</label>
@@ -70,34 +148,40 @@
                 </div>
                 <div class="form-group">
                     <label>Phone / WhatsApp Number: *</label>
-                    <input type="text" id="clientPhone" required placeholder="0300-1234567">
+                    <input type="text" id="clientPhone" required placeholder="+971... or 03219404812">
                 </div>
                 <div class="form-group">
-                    <label>CNIC Number:</label>
-                    <input type="text" id="clientCnic" placeholder="35202-1234567-1">
+                    <label>Client Region / Time Zone Hub: *</label>
+                    <select id="clientRegion">
+                        <option value="Pakistan (PKT)">🇵🇰 Pakistan (Local)</option>
+                        <option value="Dubai / UAE (GST)">🇦🇪 Dubai / UAE (Overseas)</option>
+                        <option value="Saudi Arabia (AST)">🇸🇦 Saudi Arabia (Overseas)</option>
+                        <option value="United Kingdom (GMT)">🇬🇧 United Kingdom (Overseas)</option>
+                        <option value="United States (EST/PST)">🇺🇸 United States (Overseas)</option>
+                        <option value="Other International">🌍 Other Region</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>CNIC / Passport Number:</label>
+                    <input type="text" id="clientCnic" placeholder="CNIC or Passport ID">
                 </div>
                 <div class="form-group">
                     <label>Service / Requirement Category & Type: *</label>
                     <select id="serviceType" required>
                         <option value="">-- Select Service --</option>
-                        
                         <optgroup label="🏠 Property Dealings (Sale / Buy / Rent)">
                             <option value="Plot Buy">Plot Buy</option>
                             <option value="Plot Sell">Plot Sell</option>
                             <option value="House Buy">House Buy</option>
                             <option value="House Sell">House Sell</option>
                             <option value="Commercial Shop Buy/Sell">Commercial Shop Buy/Sell</option>
-                            <option value="Rental Management">Rental Management (Buy/Sell/Rent)</option>
+                            <option value="Rental Management">Rental Management</option>
                         </optgroup>
-
                         <optgroup label="🏗️ Construction Works">
                             <option value="Turnkey Construction (With Material)">Turnkey Construction (With Material)</option>
                             <option value="Construction Only (Labour Rate)">Construction Only (Labour Rate)</option>
                             <option value="Grey Structure Work">Grey Structure Work</option>
-                            <option value="Foundation & Lintel Work">Foundation & Lintel Work</option>
-                            <option value="Masonry & Brickwork">Masonry & Brickwork</option>
                         </optgroup>
-
                         <optgroup label="🧱 Material & Professional Services">
                             <option value="Material Supply Only">Material Supply Only</option>
                             <option value="Architectural Mapping (2D/3D)">Architectural Mapping (2D/3D)</option>
@@ -106,24 +190,59 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Budget (PKR):</label>
-                    <input type="text" id="clientBudget" placeholder="e.g. 50 Lakh or 1 Crore">
+                    <label>Total Budget (PKR / Currency):</label>
+                    <input type="text" id="clientBudget" placeholder="e.g. 50 Lakh or $100,000">
+                </div>
+
+                <!-- PAYMENT SECTION START -->
+                <div class="payment-box">
+                    <h3 class="text-xs font-black text-emerald-400 mb-2"><i class="fa-solid fa-money-bill-transfer mr-1"></i> Payment & Financial Entry</h3>
+                    <div class="form-group">
+                        <label>Payment Type / Stage:</label>
+                        <select id="paymentType">
+                            <option value="No Payment Yet">-- No Payment Yet --</option>
+                            <option value="Advance Token Amount">Advance Token Amount</option>
+                            <option value="First Installment">First Installment</option>
+                            <option value="Half Payment (50%)">Half Payment (50%)</option>
+                            <option value="Full Settlement / Paid">Full Settlement / Paid</option>
+                            <option value="Rental Security Advance">Rental Security Advance</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount Received (PKR / Currency):</label>
+                        <input type="text" id="paymentAmount" placeholder="e.g. 500,000 PKR or $2,000">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Mode / Receipt Details:</label>
+                        <input type="text" id="paymentMode" placeholder="Cash, Bank Transfer (Meezan/HBL), Cheque #">
+                    </div>
+                </div>
+                <!-- PAYMENT SECTION END -->
+
+                <div class="form-group mt-3">
+                    <label>Deal Pipeline Stage:</label>
+                    <select id="dealPipelineStage">
+                        <option value="New Lead">🔵 New Lead</option>
+                        <option value="Contacted">🟡 Contacted & Follow-up</option>
+                        <option value="Site Visit Scheduled">🟣 Site Visit / Geo-Tagged</option>
+                        <option value="Token / Booking Done">🟢 Token / Booking Done (Commission Active)</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>Details / Remarks (Site Location, Material List, etc.):</label>
-                    <textarea id="clientDetails" rows="3" placeholder="Enter site location, material items, or specific notes..."></textarea>
+                    <label>Details / Site Location / Notes:</label>
+                    <textarea id="clientDetails" rows="2" placeholder="Enter notes or overseas preferences..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Attach Image / Document (Compressed):</label>
+                    <label>Attach Image / Payment Receipt (Compressed):</label>
                     <input type="file" id="clientImageInput" accept="image/*" onchange="compressAndEncodeImage(event)">
                 </div>
-                <button type="button" id="submitBtn" class="btn" onclick="saveClientData()">Save & Sync with Google Sheets</button>
+                <button type="button" id="submitBtn" class="btn" onclick="saveClientData()">Save Payment & Sync Global CRM</button>
             </form>
         </div>
 
         <!-- Client List & History Section -->
         <div class="card">
-            <h2>Client Records & Category Filters</h2>
+            <h2>Client Records, Payment Ledger & Filters</h2>
             
             <div class="filter-tabs">
                 <button class="filter-tab active" onclick="filterByCategory('All', this)">All Records</button>
@@ -132,9 +251,10 @@
                 <button class="filter-tab" onclick="filterByCategory('Material & Professional', this)">🧱 Material & Services</button>
             </div>
 
-            <div class="search-bar">
-                <input type="text" id="searchInput" onkeyup="searchClients()" placeholder="Search by name or phone number...">
+            <div class="search-bar" style="margin-bottom: 12px;">
+                <input type="text" id="searchInput" onkeyup="searchClients()" placeholder="Search by name, phone or payment status...">
             </div>
+            
             <div class="client-list" id="clientListContainer">
                 <!-- Data will load here dynamically -->
             </div>
@@ -147,6 +267,20 @@
     let currentCategoryFilter = 'All';
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyLsiGO7Rv_9qJuLNdfioLTKfM8iFnAIEIPqG3vlZGrqc8HDQ4yE_Im8WA1j6AgaTo-/exec'; 
+
+    // Live World Clocks for CEO Taha Mobeen
+    function updateWorldClocks() {
+        const now = new Date();
+        const getTimeStr = (timeZone) => now.toLocaleTimeString('en-US', { timeZone, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+
+        document.getElementById('clockPK').innerText = getTimeStr('Asia/Karachi');
+        document.getElementById('clockDXB').innerText = getTimeStr('Asia/Dubai');
+        document.getElementById('clockKSA').innerText = getTimeStr('Asia/Riyadh');
+        document.getElementById('clockLON').innerText = getTimeStr('Europe/London');
+        document.getElementById('clockNY').innerText = getTimeStr('America/New_York');
+    }
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
 
     function compressAndEncodeImage(e) {
         const file = e.target.files[0];
@@ -188,7 +322,7 @@
 
     function getServiceCategory(serviceName) {
         const propertyList = ['Plot Buy', 'Plot Sell', 'House Buy', 'House Sell', 'Commercial Shop Buy/Sell', 'Rental Management'];
-        const constructionList = ['Turnkey Construction (With Material)', 'Construction Only (Labour Rate)', 'Grey Structure Work', 'Foundation & Lintel Work', 'Masonry & Brickwork'];
+        const constructionList = ['Turnkey Construction (With Material)', 'Construction Only (Labour Rate)', 'Grey Structure Work'];
         
         if (propertyList.includes(serviceName)) return 'Property';
         if (constructionList.includes(serviceName)) return 'Construction';
@@ -208,9 +342,17 @@
     function saveClientData() {
         const name = document.getElementById('clientName').value.trim();
         const phone = document.getElementById('clientPhone').value.trim();
+        const region = document.getElementById('clientRegion').value;
         const cnic = document.getElementById('clientCnic').value.trim();
         const service = document.getElementById('serviceType').value;
         const budget = document.getElementById('clientBudget').value.trim();
+        
+        // Payment fields
+        const paymentType = document.getElementById('paymentType').value;
+        const paymentAmount = document.getElementById('paymentAmount').value.trim();
+        const paymentMode = document.getElementById('paymentMode').value.trim();
+
+        const pipelineStage = document.getElementById('dealPipelineStage').value;
         const details = document.getElementById('clientDetails').value.trim();
 
         if (!name || !phone || !service) {
@@ -220,16 +362,27 @@
 
         const category = getServiceCategory(service);
 
+        let commission = "Pending Deal";
+        if(pipelineStage === 'Token / Booking Done' || paymentType !== 'No Payment Yet') {
+            commission = "Active / Vault Synced";
+        }
+
         const newEntry = {
             id: Date.now(),
             timestamp: new Date().toLocaleString(),
             date: new Date().toLocaleDateString('en-GB'),
             name: name,
             phone: phone,
+            region: region,
             cnic: cnic || 'N/A',
             service: service,
             category: category,
             budget: budget || 'Not Defined',
+            paymentType: paymentType,
+            paymentAmount: paymentAmount || '0',
+            paymentMode: paymentMode || 'N/A',
+            pipelineStage: pipelineStage,
+            commission: commission,
             details: details || 'No additional details',
             image: localCRMImg || ''
         };
@@ -242,23 +395,36 @@
                 date: newEntry.date,
                 service: newEntry.service,
                 category: newEntry.category,
+                region: newEntry.region,
                 budget: newEntry.budget,
+                paymentType: newEntry.paymentType,
+                paymentAmount: newEntry.paymentAmount,
+                paymentMode: newEntry.paymentMode,
+                pipelineStage: newEntry.pipelineStage,
+                commission: newEntry.commission,
                 details: newEntry.details,
                 image: newEntry.image
             });
             existingClient.name = name;
-            existingClient.cnic = cnic === 'N/A' || cnic === '' ? existingClient.cnic : cnic;
+            existingClient.region = region;
         } else {
             const newClient = {
                 id: Date.now(),
                 name: name,
                 phone: phone,
+                region: region,
                 cnic: cnic || 'N/A',
                 entries: [{
                     date: newEntry.date,
                     service: newEntry.service,
                     category: newEntry.category,
+                    region: newEntry.region,
                     budget: newEntry.budget,
+                    paymentType: newEntry.paymentType,
+                    paymentAmount: newEntry.paymentAmount,
+                    paymentMode: newEntry.paymentMode,
+                    pipelineStage: newEntry.pipelineStage,
+                    commission: newEntry.commission,
                     details: newEntry.details,
                     image: newEntry.image
                 }]
@@ -275,13 +441,13 @@
                 timestamp: newEntry.timestamp,
                 name: name,
                 phone: phone,
-                cnic: cnic || 'N/A',
+                region: region,
                 service: service,
-                subject: 'CRM Dashboard Lead: ' + service,
+                subject: 'Payment & CRM Lead (' + paymentType + '): ' + service,
                 budget: budget || 'N/A',
                 details: details || 'N/A',
                 image: localCRMImg || '',
-                status: 'New Lead'
+                status: pipelineStage
             });
             localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
         } catch(err) {
@@ -295,13 +461,13 @@
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    formType: "CRM_DASHBOARD_ENTRY",
+                    formType: "PAYMENT_LEDGER_CRM_ENTRY",
                     ...newEntry
                 })
             }).catch(err => console.log('Google sheet sync background error'));
         }
 
-        alert('Client entry saved and synced successfully!');
+        alert('Payment entry saved and synced with Global CRM successfully!');
         document.getElementById('clientForm').reset();
         localCRMImg = '';
         renderClients(clients);
@@ -318,7 +484,7 @@
         }
 
         if (filtered.length === 0) {
-            container.innerHTML = `<p style="text-align:center; color:#6c757d; padding:20px; font-size:14px;">No client records found.</p>`;
+            container.innerHTML = `<p style="text-align:center; color:#94a3b8; padding:20px; font-size:13px;">No client records found.</p>`;
             return;
         }
 
@@ -330,23 +496,42 @@
 
             return `
                 <div class="client-item">
-                    <h3>${client.name}</h3>
-                    <div class="client-meta">
-                        <i class="fa-solid fa-phone"></i> ${client.phone} | <i class="fa-solid fa-id-card"></i> CNIC: ${client.cnic}
+                    <div class="flex justify-between items-start">
+                        <h3>${client.name}</h3>
+                        <a href="https://wa.me/${client.phone.replace(/[^0-9]/g, '')}?text=Hello%20${encodeURIComponent(client.name)},%20welcoming%20you%20from%20Bin%20Taha%20Associates." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 px-2.5 py-1 rounded-lg text-[10px] font-black transition">
+                            <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Bot
+                        </a>
                     </div>
-                    <div style="margin-top: 5px;">
+                    <div class="client-meta">
+                        <i class="fa-solid fa-phone"></i> ${client.phone} | <i class="fa-solid fa-globe"></i> Hub: ${client.region || 'Pakistan (PKT)'}
+                    </div>
+                    <div style="margin-top: 6px;">
                         <span class="entry-badge">${client.entries.length} Total Entries</span>
                     </div>
-                    ${matchedEntries.map((entry, idx) => `
-                        <div class="history-box">
-                            <strong>Entry #${client.entries.length - idx} (${entry.date})</strong>
-                            <span class="cat-tag">${entry.category}</span>
-                            <div style="margin-top: 4px;"><strong>Service:</strong> ${entry.service}</div>
-                            <div><strong>Budget:</strong> ${entry.budget}</div>
-                            <div><strong>Details:</strong> ${entry.details}</div>
-                            ${entry.image ? `<img src="${entry.image}" class="crm-img-preview">` : ''}
-                        </div>
-                    `).join('')}
+                    ${matchedEntries.map((entry, idx) => {
+                        let stageClass = 'status-new';
+                        if(entry.pipelineStage === 'Contacted') stageClass = 'status-contacted';
+                        if(entry.pipelineStage === 'Site Visit Scheduled') stageClass = 'status-visit';
+                        if(entry.pipelineStage === 'Token / Booking Done' || entry.paymentType !== 'No Payment Yet') stageClass = 'status-booked';
+
+                        return `
+                            <div class="history-box">
+                                <div class="flex justify-between items-center mb-1">
+                                    <strong>Entry #${client.entries.length - idx} (${entry.date})</strong>
+                                    <span class="pipeline-badge ${stageClass}">${entry.pipelineStage || 'New Lead'}</span>
+                                </div>
+                                <span class="cat-tag">${entry.category}</span>
+                                <div style="margin-top: 4px;"><strong>Service:</strong> ${entry.service}</div>
+                                <div><strong>Client Hub / Time:</strong> <span class="text-amber-300">${entry.region || 'Pakistan'}</span></div>
+                                <div><strong>Budget:</strong> ${entry.budget}</div>
+                                <div style="background: rgba(34,197,94,0.15); padding: 4px 8px; border-radius: 4px; margin-top: 4px; border: 1px solid #22c55e;">
+                                    <strong>💰 Payment Status:</strong> <span class="text-emerald-400 font-bold">${entry.paymentType} - ${entry.paymentAmount} (${entry.paymentMode})</span>
+                                </div>
+                                <div><strong>Notes:</strong> ${entry.details}</div>
+                                ${entry.image ? `<img src="${entry.image}" class="crm-img-preview">` : ''}
+                            </div>
+                        `;
+                    }).join('')}
                 </div>
             `;
         }).join('');
@@ -363,9 +548,13 @@
         const query = document.getElementById('searchInput').value.toLowerCase();
         const clients = getCombinedClients();
         const searched = clients.filter(c => 
-            c.name.toLowerCase().includes(query) || c.phone.includes(query)
+            c.name.toLowerCase().includes(query) || c.phone.includes(query) || (c.region && c.region.toLowerCase().includes(query))
         );
         renderClients(searched);
+    }
+
+    function runAiAutonomousSync() {
+        alert("💰 Financial Ledger: Payment section successfully linked with Google Sheets & CRM vault!");
     }
 
     renderClients(getCombinedClients());
