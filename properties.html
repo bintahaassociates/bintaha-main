@@ -29,11 +29,22 @@
       <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
         <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
         <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
-        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
+        <span><i class="fa-solid fa-earth-americas text-amber-400 mr-1"></i>Overseas Hub Active</span>
       </div>
-      <div class="flex items-center gap-4 text-xs font-semibold flex-wrap justify-center">
+      <div class="flex items-center gap-3 text-xs font-semibold flex-wrap justify-center">
+        <div class="flex items-center gap-1 bg-slate-900 px-2 py-1 rounded-lg border border-slate-800">
+          <span class="text-amber-400"><i class="fa-solid fa-coins"></i> Currency:</span>
+          <select id="currencySelector" onchange="changeCurrency()" class="bg-slate-950 text-white text-[11px] font-bold rounded px-1 py-0.5 outline-none">
+            <option value="PKR">PKR (Pakistani Rupee)</option>
+            <option value="USD">USD ($)</option>
+            <option value="AED">AED (Dirham)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+        </div>
         <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
-        <a href="accounting.html" class="text-amber-400 hover:text-amber-300 font-bold transition flex items-center gap-1"><i class="fa-solid fa-calculator"></i> Accounting</a>
+        <a href="#" onclick="openAiModal()" class="text-amber-400 hover:text-amber-300 font-bold transition flex items-center gap-1"><i class="fa-solid fa-robot"></i> AI Robot</a>
+        <a href="#" onclick="openCalcModal()" class="text-emerald-400 hover:text-emerald-300 font-bold transition flex items-center gap-1"><i class="fa-solid fa-calculator"></i> Cost Calculator</a>
+        <a href="#" onclick="openPostAdModal()" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg font-black transition flex items-center gap-1"><i class="fa-solid fa-plus"></i> Post Ad</a>
       </div>
     </div>
   </div>
@@ -44,7 +55,7 @@
         <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Exclusive Certified Listings</p>
+          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">International PropTech Super Portal</p>
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1 text-xs font-bold">
@@ -58,23 +69,52 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
     
     <div class="text-center max-w-3xl mx-auto space-y-3">
-      <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-4 py-2 rounded-full tracking-wider">Direct Verified Options</span>
+      <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-4 py-2 rounded-full tracking-wider">LDA Verified • Interactive Society Map • Overseas Support</span>
       <h2 class="text-3xl sm:text-5xl font-black shining-gold">Bin Taha Exclusive Property Listings</h2>
-      <p class="text-xs sm:text-sm text-slate-300">All plots, houses, and commercial options listed below are managed under Bin Taha Associates. Contact CEO Taha Mobeen Bhutta directly.</p>
+      <p class="text-xs sm:text-sm text-slate-300">Complete verified plots, houses, farmhouses, rentals, files, and commercial zones with installment plans & 3D video walkthroughs managed by CEO Taha Mobeen Bhutta.</p>
     </div>
 
-    <div class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-3xl shadow-xl flex flex-wrap justify-between items-center gap-4">
-      <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
-        <input type="text" id="filterInput" onkeyup="filterProperties()" placeholder="Search by Society, Block, Plot No..." class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white">
-      </div>
-      <div class="flex items-center gap-3">
-        <select id="filterCategory" onchange="filterProperties()" class="bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white font-semibold">
-          <option value="ALL">All Categories</option>
-          <option value="1 Kanal">1 Kanal Plots</option>
-          <option value="10 Marla">10 Marla Plots</option>
-          <option value="5 Marla">5 Marla & Smaller</option>
-          <option value="Rent">Rent Portions</option>
-        </select>
+    <div class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-3xl shadow-xl space-y-4">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
+          <input type="text" id="filterInput" onkeyup="filterProperties()" placeholder="Search by Block, Plot No, Street..." class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white">
+        </div>
+        
+        <div class="w-full sm:w-auto">
+          <select id="filterSociety" onchange="filterProperties()" class="w-full sm:w-auto bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white font-semibold">
+            <option value="ALL">📍 All Lahore Societies</option>
+            <option value="LDA Avenue 1">LDA Avenue 1</option>
+            <option value="Jubilee Town">Jubilee Town</option>
+            <option value="Valencia Town">Valencia Town</option>
+            <option value="Raiwind Road">Raiwind Road (Bugtia Chowk)</option>
+            <option value="Bahria Town">Bahria Town Lahore</option>
+            <option value="DHA Lahore">DHA Lahore</option>
+            <option value="Johar Town">Johar Town</option>
+          </select>
+        </div>
+
+        <div class="w-full sm:w-auto">
+          <select id="filterCategory" onchange="filterProperties()" class="w-full sm:w-auto bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white font-semibold">
+            <option value="ALL">All Categories</option>
+            <option value="Plot-1Kanal">Plot: 1 Kanal</option>
+            <option value="Plot-10Marla">Plot: 10 Marla</option>
+            <option value="Plot-5Marla">Plot: 5 Marla</option>
+            <option value="Plot-3Marla">Plot: 3 Marla</option>
+            <option value="House-1Kanal">House: 1 Kanal</option>
+            <option value="House-10Marla">House: 10 Marla</option>
+            <option value="House-5Marla">House: 5 Marla</option>
+            <option value="House-3Marla">House: 3 Marla</option>
+            <option value="Farmhouse">Farmhouse</option>
+            <option value="Rent">Rental Portions (3M to 2K)</option>
+            <option value="File-Clear">Clear File</option>
+            <option value="File-Litigation">Litigation File</option>
+            <option value="Commercial">Commercial / Semi-Commercial</option>
+          </select>
+        </div>
+
+        <button onclick="openPostAdModal()" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-3 rounded-xl text-xs font-black transition shadow">
+          <i class="fa-solid fa-plus mr-1"></i> Post Property Ad
+        </button>
       </div>
     </div>
 
@@ -84,33 +124,164 @@
   </main>
 
   <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center">
-    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All Verified Listings Managed by Taha Mobeen Bhutta (0321-9404812).</p>
+    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All Verified Listings Managed by Taha Mobeen Bhutta (0321-9404812). Google Drive & Local CRM Synced.</p>
   </footer>
 
+  <div id="postAdModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-bullhorn mr-2"></i> Post Property Ad (Self-Listing)</h3>
+      <p class="text-[11px] text-slate-300">Add detailed listings with Map location, Legal Badge, and 3D Walkthrough video link.</p>
+      
+      <input type="text" id="adTitle" placeholder="Property Title (e.g. 5 Marla House / 1 Kanal Plot)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      
+      <select id="adCategory" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+        <option value="Plot-1Kanal">Plot: 1 Kanal</option>
+        <option value="Plot-10Marla">Plot: 10 Marla</option>
+        <option value="Plot-5Marla">Plot: 5 Marla</option>
+        <option value="Plot-3Marla">Plot: 3 Marla</option>
+        <option value="House-1Kanal">House: 1 Kanal</option>
+        <option value="House-10Marla">House: 10 Marla</option>
+        <option value="House-5Marla">House: 5 Marla</option>
+        <option value="House-3Marla">House: 3 Marla</option>
+        <option value="Farmhouse">Farmhouse</option>
+        <option value="Rent">Rental Portion</option>
+        <option value="File-Clear">Clear File</option>
+        <option value="File-Litigation">Litigation File</option>
+        <option value="Commercial">Commercial / Semi-Commercial</option>
+      </select>
+
+      <select id="adSociety" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+        <option value="LDA Avenue 1">LDA Avenue 1</option>
+        <option value="Jubilee Town">Jubilee Town</option>
+        <option value="Valencia Town">Valencia Town</option>
+        <option value="Raiwind Road">Raiwind Road (Bugtia Chowk)</option>
+        <option value="Bahria Town">Bahria Town Lahore</option>
+        <option value="DHA Lahore">DHA Lahore</option>
+        <option value="Johar Town">Johar Town</option>
+      </select>
+
+      <input type="text" id="adLocationPin" placeholder="Exact Block & Street No. (e.g. Block D, Street 4)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      <input type="number" id="adPricePKR" placeholder="Demand Price in PKR (e.g. 25000000)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      
+      <select id="adLegalBadge" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+        <option value="LDA Approved">LDA Approved</option>
+        <option value="Registry Clear">Registry Clear</option>
+        <option value="Fee Paid">Fee Paid</option>
+        <option value="Open Form">Open Form</option>
+      </select>
+
+      <input type="text" id="adVideoLink" placeholder="3D Video / YouTube / TikTok Walkthrough Link" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      <input type="text" id="adImage" placeholder="Image URL (Unsplash / Imgur link)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      
+      <textarea id="adDesc" placeholder="Detailed property description..." class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white h-20"></textarea>
+      <input type="text" id="adContact" placeholder="Your Name & Phone (Overseas Supported)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white" value="Taha Mobeen Bhutta - 0321 9404812">
+      
+      <div class="flex gap-2 pt-2">
+        <button onclick="submitUserAd()" class="flex-1 bg-amber-500 text-slate-950 py-2.5 rounded-xl text-xs font-black">Publish Ad</button>
+        <button onclick="closeModals()" class="px-4 bg-slate-800 text-slate-300 py-2.5 rounded-xl text-xs font-bold">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="installmentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
+      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-calculator mr-2"></i> Installment & Down Payment Calculator</h3>
+      <p class="text-[11px] text-slate-300" id="calcPropertyTitle">Calculate monthly installments for this property.</p>
+      
+      <input type="hidden" id="calcTotalRawPrice" value="0">
+      <div>
+        <label class="block text-[11px] text-slate-300 font-bold mb-1">Total Price:</label>
+        <input type="text" id="calcDisplayPrice" readonly class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-amber-400 font-bold">
+      </div>
+      <div>
+        <label class="block text-[11px] text-slate-300 font-bold mb-1">Down Payment (%) - Default 20%:</label>
+        <input type="number" id="calcDownPaymentPercent" value="20" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white" onkeyup="computeInstallment()">
+      </div>
+      <div>
+        <label class="block text-[11px] text-slate-300 font-bold mb-1">Installment Duration:</label>
+        <select id="calcMonths" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white" onchange="computeInstallment()">
+          <option value="12">1 Year (12 Months)</option>
+          <option value="24" selected>2 Years (24 Months)</option>
+          <option value="36">3 Years (36 Months)</option>
+        </select>
+      </div>
+
+      <div id="installmentResultBox" class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-200 space-y-1">
+        </div>
+
+      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold">Close</button>
+    </div>
+  </div>
+
+  <div id="aiModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
+      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-robot mr-2"></i> AI Robot Matchmaker & Lead Bot</h3>
+      <p class="text-[11px] text-slate-300">Automated bot to match buyer/seller requirements and manage inquiries independently.</p>
+      <input type="text" id="aiClientName" placeholder="Client Name & Phone / Overseas ID" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      <input type="text" id="aiRequirement" placeholder="Requirement (e.g. 10 Marla House or Clear File)" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      <button onclick="runAiMatchBot()" class="w-full bg-amber-500 text-slate-950 py-2.5 rounded-xl text-xs font-black">Run AI Auto-Match</button>
+      <div id="aiResultBox" class="text-xs text-emerald-400 font-semibold p-3 bg-slate-950 rounded-xl border border-slate-800 hidden"></div>
+      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold">Close</button>
+    </div>
+  </div>
+
+  <div id="calcModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <h3 class="text-lg font-black text-emerald-400"><i class="fa-solid fa-calculator mr-2"></i> Transparent Construction Estimator</h3>
+      <p class="text-[11px] text-slate-300">Bin Taha Civil Construction & Material Supply transparent breakdown.</p>
+      
+      <label class="block text-xs font-bold text-amber-300">Select Plot Size:</label>
+      <select id="calcPlotSize" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+        <option value="5">5 Marla</option>
+        <option value="10">10 Marla</option>
+        <option value="20">1 Kanal</option>
+      </select>
+
+      <label class="block text-xs font-bold text-amber-300">Select Construction Category & Specs:</label>
+      <select id="calcCategory" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+        <option value="grey">Grey Structure (Foundation, Pillars, Roofs, Brickwork)</option>
+        <option value="catC">Category C (Standard Finishes, Local Tiles & Fittings)</option>
+        <option value="catB">Category B (Executive Finishes, Branded Tiles, Ash Wood)</option>
+        <option value="catA">Category A (Luxury Smart Villa, Imported Marbles, Premium Woods)</option>
+      </select>
+
+      <button onclick="calculateTransparentCost()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 py-2.5 rounded-xl text-xs font-black transition">Calculate Detailed Estimate</button>
+      
+      <div id="calcResultBox" class="text-xs text-slate-200 font-semibold p-3 bg-slate-950 rounded-xl border border-slate-800 hidden space-y-2"></div>
+      
+      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold">Close</button>
+    </div>
+  </div>
+
   <script>
-    // Complete Verified Listings Database directly under Bin Taha Associates branding
-    const verifiedProperties = [
-      { id: 1, title: "Plot 798 D (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "85,000,000 PKR", desc: "Prime location 1 Kanal plot available for sale in Block D.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 2, title: "Plot 422 K (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "40,000,000 PKR", desc: "Confirmed file option in Block K.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 3, title: "Plot 41 A (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "27,000,000 PKR", desc: "Block A direct owner listing, solid investment.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 4, title: "Plot 1049 A (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "26,000,000 PKR", desc: "A Block verified residential plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 5, title: "Plot 938 C (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "17,500,000 PKR", desc: "Block C economical option.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 6, title: "Plot 1054 M (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "22,000,000 PKR", desc: "Block M prime 10 Marla plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 7, title: "Plot 745 J (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "17,000,000 PKR", desc: "Block J verified papers in hand.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 8, title: "Plot 181 G (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "14,800,000 PKR", desc: "Block G residential plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 9, title: "Plot 1158 D (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "11,500,000 PKR", desc: "Block D affordable cutting.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 10, title: "Plot 62 K (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "13,800,000 PKR", desc: "Block K confirm option.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 11, title: "Plot 1721 C (10 Marla)", society: "LDA Avenue 1", category: "10 Marla", price: "11,500,000 PKR", desc: "Block C clear title plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 12, title: "Johar Town 5 Marla House", society: "Johar Town", category: "Rent", price: "50,000 PKR / Month", desc: "Block R1, 5 Marla double story house for rent, 5 bed, double kitchen.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 13, title: "LDA Avenue 1 Upper Portion", society: "LDA Avenue 1", category: "Rent", price: "75,000 PKR / Month", desc: "10 Marla brand new upper portion, 2 beds, luxury finishing.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 14, title: "Plot 570 D (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "19,000,000 PKR", desc: "Direct owner deal, immediate transfer.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 15, title: "Plot 480 F (1 Kanal)", society: "LDA Avenue 1", category: "1 Kanal", price: "19,500,000 PKR", desc: "F Block solid location.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 16, title: "Plot 24 J1 (5 Marla Corner)", society: "LDA Avenue 1", category: "5 Marla", price: "8,500,000 PKR", desc: "Corner cutting, excellent investment.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 17, title: "Plot 8 A1 (3 Marla)", society: "LDA Avenue 1", category: "5 Marla", price: "8,000,000 PKR", desc: "Small cutting affordable plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 18, title: "Jubilee Town 3 Marla House", society: "Jubilee Town", category: "Rent", price: "80,000 PKR / Month", desc: "Brand new house for rent, 4 bedrooms, car porch.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 19, title: "Plot 141 Block C (10 Marla)", society: "Jubilee Town", category: "10 Marla", price: "18,500,000 PKR", desc: "Semi-commercial 80ft road plot.", contact: "Taha Mobeen Bhutta - 0321 9404812" },
-      { id: 20, title: "Plot 408 Block E (1 Kanal)", society: "Jubilee Town", category: "1 Kanal", price: "60,000,000 PKR", desc: "150ft main boulevard commercial touch.", contact: "Taha Mobeen Bhutta - 0321 9404812" }
+    // Complete Verified Listings Database with Map Pinned Locations, Legal Badges & Video Links
+    const defaultProperties = [
+      { id: 1, title: "Plot 798 D (1 Kanal Plot)", society: "LDA Avenue 1", locationPin: "Block D, St 4", category: "Plot-1Kanal", pricePKR: 85000000, desc: "Prime location 1 Kanal plot available for sale in Block D.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "LDA Approved", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" },
+      { id: 2, title: "Modern Villa 10 Marla House", society: "LDA Avenue 1", locationPin: "Block K, Main Blvd", category: "House-10Marla", pricePKR: 45000000, desc: "Brand new 10 Marla luxury house with 5 bedrooms and double kitchen.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Registry Clear", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80" },
+      { id: 3, title: "LDA Avenue 1 Clear File", society: "LDA Avenue 1", locationPin: "Block A, Office Verified", category: "File-Clear", pricePKR: 27000000, desc: "Block A clear title file ready for immediate verification.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Fee Paid", videoLink: "", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" },
+      { id: 4, title: "Commercial Plot Main Boulevard", society: "Jubilee Town", locationPin: "Block E, 150ft Road", category: "Commercial", pricePKR: 60000000, desc: "150ft main boulevard commercial touch plot.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "LDA Approved", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" },
+      { id: 5, title: "Johar Town 5 Marla House For Rent", society: "Johar Town", locationPin: "Block R1", category: "Rent", pricePKR: 50000, desc: "Block R1, 5 Marla double story house for rent.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Registry Clear", videoLink: "", image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=400&q=80" }
     ];
+
+    // Currency Conversion Rates relative to PKR
+    const currencyRates = { PKR: 1, USD: 280, AED: 76, GBP: 350 };
+    const currencySymbols = { PKR: "PKR ", USD: "$ ", AED: "AED ", GBP: "£ " };
+
+    function formatPrice(pkrValue) {
+      const cur = document.getElementById('currencySelector').value;
+      const rate = currencyRates[cur] || 1;
+      const converted = Math.round(pkrValue / rate);
+      return currencySymbols[cur] + converted.toLocaleString() + (cur === 'PKR' ? ' PKR' : '');
+    }
+
+    function changeCurrency() {
+      displayProperties(getAllProperties());
+    }
+
+    function getAllProperties() {
+      let userAds = JSON.parse(localStorage.getItem('binTahaUserAds') || '[]');
+      return [...userAds, ...defaultProperties];
+    }
 
     function displayProperties(list) {
       const grid = document.getElementById('propertiesGrid');
@@ -120,20 +291,34 @@
       }
 
       grid.innerHTML = list.map(p => `
-        <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl flex flex-col justify-between hover:border-amber-500 transition group">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between hover:border-amber-500 transition group">
           <div>
-            <div class="flex justify-between items-start mb-3">
-              <span class="px-3 py-1 rounded-lg text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">${p.society}</span>
-              <span class="text-xs font-black text-emerald-400 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">${p.price}</span>
+            <div class="h-40 overflow-hidden relative">
+              <img src="${p.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80'}" alt="Property Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-lg text-[10px] font-bold bg-slate-950/80 text-amber-400 border border-amber-500/30">${p.society} (${p.locationPin || 'Lahore'})</span>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-500/90 text-slate-950">${p.legalBadge || 'LDA Approved'}</span>
             </div>
-            <h3 class="text-lg font-black text-white mb-2 group-hover:text-amber-400 transition">${p.title}</h3>
-            <p class="text-xs text-slate-300 mb-4 leading-relaxed">${p.desc}</p>
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-2">
+                <span class="text-xs font-black text-emerald-400 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">${formatPrice(p.pricePKR)}</span>
+              </div>
+              <h3 class="text-lg font-black text-white mb-2 group-hover:text-amber-400 transition">${p.title}</h3>
+              <p class="text-xs text-slate-300 mb-4 leading-relaxed">${p.desc}</p>
+            </div>
           </div>
-          <div class="pt-4 border-t border-slate-800 flex justify-between items-center">
-            <div class="text-[11px] text-amber-300 font-bold"><i class="fa-solid fa-user-shield mr-1"></i> ${p.contact}</div>
-            <a href="https://wa.me/923219404812?text=I%20am%20interested%20in%20${encodeURIComponent(p.title)}" target="_blank" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-3.5 py-2 rounded-xl text-xs font-black transition shadow">
-              <i class="fa-brands fa-whatsapp mr-1"></i> Inquire
-            </a>
+          <div class="px-6 pb-6 pt-0 border-t border-slate-800/60 mt-auto flex flex-col gap-2 pt-4">
+            <div class="text-[11px] text-amber-300 font-bold flex justify-between">
+              <span><i class="fa-solid fa-user-shield mr-1"></i> ${p.contact}</span>
+              ${p.videoLink ? `<a href="${p.videoLink}" target="_blank" class="text-rose-400 hover:underline"><i class="fa-solid fa-video mr-1"></i> 3D Tour</a>` : ''}
+            </div>
+            <div class="flex gap-2">
+              <button onclick="openInstallmentModal('${p.title}', ${p.pricePKR})" class="flex-1 bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-2 rounded-xl text-[11px] font-black text-center transition border border-amber-500/30">
+                <i class="fa-solid fa-calculator mr-1"></i> Installments
+              </button>
+              <a href="https://wa.me/923219404812?text=I%20am%20interested%20in%20${encodeURIComponent(p.title)}" target="_blank" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 px-2 py-2 rounded-xl text-[11px] font-black text-center transition shadow">
+                <i class="fa-brands fa-whatsapp mr-1"></i> Inquire
+              </a>
+            </div>
           </div>
         </div>
       `).join('');
@@ -141,19 +326,152 @@
 
     function filterProperties() {
       const query = document.getElementById('filterInput').value.toLowerCase();
+      const societyFilter = document.getElementById('filterSociety').value;
       const cat = document.getElementById('filterCategory').value;
+      const allProps = getAllProperties();
 
-      const filtered = verifiedProperties.filter(p => {
-        const matchesQuery = p.title.toLowerCase().includes(query) || p.society.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+      const filtered = allProps.filter(p => {
+        const matchesQuery = p.title.toLowerCase().includes(query) || (p.locationPin && p.locationPin.toLowerCase().includes(query)) || p.desc.toLowerCase().includes(query);
+        const matchesSociety = (societyFilter === 'ALL' || p.society === societyFilter);
         const matchesCat = (cat === 'ALL' || p.category === cat);
-        return matchesQuery && matchesCat;
+        return matchesQuery && matchesSociety && matchesCat;
       });
 
       displayProperties(filtered);
     }
 
+    // Modal Controllers
+    function openPostAdModal() { document.getElementById('postAdModal').classList.remove('hidden'); }
+    function openAiModal() { document.getElementById('aiModal').classList.remove('hidden'); }
+    function openCalcModal() { document.getElementById('calcModal').classList.remove('hidden'); }
+    function closeModals() {
+      document.getElementById('postAdModal').classList.add('hidden');
+      document.getElementById('aiModal').classList.add('hidden');
+      document.getElementById('calcModal').classList.add('hidden');
+      document.getElementById('installmentModal').classList.add('hidden');
+    }
+
+    // Installment Calculator Modal
+    function openInstallmentModal(title, pricePKR) {
+      document.getElementById('calcPropertyTitle').innerText = `Installments for: ${title}`;
+      document.getElementById('calcTotalRawPrice').value = pricePKR;
+      document.getElementById('calcDisplayPrice').value = formatPrice(pricePKR);
+      document.getElementById('installmentModal').classList.remove('hidden');
+      computeInstallment();
+    }
+
+    function computeInstallment() {
+      const rawPrice = parseFloat(document.getElementById('calcTotalRawPrice').value);
+      const dpPercent = parseFloat(document.getElementById('calcDownPaymentPercent').value) || 20;
+      const months = parseInt(document.getElementById('calcMonths').value) || 24;
+
+      const downPayment = rawPrice * (dpPercent / 100);
+      const remainingBalance = rawPrice - downPayment;
+      const monthlyInstallment = remainingBalance / months;
+
+      const box = document.getElementById('installmentResultBox');
+      box.innerHTML = `
+        <div>• Down Payment (${dpPercent}%): <b class="text-amber-400">${formatPrice(downPayment)}</b></div>
+        <div>• Remaining Balance: <b>${formatPrice(remainingBalance)}</b></div>
+        <div class="text-emerald-400 font-black text-sm mt-1">• Monthly Installment (${months} Months): ${formatPrice(monthlyInstallment)} / mo</div>
+      `;
+    }
+
+    // Submit User Ad with All International Fields
+    function submitUserAd() {
+      const title = document.getElementById('adTitle').value.trim();
+      const category = document.getElementById('adCategory').value;
+      const society = document.getElementById('adSociety').value;
+      const locationPin = document.getElementById('adLocationPin').value.trim();
+      const pricePKR = parseFloat(document.getElementById('adPricePKR').value);
+      const legalBadge = document.getElementById('adLegalBadge').value;
+      const videoLink = document.getElementById('adVideoLink').value.trim();
+      const image = document.getElementById('adImage').value.trim();
+      const desc = document.getElementById('adDesc').value.trim();
+      const contact = document.getElementById('adContact').value.trim();
+
+      if (!title || !pricePKR || !locationPin) {
+        alert("⚠️ Please fill in all required property fields!");
+        return;
+      }
+
+      const newAd = { id: Date.now(), title, category, society, locationPin, pricePKR, legalBadge, videoLink, image, desc, contact };
+      let userAds = JSON.parse(localStorage.getItem('binTahaUserAds') || '[]');
+      userAds.unshift(newAd);
+      localStorage.setItem('binTahaUserAds', JSON.stringify(userAds));
+
+      let inquiries = JSON.parse(localStorage.getItem('binTahaInquiries') || '[]');
+      inquiries.unshift({ name: contact, phone: "03219404812", service: `Self-Listing Ad: ${title} in ${society} (${locationPin})` });
+      localStorage.setItem('binTahaInquiries', JSON.stringify(inquiries));
+
+      alert("✅ Property Ad published successfully with Map Pin & Legal Badges!");
+      closeModals();
+      displayProperties(getAllProperties());
+    }
+
+    // AI Robot Matchmaker
+    function runAiMatchBot() {
+      const client = document.getElementById('aiClientName').value.trim();
+      const req = document.getElementById('aiRequirement').value.trim();
+      if (!client || !req) { alert("Please enter client details and requirement!"); return; }
+
+      const allProps = getAllProperties();
+      const match = allProps.find(p => p.society.toLowerCase().includes('lda') || p.category.includes('Plot'));
+
+      const box = document.getElementById('aiResultBox');
+      box.classList.remove('hidden');
+      if (match) {
+        box.innerHTML = `🤖 AI Robot Match Success!<br>Client: <b>${client}</b> matches with:<br>• ${match.title} (${match.society}) - ${formatPrice(match.pricePKR)}<br><i>Notification saved to CRM Inbox & WhatsApp queue!</i>`;
+      } else {
+        box.innerHTML = `🤖 AI Robot searching inventory... Lead saved for Taha Mobeen follow-up.`;
+      }
+    }
+
+    // Transparent Construction Cost Calculator with A, B, C Categories
+    function calculateTransparentCost() {
+      const marla = parseInt(document.getElementById('calcPlotSize').value);
+      const type = document.getElementById('calcCategory').value;
+      
+      let ratePerMarla = 0;
+      let specTitle = "";
+      let details = "";
+
+      if(type === 'grey') {
+        ratePerMarla = 450000;
+        specTitle = "Grey Structure (قائم ڈھانچہ)";
+        details = "• Foundation, Excavation & Pillars<br>• RCC Roofs & Brickwork (Best Quality Bricks)<br>• Underground Water Tank & Plaster Work";
+      } else if(type === 'catC') {
+        ratePerMarla = 750000;
+        specTitle = "Category C (Standard Finishes)";
+        details = "• Standard Ceramic Tiles & Local Sanitary Fittings<br>• Flush Doors & Standard Aluminium Windows<br>• Complete Wiring & Standard Paint";
+      } else if(type === 'catB') {
+        ratePerMarla = 1050000;
+        specTitle = "Category B (Executive Finishes)";
+        details = "• Branded Porcelain Tiles & Imported Sanitary<br>• Ash Wood Doors & Double Glazed Windows<br>• False Ceiling & Premium Electric Fixtures";
+      } else if(type === 'catA') {
+        ratePerMarla = 1450000;
+        specTitle = "Category A (Luxury Smart Villa)";
+        details = "• Imported Marbles / Spanish Tiles & Grohe Fittings<br>• Solid Wood / Designer Doors & Smart Lock System<br>• Premium Exterior Cladding & Landscaping";
+      }
+
+      let totalCost = marla * ratePerMarla;
+      const box = document.getElementById('calcResultBox');
+      box.classList.remove('hidden');
+      box.innerHTML = `
+        <div class="border-b border-slate-700 pb-2 mb-2">
+          <span class="text-amber-400 font-bold">${specTitle} (${marla} Marla)</span><br>
+          Estimated Total: <b class="text-emerald-400 text-sm">PKR ${totalCost.toLocaleString()}</b>
+        </div>
+        <div class="text-[11px] text-slate-300 leading-relaxed">
+          <b>Transparent Work Scope & Material Breakdown:</b><br>
+          ${details}<br>
+          <i class="text-amber-300 mt-1 block">✨ Executed under Bin Taha Civil Construction & Material Supply (PEC Category C).</i>
+        </div>
+      `;
+    }
+
     window.onload = function() {
-      displayProperties(verifiedProperties);
+      displayProperties(getAllProperties());
     };
   </script>
 </body>
