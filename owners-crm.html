@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Plot Owners & Dealers CRM | Bin Taha Associates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
+    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.25); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Top Bar -->
+  <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold text-white">Bin Taha Private Backend CRM (Owner & Dealer Directory)</span>
+      </div>
+      <div>
+        <a href="accounting.html" class="text-amber-400 hover:text-amber-300 font-bold"><i class="fa-solid fa-calculator mr-1"></i> Accounting</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center font-black text-lg">
+          <i class="fa-solid fa-user-secret"></i>
+        </div>
+        <div>
+          <h1 class="text-lg font-black text-white leading-tight">Private Owner & Dealer Lookup</h1>
+          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Confidential Data - Client Hidden</p>
+        </div>
+      </div>
+      <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs font-bold px-4 py-2.5 rounded-xl transition border border-slate-700">
+        <i class="fa-solid fa-house mr-1"></i> Main Website
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
+    
+    <!-- Search Box for Plot Number -->
+    <div class="bg-slate-900 border border-amber-500/40 p-6 sm:p-8 rounded-3xl shadow-2xl gold-glow">
+      <h3 class="text-base font-black text-white mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Quick Search Plot / Dealer By Number or Plot ID
+      </h3>
+      <div class="flex gap-3">
+        <input type="text" id="lookupInput" onkeyup="searchOwnerDirectory()" placeholder="Type Plot No (e.g. 798) or Dealer Name / Phone..." class="flex-1 bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-xs text-white font-semibold">
+        <button onclick="searchOwnerDirectory()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-6 py-3.5 rounded-xl text-xs transition shadow">
+          Search Owner
+        </button>
+      </div>
+    </div>
+
+    <!-- Owner / Dealer Results List -->
+    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl">
+      <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+        <h3 class="text-base font-black text-white">Private Directory & WhatsApp Leads Database</h3>
+        <span class="text-xs text-slate-400" id="recordCount">Total Records: Loading...</span>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
+            <tr>
+              <th class="p-3.5">Plot / Property Details</th>
+              <th class="p-3.5">Society / Block</th>
+              <th class="p-3.5">Owner / Dealer Name</th>
+              <th class="p-3.5">Estate Name / Agency</th>
+              <th class="p-3.5">Contact Number</th>
+              <th class="p-3.5 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody id="ownerTableBody" class="divide-y divide-slate-800/60">
+            <!-- Dynamic Data -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center">
+    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. Private Confidential Backend CRM.</p>
+  </footer>
+
+  <script>
+    // Master Confidential Database extracted from WhatsApp dealer messages
+    const privateOwnerDatabase = [
+      { plot: "Plot 798 D", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "850 Lakh" },
+      { plot: "Plot 422 K", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "400 Lakh" },
+      { plot: "Plot 41 A", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "270 Lakh" },
+      { plot: "Plot 1049 A", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "260 Lakh" },
+      { plot: "Plot 938 C", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "175 Lakh" },
+      { plot: "Johar Town House R1", society: "Johar Town", owner: "Warees", estate: "Jubilee Town Dealer", phone: "0321-5015279", price: "Rent Available" },
+      { plot: "Plot 36, 37 D1", society: "LDA Avenue 1", owner: "Muhammad Umer Amin", estate: "Umer Associate's & Builder's", phone: "0307-4646144", price: "135 Lakh each" },
+      { plot: "Plot 79A K", society: "LDA Avenue 1", owner: "Khizer Hayat", estate: "Galaxy Estate & Builder", phone: "0307-9437564", price: "1.42 Lac" },
+      { plot: "Plot 831 G", society: "LDA Avenue 1", owner: "Khizer Hayat", estate: "Galaxy Estate & Builder", phone: "0307-9437564", price: "1.25 Lac" },
+      { plot: "Plot 890 A", society: "LDA Avenue 1", owner: "Suleman Gujjar", estate: "City Life Real Estate", phone: "0321-9126628", price: "210 Lac" },
+      { plot: "Plot 447 H", society: "LDA Avenue 1", owner: "Suleman Gujjar", estate: "City Life Real Estate", phone: "0321-9126628", price: "238 Lac" },
+      { plot: "Plot 570 D", society: "LDA Avenue 1", owner: "Shakeel Kharal", estate: "Direct Owner Deal", phone: "0321-9977218", price: "190 Lac" },
+      { plot: "Plot 480 F", society: "LDA Avenue 1", owner: "Shakeel Kharal", estate: "Direct Owner Deal", phone: "0321-9977218", price: "195 Lac" },
+      { plot: "Plot 63-64 D", society: "LDA Avenue 1", owner: "Mian Waqas Talib", estate: "Karam Estate", phone: "0321-9417907", price: "470 Lac" },
+      { plot: "Plot 85A F", society: "LDA Avenue 1", owner: "Mian Waqas Talib", estate: "Karam Estate", phone: "0321-9417907", price: "240 Lac" },
+      { plot: "Plot 1589 C", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "220 Lakh" },
+      { plot: "Plot 991 J", society: "LDA Avenue 1", owner: "Ch. Ali Raza", estate: "Green Land Estate & Builder", phone: "0304-0000350", price: "175 Lakh" },
+      { plot: "Plot 704/A J", society: "LDA Avenue 1", owner: "Dilbar Hussain", estate: "ANS Property Advisers", phone: "0333-8880965", price: "165 Lakh" },
+      { plot: "Plot 857 L", society: "LDA Avenue 1", owner: "Dilbar Hussain", estate: "ANS Property Advisers", phone: "0333-8880965", price: "102 Lakh" }
+    ];
+
+    function renderOwnerTable(data) {
+      const tbody = document.getElementById('ownerTableBody');
+      document.getElementById('recordCount').innerText = `Total Records: ${data.length}`;
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-500 italic">No confidential owner records found.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = data.map(item => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3.5 font-bold text-white"><i class="fa-solid fa-map-pin text-amber-400 mr-1.5"></i>${item.plot} <span class="text-[10px] text-emerald-400 font-semibold block">${item.price}</span></td>
+          <td class="p-3.5 text-blue-300 font-semibold">${item.society}</td>
+          <td class="p-3.5 font-bold text-amber-300">${item.owner}</td>
+          <td class="p-3.5 text-slate-300">${item.estate}</td>
+          <td class="p-3.5 font-mono font-bold text-white bg-slate-950/60 rounded px-2">${item.phone}</td>
+          <td class="p-3.5 text-right">
+            <a href="tel:${item.phone}" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl text-[11px] font-bold transition inline-flex items-center gap-1 shadow">
+              <i class="fa-solid fa-phone"></i> Call Owner
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function searchOwnerDirectory() {
+      const query = document.getElementById('lookupInput').value.toLowerCase().trim();
+      const filtered = privateOwnerDatabase.filter(item => 
+        item.plot.toLowerCase().includes(query) || 
+        item.owner.toLowerCase().includes(query) || 
+        item.estate.toLowerCase().includes(query) || 
+        item.phone.includes(query) ||
+        item.society.toLowerCase().includes(query)
+      );
+      renderOwnerTable(filtered);
+    }
+
+    window.onload = function() {
+      renderOwnerTable(privateOwnerDatabase);
+    };
+  </script>
+</body>
+</html>

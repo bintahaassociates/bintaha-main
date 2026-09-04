@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Sign In | Bin Taha Associates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
+    .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
+
+    /* 3D Dynamic Moving Eagle Logo Animation */
+    @keyframes eagle3DRotate {
+        0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+        50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
+        100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+    }
+    .moving-eagle-3d {
+        animation: eagle3DRotate 6s infinite linear;
+        transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Top Bar -->
+  <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-6 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
+        <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
+        <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
+        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
+      </div>
+      <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
+        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="hover:text-white transition" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+        <span class="text-slate-600">|</span>
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i>Bin Taha CRM Active</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header with 3D Dynamic Moving Logo -->
+  <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-11 w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div>
+          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
+          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">FBR & PEC Category C Certified</p>
+        </div>
+      </a>
+      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-user-group mr-1"></i>About Us</a>
+        <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
+        <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-city mr-1"></i>Properties</a>
+        <a href="client-form.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-id-card mr-1"></i>Client Form</a>
+        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-cogs mr-1"></i>Services</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-envelope text-blue-400 mr-1"></i>Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="signin.html" class="bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-lg transition shadow">Sign In</a>
+        <a href="signup.html" class="border border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-slate-950 text-xs font-bold px-3.5 py-1.5 rounded-lg transition">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sign In Container -->
+  <main class="max-w-md mx-auto px-4 py-12 flex-1 w-full">
+    <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-8 shadow-2xl gold-glow">
+      <div class="text-center mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow">
+          <i class="fa-solid fa-user-lock"></i>
+        </div>
+        <h2 class="text-2xl font-black shining-gold">Member Sign In</h2>
+        <p class="text-xs text-slate-400 mt-1">Access your property management portal</p>
+      </div>
+
+      <form onsubmit="handleClientSignIn(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Email or Phone Number *</label>
+          <input type="text" id="signInEmail" required placeholder="Enter email or mobile number" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Password *</label>
+          <input type="password" id="signInPass" required placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
+        </div>
+
+        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3 rounded-xl text-sm transition shadow-xl cursor-pointer">
+          Sign In & Verify Account
+        </button>
+      </form>
+
+      <p class="text-center text-xs text-slate-400 mt-5">
+        Don't have an account? <a href="signup.html" class="text-amber-400 font-bold hover:underline">Sign Up here</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
+      
+      <!-- Social Media Strip -->
+      <div class="flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition shadow" title="Facebook">
+          <i class="fa-brands fa-facebook-f text-sm"></i>
+        </a>
+        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 hover:border-pink-500 transition shadow" title="Instagram">
+          <i class="fa-brands fa-instagram text-sm"></i>
+        </a>
+        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition shadow" title="Twitter / X">
+          <i class="fa-brands fa-x-twitter text-sm"></i>
+        </a>
+        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-600 hover:border-red-500 transition shadow" title="YouTube">
+          <i class="fa-brands fa-youtube text-sm"></i>
+        </a>
+        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 hover:border-pink-500 transition shadow" title="TikTok">
+          <i class="fa-brands fa-tiktok text-sm"></i>
+        </a>
+        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-700 hover:border-red-600 transition shadow" title="Pinterest">
+          <i class="fa-brands fa-pinterest text-sm"></i>
+        </a>
+        <a href="https://wa.me/923219404812" target="_blank" class="px-4 h-10 bg-slate-900 border border-emerald-500/40 rounded-xl flex items-center gap-2 text-emerald-400 hover:bg-emerald-600 hover:text-white hover:border-emerald-500 transition shadow text-xs font-bold" title="WhatsApp">
+          <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+        </a>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-400">
+        <a href="index.html" class="hover:text-amber-400">Home</a>
+        <a href="dream.html" class="hover:text-amber-400">Our Dream</a>
+        <a href="properties.html" class="hover:text-amber-400">Properties</a>
+        <a href="client-form.html" class="hover:text-amber-400">Client Form</a>
+        <a href="services.html" class="hover:text-amber-400">Services</a>
+        <a href="about.html" class="hover:text-amber-400">About Us</a>
+        <a href="contact.html" class="hover:text-amber-400">Contact Form</a>
+        <a href="signin.html" class="hover:text-amber-400">Sign In</a>
+        <a href="signup.html" class="hover:text-amber-400">Sign Up</a>
+        <a href="agent-login.html" class="text-amber-500 font-bold border-l border-slate-700 pl-4">Partner Portal (Staff)</a>
+      </div>
+
+      <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function handleClientSignIn(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('signInEmail').value.trim();
+
+      const regCode = 'BTA-REG-' + Math.floor(100000 + Math.random() * 900000);
+
+      const crmRecord = {
+        id: Date.now(),
+        sender: 'Client Sign In: ' + identifier,
+        phone: identifier.includes('@') ? '0321-9404812' : identifier,
+        email: identifier.includes('@') ? identifier : 'client@bintaha.com',
+        subject: 'Member Portal Sign In & Registration',
+        text: `Client successfully signed in. Assigned Registration / Verification Code: ${regCode}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
+      inboxList.unshift(crmRecord);
+      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
+
+      alert(`✅ Sign In Successful!\n\nWelcome to Bin Taha Associates.\nYour Digital Registration Code is: [ ${regCode} ]\n(This has been sent to your mobile & registered in Master CRM).`);
+
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

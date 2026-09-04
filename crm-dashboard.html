@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bin Taha Associates - CRM System & Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1b4332;
+            --secondary-color: #2d6a4f;
+            --accent-color: #d4a373;
+            --bg-color: #f4f6f8;
+            --text-color: #212529;
+            --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-color); padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding-bottom: 50px; }
+        header { background: var(--primary-color); color: var(--white); padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        header h1 { font-size: 26px; margin-bottom: 5px; }
+        header p { font-size: 14px; color: var(--accent-color); }
+        .main-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; align-items: start; }
+        @media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+        .card { background: var(--white); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .card h2 { font-size: 18px; color: var(--primary-color); margin-bottom: 15px; border-bottom: 2px solid var(--accent-color); padding-bottom: 5px; }
+        .form-group { margin-bottom: 12px; }
+        label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--primary-color); }
+        .btn { background: var(--secondary-color); color: var(--white); border: none; padding: 14px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 10px; margin-bottom: 20px; transition: background 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.15); }
+        .btn:hover { background: var(--primary-color); }
+        .filter-tabs { display: flex; gap: 5px; margin-bottom: 12px; flex-wrap: wrap; }
+        .filter-tab { background: #e9ecef; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; color: #495057; transition: 0.2s; }
+        .filter-tab.active, .filter-tab:hover { background: var(--primary-color); color: var(--white); }
+        .search-bar { margin-bottom: 15px; }
+        .client-list { max-height: 550px; overflow-y: auto; }
+        .client-item { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 12px; position: relative; }
+        .client-item h3 { font-size: 16px; color: var(--primary-color); }
+        .client-meta { font-size: 12px; color: #6c757d; margin: 5px 0; }
+        .entry-badge { display: inline-block; background: var(--accent-color); color: #000; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-right: 5px; }
+        .cat-tag { display: inline-block; background: #1b4332; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 5px; }
+        .history-box { background: #fff; border-left: 3px solid var(--secondary-color); padding: 10px; margin-top: 8px; font-size: 13px; }
+        .crm-img-preview { margin-top: 8px; max-width: 140px; height: 90px; object-fit: cover; border-radius: 4px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Bin Taha Associates</h1>
+        <p>Customer Relationship Management (CRM) & Online Google Sheets Dashboard</p>
+    </header>
+
+    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <a href="index.html" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-950 transition"><i class="fa-solid fa-house mr-1"></i> Home</a>
+        <a href="inbox.html" class="bg-amber-600 text-slate-950 px-4 py-2 rounded-lg text-xs font-bold hover:bg-amber-500 transition"><i class="fa-solid fa-inbox mr-1"></i> Master Inbox</a>
+        <a href="client-form.html" class="bg-blue-800 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-950 transition"><i class="fa-solid fa-id-card mr-1"></i> Client Form</a>
+    </div>
+
+    <div class="main-grid">
+        <!-- Form Section -->
+        <div class="card">
+            <h2>Add New Client / New Entry</h2>
+            <form id="clientForm">
+                <div class="form-group">
+                    <label>Client Name: *</label>
+                    <input type="text" id="clientName" required placeholder="Enter full name">
+                </div>
+                <div class="form-group">
+                    <label>Phone / WhatsApp Number: *</label>
+                    <input type="text" id="clientPhone" required placeholder="0300-1234567">
+                </div>
+                <div class="form-group">
+                    <label>CNIC Number:</label>
+                    <input type="text" id="clientCnic" placeholder="35202-1234567-1">
+                </div>
+                <div class="form-group">
+                    <label>Service / Requirement Category & Type: *</label>
+                    <select id="serviceType" required>
+                        <option value="">-- Select Service --</option>
+                        
+                        <optgroup label="🏠 Property Dealings (Sale / Buy / Rent)">
+                            <option value="Plot Buy">Plot Buy</option>
+                            <option value="Plot Sell">Plot Sell</option>
+                            <option value="House Buy">House Buy</option>
+                            <option value="House Sell">House Sell</option>
+                            <option value="Commercial Shop Buy/Sell">Commercial Shop Buy/Sell</option>
+                            <option value="Rental Management">Rental Management (Buy/Sell/Rent)</option>
+                        </optgroup>
+
+                        <optgroup label="🏗️ Construction Works">
+                            <option value="Turnkey Construction (With Material)">Turnkey Construction (With Material)</option>
+                            <option value="Construction Only (Labour Rate)">Construction Only (Labour Rate)</option>
+                            <option value="Grey Structure Work">Grey Structure Work</option>
+                            <option value="Foundation & Lintel Work">Foundation & Lintel Work</option>
+                            <option value="Masonry & Brickwork">Masonry & Brickwork</option>
+                        </optgroup>
+
+                        <optgroup label="🧱 Material & Professional Services">
+                            <option value="Material Supply Only">Material Supply Only</option>
+                            <option value="Architectural Mapping (2D/3D)">Architectural Mapping (2D/3D)</option>
+                            <option value="Legal & Documentation Services">Legal & Documentation Services</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget (PKR):</label>
+                    <input type="text" id="clientBudget" placeholder="e.g. 50 Lakh or 1 Crore">
+                </div>
+                <div class="form-group">
+                    <label>Details / Remarks (Site Location, Material List, etc.):</label>
+                    <textarea id="clientDetails" rows="3" placeholder="Enter site location, material items, or specific notes..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Attach Image / Document (Compressed):</label>
+                    <input type="file" id="clientImageInput" accept="image/*" onchange="compressAndEncodeImage(event)">
+                </div>
+                <button type="button" id="submitBtn" class="btn" onclick="saveClientData()">Save & Sync with Google Sheets</button>
+            </form>
+        </div>
+
+        <!-- Client List & History Section -->
+        <div class="card">
+            <h2>Client Records & Category Filters</h2>
+            
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterByCategory('All', this)">All Records</button>
+                <button class="filter-tab" onclick="filterByCategory('Property', this)">🏠 Property</button>
+                <button class="filter-tab" onclick="filterByCategory('Construction', this)">🏗️ Construction</button>
+                <button class="filter-tab" onclick="filterByCategory('Material & Professional', this)">🧱 Material & Services</button>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" onkeyup="searchClients()" placeholder="Search by name or phone number...">
+            </div>
+            <div class="client-list" id="clientListContainer">
+                <!-- Data will load here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let localCRMImg = '';
+    let currentCategoryFilter = 'All';
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyLsiGO7Rv_9qJuLNdfioLTKfM8iFnAIEIPqG3vlZGrqc8HDQ4yE_Im8WA1j6AgaTo-/exec'; 
+
+    function compressAndEncodeImage(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const MAX_WIDTH = 400;
+                const MAX_HEIGHT = 400;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > height) {
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width;
+                        width = MAX_WIDTH;
+                    }
+                } else {
+                    if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height;
+                        height = MAX_HEIGHT;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+                
+                localCRMImg = canvas.toDataURL('image/jpeg', 0.6);
+            };
+            img.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function getServiceCategory(serviceName) {
+        const propertyList = ['Plot Buy', 'Plot Sell', 'House Buy', 'House Sell', 'Commercial Shop Buy/Sell', 'Rental Management'];
+        const constructionList = ['Turnkey Construction (With Material)', 'Construction Only (Labour Rate)', 'Grey Structure Work', 'Foundation & Lintel Work', 'Masonry & Brickwork'];
+        
+        if (propertyList.includes(serviceName)) return 'Property';
+        if (constructionList.includes(serviceName)) return 'Construction';
+        return 'Material & Professional';
+    }
+
+    function getCombinedClients() {
+        let manualClients = [];
+        try {
+            manualClients = JSON.parse(localStorage.getItem('binTahaClientsEnglish')) || [];
+        } catch(err) {
+            manualClients = [];
+        }
+        return manualClients;
+    }
+
+    function saveClientData() {
+        const name = document.getElementById('clientName').value.trim();
+        const phone = document.getElementById('clientPhone').value.trim();
+        const cnic = document.getElementById('clientCnic').value.trim();
+        const service = document.getElementById('serviceType').value;
+        const budget = document.getElementById('clientBudget').value.trim();
+        const details = document.getElementById('clientDetails').value.trim();
+
+        if (!name || !phone || !service) {
+            alert('Please fill in Client Name, Phone Number, and Service Type.');
+            return;
+        }
+
+        const category = getServiceCategory(service);
+
+        const newEntry = {
+            id: Date.now(),
+            timestamp: new Date().toLocaleString(),
+            date: new Date().toLocaleDateString('en-GB'),
+            name: name,
+            phone: phone,
+            cnic: cnic || 'N/A',
+            service: service,
+            category: category,
+            budget: budget || 'Not Defined',
+            details: details || 'No additional details',
+            image: localCRMImg || ''
+        };
+
+        let clients = getCombinedClients();
+        let existingClient = clients.find(c => c.phone === phone);
+
+        if (existingClient) {
+            existingClient.entries.push({
+                date: newEntry.date,
+                service: newEntry.service,
+                category: newEntry.category,
+                budget: newEntry.budget,
+                details: newEntry.details,
+                image: newEntry.image
+            });
+            existingClient.name = name;
+            existingClient.cnic = cnic === 'N/A' || cnic === '' ? existingClient.cnic : cnic;
+        } else {
+            const newClient = {
+                id: Date.now(),
+                name: name,
+                phone: phone,
+                cnic: cnic || 'N/A',
+                entries: [{
+                    date: newEntry.date,
+                    service: newEntry.service,
+                    category: newEntry.category,
+                    budget: newEntry.budget,
+                    details: newEntry.details,
+                    image: newEntry.image
+                }]
+            };
+            clients.unshift(newClient);
+        }
+
+        try {
+            localStorage.setItem('binTahaClientsEnglish', JSON.stringify(clients));
+            
+            let inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
+            inboxList.unshift({
+                id: newEntry.id,
+                timestamp: newEntry.timestamp,
+                name: name,
+                phone: phone,
+                cnic: cnic || 'N/A',
+                service: service,
+                subject: 'CRM Dashboard Lead: ' + service,
+                budget: budget || 'N/A',
+                details: details || 'N/A',
+                image: localCRMImg || '',
+                status: 'New Lead'
+            });
+            localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
+        } catch(err) {
+            alert('Storage quota limit reached.');
+            return;
+        }
+
+        if (scriptURL) {
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    formType: "CRM_DASHBOARD_ENTRY",
+                    ...newEntry
+                })
+            }).catch(err => console.log('Google sheet sync background error'));
+        }
+
+        alert('Client entry saved and synced successfully!');
+        document.getElementById('clientForm').reset();
+        localCRMImg = '';
+        renderClients(clients);
+    }
+
+    function renderClients(clientsToRender) {
+        const container = document.getElementById('clientListContainer');
+        
+        let filtered = clientsToRender;
+        if (currentCategoryFilter !== 'All') {
+            filtered = clientsToRender.filter(client => 
+                client.entries.some(entry => entry.category === currentCategoryFilter)
+            );
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = `<p style="text-align:center; color:#6c757d; padding:20px; font-size:14px;">No client records found.</p>`;
+            return;
+        }
+
+        container.innerHTML = filtered.map(client => {
+            let matchedEntries = client.entries;
+            if (currentCategoryFilter !== 'All') {
+                matchedEntries = client.entries.filter(e => e.category === currentCategoryFilter);
+            }
+
+            return `
+                <div class="client-item">
+                    <h3>${client.name}</h3>
+                    <div class="client-meta">
+                        <i class="fa-solid fa-phone"></i> ${client.phone} | <i class="fa-solid fa-id-card"></i> CNIC: ${client.cnic}
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <span class="entry-badge">${client.entries.length} Total Entries</span>
+                    </div>
+                    ${matchedEntries.map((entry, idx) => `
+                        <div class="history-box">
+                            <strong>Entry #${client.entries.length - idx} (${entry.date})</strong>
+                            <span class="cat-tag">${entry.category}</span>
+                            <div style="margin-top: 4px;"><strong>Service:</strong> ${entry.service}</div>
+                            <div><strong>Budget:</strong> ${entry.budget}</div>
+                            <div><strong>Details:</strong> ${entry.details}</div>
+                            ${entry.image ? `<img src="${entry.image}" class="crm-img-preview">` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }).join('');
+    }
+
+    function filterByCategory(category, btnElement) {
+        currentCategoryFilter = category;
+        document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+        btnElement.classList.add('active');
+        renderClients(getCombinedClients());
+    }
+
+    function searchClients() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const clients = getCombinedClients();
+        const searched = clients.filter(c => 
+            c.name.toLowerCase().includes(query) || c.phone.includes(query)
+        );
+        renderClients(searched);
+    }
+
+    renderClients(getCombinedClients());
+</script>
+</body>
+</html>
