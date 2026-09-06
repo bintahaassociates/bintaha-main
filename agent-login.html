@@ -99,6 +99,17 @@
 
       if (pass.length > 0) {
         localStorage.setItem('bintaha_active_agent', agent);
+
+        // CRM GOOGLE SHEET WEBHOOK URL INTEGRATION:
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+        if (googleScriptUrl) {
+          fetch(googleScriptUrl, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'agent_login', agent: agent, time: new Date().toISOString() })
+          }).catch(err => console.log('Google Sheet sync notice:', err));
+        }
+
         alert('Authentication Successful! Welcome to Bin Taha Partner Dashboard.');
         window.location.href = 'agent-dashboard.html';
       } else {
