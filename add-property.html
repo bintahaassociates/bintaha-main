@@ -44,7 +44,6 @@
     </div>
   </div>
 
-  <!-- Header with 3D Dynamic Moving Logo -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
       <a href="index.html" class="flex items-center gap-3">
@@ -225,6 +224,16 @@
       const submitBtn = document.getElementById('submitBtn');
       submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Syncing with CRM & Sheets...`;
       submitBtn.disabled = true;
+
+      // CRM GOOGLE SHEET WEBHOOK URL INTEGRATION:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'post_property_listing', listing: newListing, time: new Date().toISOString() })
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
 
       setTimeout(() => {
         alert('Property registered in Bin Taha CRM database with Base64 image and live inventory updated!');
