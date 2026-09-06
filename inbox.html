@@ -73,8 +73,8 @@
     <!-- Messages Container -->
     <div class="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl overflow-hidden">
       <div class="p-4 bg-slate-950 border-b border-slate-800 font-bold text-xs uppercase tracking-wider text-slate-400 flex justify-between items-center">
-        <span>Recent Client & AI Estimator Leads</span>
-        <button onclick="clearInbox()" class="text-rose-400 hover:text-rose-300 text-xs"><i class="fa-solid fa-trash mr-1"></i> Clear All</button>
+        <span>Recent Client & Website Leads</span>
+        <button onclick="clearInbox()" class="text-rose-400 hover:text-rose-300 text-xs cursor-pointer"><i class="fa-solid fa-trash mr-1"></i> Clear All</button>
       </div>
       <div id="inboxListContainer" class="divide-y divide-slate-800">
         <!-- Injected via JS -->
@@ -118,12 +118,22 @@
             </div>
           </div>
           <div>
-            <a href="https://wa.me/923219404812?text=${encodeURIComponent('Hello regarding your inquiry at Bin Taha Associates')}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow flex items-center gap-1.5 whitespace-nowrap">
+            <a href="https://wa.me/923219404812?text=${encodeURIComponent('Hello regarding your inquiry at Bin Taha Associates')}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition shadow flex items-center gap-1.5 whitespace-nowrap cursor-pointer">
               <i class="fa-brands fa-whatsapp text-sm"></i> Reply on WhatsApp
             </a>
           </div>
         </div>
       `).join('');
+
+      // MASTER CRM GOOGLE SHEET WEBHOOK URL INSERTED HERE:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl && messages.length > 0) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'sync_inbox_leads', totalLeads: messages.length, latestLead: messages[0], time: new Date().toISOString() })
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
     }
 
     function clearInbox() {
