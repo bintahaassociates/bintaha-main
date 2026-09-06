@@ -44,7 +44,6 @@
     </div>
   </div>
 
-  <!-- Header with 3D Dynamic Moving Logo -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
       <a href="index.html" class="flex items-center gap-3">
@@ -178,6 +177,16 @@
       const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
       inboxList.unshift(crmRecord);
       localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
+
+      // CRM GOOGLE SHEET WEBHOOK URL INSERTION:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(crmRecord)
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
 
       alert(`🎉 Account Created Successfully!\n\nWelcome ${name} to Bin Taha Associates.\nYour Digital Registration Code is: [ ${regCode} ]\n(Synced with Master CRM Database).`);
 
