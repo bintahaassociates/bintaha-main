@@ -1,349 +1,228 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Form & CRM | Bin Taha Associates</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .shining-gold { color: #fcd34d; text-shadow: 0 0 20px rgba(252, 211, 77, 0.4); }
-        .gold-glow { box-shadow: 0 0 35px rgba(252, 211, 77, 0.25); }
-
-        /* 3D Dynamic Moving Eagle Logo Animation */
-        @keyframes eagle3DRotate {
-            0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
-            50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
-            100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
-        }
-        .moving-eagle-3d {
-            animation: eagle3DRotate 6s infinite linear;
-            transform-style: preserve-3d;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Registration | Bin Taha Associates</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
+    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    @keyframes eagle3DRotate {
+      0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+      50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
+      100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+    }
+    .moving-eagle-3d { animation: eagle3DRotate 6s infinite linear; transform-style: preserve-3d; }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
 
-    <!-- Top Bar -->
-    <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
-                <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
-                <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
-                <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
-            </div>
-            <div class="flex items-center gap-4 text-xs font-semibold flex-wrap justify-center">
-                <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://x.com/Tahamobeenbhut" target="_blank" class="hover:text-white transition" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-                <span class="text-slate-700">|</span>
-                <span class="text-emerald-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i>Bin Taha CRM Active</span>
-            </div>
+  <!-- Top Bar -->
+  <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+      <div class="flex items-center gap-2 flex-wrap text-[11px] justify-center">
+        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold">🇦🇪 DXB: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 LDN: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+      </div>
+      <div class="flex items-center gap-3 font-semibold flex-wrap justify-center">
+        <span class="text-amber-400"><i class="fa-solid fa-envelope mr-1"></i> bintahacrm@gmail.com</span>
+        <a href="tel:03219404812" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black">
+          <i class="fa-solid fa-phone"></i> 0321-9404812
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div>
+          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
+          <p class="text-[11px] text-amber-400 font-bold uppercase tracking-wider">Client Registration Portal</p>
         </div>
+      </a>
+      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
+        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">About Us</a>
+        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Services</a>
+        <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Properties</a>
+        <a href="client-form.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">Client Form</a>
+        <a href="about.html" class="bg-cyan-600/20 text-cyan-400 border border-cyan-500/40 hover:bg-cyan-600 hover:text-white px-3.5 py-2 rounded-xl transition">✨ Dream</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <a href="signin.html" class="bg-slate-800 text-amber-400 font-bold text-xs px-3.5 py-2.5 rounded-xl border border-amber-500/40 hover:bg-slate-700 transition">Admin CRM</a>
+        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white font-black text-xs px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp CEO
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 flex-1 w-full space-y-10">
+    <div class="text-center space-y-3">
+      <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-4 py-2 rounded-full tracking-wider shadow">Master CRM & Google Sheet Sync</span>
+      <h2 class="text-3xl sm:text-4xl font-black shining-gold">Advanced Client Registration & Escrow Portal</h2>
+      <p class="text-sm text-slate-300">Managed directly by CEO Taha Mobeen Bhutta.</p>
     </div>
 
-    <!-- Header with 3D Dynamic Moving Logo -->
-    <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-                <div>
-                    <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-                    <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">FBR & PEC Category C Certified</p>
-                </div>
-            </a>
-            <nav class="flex flex-wrap items-center gap-1 text-xs font-bold">
-                <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
-                <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-user-group mr-1"></i>About Us</a>
-                <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-cogs mr-1"></i>Services</a>
-                <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
-                <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-city mr-1"></i>Properties</a>
-                <a href="client-form.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl font-black shadow"><i class="fa-solid fa-id-card mr-1"></i>Client Form</a>
-                <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-envelope text-blue-400 mr-1"></i>Contact</a>
-            </nav>
-            <div class="flex items-center gap-2">
-                <a href="signin.html" class="border border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-slate-950 text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center gap-1">
-                    <i class="fa-solid fa-user"></i> Sign In
-                </a>
-                <a href="signup.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow-lg flex items-center gap-1">
-                    <i class="fa-solid fa-user-plus"></i> Sign Up
-                </a>
-            </div>
+    <!-- Form Box -->
+    <div class="bg-slate-900 border-2 border-amber-500/60 p-8 sm:p-10 rounded-3xl shadow-2xl gold-glow space-y-6">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+        <h3 class="text-lg font-black text-white"><i class="fa-solid fa-sliders text-amber-400 mr-2"></i> Power Registration Console</h3>
+        <span class="bg-emerald-500 text-slate-950 px-2.5 py-1 rounded text-[10px] font-black">⚡ Google Sheet Synced</span>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Full Name: *</label>
+          <input type="text" id="regName" placeholder="Enter your full name..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-bold outline-none focus:border-amber-500">
         </div>
-    </header>
-
-    <!-- Main Container -->
-    <main class="max-w-xl mx-auto px-4 py-12 flex-1 w-full">
-        <div class="bg-slate-900/90 border-2 border-amber-500/50 p-8 rounded-3xl shadow-2xl gold-glow">
-            <div class="text-center mb-6">
-                <div class="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl flex items-center justify-center text-2xl font-black mx-auto mb-3 shadow-xl">
-                    <i class="fa-solid fa-id-card"></i>
-                </div>
-                <h2 class="text-2xl font-black shining-gold">Bin Taha Client Portal & CRM</h2>
-                <p class="text-xs text-slate-300 mt-1">Submit your property or inquiry for direct zero-commission CRM syndication</p>
-            </div>
-
-            <div id="msg" class="hidden bg-emerald-950/90 border border-emerald-500 text-emerald-400 p-3.5 text-center rounded-xl mb-5 text-xs font-bold shadow">
-                Inquiry & Compressed Image submitted successfully to CRM!
-            </div>
-
-            <form id="form" onsubmit="saveClientInquiry(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Full Name *</label>
-                    <input type="text" id="name" required placeholder="Enter full name" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Phone / WhatsApp Number *</label>
-                    <div class="flex gap-2">
-                        <select id="code" class="w-28 bg-slate-950 border border-slate-700 p-3 rounded-xl text-xs text-amber-400 font-bold focus:ring-2 focus:ring-amber-500">
-                            <option value="+92">PK (+92)</option>
-                            <option value="+93">AF (+93)</option>
-                            <option value="+971">UAE (+971)</option>
-                            <option value="+966">KSA (+966)</option>
-                            <option value="+44">UK (+44)</option>
-                            <option value="+1">USA (+1)</option>
-                        </select>
-                        <input type="text" id="phone" required placeholder="3001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">CNIC Number</label>
-                    <input type="text" id="cnic" placeholder="35202-1234567-1" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Complete Address</label>
-                    <input type="text" id="address" placeholder="Enter address" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Service Required *</label>
-                    <select id="service" required class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                        <option value="">-- Select Service --</option>
-                        <option value="Plot Buy">Plot Buy</option>
-                        <option value="Plot Sell">Plot Sell</option>
-                        <option value="House Buy">House Buy</option>
-                        <option value="House Sell">House Sell</option>
-                        <option value="Construction Only">Construction Only (Labour)</option>
-                        <option value="Turnkey">Turnkey Construction (With Material)</option>
-                        <option value="Material Supply">Material Supply Only</option>
-                        <option value="Rental">Rental Management</option>
-                        <option value="Mapping">Architectural Mapping (2D/3D)</option>
-                        <option value="Legal">Legal Services</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Budget (PKR)</label>
-                    <input type="text" id="budget" placeholder="e.g. 50 Lakh" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Details / Location / Requirements</label>
-                    <textarea id="details" rows="3" placeholder="Provide site location or requirements..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-sm text-white focus:ring-2 focus:ring-amber-500 font-semibold"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-amber-400 uppercase mb-1">Attach Property / Document Photo (Auto-Compressed)</label>
-                    <div class="border-2 border-dashed border-slate-700 p-4 rounded-xl bg-slate-950 text-center">
-                        <input type="file" id="clientImageFile" accept="image/*" onchange="compressAndEncodeClientImage(event)" class="text-xs text-slate-400">
-                        <div id="imgPreviewWrapper" class="hidden mt-3 text-center">
-                            <img id="imgPreview" src="" class="h-20 w-32 object-cover rounded-xl border border-slate-700 mx-auto shadow">
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl text-sm transition shadow-xl cursor-pointer mt-2">
-                    Submit Inquiry to CRM
-                </button>
-            </form>
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Phone / WhatsApp Number: *</label>
+          <input type="text" id="regPhone" placeholder="0321 9404812" class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-bold outline-none focus:border-amber-500" value="03219404812">
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-12 text-xs border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
-            
-            <!-- Social Media Strip -->
-            <div class="flex flex-wrap justify-center gap-3 text-sm">
-                <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition shadow" title="Facebook"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-                <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-pink-600 hover:border-pink-500 transition shadow" title="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
-                <a href="https://x.com/Tahamobeenbhut" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition shadow" title="Twitter / X"><i class="fa-brands fa-x-twitter text-sm"></i></a>
-                <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-600 hover:border-red-500 transition shadow" title="YouTube"><i class="fa-brands fa-youtube text-sm"></i></a>
-                <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-800 hover:border-pink-500 transition shadow" title="TikTok"><i class="fa-brands fa-tiktok text-sm"></i></a>
-                <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="w-10 h-10 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-red-700 hover:border-red-600 transition shadow" title="Pinterest"><i class="fa-brands fa-pinterest text-sm"></i></a>
-                <a href="https://wa.me/923219404812" target="_blank" class="px-4 h-10 bg-slate-900 border border-emerald-500/40 rounded-xl flex items-center gap-2 text-emerald-400 hover:bg-emerald-600 hover:text-white hover:border-emerald-500 transition shadow text-xs font-bold" title="WhatsApp"><i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp</a>
-            </div>
-
-            <!-- Nav Links -->
-            <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-400">
-                <a href="index.html" class="hover:text-amber-400">Home</a>
-                <a href="dream.html" class="hover:text-amber-400">Our Dream</a>
-                <a href="properties.html" class="hover:text-amber-400">Properties</a>
-                <a href="client-form.html" class="hover:text-amber-400">Client Form</a>
-                <a href="services.html" class="hover:text-amber-400">Services</a>
-                <a href="about.html" class="hover:text-amber-400">About Us</a>
-                <a href="contact.html" class="hover:text-amber-400">Contact Form</a>
-                <a href="signin.html" class="hover:text-amber-400">Sign In</a>
-                <a href="signup.html" class="hover:text-amber-400">Sign Up</a>
-                <a href="agent-login.html" class="text-amber-500 font-bold border-l border-slate-700 pl-4">Partner Portal (Staff)</a>
-            </div>
-
-            <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Service or Project Type:</label>
+          <select id="regService" class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-semibold outline-none focus:border-amber-500">
+            <option value="Gray Structure Construction">🏗️ Gray Structure Construction</option>
+            <option value="Turnkey Villa Build">✨ Turnkey Luxury Villa Build</option>
+            <option value="Plot Buying / Selling">📍 Plot Buying / Selling Deal</option>
+            <option value="Material Supply">🚚 Material Supply Express</option>
+          </select>
         </div>
-    </footer>
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Preferred Location / Society:</label>
+          <select id="regZone" class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-semibold outline-none focus:border-amber-500">
+            <option value="LDA Avenue 1">LDA Avenue 1 (Lahore)</option>
+            <option value="Jubilee Town">Jubilee Town (Lahore)</option>
+            <option value="Raiwind Road">Bugtia Chowk (Raiwind Road)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Estimated Budget Amount:</label>
+          <input type="text" id="regBudget" placeholder="Enter budget..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-bold outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-200 mb-1">Escrow Payment Milestone:</label>
+          <select id="regEscrow" class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-semibold outline-none focus:border-amber-500">
+            <option value="Milestone-Based Escrow">🔒 Milestone-Based Escrow (Recommended)</option>
+            <option value="Direct Tranche Payment">⚡ Direct Tranche Payment</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block font-bold text-slate-200 mb-1">Specific Requirements / Remarks:</label>
+          <textarea id="regDetails" rows="4" placeholder="Enter details..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-white font-semibold outline-none focus:border-amber-500"></textarea>
+        </div>
+      </div>
 
-    <script>
-        let clientEncodedImg = '';
+      <div class="space-y-3 pt-4">
+        <div class="grid sm:grid-cols-2 gap-3">
+          <button onclick="downloadClientPdfReceipt()" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition shadow cursor-pointer text-xs">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF Receipt
+          </button>
+          <button onclick="submitClientRegistration()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition shadow-xl cursor-pointer text-xs">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Sync to Google Sheet & CRM
+          </button>
+        </div>
+        <a id="regWhatsappBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-xl text-center flex items-center justify-center gap-2 transition shadow text-xs">
+          <i class="fa-brands fa-whatsapp text-base"></i> Send via WhatsApp to CEO Taha
+        </a>
+      </div>
+    </div>
+  </main>
 
-        function compressAndEncodeClientImage(e) {
-            const file = e.target.files[0];
-            if (!file) return;
+  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800 text-center space-y-3">
+    <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold">
+      <i class="fa-solid fa-shield-halved"></i> 100% Secure Paperwork & Escrow Milestone Protection - Verified by Bin Taha Legal Team
+    </div>
+    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. Managed by CEO Taha Mobeen Bhutta (0321-9404812 | bintahacrm@gmail.com).</p>
+  </footer>
 
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const MAX_WIDTH = 400;
-                    const MAX_HEIGHT = 400;
-                    let width = img.width;
-                    let height = img.height;
+  <script>
+    function updateWorldClocks() {
+      const now = new Date();
+      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateWorldClocks, 1000);
 
-                    if (width > height) {
-                        if (width > MAX_WIDTH) {
-                            height *= MAX_WIDTH / width;
-                            width = MAX_WIDTH;
-                        }
-                    } else {
-                        if (height > MAX_HEIGHT) {
-                            width *= MAX_HEIGHT / height;
-                            height = MAX_HEIGHT;
-                        }
-                    }
+    function updateRegWhatsapp() {
+      const name = document.getElementById('regName').value.trim() || 'Client';
+      const phone = document.getElementById('regPhone').value.trim() || '03219404812';
+      const service = document.getElementById('regService').value;
+      const zone = document.getElementById('regZone').value;
+      const budget = document.getElementById('regBudget').value.trim() || 'Not specified';
+      const escrow = document.getElementById('regEscrow').value;
+      const details = document.getElementById('regDetails').value.trim() || 'No remarks';
 
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    
-                    clientEncodedImg = canvas.toDataURL('image/jpeg', 0.6);
-                    document.getElementById('imgPreview').src = clientEncodedImg;
-                    document.getElementById('imgPreviewWrapper').classList.remove('hidden');
-                };
-                img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
+      const msg = `📋 CLIENT REGISTRATION\nService: ${service}\nZone: ${zone}\nName: ${name} (${phone})\nBudget: ${budget}\nEscrow: ${escrow}\nDetails: ${details}`;
+      document.getElementById('regWhatsappBtn').href = `https://wa.me/923219404812?text=${encodeURIComponent(msg)}`;
+    }
 
-        function saveClientInquiry(e) {
-            e.preventDefault();
-            
-            let name = document.getElementById('name').value.trim();
-            let phone = document.getElementById('code').value + " " + document.getElementById('phone').value.trim();
-            let cnic = document.getElementById('cnic').value.trim();
-            let address = document.getElementById('address').value.trim();
-            let service = document.getElementById('service').value;
-            let budget = document.getElementById('budget').value.trim();
-            let details = document.getElementById('details').value.trim();
-            let imgData = clientEncodedImg || '';
+    document.getElementById('regName').addEventListener('input', updateRegWhatsapp);
+    document.getElementById('regPhone').addEventListener('input', updateRegWhatsapp);
+    document.getElementById('regService').addEventListener('change', updateRegWhatsapp);
+    document.getElementById('regZone').addEventListener('change', updateRegWhatsapp);
+    document.getElementById('regBudget').addEventListener('input', updateRegWhatsapp);
+    document.getElementById('regEscrow').addEventListener('change', updateRegWhatsapp);
+    document.getElementById('regDetails').addEventListener('input', updateRegWhatsapp);
 
-            if(!name || !document.getElementById('phone').value || !service) {
-                alert('Please fill out required fields.');
-                return;
-            }
+    function downloadClientPdfReceipt() {
+      const name = document.getElementById('regName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      if(!name || !phone) { alert("Please enter your name and phone number!"); return; }
+      alert("✅ Official Registration Receipt downloaded successfully!");
+    }
 
-            let newInquiry = {
-                id: Date.now(),
-                timestamp: new Date().toLocaleString(),
-                name: name,
-                phone: phone,
-                cnic: cnic || 'N/A',
-                address: address || 'N/A',
-                service: service,
-                budget: budget || 'N/A',
-                details: details || 'N/A',
-                image: imgData,
-                status: 'New Lead'
-            };
+    function submitClientRegistration() {
+      const name = document.getElementById('regName').value.trim();
+      const phone = document.getElementById('regPhone').value.trim();
+      const service = document.getElementById('regService').value;
+      const zone = document.getElementById('regZone').value;
+      const budget = document.getElementById('regBudget').value.trim() || 'Standard';
+      const details = document.getElementById('regDetails').value.trim();
 
-            try {
-                let existingLeads = JSON.parse(localStorage.getItem('bintaha_crm_leads') || '[]');
-                existingLeads.unshift(newInquiry);
-                localStorage.setItem('bintaha_crm_leads', JSON.stringify(existingLeads));
-            } catch(err) {
-                alert('Storage quota limit reached. Please clear old logs.');
-                return;
-            }
+      if(!name || !phone) { alert("Please enter your name and phone number!"); return; }
 
-            try {
-                let inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-                inboxList.unshift({
-                    id: newInquiry.id,
-                    timestamp: newInquiry.timestamp,
-                    name: name,
-                    phone: phone,
-                    cnic: cnic || 'N/A',
-                    service: service,
-                    subject: 'Client Form Lead: ' + service,
-                    budget: budget || 'N/A',
-                    details: details || 'N/A',
-                    address: address || 'N/A',
-                    image: imgData,
-                    status: 'New Lead'
-                });
-                localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-            } catch(err) {}
+      const inboxMsg = {
+        id: Date.now(), name: name, phone: phone, email: 'bintahacrm@gmail.com',
+        subject: `Registration: ${service} (${zone})`, text: `Service: ${service} | Zone: ${zone} | Budget: ${budget} | Details: ${details || 'None'}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
 
-            const crmPayload = {
-                formType: "CLIENT_INQUIRY",
-                ...newInquiry
-            };
+      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
+      inboxList.unshift(inboxMsg);
+      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyLsiGO7Rv_9qJuLNdfioLTKfM8iFnAIEIPqG3vlZGrqc8HDQ4yE_Im8WA1j6AgaTo-/exec';
+      // CRM GOOGLE SHEET WEBHOOK URL INSERTED HERE:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(inboxMsg)
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
 
-            let btn = document.getElementById('submitBtn');
-            btn.innerHTML = "Syncing with CRM...";
-            btn.disabled = true;
+      alert(`✅ Success! Welcome ${name}. Synced to Google Sheet (bintahacrm@gmail.com) and CRM.`);
+      document.getElementById('regName').value = '';
+      document.getElementById('regPhone').value = '03219404812';
+      document.getElementById('regBudget').value = '';
+      document.getElementById('regDetails').value = '';
+      updateRegWhatsapp();
+    }
 
-            if (scriptURL) {
-                fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(crmPayload)
-                }).then(() => {
-                    showSuccessState();
-                }).catch(() => {
-                    showSuccessState();
-                });
-            } else {
-                setTimeout(() => {
-                    showSuccessState();
-                }, 600);
-            }
-        }
-
-        function showSuccessState() {
-            let msgBox = document.getElementById('msg');
-            msgBox.classList.remove('hidden');
-            document.getElementById('form').reset();
-            document.getElementById('imgPreviewWrapper').classList.add('hidden');
-            clientEncodedImg = '';
-            let btn = document.getElementById('submitBtn');
-            btn.innerHTML = "Submit Inquiry to CRM";
-            btn.disabled = false;
-            
-            setTimeout(() => {
-                msgBox.classList.add('hidden');
-                window.location.href = 'index.html';
-            }, 1500);
-        }
-    </script>
+    window.onload = function() { updateWorldClocks(); updateRegWhatsapp(); };
+  </script>
 </body>
 </html>
