@@ -9,6 +9,7 @@
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
     .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    #globalApp { display: none; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
@@ -23,8 +24,8 @@
         <h2 class="text-xl font-black text-white">Global PropTech Engine</h2>
         <p class="text-xs text-amber-400 font-bold mt-1">CEO Taha Mobeen Bhutta • Bin Taha Associates</p>
       </div>
-      <input type="password" id="masterPin" placeholder="Enter Master PIN (taha123)" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
-      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg">
+      <input type="password" id="masterPin" placeholder="Enter Master PIN" autocomplete="off" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
+      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
         Unlock Global Engine
       </button>
       <p id="pinError" class="text-rose-400 text-xs font-bold hidden">Incorrect PIN! Access Denied.</p>
@@ -32,14 +33,14 @@
   </div>
 
   <!-- Main Global Enterprise App -->
-  <div id="globalApp" class="hidden flex-1 flex flex-col justify-between">
+  <div id="globalApp" class="flex-1 flex-col justify-between">
     
-    <!-- Top Header: Branding, World Clocks & Global Currency Converter -->
+    <!-- Top Header -->
     <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 space-y-3">
       <div class="flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
-            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<i class=\'fa-solid fa-chess-rook text-amber-400 text-lg\'></i>';">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain">
           </div>
           <div>
             <h1 class="text-base font-black text-white">Bin Taha Associates • Global PropTech Engine</h1>
@@ -62,6 +63,7 @@
           <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
           <a href="crm-dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
           <a href="owners-crm.html" class="bg-amber-500 text-slate-950 text-xs px-4 py-2 rounded-xl font-black transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Global Owners CRM</a>
+          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
         </div>
 
         <!-- World Currency Widget -->
@@ -82,7 +84,7 @@
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-6">
       
-      <!-- Account Management & Financial Vault Summary (3 Colored Boxes) -->
+      <!-- Financial Summary Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-slate-900 border border-amber-500/40 p-5 rounded-3xl shadow-xl flex items-center justify-between">
           <div>
@@ -107,17 +109,17 @@
         </div>
       </div>
 
-      <!-- Search & Unique Multi-Category Database Lookup -->
+      <!-- Search & Category Lookup -->
       <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl shadow-2xl gold-glow space-y-4">
         <div class="flex flex-wrap justify-between items-center gap-3">
           <h3 class="text-sm font-black text-white flex items-center gap-2">
             <i class="fa-solid fa-database text-amber-400"></i> Unique Multi-Category Database & GPS / Call Logs
           </h3>
           <div class="flex gap-1.5 flex-wrap">
-            <button onclick="filterCategory('All')" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg text-xs font-black shadow">All Records</button>
-            <button onclick="filterCategory('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Property</button>
-            <button onclick="filterCategory('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Construction</button>
-            <button onclick="filterCategory('Material')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold">Material & Services</button>
+            <button onclick="filterCategory('All')" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg text-xs font-black shadow cursor-pointer">All Records</button>
+            <button onclick="filterCategory('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Property</button>
+            <button onclick="filterCategory('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Construction</button>
+            <button onclick="filterCategory('Material')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Material & Services</button>
           </div>
         </div>
         <div class="flex gap-3">
@@ -125,7 +127,7 @@
         </div>
       </div>
 
-      <!-- Confidential Directory, GPS & Automatic WhatsApp Drip -->
+      <!-- Confidential Directory Table -->
       <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
           <h3 class="text-sm font-black text-white">Global Enterprise Leads, GPS & Automatic WhatsApp Drip</h3>
@@ -162,20 +164,23 @@
   <script>
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
-      if(pin === 'taha123' || pin === '03219404812') {
-        document.getElementById('securityGate').classList.add('hidden');
-        document.getElementById('globalApp').classList.remove('hidden');
-        localStorage.setItem('binTahaGlobalUnlocked', 'true');
+      const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
+      if(pin === savedPin || pin === '03219404812') {
+        document.getElementById('securityGate').style.display = 'none';
+        document.getElementById('globalApp').style.display = 'flex';
+        document.getElementById('pinError').classList.add('hidden');
       } else {
         document.getElementById('pinError').classList.remove('hidden');
+        document.getElementById('globalApp').style.display = 'none';
+        document.getElementById('securityGate').style.display = 'flex';
       }
     }
 
     window.onload = function() {
-      if(localStorage.getItem('binTahaGlobalUnlocked') === 'true') {
-        document.getElementById('securityGate').classList.add('hidden');
-        document.getElementById('globalApp').classList.remove('hidden');
-      }
+      document.getElementById('securityGate').style.display = 'flex';
+      document.getElementById('globalApp').style.display = 'none';
+      document.getElementById('masterPin').value = '';
+
       renderGlobalTable(globalDatabase);
       updateWorldClocks();
       convertGlobalCurrency();
@@ -250,6 +255,16 @@
           </tr>
         `;
       }).join('');
+
+      // CRM GOOGLE SHEET WEBHOOK URL INTEGRATION:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'sync_global_engine', totalRecords: data.length, time: new Date().toISOString() })
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
     }
 
     function filterCategory(cat) {
