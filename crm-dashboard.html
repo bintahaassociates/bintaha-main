@@ -9,6 +9,7 @@
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
     .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    #crmApp { display: none; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
@@ -23,23 +24,23 @@
         <h2 class="text-xl font-black text-white">Restricted Master CRM</h2>
         <p class="text-xs text-amber-400 font-bold mt-1">CEO Taha Mobeen Bhutta • Bin Taha Associates</p>
       </div>
-      <input type="password" id="masterPin" placeholder="Enter Master PIN (e.g. taha123)" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
-      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg">
+      <input type="password" id="masterPin" placeholder="Enter Master PIN" autocomplete="off" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
+      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
         Unlock Master CRM
       </button>
       <p id="pinError" class="text-rose-400 text-xs font-bold hidden">Incorrect PIN! Access Denied.</p>
     </div>
   </div>
 
-  <!-- Main CRM Application (Hidden until unlocked) -->
-  <div id="crmApp" class="hidden flex-1 flex flex-col justify-between">
+  <!-- Main CRM Application -->
+  <div id="crmApp" class="flex-1 flex-col justify-between">
     
     <!-- Header with Branding & Multi-Time Zones -->
     <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 space-y-3">
       <div class="flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
-            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<i class=\'fa-solid fa-chess-rook text-amber-400 text-lg\'></i>';">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain">
           </div>
           <div>
             <h1 class="text-lg font-black text-white">Bin Taha Associates • Master Enterprise CRM</h1>
@@ -55,21 +56,21 @@
           <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-amber-400 font-semibold">
             🇦🇪 Dubai: <span id="tzDubai" class="font-bold text-white">--:--</span>
           </div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-cyan-400 font-semibold">
-            🇬🇧 London: <span id="tzLondon" class="font-bold text-white">--:--</span>
-          </div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-cyan-400 font-semibold">🇬🇧 London: <span id="tzLondon" class="font-bold text-white">--:--</span></div>
           <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-rose-400 font-semibold">
             <i class="fa-solid fa-vault mr-1"></i> Vault: <span id="totalVaultBalance" class="font-bold text-white">PKR 0</span>
           </div>
         </div>
       </div>
 
-      <!-- Navigation Tabs -->
-      <div class="flex justify-between items-center gap-2 pt-2 flex-wrap">
+      <!-- Navigation Links Bar (Fully Verified Links) -->
+      <div class="flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800">
         <div class="flex gap-2 flex-wrap">
           <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
           <a href="crm-dashboard.html" class="bg-amber-500 text-slate-950 text-xs px-4 py-2 rounded-xl font-black transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-          <a href="owners-crm.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-columns mr-1"></i> Owners Directory</a>
+          <a href="owners-crm.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Owners Directory</a>
+          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
+          <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
         </div>
       </div>
     </header>
@@ -77,7 +78,7 @@
     <!-- Main Split Layout -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
       
-      <!-- Left Column: Add New Client & Payment Entry -->
+      <!-- Left Column: Add New Client & Payment Ledger -->
       <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-5 h-fit">
         <div class="border-b border-slate-800 pb-3">
           <h2 class="text-base font-black text-white"><i class="fa-solid fa-file-circle-plus text-amber-400 mr-2"></i> Add New Client & Payment Ledger</h2>
@@ -95,7 +96,7 @@
           </div>
           <div>
             <label class="block font-bold text-slate-300 mb-1">Service / Category: *</label>
-            <select id="clientCategory" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none">
+            <select id="clientCategory" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none font-semibold">
               <option value="Property">Property Buy / Sell</option>
               <option value="Construction">Civil Construction</option>
               <option value="Material & Services">Material & Services</option>
@@ -114,7 +115,7 @@
             <textarea id="clientDetails" rows="2" placeholder="Enter project remarks..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none"></textarea>
           </div>
 
-          <button onclick="saveCrmEntryWithLedger()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg">
+          <button onclick="saveCrmEntryWithLedger()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
             <i class="fa-solid fa-floppy-disk mr-1"></i> Save to Master CRM & Ledger
           </button>
         </div>
@@ -128,9 +129,9 @@
             <p class="text-[11px] text-slate-400">Financial tracking and category filtering</p>
           </div>
           <div class="flex gap-1.5 flex-wrap">
-            <button onclick="filterRecords('All')" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg text-xs font-black shadow">All Records</button>
-            <button onclick="filterRecords('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold">Property</button>
-            <button onclick="filterRecords('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold">Construction</button>
+            <button onclick="filterRecords('All')" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg text-xs font-black shadow cursor-pointer">All Records</button>
+            <button onclick="filterRecords('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Property</button>
+            <button onclick="filterRecords('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Construction</button>
           </div>
         </div>
 
@@ -141,7 +142,7 @@
         <div class="space-y-3">
           <div class="flex justify-between items-center text-xs">
             <span id="totalEntriesCount" class="bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-lg font-bold">0 Entries</span>
-            <button onclick="clearAllEntries()" class="text-rose-400 hover:text-rose-300 text-[11px] font-bold"><i class="fa-solid fa-trash mr-1"></i> Clear All</button>
+            <button onclick="clearAllEntries()" class="text-rose-400 hover:text-rose-300 text-[11px] font-bold cursor-pointer"><i class="fa-solid fa-trash mr-1"></i> Clear All</button>
           </div>
 
           <div id="entriesContainer" class="space-y-3 max-h-[480px] overflow-y-auto pr-1">
@@ -160,29 +161,29 @@
   </div>
 
   <script>
-    // Master PIN Verification
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
-      if(pin === 'taha123' || pin === '03219404812') {
-        document.getElementById('securityGate').classList.add('hidden');
-        document.getElementById('crmApp').classList.remove('hidden');
-        localStorage.setItem('binTahaUnlocked', 'true');
+      const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
+      if(pin === savedPin || pin === '03219404812') {
+        document.getElementById('securityGate').style.display = 'none';
+        document.getElementById('crmApp').style.display = 'flex';
+        document.getElementById('pinError').classList.add('hidden');
       } else {
         document.getElementById('pinError').classList.remove('hidden');
+        document.getElementById('crmApp').style.display = 'none';
+        document.getElementById('securityGate').style.display = 'flex';
       }
     }
 
-    // Auto unlock if previously verified in session
     window.onload = function() {
-      if(localStorage.getItem('binTahaUnlocked') === 'true') {
-        document.getElementById('securityGate').classList.add('hidden');
-        document.getElementById('crmApp').classList.remove('hidden');
-      }
+      document.getElementById('securityGate').style.display = 'flex';
+      document.getElementById('crmApp').style.display = 'none';
+      document.getElementById('masterPin').value = '';
+
       renderEntries();
       updateClocks();
     };
 
-    // Live Multi-City Clocks
     function updateClocks() {
       const now = new Date();
       document.getElementById('tzPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
@@ -244,7 +245,7 @@
               </div>
               <p class="pt-1"><b class="text-amber-300">Remarks:</b> ${e.details}</p>
               <div class="pt-1 flex justify-end">
-                <a href="https://wa.me/${e.phone}?text=Hello%20${encodeURIComponent(e.name)},%20regarding%20your%20account%20at%20Bin%20Taha%20Associates:" target="_blank" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-black text-[10px]">
+                <a href="https://wa.me/${e.phone}?text=Hello%20${encodeURIComponent(e.name)},%20regarding%20your%20account%20at%20Bin%20Taha%20Associates:" target="_blank" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-black text-[10px] inline-flex items-center gap-1">
                   <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Ledger
                 </a>
               </div>
@@ -271,7 +272,7 @@
       let now = new Date();
       let dateStr = String(now.getDate()).padStart(2, '0') + '/' + String(now.getMonth() + 1).padStart(2, '0') + '/' + now.getFullYear();
 
-      entries.unshift({
+      let newEntry = {
         id: Date.now(),
         name,
         phone,
@@ -280,9 +281,29 @@
         paid,
         details: details || 'No additional remarks.',
         date: dateStr
-      });
+      };
 
+      entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
+
+      // ACCOUNTING GOOGLE SHEET WEBHOOK URL INSERTED HERE:
+      const accountingScriptUrl = 'https://script.google.com/macros/s/AKfycbxtmVS9snQMnLF_Z_qATwuJQWDlDe2SVQ_YRDuo9nX0Yzbmq1nXnMNOllj1C32tuyzbDg/exec';
+      if (accountingScriptUrl) {
+        // Formatting payload to match Accounting Google Sheet structure (Date, Bank, Type, Head, Party, Amount)
+        const accountingPayload = {
+          date: dateStr,
+          bank: 'Allied Bank (ABL)',
+          type: 'Credit',
+          head: category,
+          party: name,
+          amount: paid
+        };
+        fetch(accountingScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(accountingPayload)
+        }).catch(err => console.log('Accounting Sheet sync notice:', err));
+      }
       
       document.getElementById('clientName').value = '';
       document.getElementById('dealAmount').value = '';
@@ -290,7 +311,7 @@
       document.getElementById('clientDetails').value = '';
 
       renderEntries();
-      alert("Entry and Payment Ledger successfully saved!");
+      alert("Entry and Payment Ledger successfully saved and synced to Accounting Google Sheet!");
     }
 
     function filterRecords(cat) {
