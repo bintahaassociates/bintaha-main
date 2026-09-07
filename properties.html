@@ -31,7 +31,6 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- Ultra Clear & Prominent Market Ticker with Direct Phone & WhatsApp Callout -->
   <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-slate-950 text-xs font-black py-2 px-4 shadow-xl flex items-center justify-between overflow-hidden">
     <div class="market-ticker-track flex items-center gap-6 uppercase tracking-wider text-[11px]">
       <span><i class="fa-solid fa-phone-volume mr-1"></i> CEO Direct Helpline: 0321-9404812</span>
@@ -46,7 +45,6 @@
     </div>
   </div>
 
-  <!-- Top Bar with Currency & Prominent Quick Call Actions -->
   <div class="bg-slate-950 text-slate-300 text-xs py-3 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
       <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center font-bold">
@@ -67,7 +65,7 @@
             <option value="GBP">GBP (£)</option>
           </select>
         </div>
-        <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" target="_blank" class="hover:text-amber-400 transition font-bold text-amber-400"><i class="fa-solid fa-calculator mr-1"></i>Accounting ERP</a>
         <a href="#" onclick="openComparatorModal()" class="text-cyan-400 hover:text-cyan-300 font-bold transition flex items-center gap-1 cursor-pointer"><i class="fa-solid fa-scale-balanced"></i> Comparator</a>
         <a href="#" onclick="openTrustSealModal()" class="text-emerald-400 font-bold hover:underline cursor-pointer"><i class="fa-solid fa-certificate"></i> FBR & PEC Seal</a>
       </div>
@@ -76,7 +74,7 @@
 
   <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" target="_blank" class="flex items-center gap-3">
         <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
@@ -84,17 +82,17 @@
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
-        <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl font-black shadow">Properties & Hub</a>
-        <a href="client-form.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Client Form</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" target="_blank" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Master CRM</a>
+        <a href="owners-crm.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Owners CRM</a>
+        <a href="properties.html" class="bg-amber-400 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black">Properties Hub</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/data-entry.html" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
       </nav>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
     
-    <!-- Investor Banner with Heatmap & Quick Action Bar -->
     <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/40 p-6 rounded-3xl shadow-2xl flex flex-wrap justify-between items-center gap-6">
       <div class="space-y-1.5 max-w-xl">
         <span class="bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-full">10/10 Verified Investor Suite</span>
@@ -111,7 +109,6 @@
       </div>
     </div>
 
-    <!-- Sorting & Filtering Bar -->
     <div class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-3xl shadow-xl space-y-4">
       <div class="flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
@@ -143,20 +140,17 @@
           </select>
         </div>
 
-        <a href="add-property.html" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-3 rounded-xl text-xs font-black transition shadow text-center">
-          <i class="fa-solid fa-plus mr-1"></i> Post Property Ad
-        </a>
+        <button onclick="openAddPropertyModal()" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-3 rounded-xl text-xs font-black transition shadow text-center cursor-pointer">
+          <i class="fa-solid fa-plus mr-1"></i> Post Property Ad (Live Sync)
+        </button>
       </div>
     </div>
 
-    <!-- Properties Grid -->
     <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Dynamic Property Cards -->
-    </div>
+      </div>
 
   </main>
 
-  <!-- WhatsApp Floating Wizard Widget -->
   <div class="fixed bottom-6 right-6 z-50">
     <button onclick="openWhatsAppWizard()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl font-black transition transform hover:scale-110 cursor-pointer" title="AI WhatsApp Wizard">
       <i class="fa-brands fa-whatsapp"></i>
@@ -167,7 +161,68 @@
     <p class="text-slate-600">&copy; 2026 Bin Taha Associates. 10/10 Investor Hub managed by Taha Mobeen Bhutta (0321-9404812).</p>
   </footer>
 
-  <!-- Modals -->
+  <div id="addPropertyModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
+    <div class="bg-slate-900 border border-amber-500/50 p-6 rounded-3xl max-w-lg w-full space-y-4 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <h3 class="text-base font-black text-amber-400"><i class="fa-solid fa-circle-plus mr-2"></i> Post New Property Ad (Two-Way Sync)</h3>
+        <button onclick="closeModals()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <p class="text-[11px] text-slate-300">Client listings are published instantly on the hub and synced to Master CRM & Google Sheets.</p>
+      
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Property Title / Plot No: *</label>
+          <input type="text" id="newPropTitle" placeholder="e.g. Plot 45 Block C (10 Marla)" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none focus:border-amber-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Society / Location: *</label>
+            <select id="newPropSociety" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none font-semibold">
+              <option value="LDA Avenue 1">LDA Avenue 1</option>
+              <option value="Jubilee Town">Jubilee Town</option>
+              <option value="Valencia Town">Valencia Town</option>
+              <option value="Raiwind Road">Raiwind Road (Bugtia Chowk)</option>
+              <option value="Bahria Town">Bahria Town Lahore</option>
+              <option value="DHA Lahore">DHA Lahore</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Category:</label>
+            <select id="newPropCategory" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none font-semibold">
+              <option value="Investor-Hot">🔥 Investor Hot Deal</option>
+              <option value="Plot-1Kanal">Plot: 1 Kanal</option>
+              <option value="Plot-10Marla">Plot: 10 Marla</option>
+              <option value="House-10Marla">House: 10 Marla</option>
+              <option value="Commercial">Commercial / Plaza</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Total Price (PKR): *</label>
+            <input type="number" id="newPropPrice" placeholder="e.g. 25000000" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Contact Phone / WhatsApp: *</label>
+            <input type="text" id="newPropPhone" value="03219404812" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Owner / Client Name: *</label>
+          <input type="text" id="newPropOwner" placeholder="Enter name..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none">
+        </div>
+        <div>
+          <label class="block font-bold text-slate-300 mb-1">Description & Remarks:</label>
+          <textarea id="newPropDesc" rows="2" placeholder="Enter property details..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white outline-none"></textarea>
+        </div>
+
+        <button onclick="submitNewProperty()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black transition shadow cursor-pointer">
+          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Publish Property & Sync Google Sheet
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="installmentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
     <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
       <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-calculator mr-2"></i> Installment Plan Calculator</h3>
@@ -197,7 +252,6 @@
     </div>
   </div>
 
-  <!-- WhatsApp Wizard Modal -->
   <div id="whatsappWizardModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
     <div class="bg-slate-900 border border-emerald-500/50 p-6 rounded-3xl max-w-sm w-full space-y-4 shadow-2xl relative text-center">
       <div class="w-12 h-12 bg-emerald-500 text-slate-950 rounded-2xl mx-auto flex items-center justify-center text-xl font-black shadow"><i class="fa-brands fa-whatsapp"></i></div>
@@ -212,7 +266,6 @@
     </div>
   </div>
 
-  <!-- GPS Heatmap Index Modal -->
   <div id="heatmapModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
     <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
       <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-map-location-dot mr-2"></i> Lahore Sector Heatmap & Hotspots</h3>
@@ -237,7 +290,6 @@
     </div>
   </div>
 
-  <!-- FBR & PEC Trust Seal Modal -->
   <div id="trustSealModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
     <div class="bg-slate-900 border border-emerald-500/50 p-6 rounded-3xl max-w-sm w-full space-y-4 shadow-2xl relative text-center">
       <div class="w-16 h-16 bg-emerald-500 text-slate-950 rounded-3xl mx-auto flex items-center justify-center text-2xl font-black shadow-xl"><i class="fa-solid fa-certificate"></i></div>
@@ -250,7 +302,6 @@
     </div>
   </div>
 
-  <!-- VIP CEO Callback Scheduler Modal -->
   <div id="vipCallbackModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
     <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
       <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-headset mr-2"></i> VIP CEO Callback Scheduler</h3>
@@ -373,12 +424,14 @@
       displayProperties(filtered);
     }
 
+    function openAddPropertyModal() { document.getElementById('addPropertyModal').classList.remove('hidden'); }
     function openWhatsAppWizard() { document.getElementById('whatsappWizardModal').classList.remove('hidden'); }
     function openHeatmapModal() { document.getElementById('heatmapModal').classList.remove('hidden'); }
     function openTrustSealModal() { document.getElementById('trustSealModal').classList.remove('hidden'); }
     function openVipCallbackModal() { document.getElementById('vipCallbackModal').classList.remove('hidden'); }
     
     function closeModals() {
+      document.getElementById('addPropertyModal').classList.add('hidden');
       document.getElementById('installmentModal').classList.add('hidden');
       document.getElementById('whatsappWizardModal').classList.add('hidden');
       document.getElementById('heatmapModal').classList.add('hidden');
@@ -411,6 +464,53 @@
       `;
     }
 
+    function submitNewProperty() {
+      const title = document.getElementById('newPropTitle').value.trim();
+      const society = document.getElementById('newPropSociety').value;
+      const category = document.getElementById('newPropCategory').value;
+      const priceVal = parseFloat(document.getElementById('newPropPrice').value) || 0;
+      const phone = document.getElementById('newPropPhone').value.trim();
+      const owner = document.getElementById('newPropOwner').value.trim();
+      const desc = document.getElementById('newPropDesc').value.trim();
+
+      if(!title || !priceVal || !owner) {
+        alert("Please fill in Property Title, Price, and Owner Name!");
+        return;
+      }
+
+      const newAd = {
+        id: Date.now(),
+        title: title,
+        society: society,
+        locationPin: 'Lahore Hub',
+        category: category,
+        pricePKR: priceVal,
+        desc: desc || 'Client listed property ad via Hub.',
+        contact: `${owner} - ${phone}`,
+        legalBadge: 'Verified Ad',
+        videoLink: '',
+        image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80'
+      };
+
+      let userAds = JSON.parse(localStorage.getItem('bintahaUserAds') || '[]');
+      userAds.unshift(newAd);
+      localStorage.setItem('bintahaUserAds', JSON.stringify(userAds));
+
+      // TWO-WAY GOOGLE SHEET WEBHOOK SYNC:
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'sync_property_ad', property: newAd, time: new Date().toISOString() })
+        }).catch(err => console.log('Google Sheet sync notice:', err));
+      }
+
+      alert("✅ Success! Your property has been published live on the hub and synced to Google Sheets & CRM.");
+      closeModals();
+      displayProperties(getAllProperties());
+    }
+
     function submitVipCallback() {
       const name = document.getElementById('vipName').value.trim();
       const phone = document.getElementById('vipPhone').value.trim();
@@ -432,7 +532,6 @@
       inboxList.unshift(inboxMsg);
       localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
 
-      // CRM GOOGLE SHEET WEBHOOK URL INSERTED HERE:
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
       if (googleScriptUrl) {
         fetch(googleScriptUrl, {
