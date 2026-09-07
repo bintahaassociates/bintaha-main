@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bin Taha Associates • Ultimate PropTech AI Ecosystem</title>
+  <title>Bin Taha Associates • Ultimate Peak PropTech Ecosystem</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .shining-gold { color: #fcd34d; text-shadow: 0 0 30px rgba(252, 211, 77, 0.7); }
-    .gold-glow { box-shadow: 0 0 50px rgba(252, 211, 77, 0.4); }
-    .glass-card { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(252, 211, 77, 0.2); }
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
+    .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.45); }
+    .glass-card { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.25); }
 
     /* 3D Dynamic Moving Eagle Animation */
     @keyframes eagle3DRotate {
       0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
-      50% { transform: perspective(1000px) rotateY(180deg) scale(1.12); filter: drop-shadow(0 0 35px rgba(252, 211, 77, 1)); }
+      50% { transform: perspective(1000px) rotateY(180deg) scale(1.12); filter: drop-shadow(0 0 40px rgba(252, 211, 77, 1)); }
       100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
     }
     .moving-eagle-3d {
@@ -28,14 +28,14 @@
       100% { transform: translateX(-100%); }
     }
     .ticker-wrap { overflow: hidden; white-space: nowrap; }
-    .ticker-move { display: inline-block; animation: tickerScroll 30s linear infinite; }
+    .ticker-move { display: inline-block; animation: tickerScroll 28s linear infinite; }
 
     #splashScreen { transition: opacity 1s ease; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Cinematic Splash Screen / Welcome Gate -->
+  <!-- Cinematic Peak Splash Screen -->
   <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
     <div class="glass-card p-10 rounded-3xl max-w-md w-full space-y-6 text-center gold-glow relative overflow-hidden">
       <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
@@ -46,11 +46,11 @@
       </div>
       <div class="space-y-2">
         <h2 class="text-3xl font-black text-white shining-gold">Bin Taha Associates</h2>
-        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">Next-Gen PropTech Ecosystem & AI Portal</p>
+        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">Ultimate Peak PropTech AI Ecosystem</p>
         <p class="text-[11px] text-slate-400 pt-1 font-semibold">Visionary CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
       </div>
       <button onclick="enterPortal()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
-        <i class="fa-solid fa-rocket mr-2 text-sm"></i> Launch Ultimate Ecosystem
+        <i class="fa-solid fa-crown mr-2 text-sm"></i> Launch Ultimate Portal
       </button>
     </div>
   </div>
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <!-- Top Multi-City Clocks & Global Currency Converter Bar -->
+    <!-- Top Header & Multi-City Clocks -->
     <header class="bg-slate-900/95 border-b border-slate-800 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         
@@ -116,8 +116,7 @@
           <a href="#dreamSection" class="bg-purple-600 hover:bg-purple-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-star mr-1"></i> Wishlist (<span id="dreamCount">0</span>)</a>
           <a href="#roiCalculator" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> ROI Calculator</a>
           <a href="#aboutSection" class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-circle-info mr-1"></i> About Us</a>
-          <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services</a>
-          <a href="dealers.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-address-book mr-1"></i> Directory</a>
+          <button onclick="broadcastAllProperties()" class="bg-gradient-to-r from-teal-500 to-emerald-600 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black cursor-pointer"><i class="fa-brands fa-whatsapp mr-1"></i> Broadcast All</button>
         </div>
         <div class="text-xs text-amber-400 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 shadow">
           <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
@@ -128,13 +127,13 @@
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-10">
       
-      <!-- Hero Banner & List Property Button -->
+      <!-- Hero Banner -->
       <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
         <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="space-y-3 relative z-10">
-          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">Ultimate PropTech AI Ecosystem</span>
+          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">Ultimate Peak PropTech Ecosystem</span>
           <h2 class="text-2xl sm:text-4xl font-black shining-gold">Find or List Verified Properties in Lahore</h2>
-          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Explore top-tier residential and commercial properties across LDA Avenue 1, Jubilee Town, Izmir Town, Valencia Town, and Bugtia Chowk Raiwind Road. Powered by AI Valuation & Instant Sync.</p>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Explore top-tier residential and commercial properties across LDA Avenue 1, Jubilee Town, Izmir Town, Valencia Town, and Bugtia Chowk Raiwind Road. Featuring AI Valuation & Multi-Property Comparison.</p>
         </div>
         <button onclick="toggleAddModal()" class="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
           <i class="fa-solid fa-circle-plus mr-1.5 text-sm"></i> List Property with AI Wizard
@@ -171,7 +170,7 @@
         </div>
       </div>
 
-      <!-- ROI / Investment Calculator Section -->
+      <!-- ROI Calculator Section -->
       <div id="roiCalculator" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl border border-emerald-500/30">
@@ -453,6 +452,16 @@
       renderDreamWishlist();
     }
 
+    function broadcastAllProperties() {
+      let props = getStoredProperties();
+      let text = "🌟 *Bin Taha Associates • Hot Properties Broadcast* 🌟\n\n";
+      props.forEach((p, index) => {
+        text += `${index + 1}. *${p.title}* (${p.society})\n💰 Demand: PKR ${Number(p.price).toLocaleString()}\n📞 Contact: 03219404812\n\n`;
+      });
+      text += "Call CEO Taha Mobeen Bhutta for immediate booking!";
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
     function renderDreamWishlist() {
       const dreams = getDreamWishlist();
       const grid = document.getElementById('dreamGrid');
@@ -586,7 +595,7 @@
       document.getElementById('newDesc').value = '';
       toggleAddModal();
       renderProperties(props);
-      alert("✨ Ultimate Miracle Success! Your property is now live with photo & AI valuation on Bin Taha Ecosystem!");
+      alert("✨ Ultimate Peak Success! Your property is now live with photo & AI valuation on Bin Taha Ecosystem!");
     }
 
     function filterProperties(type) {
