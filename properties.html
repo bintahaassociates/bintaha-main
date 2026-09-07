@@ -3,166 +3,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Properties Hub & Market Portal | Bin Taha Associates</title>
+  <title>Next-Gen Properties Hub & Market Portal | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
     .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
-    @keyframes eaglePulse {
-      0% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
-      50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.8)); }
-      100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+
+    /* 3D Dynamic Moving Eagle Animation */
+    @keyframes eagle3DRotate {
+      0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 15px rgba(252, 211, 77, 0.5)); }
+      50% { transform: perspective(1000px) rotateY(180deg) scale(1.1); filter: drop-shadow(0 0 30px rgba(252, 211, 77, 0.9)); }
+      100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 15px rgba(252, 211, 77, 0.5)); }
     }
-    .eagle-anim { animation: eaglePulse 4s infinite ease-in-out; }
+    .moving-eagle-3d {
+      animation: eagle3DRotate 6s infinite linear;
+      transform-style: preserve-3d;
+    }
+
+    #splashScreen { transition: opacity 0.8s ease; }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- Main Public Top Notification Bar -->
-  <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center font-semibold">
-        <span><i class="fa-solid fa-crown text-amber-400 mr-1"></i> Bin Taha Associates • Lahore Real Estate & Construction</span>
-        <span><i class="fa-solid fa-phone text-emerald-400 mr-1"></i> CEO Taha Mobeen Bhutta: 0321 9404812</span>
+  <!-- Stunning Splash Screen / Welcome Gate -->
+  <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/60 p-10 rounded-3xl max-w-md w-full space-y-6 shadow-2xl text-center gold-glow">
+      <div class="w-24 h-24 rounded-3xl bg-slate-950 border border-amber-500/50 mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
+        <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
       </div>
-      <div class="flex items-center gap-3 text-xs font-bold">
-        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 px-3 py-1 rounded-xl transition"><i class="fa-brands fa-whatsapp mr-1"></i> Direct WhatsApp CEO</a>
+      <div class="space-y-1">
+        <h2 class="text-2xl font-black text-white shining-gold">Bin Taha Associates</h2>
+        <p class="text-xs text-amber-400 font-bold uppercase tracking-wider">Next-Gen PropTech Market & Properties Portal</p>
+        <p class="text-[11px] text-slate-400 pt-2">CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
       </div>
-    </div>
-  </div>
-
-  <!-- Main Public Website Header with Golden Eagle Emblem & Standard Navigation -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow eagle-anim">
-          <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        </div>
-        <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Properties & Market Hub</p>
-        </div>
-      </a>
-      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-house mr-1"></i> Home</a>
-        <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
-        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-bolt mr-1"></i> Services</a>
-        <a href="dealers.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition"><i class="fa-solid fa-address-book mr-1"></i> Directory</a>
-        <a href="client-form.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-file-lines mr-1"></i> Client Inquiry</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Main Client & Market Portal Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
-    
-    <!-- Client Hero & Add Property Banner -->
-    <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-amber-500/40 p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="space-y-3">
-        <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">Official Client & Market Portal</span>
-        <h2 class="text-2xl sm:text-4xl font-black shining-gold">Find or List Your Property in Lahore</h2>
-        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Explore verified residential and commercial properties across LDA Avenue 1, Jubilee Town, Izmir Town, Valencia Town, and Bugtia Chowk (Raiwind Road). Property owners can list directly below.</p>
-      </div>
-      <button onclick="toggleAddModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-xl cursor-pointer whitespace-nowrap">
-        <i class="fa-solid fa-circle-plus mr-1.5 text-sm"></i> List Your Property (Client Form)
+      <button onclick="enterPortal()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3.5 rounded-2xl font-black text-xs transition shadow-xl cursor-pointer">
+        <i class="fa-solid fa-door-open mr-2 text-sm"></i> Enter Properties Portal
       </button>
     </div>
-
-    <!-- Smart Search & Category Filter Bar -->
-    <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-4">
-      <div class="flex flex-wrap justify-between items-center gap-3">
-        <h3 class="text-sm font-black text-white flex items-center gap-2">
-          <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Search Verified Listings
-        </h3>
-        <div class="flex gap-1.5 flex-wrap text-xs">
-          <button onclick="filterProperties('All')" class="bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl font-black shadow cursor-pointer">All Types</button>
-          <button onclick="filterProperties('Plot')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Plots</button>
-          <button onclick="filterProperties('House')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Houses</button>
-          <button onclick="filterProperties('Commercial')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Commercial</button>
-        </div>
-      </div>
-      <div>
-        <input type="text" id="propSearchInput" onkeyup="searchProperties()" placeholder="Search by title, society (e.g. LDA Avenue 1, Jubilee Town), or features..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500">
-      </div>
-    </div>
-
-    <!-- Properties Grid Display -->
-    <div class="space-y-4">
-      <div class="flex justify-between items-center text-xs">
-        <span id="propCountTag" class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-lg font-bold">0 Properties Available</span>
-        <span class="text-slate-400">For instant deals, call CEO directly: <strong class="text-white">0321-9404812</strong></span>
-      </div>
-
-      <div id="propertiesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Injected via JavaScript -->
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Client Property Submission Modal -->
-  <div id="addPropModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-amber-500/50 p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
-      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-        <h3 class="text-base font-black text-white"><i class="fa-solid fa-house-chimney-user text-amber-400 mr-2"></i> Client Property Listing Submission</h3>
-        <button onclick="toggleAddModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <div class="space-y-4 text-xs font-bold">
-        <div>
-          <label class="block text-slate-300 mb-1">Property Title / Plot No: *</label>
-          <input type="text" id="newTitle" placeholder="e.g. Plot 798 Block D, LDA Avenue 1" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal">
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-slate-300 mb-1">Category / Type: *</label>
-            <select id="newType" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
-              <option value="Plot">Plot (Residential/Commercial)</option>
-              <option value="House">House / Villa</option>
-              <option value="Commercial">Commercial Plaza / Shop</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-slate-300 mb-1">Society / Location: *</label>
-            <select id="newSociety" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
-              <option value="LDA Avenue 1">LDA Avenue 1</option>
-              <option value="Jubilee Town">Jubilee Town</option>
-              <option value="Izmir Town">Izmir Town</option>
-              <option value="Valencia Town">Valencia Town</option>
-              <option value="Bugtia Chowk">Bugtia Chowk (Raiwind Road)</option>
-            </select>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-slate-300 mb-1">Demand Price (PKR): *</label>
-            <input type="number" id="newPrice" placeholder="e.g. 15000000" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal">
-          </div>
-          <div>
-            <label class="block text-slate-300 mb-1">Owner / Client Phone: *</label>
-            <input type="text" id="newPhone" placeholder="03001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal" value="03219404812">
-          </div>
-        </div>
-        <div>
-          <label class="block text-slate-300 mb-1">Detailed Description & Features:</label>
-          <textarea id="newDesc" rows="2" placeholder="Mention size, features, demand status..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal"></textarea>
-        </div>
-
-        <button onclick="submitNewProperty()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
-          <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Submit Property to Bin Taha Market Hub
-        </button>
-      </div>
-    </div>
   </div>
 
-  <!-- Standard Professional Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center space-y-2">
-    <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
-    <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
-  </footer>
+  <!-- Main Portal Wrapper (Hidden until Splash is closed) -->
+  <div id="portalApp" class="flex-1 flex-col justify-between hidden">
+
+    <!-- Top Multi-City Clocks & Global Currency Converter Bar -->
+    <header class="bg-slate-900 border-b border-slate-800 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+        
+        <!-- Logo & Branding -->
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+          </div>
+          <div>
+            <h1 class="text-base font-black text-white leading-tight">Bin Taha Associates</h1>
+            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Properties Hub & Market Portal</p>
+          </div>
+        </a>
+
+        <!-- Live World Clocks -->
+        <div class="flex items-center gap-2 flex-wrap text-[11px]">
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+        </div>
+
+        <!-- Global Currency Converter Widget -->
+        <div class="bg-slate-950 border border-slate-800 px-3 py-1 rounded-xl flex items-center gap-2 text-xs">
+          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
+          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
+            <option value="USD">USD ($)</option>
+            <option value="AED">AED (Dh)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="SAR">SAR (SR)</option>
+          </select>
+          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
+          <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
+        </div>
+      </div>
+
+      <!-- Colorful Navigation Bar (Main Index Layout Buttons) -->
+      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800/80">
+        <div class="flex gap-2 flex-wrap text-xs font-bold">
+          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services</a>
+          <a href="dealers.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-address-book mr-1"></i> Directory</a>
+          <a href="client-form.html" class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-file-lines mr-1"></i> Client Inquiry Form</a>
+          <a href="agent-dashboard.html" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-handshake mr-1"></i> Partner Portal</a>
+        </div>
+        <div class="text-xs text-amber-400 font-bold">
+          <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> Hotline: 0321-9404812
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Client & Market Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
+      
+      <!-- Hero Banner & List Property Button -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-amber-500/40 p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="space-y-3">
+          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">Next-Gen Real Estate Market</span>
+          <h2 class="text-2xl sm:text-4xl font-black shining-gold">Find or List Verified Properties in Lahore</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Explore top-tier residential and commercial properties across LDA Avenue 1, Jubilee Town, Izmir Town, Valencia Town, and Bugtia Chowk Raiwind Road. Property owners can list directly below.</p>
+        </div>
+        <button onclick="toggleAddModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-xl cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-circle-plus mr-1.5 text-sm"></i> List Your Property (Client Form)
+        </button>
+      </div>
+
+      <!-- Smart Filter & Search Bar -->
+      <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-3">
+          <h3 class="text-sm font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Search Verified Listings
+          </h3>
+          <div class="flex gap-1.5 flex-wrap text-xs">
+            <button onclick="filterProperties('All')" class="bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl font-black shadow cursor-pointer">All Types</button>
+            <button onclick="filterProperties('Plot')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Plots</button>
+            <button onclick="filterProperties('House')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Houses</button>
+            <button onclick="filterProperties('Commercial')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Commercial</button>
+          </div>
+        </div>
+        <div>
+          <input type="text" id="propSearchInput" onkeyup="searchProperties()" placeholder="Search by title, society (e.g. LDA Avenue 1, Jubilee Town), or features..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500">
+        </div>
+      </div>
+
+      <!-- Properties Grid Display with High-Res Images -->
+      <div class="space-y-4">
+        <div class="flex justify-between items-center text-xs">
+          <span id="propCountTag" class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-lg font-bold">0 Properties Available</span>
+          <span class="text-slate-400">Direct CEO Hotline: <strong class="text-white">0321-9404812</strong></span>
+        </div>
+
+        <div id="propertiesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Client Property Submission Modal -->
+    <div id="addPropModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-amber-500/50 p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-house-chimney-user text-amber-400 mr-2"></i> Client Property Listing Submission</h3>
+          <button onclick="toggleAddModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="space-y-4 text-xs font-bold">
+          <div>
+            <label class="block text-slate-300 mb-1">Property Title / Plot No: *</label>
+            <input type="text" id="newTitle" placeholder="e.g. Plot 798 Block D, LDA Avenue 1" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-300 mb-1">Category / Type: *</label>
+              <select id="newType" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+                <option value="Plot">Plot (Residential/Commercial)</option>
+                <option value="House">House / Villa</option>
+                <option value="Commercial">Commercial Plaza / Shop</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-slate-300 mb-1">Society / Location: *</label>
+              <select id="newSociety" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+                <option value="LDA Avenue 1">LDA Avenue 1</option>
+                <option value="Jubilee Town">Jubilee Town</option>
+                <option value="Izmir Town">Izmir Town</option>
+                <option value="Valencia Town">Valencia Town</option>
+                <option value="Bugtia Chowk">Bugtia Chowk (Raiwind Road)</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-300 mb-1">Demand Price (PKR): *</label>
+              <input type="number" id="newPrice" placeholder="e.g. 15000000" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal">
+            </div>
+            <div>
+              <label class="block text-slate-300 mb-1">Owner / Client Phone: *</label>
+              <input type="text" id="newPhone" placeholder="03001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal" value="03219404812">
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Detailed Description & Features:</label>
+            <textarea id="newDesc" rows="2" placeholder="Mention size, features, demand status..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal"></textarea>
+          </div>
+
+          <button onclick="submitNewProperty()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Submit Property to Market Hub
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Professional Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center space-y-2">
+      <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
+      <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
+    </footer>
+
+  </div>
 
   <script>
+    function enterPortal() {
+      const splash = document.getElementById('splashScreen');
+      const app = document.getElementById('portalApp');
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        app.style.display = 'flex';
+      }, 800);
+    }
+
+    function updateClocks() {
+      const now = new Date();
+      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClocks, 1000);
+
+    function convertCurrency() {
+      const type = document.getElementById('currSelect').value;
+      const val = parseFloat(document.getElementById('currVal').value) || 0;
+      let rate = 280;
+      if(type === 'AED') rate = 76;
+      if(type === 'GBP') rate = 355;
+      if(type === 'SAR') rate = 75;
+      let total = val * rate;
+      document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
+    }
+
     function toggleAddModal() {
       const modal = document.getElementById('addPropModal');
       modal.classList.toggle('hidden');
@@ -170,9 +247,9 @@
 
     function getStoredProperties() {
       let defaults = [
-        { id: 1, title: "Plot 798 Block D", type: "Plot", society: "LDA Avenue 1", price: 25000000, phone: "03040000350", desc: "Prime location plot, near park, ready for construction." },
-        { id: 2, title: "Luxury 1 Kanal Villa", type: "House", society: "Jubilee Town", price: 65000000, phone: "03219404812", desc: "Brand new modern architecture house with 5 bedrooms." },
-        { id: 3, title: "Commercial Plaza Shop", type: "Commercial", society: "Valencia Town", price: 45000000, phone: "03219404812", desc: "High rental yield commercial shop on main boulevard." }
+        { id: 1, title: "Plot 798 Block D", type: "Plot", society: "LDA Avenue 1", price: 25000000, phone: "03040000350", desc: "Prime location plot, near park, ready for construction.", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80" },
+        { id: 2, title: "Luxury 1 Kanal Villa", type: "House", society: "Jubilee Town", price: 65000000, phone: "03219404812", desc: "Brand new modern architecture house with 5 bedrooms.", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" },
+        { id: 3, title: "Commercial Plaza Shop", type: "Commercial", society: "Valencia Town", price: 45000000, phone: "03219404812", desc: "High rental yield commercial shop on main boulevard.", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" }
       ];
       let stored = JSON.parse(localStorage.getItem('bintaha_properties_hub') || 'null');
       if (!stored) {
@@ -192,28 +269,32 @@
       }
 
       grid.innerHTML = data.map(p => `
-        <div class="bg-slate-900 border border-slate-800 p-5 rounded-3xl shadow-xl space-y-3 flex flex-col justify-between hover:border-amber-500/50 transition">
-          <div class="space-y-2">
-            <div class="flex justify-between items-center">
-              <span class="bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded text-[10px] font-black border border-amber-500/30">${p.type}</span>
-              <span class="text-slate-400 text-[11px] font-bold"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${p.society}</span>
-            </div>
-            <h4 class="font-black text-white text-base">${p.title}</h4>
-            <p class="text-xs text-slate-300">${p.desc || 'No description provided.'}</p>
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between hover:border-amber-500/50 transition">
+          <div class="h-48 overflow-hidden relative">
+            <img src="${p.img || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80'}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            <span class="absolute top-3 left-3 bg-slate-950/80 backdrop-blur text-amber-400 px-2.5 py-1 rounded-xl text-[10px] font-black border border-amber-500/30">${p.type}</span>
           </div>
 
-          <div class="space-y-3 pt-2 border-t border-slate-800/80">
-            <div class="flex justify-between items-center text-xs font-bold">
-              <span class="text-slate-400">Demand:</span>
-              <span class="text-amber-400 text-sm font-black">PKR ${Number(p.price).toLocaleString()}</span>
+          <div class="p-5 space-y-3 flex-1 flex flex-col justify-between">
+            <div class="space-y-1">
+              <div class="text-[11px] text-slate-400 font-bold"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${p.society}</div>
+              <h4 class="font-black text-white text-base">${p.title}</h4>
+              <p class="text-xs text-slate-300 line-clamp-2">${p.desc || 'No description provided.'}</p>
             </div>
-            <div class="flex gap-2">
-              <a href="tel:${p.phone}" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl text-center text-xs font-bold transition flex items-center justify-center gap-1 shadow">
-                <i class="fa-solid fa-phone text-emerald-400"></i> Call
-              </a>
-              <a href="https://wa.me/92${p.phone.replace(/^0/, '')}?text=${encodeURIComponent('Hello regarding your property (' + p.title + ') listed at Bin Taha Associates:')}" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl text-center text-xs font-black transition flex items-center justify-center gap-1 shadow">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
-              </a>
+
+            <div class="space-y-3 pt-3 border-t border-slate-800">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span class="text-slate-400">Demand:</span>
+                <span class="text-amber-400 text-sm font-black">PKR ${Number(p.price).toLocaleString()}</span>
+              </div>
+              <div class="flex gap-2">
+                <a href="tel:${p.phone}" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl text-center text-xs font-bold transition flex items-center justify-center gap-1 shadow">
+                  <i class="fa-solid fa-phone text-emerald-400"></i> Call
+                </a>
+                <a href="https://wa.me/92${p.phone.replace(/^0/, '')}?text=${encodeURIComponent('Hello regarding your property (' + p.title + ') listed at Bin Taha Associates:')}" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl text-center text-xs font-black transition flex items-center justify-center gap-1 shadow">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -241,7 +322,8 @@
         society,
         price,
         phone,
-        desc: desc || 'Client listed property.'
+        desc: desc || 'Client listed property.',
+        img: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80'
       };
 
       props.unshift(newProp);
@@ -262,7 +344,7 @@
       document.getElementById('newDesc').value = '';
       toggleAddModal();
       renderProperties(props);
-      alert("✅ Success! Your property has been successfully submitted to Bin Taha Associates Market Hub.");
+      alert("✅ Success! Your property has been successfully listed to Bin Taha Market Hub.");
     }
 
     function filterProperties(type) {
@@ -287,6 +369,7 @@
     }
 
     window.onload = function() {
+      updateClocks();
       renderProperties(getStoredProperties());
     };
   </script>
