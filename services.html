@@ -3,451 +3,414 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Properties, Global Investor Hub & AI Ecosystem | Bin Taha Associates</title>
+  <title>Bin Taha Associates • Ultimate Services & Construction Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
-    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.25); }
-
-    /* Ultra Clear Live Market Ticker Animation */
-    @keyframes tickerScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .market-ticker-track { display: inline-block; white-space: nowrap; animation: tickerScroll 30s linear infinite; }
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
+    .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.45); }
+    .glass-card { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.25); }
 
     /* 3D Dynamic Moving Eagle Animation */
     @keyframes eagle3DRotate {
-      0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
-      50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
-      100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
+      0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
+      50% { transform: perspective(1000px) rotateY(180deg) scale(1.12); filter: drop-shadow(0 0 40px rgba(252, 211, 77, 1)); }
+      100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
     }
     .moving-eagle-3d {
       animation: eagle3DRotate 6s infinite linear;
       transform-style: preserve-3d;
     }
+
+    /* Live Ticker Animation */
+    @keyframes tickerScroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .ticker-wrap { overflow: hidden; white-space: nowrap; }
+    .ticker-move { display: inline-block; animation: tickerScroll 28s linear infinite; }
+
+    #splashScreen { transition: opacity 1s ease; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Ultra Clear & Prominent Market Ticker with Direct Phone & WhatsApp Callout -->
-  <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-slate-950 text-xs font-black py-2 px-4 shadow-xl flex items-center justify-between overflow-hidden">
-    <div class="market-ticker-track flex items-center gap-6 uppercase tracking-wider text-[11px]">
-      <span><i class="fa-solid fa-phone-volume mr-1"></i> CEO Direct Helpline: 0321-9404812</span>
-      <span>•</span>
-      <span><i class="fa-solid fa-chart-line mr-1"></i> LDA Avenue 1 Hotspot Rates Up by +4.5%</span>
-      <span>•</span>
-      <span><i class="fa-solid fa-shield-halved mr-1"></i> FBR & PEC Category C Certified Enterprise</span>
-      <span>•</span>
-      <span><i class="fa-solid fa-coins mr-1"></i> USD/PKR Exchange Index: 280 PKR</span>
-      <span>•</span>
-      <span><i class="fa-solid fa-crown mr-1"></i> Owned & Managed by Taha Mobeen Bhutta</span>
+  <!-- Cinematic Splash Screen -->
+  <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="glass-card p-10 rounded-3xl max-w-md w-full space-y-6 text-center gold-glow relative overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="w-28 h-28 rounded-3xl bg-slate-950 border border-amber-500/60 mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
+        <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+      </div>
+      <div class="space-y-2">
+        <h2 class="text-3xl font-black text-white shining-gold">Bin Taha Associates</h2>
+        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">Ultimate Construction & Services Hub</p>
+        <p class="text-[11px] text-slate-400 pt-1 font-semibold">Visionary CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
+      </div>
+      <button onclick="enterPortal()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
+        <i class="fa-solid fa-helmet-safety mr-2 text-sm"></i> Launch Services Hub
+      </button>
     </div>
   </div>
 
-  <!-- Top Bar with Currency & Prominent Quick Call Actions -->
-  <div class="bg-slate-950 text-slate-300 text-xs py-3 px-4 sm:px-6 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
-      <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center font-bold">
-        <a href="tel:03219404812" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-xl hover:bg-emerald-500 hover:text-slate-950 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-phone"></i> Call Now: 0321-9404812
-        </a>
-        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1.5">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp Direct
-        </a>
-      </div>
-      <div class="flex items-center gap-2 text-xs font-semibold flex-wrap justify-center">
-        <div class="flex items-center gap-1 bg-slate-900 px-2 py-1 rounded-lg border border-slate-800">
-          <span class="text-amber-400"><i class="fa-solid fa-coins"></i> Currency:</span>
-          <select id="currencySelector" onchange="changeCurrency()" class="bg-slate-950 text-white text-[11px] font-bold rounded px-1 py-0.5 outline-none">
-            <option value="PKR">PKR (Rupee)</option>
-            <option value="USD">USD ($)</option>
-            <option value="AED">AED (Dirham)</option>
-            <option value="GBP">GBP (£)</option>
-          </select>
-        </div>
-        <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
-        <a href="#" onclick="openComparatorModal()" class="text-cyan-400 hover:text-cyan-300 font-bold transition flex items-center gap-1 cursor-pointer"><i class="fa-solid fa-scale-balanced"></i> Comparator</a>
-        <a href="#" onclick="openTrustSealModal()" class="text-emerald-400 font-bold hover:underline cursor-pointer"><i class="fa-solid fa-certificate"></i> FBR & PEC Seal</a>
-      </div>
-    </div>
-  </div>
+  <!-- Main Services Portal Wrapper -->
+  <div id="portalApp" class="flex-1 flex-col justify-between hidden">
 
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">10/10 Investor Hub & AI Ecosystem</p>
+    <!-- Live Market Ticker Bar -->
+    <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
+      <span class="bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow">🏗️ Construction Pulse</span>
+      <div class="ticker-wrap w-full">
+        <div class="ticker-move">
+          <span>LDA Avenue 1: Gray Structure & Turnkey Construction Ongoing</span> &bull; 
+          <span>Jubilee Town: Luxury Villas Development & Material Supply</span> &bull; 
+          <span>Bugtia Chowk Raiwind Road: Commercial Plazas & Architectural Designing</span> &bull; 
+          <span>PEC Category C Registered Construction Services by Bin Taha Associates</span>
         </div>
-      </a>
-      <nav class="flex flex-wrap items-center gap-1 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
-        <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl font-black shadow">Properties & Hub</a>
-        <a href="client-form.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Client Form</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-8">
-    
-    <!-- Investor Banner with Heatmap & Quick Action Bar -->
-    <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-amber-950/40 border border-amber-500/40 p-6 rounded-3xl shadow-2xl flex flex-wrap justify-between items-center gap-6">
-      <div class="space-y-1.5 max-w-xl">
-        <span class="bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-full">10/10 Verified Investor Suite</span>
-        <h2 class="text-2xl font-black shining-gold">Lahore Real Estate Hotspot Heatmap & ROI Hub</h2>
-        <p class="text-xs text-slate-300">Compare properties side-by-side, check FBR & PEC trust certification, and request instant VIP CEO callbacks.</p>
-      </div>
-      <div class="flex gap-2 flex-wrap">
-        <button onclick="openHeatmapModal()" class="bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/40 font-bold px-4 py-2.5 rounded-xl text-xs transition shadow cursor-pointer">
-          <i class="fa-solid fa-map-location-dot mr-1"></i> GPS Heatmap Index
-        </button>
-        <button onclick="openVipCallbackModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs transition shadow-lg cursor-pointer">
-          <i class="fa-solid fa-phone-volume mr-1"></i> Request VIP Callback
-        </button>
       </div>
     </div>
 
-    <!-- Sorting & Filtering Bar -->
-    <div class="bg-slate-900 border border-slate-800 p-4 sm:p-6 rounded-3xl shadow-xl space-y-4">
-      <div class="flex flex-wrap justify-between items-center gap-4">
-        <div class="flex items-center gap-3 w-full sm:w-auto flex-1">
-          <input type="text" id="filterInput" onkeyup="filterProperties()" placeholder="Search by Block, Plot No, Street..." class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white">
-        </div>
+    <!-- Top Header & Multi-City Clocks & Currency Converter -->
+    <header class="bg-slate-900/95 border-b border-slate-800 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         
-        <div class="w-full sm:w-auto">
-          <select id="filterSociety" onchange="filterProperties()" class="w-full sm:w-auto bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white font-semibold">
-            <option value="ALL">📍 All Lahore Societies</option>
-            <option value="LDA Avenue 1">LDA Avenue 1</option>
-            <option value="Jubilee Town">Jubilee Town</option>
-            <option value="Valencia Town">Valencia Town</option>
-            <option value="Raiwind Road">Raiwind Road (Bugtia Chowk)</option>
-            <option value="Bahria Town">Bahria Town Lahore</option>
-            <option value="DHA Lahore">DHA Lahore</option>
-            <option value="Johar Town">Johar Town</option>
-          </select>
-        </div>
-
-        <div class="w-full sm:w-auto">
-          <select id="filterCategory" onchange="filterProperties()" class="w-full sm:w-auto bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-xs text-white font-semibold">
-            <option value="ALL">All Categories / 10/10 Deals</option>
-            <option value="Investor-Hot">🔥 Investor Hot Deal</option>
-            <option value="Overseas-Project">🌍 Overseas Special Project</option>
-            <option value="Plot-1Kanal">Plot: 1 Kanal</option>
-            <option value="Plot-10Marla">Plot: 10 Marla</option>
-            <option value="House-10Marla">House: 10 Marla</option>
-            <option value="Commercial">Commercial / Plaza</option>
-          </select>
-        </div>
-
-        <a href="add-property.html" class="w-full sm:w-auto bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-3 rounded-xl text-xs font-black transition shadow text-center">
-          <i class="fa-solid fa-plus mr-1"></i> Post Property Ad
+        <!-- Logo & Branding -->
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+          </div>
+          <div>
+            <h1 class="text-base font-black text-white leading-tight">Bin Taha Associates</h1>
+            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Services & Construction Hub</p>
+          </div>
         </a>
-      </div>
-    </div>
 
-    <!-- Properties Grid -->
-    <div id="propertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Dynamic Property Cards -->
-    </div>
-
-  </main>
-
-  <!-- WhatsApp Floating Wizard Widget -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <button onclick="openWhatsAppWizard()" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl font-black transition transform hover:scale-110 cursor-pointer" title="AI WhatsApp Wizard">
-      <i class="fa-brands fa-whatsapp"></i>
-    </button>
-  </div>
-
-  <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center">
-    <p class="text-slate-600">&copy; 2026 Bin Taha Associates. 10/10 Investor Hub managed by Taha Mobeen Bhutta (0321-9404812).</p>
-  </footer>
-
-  <!-- Modals -->
-  <div id="installmentModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
-      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-calculator mr-2"></i> Installment Plan Calculator</h3>
-      <p class="text-[11px] text-slate-300" id="calcPropertyTitle">Calculate flexible monthly installments.</p>
-      
-      <input type="hidden" id="calcTotalRawPrice" value="0">
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Total Price:</label>
-        <input type="text" id="calcDisplayPrice" readonly class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-amber-400 font-bold">
-      </div>
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Down Payment (%):</label>
-        <input type="number" id="calcDownPaymentPercent" value="20" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white" onkeyup="computeInstallment()">
-      </div>
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Duration:</label>
-        <select id="calcMonths" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white" onchange="computeInstallment()">
-          <option value="12">1 Year (12 Months)</option>
-          <option value="24" selected>2 Years (24 Months)</option>
-          <option value="36">3 Years (36 Months)</option>
-        </select>
-      </div>
-
-      <div id="installmentResultBox" class="p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-200 space-y-1"></div>
-
-      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold cursor-pointer">Close</button>
-    </div>
-  </div>
-
-  <!-- WhatsApp Wizard Modal -->
-  <div id="whatsappWizardModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-    <div class="bg-slate-900 border border-emerald-500/50 p-6 rounded-3xl max-w-sm w-full space-y-4 shadow-2xl relative text-center">
-      <div class="w-12 h-12 bg-emerald-500 text-slate-950 rounded-2xl mx-auto flex items-center justify-center text-xl font-black shadow"><i class="fa-brands fa-whatsapp"></i></div>
-      <h3 class="text-base font-black text-white">AI WhatsApp Lead Wizard</h3>
-      <p class="text-xs text-slate-300">Select your inquiry type to connect instantly with CEO Taha Mobeen Bhutta:</p>
-      <div class="space-y-2 text-xs">
-        <a href="https://wa.me/923219404812?text=Hello%20Taha%20Mobeen,%20I%20am%20interested%20in%20buying%20a%20plot%20in%20LDA%20Avenue%201." target="_blank" class="block bg-slate-950 hover:bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl font-bold text-emerald-400 transition">📍 Plot Inquiry (LDA / Jubilee)</a>
-        <a href="https://wa.me/923219404812?text=Hello%20Taha%20Mobeen,%20I%20want%20to%20discuss%20turnkey%20construction%20rates." target="_blank" class="block bg-slate-950 hover:bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl font-bold text-emerald-400 transition">🏗️ Construction & Estimates</a>
-        <a href="https://wa.me/923219404812?text=Hello%20Taha%20Mobeen,%20I%20am%20an%20overseas%20investor%20looking%20for%20hot%20deals." target="_blank" class="block bg-slate-950 hover:bg-emerald-950/40 border border-emerald-500/30 p-2.5 rounded-xl font-bold text-emerald-400 transition">🌍 Overseas Investor Portal</a>
-      </div>
-      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold cursor-pointer">Close</button>
-    </div>
-  </div>
-
-  <!-- GPS Heatmap Index Modal -->
-  <div id="heatmapModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
-      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-map-location-dot mr-2"></i> Lahore Sector Heatmap & Hotspots</h3>
-      <p class="text-[11px] text-slate-300">Live index of highest appreciation sectors in Lahore managed by Bin Taha Associates.</p>
-      
-      <div class="space-y-2 text-xs">
-        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-          <div><strong class="text-white">LDA Avenue 1 (Block D & K)</strong><div class="text-[10px] text-emerald-400">Growth Index: +24% YoY</div></div>
-          <span class="bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded font-bold text-[10px]">🔥 HOTSPOT</span>
+        <!-- Live World Clocks -->
+        <div class="flex items-center gap-2 flex-wrap text-[11px]">
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
-        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-          <div><strong class="text-white">Jubilee Town (Commercial Blvd)</strong><div class="text-[10px] text-amber-400">Growth Index: +20% YoY</div></div>
-          <span class="bg-amber-500/20 text-amber-400 px-2 py-1 rounded font-bold text-[10px]">⭐ PREMIER</span>
-        </div>
-        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-          <div><strong class="text-white">Raiwind Road (Bugtia Chowk)</strong><div class="text-[10px] text-cyan-400">Growth Index: +22% YoY</div></div>
-          <span class="bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded font-bold text-[10px]">📈 RISING</span>
+
+        <!-- Global Currency Converter Widget -->
+        <div class="bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
+          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
+          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
+            <option value="USD">USD ($)</option>
+            <option value="AED">AED (Dh)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="SAR">SAR (SR)</option>
+          </select>
+          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
+          <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
         </div>
       </div>
 
-      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold cursor-pointer">Close</button>
-    </div>
-  </div>
-
-  <!-- FBR & PEC Trust Seal Modal -->
-  <div id="trustSealModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-    <div class="bg-slate-900 border border-emerald-500/50 p-6 rounded-3xl max-w-sm w-full space-y-4 shadow-2xl relative text-center">
-      <div class="w-16 h-16 bg-emerald-500 text-slate-950 rounded-3xl mx-auto flex items-center justify-center text-2xl font-black shadow-xl"><i class="fa-solid fa-certificate"></i></div>
-      <h3 class="text-lg font-black text-white">Government & Engineering Seal</h3>
-      <p class="text-xs text-slate-300 leading-relaxed">Bin Taha Associates is legally registered under the <b>Federal Board of Revenue (FBR)</b> and the <b>Pakistan Engineering Council (PEC) Category C</b>.</p>
-      <div class="p-3 bg-slate-950 rounded-xl border border-emerald-500/30 text-[11px] text-emerald-400 font-bold">
-        Certified Enterprise Principal: CEO Taha Mobeen Bhutta
+      <!-- Colorful Navigation Bar -->
+      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800/80">
+        <div class="flex gap-2 flex-wrap text-xs font-bold">
+          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
+          <a href="#materialEstimator" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
+          <a href="#overseasPortal" class="bg-purple-600 hover:bg-purple-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-earth-americas mr-1"></i> Overseas Live Portal</a>
+          <a href="dealers.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-address-book mr-1"></i> Directory</a>
+        </div>
+        <div class="text-xs text-amber-400 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 shadow">
+          <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
+        </div>
       </div>
-      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold cursor-pointer">Close</button>
-    </div>
-  </div>
+    </header>
 
-  <!-- VIP CEO Callback Scheduler Modal -->
-  <div id="vipCallbackModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex justify-center items-center p-4">
-    <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl max-w-md w-full space-y-4 shadow-2xl relative">
-      <h3 class="text-lg font-black text-amber-400"><i class="fa-solid fa-headset mr-2"></i> VIP CEO Callback Scheduler</h3>
-      <p class="text-[11px] text-slate-300">Direct line to CEO Taha Mobeen Bhutta. Enter your phone number for priority callback within 15 minutes.</p>
+    <!-- Main Services Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-12">
       
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Your Full Name:</label>
-        <input type="text" id="vipName" placeholder="Enter name..." class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
-      </div>
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Phone / WhatsApp Number:</label>
-        <input type="text" id="vipPhone" placeholder="0321 9404812" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
-      </div>
-      <div>
-        <label class="block text-[11px] text-slate-300 font-bold mb-1">Investment Budget / Inquiry:</label>
-        <input type="text" id="vipInquiry" placeholder="e.g. Interested in 1 Kanal Plot" class="w-full bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white">
+      <!-- Hero Banner -->
+      <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="space-y-3 relative z-10">
+          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">PEC Category C Registered Enterprise</span>
+          <h2 class="text-2xl sm:text-4xl font-black shining-gold">Professional Construction & Development Services</h2>
+          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">From gray structure to turnkey finishing, architectural mapping, and material supervision across Lahore's prime locations (LDA Avenue 1, Jubilee Town, Raiwind Road).</p>
+        </div>
+        <button onclick="toggleServiceModal()" class="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
+          <i class="fa-solid fa-file-contract mr-1.5 text-sm"></i> Book Construction Service
+        </button>
       </div>
 
-      <button onclick="submitVipCallback()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-2.5 rounded-xl text-xs font-black cursor-pointer transition">Request VIP Callback Now</button>
+      <!-- Core Services Grid -->
+      <div class="space-y-6">
+        <div class="flex justify-between items-center">
+          <h3 class="text-lg font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-screwdriver-wrench text-amber-400"></i> Our Specialized Divisions
+          </h3>
+          <span class="text-xs text-slate-400 font-bold">Direct Google Sheets & CRM Synced</span>
+        </div>
 
-      <button onclick="closeModals()" class="w-full bg-slate-800 text-slate-300 py-2 rounded-xl text-xs font-bold cursor-pointer">Close</button>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 shadow-xl hover:border-amber-500 transition duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl border border-amber-500/30">
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <h4 class="text-base font-black text-white">Gray Structure Construction</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">High-grade steel, top-quality bricks, expert engineering supervision, and foolproof damp-proofing under PEC standards.</p>
+            <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs">
+              <span class="text-amber-400 font-bold">Starting from PKR 3,500/sq ft</span>
+              <button onclick="selectServicePlan('Gray Structure')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-xl font-bold">Select</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 shadow-xl hover:border-amber-500 transition duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl border border-emerald-500/30">
+              <i class="fa-solid fa-house-chimney"></i>
+            </div>
+            <h4 class="text-base font-black text-white">Turnkey Finishing & Design</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">Luxurious tile flooring, custom woodwork, stylish ceilings, sanitary fittings, and exquisite 3D elevation designs.</p>
+            <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs">
+              <span class="text-amber-400 font-bold">Custom Quotation</span>
+              <button onclick="selectServicePlan('Turnkey Finishing')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-xl font-bold">Select</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card p-6 rounded-3xl space-y-4 shadow-xl hover:border-amber-500 transition duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xl border border-cyan-500/30">
+              <i class="fa-solid fa-map-drawing"></i>
+            </div>
+            <h4 class="text-base font-black text-white">Architectural & Map Approval</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">LDA and housing society map designing, structural drawings, and fast-track approval processing by licensed architects.</p>
+            <div class="pt-2 border-t border-slate-800 flex justify-between items-center text-xs">
+              <span class="text-amber-400 font-bold">Expert Consultation</span>
+              <button onclick="selectServicePlan('Map Approval')" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-xl font-bold">Select</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Construction Material & Brick Estimator -->
+      <div id="materialEstimator" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl border border-amber-500/30">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div>
+            <span class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-black uppercase">Interactive Tool</span>
+            <h3 class="text-xl font-black text-white mt-1">Live Material & Brick Estimator (Gray Structure)</h3>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-bold">
+          <div>
+            <label class="block text-slate-300 mb-1">Plot Size / Covered Area (Sq Ft):</label>
+            <input type="number" id="estSqFt" value="2250" onkeyup="calculateMaterial()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Floors / Storeys:</label>
+            <select id="estStoreys" onchange="calculateMaterial()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none">
+              <option value="1">Single Storey</option>
+              <option value="2" selected>Double Storey</option>
+              <option value="3">Triple Storey / Plaza</option>
+            </select>
+          </div>
+        </div>
+        <div class="bg-amber-500/10 border border-amber-500/30 p-4 rounded-2xl grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-[11px] text-slate-400">Estimated Bricks:</div>
+            <div id="resBricks" class="text-base sm:text-lg font-black text-amber-400">75,000 Bricks</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400">Steel (Grade 60):</div>
+            <div id="resSteel" class="text-base sm:text-lg font-black text-amber-400">4.5 Tons</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400">Cement Bags:</div>
+            <div id="resCement" class="text-base sm:text-lg font-black text-amber-400">900 Bags</div>
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400">Crush & Sand:</div>
+            <div id="resAggregate" class="text-base sm:text-lg font-black text-amber-400">Standard Load</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overseas Client Live Project Monitoring Portal -->
+      <div id="overseasPortal" class="glass-card p-8 rounded-3xl shadow-xl space-y-6">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-slate-950 border border-purple-500/50 flex items-center justify-center shadow-lg">
+            <i class="fa-solid fa-earth-americas text-purple-400 text-2xl"></i>
+          </div>
+          <div>
+            <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs font-black uppercase">Expatriate Services</span>
+            <h3 class="text-2xl font-black text-white mt-1">Overseas Client Live Construction Tracking</h3>
+          </div>
+        </div>
+        <div class="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed">
+          <p>Living abroad in Dubai, UK, USA, or KSA? Don't worry about your property and construction in Lahore. <strong>Bin Taha Associates</strong> provides dedicated online project dashboards, daily video/photo progress logs, transparent ledger updates, and WhatsApp supervision directly with <strong>CEO Taha Mobeen Bhutta</strong>.</p>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <a href="https://wa.me/923219404812?text=Hello%20CEO%20Taha%20Mobeen,%20I%20am%20an%20overseas%20client%20interested%20in%20construction%20monitoring." target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-3 rounded-xl text-xs font-black transition shadow flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i> Connect Overseas WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Service Booking Modal -->
+    <div id="serviceModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+      <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-helmet-safety text-amber-400 mr-2"></i> Book Construction Service & Sync to CRM</h3>
+          <button onclick="toggleServiceModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="space-y-4 text-xs font-bold">
+          <div>
+            <label class="block text-slate-300 mb-1">Your Full Name: *</label>
+            <input type="text" id="bookingName" placeholder="Enter your name" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-300 mb-1">Phone Number: *</label>
+              <input type="text" id="bookingPhone" placeholder="03001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+            </div>
+            <div>
+              <label class="block text-slate-300 mb-1">Service Type: *</label>
+              <select id="bookingService" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+                <option value="Gray Structure">Gray Structure Construction</option>
+                <option value="Turnkey Finishing">Turnkey Finishing & Design</option>
+                <option value="Map Approval">Architectural & Map Approval</option>
+                <option value="General Consultation">General Construction Consultation</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Location / Society (e.g. LDA Avenue 1): *</label>
+            <input type="text" id="bookingLocation" placeholder="Plot / Block / Society Name" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Project Details & Requirements:</label>
+            <textarea id="bookingDetails" rows="2" placeholder="Mention plot size, storeys, or specific needs..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner"></textarea>
+          </div>
+
+          <button onclick="submitServiceBooking()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Sync to Google Sheet CRM
+          </button>
+        </div>
+      </div>
     </div>
+
+    <!-- Professional Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center space-y-2">
+      <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
+      <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
+    </footer>
+
   </div>
 
   <script>
-    const defaultProperties = [
-      { id: 1, title: "🔥 Hot Deal: Plot 798 D (1 Kanal)", society: "LDA Avenue 1", locationPin: "Block D, St 4", category: "Investor-Hot", pricePKR: 80000000, desc: "Below market price investor deal in Block D with immediate transfer.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "LDA Approved", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" },
-      { id: 2, title: "🌍 Overseas Special: Jubilee Commercial Shop", society: "Jubilee Town", locationPin: "150ft Boulevard", category: "Overseas-Project", pricePKR: 35000000, desc: "Special overseas quota commercial shop with assured rental yield.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Registry Clear", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80" },
-      { id: 3, title: "Modern Villa 10 Marla House", society: "LDA Avenue 1", locationPin: "Block K, Main Blvd", category: "House-10Marla", pricePKR: 45000000, desc: "Brand new 10 Marla luxury house with high rental demand.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Registry Clear", videoLink: "https://youtube.com", image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80" },
-      { id: 4, title: "LDA Avenue 1 Clear File (Investor Rate)", society: "LDA Avenue 1", locationPin: "Block A", category: "Investor-Hot", pricePKR: 25000000, desc: "Quick cash deal file available at discounted investor rate.", contact: "Taha Mobeen Bhutta - 0321 9404812", legalBadge: "Fee Paid", videoLink: "", image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" }
-    ];
-
-    const currencyRates = { PKR: 1, USD: 280, AED: 76, GBP: 350 };
-    const currencySymbols = { PKR: "PKR ", USD: "$ ", AED: "AED ", GBP: "£ " };
-
-    function formatPrice(pkrValue) {
-      const cur = document.getElementById('currencySelector').value;
-      const rate = currencyRates[cur] || 1;
-      const converted = Math.round(pkrValue / rate);
-      return currencySymbols[cur] + converted.toLocaleString() + (cur === 'PKR' ? ' PKR' : '');
+    function enterPortal() {
+      const splash = document.getElementById('splashScreen');
+      const app = document.getElementById('portalApp');
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        app.style.display = 'flex';
+        calculateMaterial();
+      }, 1000);
     }
 
-    function changeCurrency() {
-      displayProperties(getAllProperties());
+    function updateClocks() {
+      const now = new Date();
+      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClocks, 1000);
+
+    function convertCurrency() {
+      const type = document.getElementById('currSelect').value;
+      const val = parseFloat(document.getElementById('currVal').value) || 0;
+      let rate = 280;
+      if(type === 'AED') rate = 76;
+      if(type === 'GBP') rate = 355;
+      if(type === 'SAR') rate = 75;
+      let total = val * rate;
+      document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
     }
 
-    function getAllProperties() {
-      let userAds = JSON.parse(localStorage.getItem('bintahaUserAds') || '[]');
-      let fullInventory = JSON.parse(localStorage.getItem('bintaha_full_inventory') || '[]');
-      let formattedInventory = fullInventory.map(item => ({
-        id: item.id,
-        title: item.title,
-        society: item.location || 'Lahore Region',
-        locationPin: item.area || 'General',
-        category: item.category || 'Plot-5Marla',
-        pricePKR: parseInt(item.price.replace(/[^0-9]/g, '')) * 100000 || 25000000,
-        desc: item.desc,
-        contact: item.role === 'Admin' ? 'Taha Mobeen Bhutta (CEO)' : 'Authorized Partner',
-        legalBadge: 'LDA Approved',
-        videoLink: '',
-        image: item.image
-      }));
-      return [...formattedInventory, ...userAds, ...defaultProperties];
+    function toggleServiceModal() {
+      const modal = document.getElementById('serviceModal');
+      modal.classList.toggle('hidden');
     }
 
-    function displayProperties(list) {
-      const grid = document.getElementById('propertiesGrid');
-      if (list.length === 0) {
-        grid.innerHTML = `<div class="col-span-3 text-center py-12 text-slate-500 italic">No properties found matching your search.</div>`;
+    function selectServicePlan(serviceName) {
+      document.getElementById('bookingService').value = serviceName;
+      toggleServiceModal();
+    }
+
+    function calculateMaterial() {
+      const sqft = parseFloat(document.getElementById('estSqFt').value) || 0;
+      const storeys = parseFloat(document.getElementById('estStoreys').value) || 1;
+      let totalArea = sqft * storeys;
+
+      let bricks = Math.round(totalArea * 33);
+      let steel = (totalArea * 0.002).toFixed(1);
+      let cement = Math.round(totalArea * 0.4);
+
+      document.getElementById('resBricks').innerText = `${bricks.toLocaleString()} Bricks`;
+      document.getElementById('resSteel').innerText = `${steel} Tons`;
+      document.getElementById('resCement').innerText = `${cement} Bags`;
+      document.getElementById('resAggregate').innerText = `Standard Load`;
+    }
+
+    function submitServiceBooking() {
+      const name = document.getElementById('bookingName').value.trim();
+      const phone = document.getElementById('bookingPhone').value.trim();
+      const service = document.getElementById('bookingService').value;
+      const location = document.getElementById('bookingLocation').value.trim();
+      const details = document.getElementById('bookingDetails').value.trim();
+
+      if (!name || !phone || !location) {
+        alert("⚠️ Please fill in Name, Phone number, and Location!");
         return;
       }
 
-      grid.innerHTML = list.map(p => `
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between hover:border-amber-500 transition group">
-          <div>
-            <div class="h-40 overflow-hidden relative">
-              <img src="${p.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80'}" alt="Property Image" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-              <span class="absolute top-3 left-3 px-3 py-1 rounded-lg text-[10px] font-bold bg-slate-950/80 text-amber-400 border border-amber-500/30">${p.society} (${p.locationPin || 'Lahore'})</span>
-              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-lg text-[10px] font-bold bg-emerald-500/90 text-slate-950">${p.legalBadge || 'LDA Approved'}</span>
-            </div>
-            <div class="p-6">
-              <div class="flex justify-between items-start mb-2">
-                <span class="text-xs font-black text-emerald-400 bg-slate-950 px-3 py-1 rounded-xl border border-slate-800">${formatPrice(p.pricePKR)}</span>
-              </div>
-              <h3 class="text-lg font-black text-white mb-2 group-hover:text-amber-400 transition">${p.title}</h3>
-              <p class="text-xs text-slate-300 mb-4 leading-relaxed">${p.desc}</p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-0 border-t border-slate-800/60 mt-auto flex flex-col gap-2 pt-4">
-            <div class="text-[11px] text-amber-300 font-bold flex justify-between">
-              <span><i class="fa-solid fa-user-shield mr-1"></i> ${p.contact}</span>
-              ${p.videoLink ? `<a href="${p.videoLink}" target="_blank" class="text-rose-400 hover:underline"><i class="fa-solid fa-video mr-1"></i> 3D Tour</a>` : ''}
-            </div>
-            <div class="flex gap-2">
-              <button onclick="openInstallmentModal('${p.title}', ${p.pricePKR})" class="flex-1 bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-2 rounded-xl text-[11px] font-black text-center transition border border-amber-500/30 cursor-pointer">
-                <i class="fa-solid fa-calculator mr-1"></i> Installments
-              </button>
-              <a href="https://wa.me/923219404812?text=I%20am%20interested%20in%20investing%20in%20${encodeURIComponent(p.title)}" target="_blank" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 px-2 py-2 rounded-xl text-[11px] font-black text-center transition shadow">
-                <i class="fa-brands fa-whatsapp mr-1"></i> Inquire Deal
-              </a>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function filterProperties() {
-      const query = document.getElementById('filterInput').value.toLowerCase();
-      const societyFilter = document.getElementById('filterSociety').value;
-      const cat = document.getElementById('filterCategory').value;
-      const allProps = getAllProperties();
-
-      const filtered = allProps.filter(p => {
-        const matchesQuery = p.title.toLowerCase().includes(query) || (p.locationPin && p.locationPin.toLowerCase().includes(query)) || p.desc.toLowerCase().includes(query);
-        const matchesSociety = (societyFilter === 'ALL' || p.society.toLowerCase().includes(societyFilter.toLowerCase()));
-        const matchesCat = (cat === 'ALL' || p.category === cat);
-        return matchesQuery && matchesSociety && matchesCat;
-      });
-
-      displayProperties(filtered);
-    }
-
-    function openWhatsAppWizard() { document.getElementById('whatsappWizardModal').classList.remove('hidden'); }
-    function openHeatmapModal() { document.getElementById('heatmapModal').classList.remove('hidden'); }
-    function openTrustSealModal() { document.getElementById('trustSealModal').classList.remove('hidden'); }
-    function openVipCallbackModal() { document.getElementById('vipCallbackModal').classList.remove('hidden'); }
-    
-    function closeModals() {
-      document.getElementById('installmentModal').classList.add('hidden');
-      document.getElementById('whatsappWizardModal').classList.add('hidden');
-      document.getElementById('heatmapModal').classList.add('hidden');
-      document.getElementById('trustSealModal').classList.add('hidden');
-      document.getElementById('vipCallbackModal').classList.add('hidden');
-    }
-
-    function openInstallmentModal(title, pricePKR) {
-      document.getElementById('calcPropertyTitle').innerText = `Installments for: ${title}`;
-      document.getElementById('calcTotalRawPrice').value = pricePKR;
-      document.getElementById('calcDisplayPrice').value = formatPrice(pricePKR);
-      document.getElementById('installmentModal').classList.remove('hidden');
-      computeInstallment();
-    }
-
-    function computeInstallment() {
-      const rawPrice = parseFloat(document.getElementById('calcTotalRawPrice').value);
-      const dpPercent = parseFloat(document.getElementById('calcDownPaymentPercent').value) || 20;
-      const months = parseInt(document.getElementById('calcMonths').value) || 24;
-
-      const downPayment = rawPrice * (dpPercent / 100);
-      const remainingBalance = rawPrice - downPayment;
-      const monthlyInstallment = remainingBalance / months;
-
-      const box = document.getElementById('installmentResultBox');
-      box.innerHTML = `
-        <div>• Down Payment (${dpPercent}%): <b class="text-amber-400">${formatPrice(downPayment)}</b></div>
-        <div>• Remaining Balance: <b>${formatPrice(remainingBalance)}</b></div>
-        <div class="text-emerald-400 font-black text-sm mt-1">• Monthly Installment (${months} Months): ${formatPrice(monthlyInstallment)} / mo</div>
-      `;
-    }
-
-    function submitVipCallback() {
-      const name = document.getElementById('vipName').value.trim();
-      const phone = document.getElementById('vipPhone').value.trim();
-      const inquiry = document.getElementById('vipInquiry').value.trim();
-
-      if(!name || !phone) { alert("Please enter your name and phone number!"); return; }
-
-      const inboxMsg = {
-        id: Date.now(),
-        name: name,
-        phone: phone,
-        email: 'bintahacrm@gmail.com',
-        subject: '10/10 VIP CEO Callback Request',
-        text: `Inquiry: ${inquiry || 'General Investment Consultation'}`,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      let bookingData = {
+        action: 'service_booking',
+        time: new Date().toISOString(),
+        name,
+        phone,
+        service,
+        location,
+        details
       };
 
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-
-      // CRM GOOGLE SHEET WEBHOOK URL INSERTED HERE:
+      // GOOGLE SHEET WEBHOOK SYNC:
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
       if (googleScriptUrl) {
         fetch(googleScriptUrl, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(inboxMsg)
+          body: JSON.stringify(bookingData)
         }).catch(err => console.log('Google Sheet sync notice:', err));
       }
 
-      alert(`✅ Success ${name}! CEO Taha Mobeen Bhutta's team has received your priority callback request and will contact you within 15 minutes.`);
-      closeModals();
+      document.getElementById('bookingName').value = '';
+      document.getElementById('bookingPhone').value = '';
+      document.getElementById('bookingLocation').value = '';
+      document.getElementById('bookingDetails').value = '';
+      toggleServiceModal();
+      alert("✨ Success! Your service booking has been successfully submitted to Bin Taha CRM & Google Sheets!");
     }
 
     window.onload = function() {
-      displayProperties(getAllProperties());
+      updateClocks();
+      calculateMaterial();
     };
   </script>
 </body>
