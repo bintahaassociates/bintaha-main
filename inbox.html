@@ -33,7 +33,7 @@
         <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
       </div>
       <div class="flex items-center gap-4 text-xs font-semibold flex-wrap justify-center">
-        <a href="index.html" class="hover:text-amber-400 transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" class="hover:text-amber-400 transition font-bold text-amber-400"><i class="fa-solid fa-calculator mr-1"></i>Accounting ERP</a>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
   <!-- Header with 3D Dynamic Moving Eagle Logo -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" class="flex items-center gap-3">
         <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
@@ -49,9 +49,13 @@
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Master CRM</a>
+        <a href="owners-crm.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Owners CRM</a>
+        <a href="dealers.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Master Directory</a>
         <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Properties</a>
-        <a href="agent-dashboard.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Partner Portal</a>
+        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Services</a>
+        <a href="https://bintahaassociates.github.io/bintaha-acconting/data-entry.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
       </nav>
     </div>
   </header>
@@ -125,7 +129,6 @@
         </div>
       `).join('');
 
-      // MASTER CRM GOOGLE SHEET WEBHOOK URL INSERTED HERE:
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
       if (googleScriptUrl && messages.length > 0) {
         fetch(googleScriptUrl, {
