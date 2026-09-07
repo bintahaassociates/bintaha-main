@@ -63,14 +63,17 @@
         </div>
       </div>
 
-      <!-- Navigation Links Bar (Fully Verified Links) -->
+      <!-- Navigation Links Bar (Fully Updated & Verified Paths) -->
       <div class="flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800">
-        <div class="flex gap-2 flex-wrap">
-          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="crm-dashboard.html" class="bg-amber-500 text-slate-950 text-xs px-4 py-2 rounded-xl font-black transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-          <a href="owners-crm.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Owners Directory</a>
-          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
-          <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-amber-400 text-xs px-4 py-2 rounded-xl font-bold transition shadow"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+        <div class="flex gap-2 flex-wrap text-xs font-bold">
+          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-house mr-1"></i> Home ERP</a>
+          <a href="crm-dashboard.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Owners Directory</a>
+          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
+          <a href="dealers.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-address-book mr-1"></i> Master Directory</a>
+          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services Hub</a>
+          <a href="data-entry.html" class="bg-amber-600 text-white hover:bg-amber-500 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
         </div>
       </div>
     </header>
@@ -286,10 +289,8 @@
       entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
 
-      // ACCOUNTING GOOGLE SHEET WEBHOOK URL INSERTED HERE:
       const accountingScriptUrl = 'https://script.google.com/macros/s/AKfycbxtmVS9snQMnLF_Z_qATwuJQWDlDe2SVQ_YRDuo9nX0Yzbmq1nXnMNOllj1C32tuyzbDg/exec';
       if (accountingScriptUrl) {
-        // Formatting payload to match Accounting Google Sheet structure (Date, Bank, Type, Head, Party, Amount)
         const accountingPayload = {
           date: dateStr,
           bank: 'Allied Bank (ABL)',
