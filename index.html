@@ -74,10 +74,10 @@
       50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
       100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
     }
-    .moving-eagle-3d { animation: eagle3DRotate 6s infinite linear; transform-style: preserve-3d; }
+    .moving-eagle-3d { animation: eagle3DRotate 6s infinite linear; transform-style: preserve-3d; cursor: pointer; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base select-none">
 
   <!-- Top Bar with World Clocks -->
   <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
@@ -108,20 +108,21 @@
       <span>•</span>
       <span><i class="fa-solid fa-water mr-1"></i> Margalla Crush: PKR 330 / CFT</span>
       <span>•</span>
-      <span><i class="fa-solid fa-crown mr-1"></i> CEO Taha Mobeen Bhutta • bintahacrm@gmail.com (0321-9404812)</span>
+      <span><i class="fa-solid fa-crown mr-1"></i> CEO Taha Mobeen Bhutta • 0321-9404812</span>
     </div>
   </div>
 
-  <!-- Header with Dream Button positioned right before Admin CRM -->
+  <!-- Header with Secret 5-Tap Eagle Logo Trigger -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+      <div class="flex items-center gap-3">
+        <!-- SECRET CEO DOOR: 5 Taps on Eagle Logo opens Master CRM -->
+        <img src="logo.png" alt="Bin Taha Logo" id="secretCeoTrigger" onclick="handleSecretCeoTap()" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='logo.png.png'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
           <p class="text-[11px] text-amber-400 font-bold uppercase tracking-wider">Official PropTech & Construction Hub</p>
         </div>
-      </a>
+      </div>
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
         <a href="index.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">Home</a>
         <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">About Us</a>
@@ -129,10 +130,8 @@
         <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Properties</a>
         <a href="client-form.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Client Form</a>
         <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
-        <a href="about.html" class="bg-cyan-600/20 text-cyan-400 border border-cyan-500/40 hover:bg-cyan-600 hover:text-white px-3 py-2 rounded-xl transition">✨ Our Dream</a>
       </nav>
       <div class="flex items-center gap-2">
-        <a href="signin.html" class="bg-slate-800 text-amber-400 font-bold text-xs px-3.5 py-2.5 rounded-xl border border-amber-500/40 hover:bg-slate-700 transition">Admin CRM</a>
         <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white font-black text-xs px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5">
           <i class="fa-brands fa-whatsapp"></i> WhatsApp CEO
         </a>
@@ -161,11 +160,11 @@
         </div>
       </div>
 
-      <!-- Quick Lead Box (Updated with taha1.jpg) -->
+      <!-- Quick Lead Box -->
       <div class="bg-slate-900 border-2 border-amber-500/80 p-6 sm:p-8 rounded-3xl shadow-2xl gold-glow space-y-6">
         <div class="flex items-center gap-4 border-b border-slate-800 pb-4">
           <div class="w-16 h-20 rounded-xl overflow-hidden border-2 border-amber-500 shadow">
-            <img src="taha1.jpg" alt="CEO Taha Mobeen Bhutta" class="w-full h-full object-cover">
+            <img src="taha1.jpg" alt="CEO Taha Mobeen Bhutta" class="w-full h-full object-cover" onerror="this.src='taha.jpg'">
           </div>
           <div>
             <h3 class="text-base font-black text-white">CEO Taha Mobeen Bhutta</h3>
@@ -180,7 +179,7 @@
           </div>
           <div>
             <label class="block font-bold text-slate-200 mb-1">Phone / WhatsApp:</label>
-            <input type="text" id="homePhone" placeholder="03219404812" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white font-bold outline-none focus:border-amber-500" value="03219404812">
+            <input type="text" id="homePhone" placeholder="03219404812" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white font-bold outline-none focus:border-amber-500">
           </div>
           <button onclick="submitHomeLead()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-3 rounded-xl text-center transition shadow cursor-pointer text-xs">
             <i class="fa-solid fa-paper-plane mr-1"></i> Send Instant Inquiry to CEO
@@ -419,7 +418,59 @@
     <p class="text-slate-600">&copy; 2026 Bin Taha Associates. Managed by CEO Taha Mobeen Bhutta (0321-9404812 | bintahacrm@gmail.com).</p>
   </footer>
 
+  <!-- SECRET CEO GATEWAY MODAL (Only Appears on 5 Secret Taps on Logo) -->
+  <div id="secretCeoModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border-2 border-amber-500 p-6 rounded-3xl max-w-xs w-full space-y-4 shadow-2xl text-center">
+      <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto text-xl border border-amber-500/40">
+        <i class="fa-solid fa-user-shield"></i>
+      </div>
+      <div>
+        <h3 class="font-black text-white text-base">CEO Master Console</h3>
+        <p class="text-[11px] text-slate-400 mt-0.5">Enter Master Authentication Code</p>
+      </div>
+      <input type="password" id="secretCeoPin" placeholder="Enter PIN..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-center text-white text-lg tracking-widest font-black outline-none focus:border-amber-500">
+      <div class="flex gap-2">
+        <button onclick="closeSecretModal()" class="flex-1 bg-slate-800 text-slate-300 font-bold py-2.5 rounded-xl text-xs">Cancel</button>
+        <button onclick="verifyCeoPin()" class="flex-1 bg-amber-500 text-slate-950 font-black py-2.5 rounded-xl text-xs cursor-pointer">Unlock</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+
+    /* SECRET CEO DOOR (5 Taps on Eagle Logo) */
+    let eagleTapCount = 0;
+    let eagleTapTimer = null;
+
+    function handleSecretCeoTap() {
+      eagleTapCount++;
+      clearTimeout(eagleTapTimer);
+      eagleTapTimer = setTimeout(() => { eagleTapCount = 0; }, 2000);
+
+      if (eagleTapCount >= 5) {
+        eagleTapCount = 0;
+        document.getElementById('secretCeoModal').classList.remove('hidden');
+        document.getElementById('secretCeoPin').value = '';
+        document.getElementById('secretCeoPin').focus();
+      }
+    }
+
+    function closeSecretModal() {
+      document.getElementById('secretCeoModal').classList.add('hidden');
+    }
+
+    function verifyCeoPin() {
+      const pin = document.getElementById('secretCeoPin').value.trim();
+      if (pin === '0321' || pin === '9404812' || pin === 'taha123' || pin === 'Taha123' || pin === 'طاہ123') {
+        sessionStorage.setItem('bintaha_ceo_authenticated', 'true');
+        window.location.href = 'https://bintahaassociates.github.io/accont/';
+      } else {
+        alert('❌ Security Violation: Invalid Master PIN!');
+        closeSecretModal();
+      }
+    }
+
     function updateWorldClocks() {
       const now = new Date();
       document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
@@ -446,14 +497,8 @@
         subject: `ROI Prediction: ${zone} (${capital} PKR)`, text: `Projected Profit: PKR ${expectedReturn}`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if(googleScriptUrl) {
-        fetch(googleScriptUrl, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
-      }
+      
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
     }
 
     function calculateFx() {
@@ -480,17 +525,11 @@
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
 
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if(googleScriptUrl) {
-        fetch(googleScriptUrl, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
-      }
-
-      alert(`✅ Success ${name}! Inquiry dispatched to CEO Taha Mobeen Bhutta and Google Sheet (bintahacrm@gmail.com).`);
+      alert(`✅ Success ${name}! Inquiry dispatched to CEO Taha Mobeen Bhutta and Google Sheet.`);
       document.getElementById('homeName').value = '';
+      document.getElementById('homePhone').value = '';
     }
 
     function calculateHomeCost() {
@@ -508,14 +547,8 @@
         subject: `Cost Estimate: ${size} Marla (${phase})`, text: `Estimated Quote: ${est}`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if(googleScriptUrl) {
-        fetch(googleScriptUrl, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
-      }
+      
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
     }
 
     function runPlotLocator() {
@@ -530,14 +563,8 @@
         subject: `Plot Location Search: ${code}`, text: `Searched plot code: ${code}`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if(googleScriptUrl) {
-        fetch(googleScriptUrl, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
-      }
+      
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
     }
 
     function runDualFilterSearch() {
@@ -552,14 +579,8 @@
         subject: `Dual Filter: ${type} in ${zone}`, text: `Filtered ${type} in ${zone}.`,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
-      const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-      inboxList.unshift(inboxMsg);
-      localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if(googleScriptUrl) {
-        fetch(googleScriptUrl, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
-      }
+      
+      fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(inboxMsg) }).catch(e=>{});
     }
 
     window.onload = function() { updateWorldClocks(); };
