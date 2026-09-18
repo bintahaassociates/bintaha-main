@@ -102,7 +102,7 @@
     </div>
   </div>
 
-  <!-- Live Market Ticker (Rich Gold Theme) -->
+  <!-- Live Market Ticker -->
   <div class="gold-bg text-slate-950 text-xs font-black py-2.5 px-4 shadow-xl flex items-center justify-between overflow-hidden">
     <div class="market-ticker-track flex items-center gap-6 uppercase tracking-wider text-xs">
       <span><i class="fa-solid fa-chart-line mr-1"></i> Cement Rate: PKR 1,540 / Bag (Live)</span>
@@ -121,7 +121,7 @@
   <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
       <div class="flex items-center gap-3">
-        <!-- SECRET CEO DOOR: 5 Taps on Eagle Logo opens Master CRM -->
+        <!-- SECRET CEO DOOR: 5 Taps on Eagle Logo opens Accounting Vault -->
         <img src="logo.png" alt="Bin Taha Logo" id="secretCeoTrigger" onclick="handleSecretCeoTap()" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='logo.png.png'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
@@ -193,7 +193,7 @@
       </div>
     </div>
 
-    <!-- PRO AI ARCHITECT & LIVE DESIGN STUDIO (TRUE EXPERT ADVISORY) -->
+    <!-- PRO AI ARCHITECT & LIVE DESIGN STUDIO -->
     <div class="bg-slate-900 border-2 gold-border p-8 sm:p-10 rounded-3xl shadow-2xl space-y-6 gold-glow">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b gold-border pb-4">
         <div>
@@ -538,7 +538,7 @@
   <script>
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
 
-    /* SECRET CEO DOOR (5 Taps on Eagle Logo) */
+    /* SECRET CEO DOOR (5 Taps on Eagle Logo) - Linked to exact accounting vault */
     let eagleTapCount = 0;
     let eagleTapTimer = null;
 
@@ -563,7 +563,8 @@
       const pin = document.getElementById('secretCeoPin').value.trim();
       if (pin === '0321' || pin === '9404812' || pin === 'taha123' || pin === 'Taha123' || pin === 'طاہ123') {
         sessionStorage.setItem('bintaha_ceo_authenticated', 'true');
-        window.location.href = 'https://bintahaassociates.github.io/accont/';
+        // Exact accounting ERP vault link
+        window.location.href = 'https://bintahaassociates.github.io/bintaha-acconting/';
       } else {
         alert('❌ Security Violation: Invalid Master PIN!');
         closeSecretModal();
