@@ -188,6 +188,34 @@
       </div>
     </div>
 
+    <!-- BIN TAHA AI INTERACTIVE ARCHITECT & DESIGN CONSULTANT (NEW ADDITION) -->
+    <div class="bg-slate-900 border-2 border-cyan-500/70 p-8 sm:p-10 rounded-3xl shadow-2xl space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">🤖 Next-Gen PropTech AI</span>
+          <h3 class="text-2xl font-black text-white mt-1">Bin Taha AI Interactive Architect & Design Consultant</h3>
+        </div>
+        <span class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg text-xs font-black">⚡ Live Human-Like Advisory & CRM Synced</span>
+      </div>
+
+      <p class="text-xs text-slate-300">Apna plot size aur requirements batayein. Hamara AI consultant aapke sath professional architect ki tarah baat karega aur aapko behtareen layout aur design suggest karega!</p>
+
+      <div class="bg-slate-950 p-4 sm:p-6 rounded-2xl border border-slate-800 space-y-4 text-xs">
+        <div id="aiChatHistory" class="space-y-3 max-h-72 overflow-y-auto p-3 text-slate-300">
+          <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+            <strong class="text-amber-400">Bin Taha AI Architect:</strong> Assalam-o-Alaikum! Main Bin Taha Associates ka Senior AI Design Consultant hoon. Sab se pehle yeh batayein ke aapka plot size kitna hai? (Maslan: 30x70 ya 50x90 feet).
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <input type="text" id="aiUserMessage" placeholder="Yahan apna jawab ya plot size likhein..." class="flex-1 bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-white font-bold outline-none focus:border-cyan-500 text-xs">
+          <button onclick="sendAiConsultantMessage()" class="bg-cyan-600 hover:bg-cyan-700 text-white font-black px-6 py-3.5 rounded-xl transition cursor-pointer text-xs">
+            <i class="fa-solid fa-paper-plane mr-1"></i> Send
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Live Impact Counters Bar -->
     <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-xl grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div class="space-y-1 border-r border-slate-800 last:border-none">
@@ -479,6 +507,55 @@
       document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateWorldClocks, 1000);
+
+    /* BIN TAHA AI INTERACTIVE ARCHITECT CONVERSATIONAL LOGIC */
+    let aiStep = 0;
+    let clientData = { plotSize: '', rooms: '', name: '', phone: '' };
+
+    function sendAiConsultantMessage() {
+      const input = document.getElementById('aiUserMessage');
+      const text = input.value.trim();
+      if(!text) return;
+
+      const history = document.getElementById('aiChatHistory');
+      history.innerHTML += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-right"><strong class="text-cyan-400">You:</strong> ${text}</div>`;
+      input.value = '';
+
+      setTimeout(() => {
+        let reply = "";
+        if (aiStep === 0) {
+          clientData.plotSize = text;
+          aiStep = 1;
+          reply = `Bohat khoob! Plot size (${clientData.plotSize}) note ho gaya hai. Ab yeh batayein ke aapko is par kitne bedrooms aur car parking chahiye?`;
+        } else if (aiStep === 1) {
+          clientData.rooms = text;
+          aiStep = 2;
+          reply = `Zabardast! Is requirement ke mutabiq LDA Avenue 1 ya Jubilee Town ke standards par airy ventilation aur modern front elevation sab se behtar rahega. Akhir mein apna **Full Name aur Phone / WhatsApp Number** de dein taake CEO Taha Mobeen Bhutta ki engineering team aapko complete 3D blueprint aur cost estimate bhej sake.`;
+        } else if (aiStep === 2) {
+          // Splitting name and phone or taking full contact
+          clientData.contact = text;
+          aiStep = 3;
+          reply = `Shukriya! Aapki tamam details (Plot: ${clientData.plotSize}, Requirements: ${clientData.rooms}, Contact: ${clientData.contact}) successfully CEO Taha Mobeen Bhutta aur Master CRM ko dispatch kar di gayi hain. Hamari team foran aapse rabta karegi!`;
+
+          // Sync lead to Google Sheet Webhook
+          const leadPayload = {
+            id: Date.now(),
+            name: clientData.contact,
+            phone: clientData.contact,
+            email: 'bintahacrm@gmail.com',
+            subject: `AI Architect Design Lead (Plot: ${clientData.plotSize})`,
+            text: `Plot Size: ${clientData.plotSize}, Requirements: ${clientData.rooms}, Contact Info: ${clientData.contact}`,
+            time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          };
+          fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(leadPayload) }).catch(e=>{});
+        } else {
+          reply = `Aapki request pehle hi record ho chuki hai. Mazeed foran rabte ke liye aap seedha WhatsApp CEO (0321-9404812) par message kar sakte hain!`;
+        }
+
+        history.innerHTML += `<div class="bg-slate-900 p-3 rounded-xl border border-slate-800"><strong class="text-amber-400">Bin Taha AI Architect:</strong> ${reply}</div>`;
+        history.scrollTop = history.scrollHeight;
+      }, 800);
+    }
 
     function calculateRoi() {
       const zone = document.getElementById('roiZone').value;
