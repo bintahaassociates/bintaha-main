@@ -193,7 +193,7 @@
       </div>
     </div>
 
-    <!-- PRO AI ARCHITECT & LIVE DESIGN STUDIO -->
+    <!-- PRO AI ARCHITECT & LIVE DESIGN STUDIO (CLEAN HTML RENDERING) -->
     <div class="bg-slate-900 border-2 gold-border p-8 sm:p-10 rounded-3xl shadow-2xl space-y-6 gold-glow">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b gold-border pb-4">
         <div>
@@ -538,7 +538,7 @@
   <script>
     const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
 
-    /* SECRET CEO DOOR (5 Taps on Eagle Logo) - Linked to exact accounting vault */
+    /* SECRET CEO DOOR (5 Taps on Eagle Logo) */
     let eagleTapCount = 0;
     let eagleTapTimer = null;
 
@@ -563,7 +563,6 @@
       const pin = document.getElementById('secretCeoPin').value.trim();
       if (pin === '0321' || pin === '9404812' || pin === 'taha123' || pin === 'Taha123' || pin === 'طاہ123') {
         sessionStorage.setItem('bintaha_ceo_authenticated', 'true');
-        // Exact accounting ERP vault link
         window.location.href = 'https://bintahaassociates.github.io/bintaha-acconting/';
       } else {
         alert('❌ Security Violation: Invalid Master PIN!');
@@ -580,7 +579,7 @@
     }
     setInterval(updateWorldClocks, 1000);
 
-    /* TRUE PRO AI ARCHITECT & CONSULTANT ENGINE */
+    /* TRUE PRO AI ARCHITECT & CONSULTANT ENGINE (CLEAN HTML FORMATTING) */
     function sendProAiArchitectMessage() {
       const input = document.getElementById('aiUserMessage');
       const text = input.value.trim();
@@ -591,36 +590,52 @@
       input.value = '';
 
       setTimeout(() => {
-        let aiReply = "";
+        let aiHtmlReply = "";
         const lowerText = text.toLowerCase();
 
-        if (lowerText.includes('30x70') || lowerText.includes('30 x 70')) {
-          aiReply = `🏛️ **Bin Taha Pro Architect Analysis for 30x70 Plot:**<br>
-          1. **Ground Floor:** 1 Car Porch (14x16), Drawing/Dining with separate powder room, Spacious TV Lounge, Open Kitchen concept, and 1 Master Bed with attached bath.<br>
-          2. **First Floor:** 2 Bedrooms with attached baths, Family Living Area, and Front Terrace.<br>
-          3. **Ventilation Strategy:** 3-feet side setback (gali) for cross ventilation and natural sunlight in all rooms.<br>
-          *Would you like us to generate the exact Gray Structure & Turnkey cost estimate for this 30x70 plan, or connect you directly with CEO Taha Mobeen Bhutta for formal site booking?*`;
+        if (lowerText.includes('30x70') || lowerText.includes('30 x 70') || lowerText.includes('30*70')) {
+          aiHtmlReply = `
+            <div class="space-y-2">
+              <div class="text-amber-300 font-black text-sm"><i class="fa-solid fa-compass-drafting mr-1"></i> Bin Taha Pro Architect Analysis (30x70 Plot Layout):</div>
+              <p class="text-slate-300">1. <b>Ground Floor:</b> 1 Car Porch (14x16 ft), Grand Drawing & Dining with separate powder room, Spacious TV Lounge, Modern Open Kitchen, and 1 Master Bedroom with attached luxury bath.</p>
+              <p class="text-slate-300">2. <b>First Floor:</b> 3 Bedrooms with attached baths, Family Living Area, and Front Terrace overlooking the street.</p>
+              <p class="text-slate-300">3. <b>Ventilation & Sunlight:</b> 3-feet side open setback (gali) for 100% natural cross ventilation and sunlight in every room.</p>
+              <p class="text-amber-300 font-bold pt-1">👉 Would you like our engineering team to send you the exact structural blueprint and material cost estimate for this 30x70 plan?</p>
+            </div>
+          `;
         } 
         else if (lowerText.includes('50x90') || lowerText.includes('50 x 90') || lowerText.includes('1 kanal')) {
-          aiReply = `🏰 **Bin Taha Pro Architect Analysis for 1 Kanal / Large Plot:**<br>
-          1. **Elevation Style:** Modern Spanish or Transitional Facade with double-height lobby.<br>
-          2. **Ground Floor:** 2 Car Garages, Grand Living Hall, Formal Dining, Guest Suite, Modern Kitchen with Pantry, and Swimming Pool provision.<br>
-          3. **First Floor:** 4 Master Bedrooms with walk-in closets, Mini Gym, and Rooftop Garden access.<br>
-          *This scale qualifies for our VIP Escrow Protected Construction Package under PEC Category C standards.*`;
+          aiHtmlReply = `
+            <div class="space-y-2">
+              <div class="text-amber-300 font-black text-sm"><i class="fa-solid fa-hotel mr-1"></i> Bin Taha Pro Architect Analysis (1 Kanal / 50x90 Luxury Villa):</div>
+              <p class="text-slate-300">1. <b>Elevation Style:</b> Modern Transitional Facade with double-height lobby and smart automated main gate.</p>
+              <p class="text-slate-300">2. <b>Ground Floor:</b> 2 Car Garages, Grand Living Hall, Formal Dining, Guest Suite, Gourmet Kitchen with Pantry, and Swimming Pool provision.</p>
+              <p class="text-slate-300">3. <b>First Floor:</b> 4 Master Suites with walk-in closets, Mini Gym, and Rooftop Garden access.</p>
+              <p class="text-amber-300 font-bold pt-1">👉 This mega layout qualifies for our VIP Escrow Protected Construction Package under PEC Category C standards.</p>
+            </div>
+          `;
         }
-        else if (lowerText.includes('cost') || lowerText.includes('price') || lowerText.includes('kharcha') || lowerText.includes('budget')) {
-          aiReply = `💰 **Live Construction & Market Cost Advisory:**<br>
-          - **Gray Structure (5 Marla - 1 Kanal):** Built with Grade-60 steel saria and Awwal bricks starting from transparent per sq ft rates.<br>
-          - **Turnkey Luxury Finish:** Includes Spanish tiles, premium woodwork, and smart home automation.<br>
-          *To get an exact customized BOQ (Bill of Quantities) synced directly to CEO Taha Mobeen Bhutta's desk, please share your phone number or WhatsApp below!*`;
+        else if (lowerText.includes('cost') || lowerText.includes('price') || lowerText.includes('kharcha') || lowerText.includes('budget') || lowerText.includes('rates')) {
+          aiHtmlReply = `
+            <div class="space-y-2">
+              <div class="text-amber-300 font-black text-sm"><i class="fa-solid fa-calculator mr-1"></i> Live Construction & Market Cost Advisory:</div>
+              <p class="text-slate-300">- <b>Gray Structure Package:</b> Built with Grade-60 steel saria and Awwal bricks under strict engineering supervision.</p>
+              <p class="text-slate-300">- <b>Turnkey Luxury Finish:</b> Complete with Spanish tiles, high-end woodwork, and smart home lighting automation.</p>
+              <p class="text-amber-300 font-bold pt-1">👉 To get a customized BOQ (Bill of Quantities) synced directly to CEO Taha Mobeen Bhutta's desk, please share your contact details below!</p>
+            </div>
+          `;
         }
         else {
-          aiReply = `✨ **Bin Taha Professional Design Advisory:**<br>
-          Aapki requirement ("${text}") ke mutabiq, hum LDA Avenue 1 aur Jubilee Town ke bylaws ke andar reh kar aapka sab se behtareen architectural layout tayyar kar sakte hain. Isme structural stability, FBR compliance, aur 100% escrow safety shamil hai.<br><br>
-          📩 **Aap apna Name aur Phone Number yahan likh dein**, hamari senior engineering team foran aapko complete blueprints aur 3D consultation bhej degi!`;
+          aiHtmlReply = `
+            <div class="space-y-2">
+              <div class="text-amber-300 font-black text-sm"><i class="fa-solid fa-compass-drafting mr-1"></i> Bin Taha Professional Design Advisory:</div>
+              <p class="text-slate-300">Aapki requirement (<b>"${text}"</b>) ke mutabiq, hum LDA Avenue 1 aur Jubilee Town ke bylaws ke andar reh kar aapka sab se behtareen architectural layout tayyar kar sakte hain. Isme structural stability, FBR compliance, aur 100% escrow safety shamil hai.</p>
+              <p class="text-amber-300 font-bold pt-1">📩 Aap apna Name aur Phone Number yahan likh dein, hamari senior engineering team foran aapko complete blueprints aur 3D consultation bhej degi!</p>
+            </div>
+          `;
         }
 
-        history.innerHTML += `<div class="bg-slate-900 p-3.5 rounded-xl border gold-border"><strong class="gold-text">Bin Taha Pro Architect:</strong><br>${aiReply}</div>`;
+        history.innerHTML += `<div class="bg-slate-900 p-4 rounded-xl border gold-border space-y-2"><div class="gold-text font-black text-xs flex items-center gap-1"><i class="fa-solid fa-robot"></i> Bin Taha Pro Architect:</div>${aiHtmlReply}</div>`;
         history.scrollTop = history.scrollHeight;
 
         const leadPayload = {
@@ -629,7 +644,7 @@
           phone: '03219404812',
           email: 'bintahacrm@gmail.com',
           subject: `AI Architect Studio Session`,
-          text: `Client Query: "${text}" | AI Response delivered successfully.`,
+          text: `Client Query: "${text}" | AI Response delivered successfully with clean HTML formatting.`,
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         };
         fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(leadPayload) }).catch(e=>{});
@@ -687,19 +702,6 @@
       document.getElementById('outRegistry').innerText = `PKR ${Math.round(registryFee).toLocaleString()}`;
       document.getElementById('outTransferFee').innerText = `PKR ${transferFee.toLocaleString()}`;
       document.getElementById('outTotalTax').innerText = `PKR ${Math.round(totalGovtDues).toLocaleString()}`;
-    }
-
-    function calculateFx() {
-      const pkr = parseFloat(document.getElementById('fxAmount').value) || 0;
-      const curr = document.getElementById('fxCurrency').value;
-      let rate = 280; let symbol = '$';
-      if(curr === 'AED') { rate = 76; symbol = 'AED '; }
-      else if(curr === 'GBP') { rate = 365; symbol = '£'; }
-
-      const converted = (pkr / rate).toFixed(2);
-      const resBox = document.getElementById('fxResultBox');
-      resBox.classList.remove('hidden');
-      resBox.innerHTML = `✅ Equivalent Value: <strong class="text-white">${symbol}${converted}</strong> (${curr}) calculated at live market rates.`;
     }
 
     function submitHomeLead() {
