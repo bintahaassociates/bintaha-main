@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth select-none">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
-    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+    .gold-text { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.4); }
+    .gold-border { border-color: rgba(252, 211, 77, 0.4); }
+    .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
+    .gold-glow { box-shadow: 0 0 50px rgba(252, 211, 77, 0.25); }
 
     @keyframes eagle3DRotate {
       0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
@@ -21,17 +24,17 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
 
   <!-- Top Bar with World Clocks & Global FX -->
-  <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
+  <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b gold-border">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
       <div class="flex items-center gap-2 flex-wrap text-[11px] justify-center">
-        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold">🇦🇪 DXB: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 LDN: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold">🇦🇪 DXB: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 LDN: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
       </div>
       <div class="flex items-center gap-3 font-semibold flex-wrap justify-center">
-        <span class="text-amber-400"><i class="fa-solid fa-shield-halved mr-1"></i> FBR & PEC Category C Certified Enterprise</span>
-        <a href="tel:03219404812" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black">
+        <span class="gold-text"><i class="fa-solid fa-shield-halved mr-1"></i> FBR & PEC Category C Certified Enterprise</span>
+        <a href="tel:03219404812" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black shadow">
           <i class="fa-solid fa-phone"></i> 0321-9404812
         </a>
       </div>
@@ -39,18 +42,18 @@
   </div>
 
   <!-- Header -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b border-slate-800">
+  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
       <a href="index.html" class="flex items-center gap-3">
         <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
           <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
-          <p class="text-[11px] text-amber-400 font-bold uppercase tracking-wider">Official Corporate Biography & CEO Vision</p>
+          <p class="text-[11px] gold-text font-bold uppercase tracking-wider">Official Corporate Biography & CEO Vision</p>
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
         <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
-        <a href="about.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">About Us</a>
+        <a href="about.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">About Us</a>
         <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Services</a>
         <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Properties</a>
         <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
@@ -68,42 +71,42 @@
     
     <!-- Title Section -->
     <div class="text-center max-w-4xl mx-auto space-y-3">
-      <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-4 py-2 rounded-full tracking-wider shadow">The Legacy of Excellence & Innovation</span>
-      <h2 class="text-3xl sm:text-5xl font-black shining-gold">Bin Taha Associates & CEO Taha Mobeen Bhutta</h2>
+      <span class="gold-bg text-slate-950 text-xs font-black uppercase px-4 py-2 rounded-full tracking-wider shadow">The Legacy of Excellence & Innovation</span>
+      <h2 class="text-3xl sm:text-5xl font-black gold-text">Bin Taha Associates & CEO Taha Mobeen Bhutta</h2>
       <p class="text-sm text-slate-300 leading-relaxed">A comprehensive insight into our background, legal accreditations, operational zones in Lahore, and our ultimate PropTech vision to transform real estate and civil construction.</p>
     </div>
 
     <!-- CEO Comprehensive Profile Card with taha.jpg -->
-    <div class="bg-slate-900 border-2 border-amber-500/60 p-8 sm:p-10 rounded-3xl shadow-2xl gold-glow grid md:grid-cols-3 gap-8 items-start">
+    <div class="bg-slate-900 border-2 gold-border p-8 sm:p-10 rounded-3xl shadow-2xl gold-glow grid md:grid-cols-3 gap-8 items-start">
       <div class="text-center md:text-left space-y-4">
-        <div class="w-36 h-44 rounded-2xl overflow-hidden border-2 border-amber-500 mx-auto md:mx-0 shadow-2xl">
+        <div class="w-36 h-44 rounded-2xl overflow-hidden border-2 gold-border mx-auto md:mx-0 shadow-2xl">
           <img src="taha.jpg" alt="CEO Taha Mobeen Bhutta" class="w-full h-full object-cover">
         </div>
         <div>
           <h3 class="text-2xl font-black text-white">طاہ مبین بھٹا</h3>
-          <p class="text-sm font-bold text-amber-400 mt-0.5">Taha Mobeen Bhutta</p>
+          <p class="text-sm font-bold gold-text mt-0.5">Taha Mobeen Bhutta</p>
           <p class="text-xs text-slate-400 uppercase tracking-widest mt-1 font-semibold">Founder & Chief Executive Officer</p>
         </div>
-        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs space-y-2 text-slate-300">
-          <div><strong class="text-amber-400">Enterprise:</strong> Bin Taha Associates</div>
+        <div class="bg-slate-950 p-4 rounded-2xl border gold-border text-xs space-y-2 text-slate-300">
+          <div><strong class="gold-text">Enterprise:</strong> Bin Taha Associates</div>
           <div><strong class="text-emerald-400">Contact:</strong> 0321-9404812</div>
           <div><strong class="text-cyan-400">Base:</strong> Lahore, Pakistan</div>
         </div>
       </div>
 
-      <div class="md:col-span-2 space-y-6 text-xs text-slate-300 leading-relaxed border-t md:border-t-0 md:border-l border-slate-800 pt-6 md:pt-0 md:pl-8">
+      <div class="md:col-span-2 space-y-6 text-xs text-slate-300 leading-relaxed border-t md:border-t-0 md:border-l gold-border pt-6 md:pt-0 md:pl-8">
         <div>
-          <h4 class="text-lg font-black text-white mb-2"><i class="fa-solid fa-feather-pointed text-amber-400 mr-2"></i> Background, Life Journey & Vision</h4>
+          <h4 class="text-lg font-black text-white mb-2"><i class="fa-solid fa-feather-pointed gold-text mr-2"></i> Background, Life Journey & Vision</h4>
           <p class="mb-3">Taha Mobeen Bhutta is an visionary entrepreneur and seasoned expert in Lahore’s real estate and construction landscape. With decades of hands-on involvement in property development, civil contracting, and material supply, he established <strong>Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</strong> with a singular mission: to eliminate traditional market ambiguities, delays, and lack of transparency by introducing digital-first, state-of-the-art PropTech solutions.</p>
           <p>His professional philosophy is rooted in uncompromising structural integrity, transparent paperwork, and direct leadership accessibility. Every project undertaken by the firm reflects his personal commitment to excellence—ensuring that clients, whether local residents or overseas investors, receive world-class execution.</p>
         </div>
 
         <div class="grid sm:grid-cols-2 gap-4 pt-2">
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-1">
-            <div class="text-amber-400 font-black text-sm">FBR Registered</div>
+          <div class="bg-slate-950 p-4 rounded-2xl border gold-border space-y-1">
+            <div class="gold-text font-black text-sm">FBR Registered</div>
             <p class="text-[11px] text-slate-400">Fully compliant with tax frameworks and government financial regulations.</p>
           </div>
-          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-1">
+          <div class="bg-slate-950 p-4 rounded-2xl border gold-border space-y-1">
             <div class="text-emerald-400 font-black text-sm">PEC Category C Certified</div>
             <p class="text-[11px] text-slate-400">Authorized by the Pakistan Engineering Council for heavy civil construction.</p>
           </div>
@@ -112,19 +115,19 @@
     </div>
 
     <!-- Working Zones & Operational Footprint -->
-    <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
-      <h3 class="text-xl font-black text-white border-b border-slate-800 pb-4"><i class="fa-solid fa-map-location-dot text-amber-400 mr-2"></i> Primary Operational Zones & Development Hubs in Lahore</h3>
+    <div class="bg-slate-900 border gold-border p-8 rounded-3xl shadow-2xl space-y-6">
+      <h3 class="text-xl font-black text-white border-b gold-border pb-4"><i class="fa-solid fa-map-location-dot gold-text mr-2"></i> Primary Operational Zones & Development Hubs in Lahore</h3>
       
       <div class="grid md:grid-cols-3 gap-6 text-xs">
-        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-          <div class="text-amber-400 font-black text-sm"><i class="fa-solid fa-city mr-1"></i> LDA Avenue 1 & Jubilee Town</div>
+        <div class="bg-slate-950 p-5 rounded-2xl border gold-border space-y-2">
+          <div class="gold-text font-black text-sm"><i class="fa-solid fa-city mr-1"></i> LDA Avenue 1 & Jubilee Town</div>
           <p class="text-slate-300 leading-relaxed">Prime residential developments where Bin Taha Associates actively manages luxury villa construction, gray structure execution, and plot exchanges.</p>
         </div>
-        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-slate-950 p-5 rounded-2xl border gold-border space-y-2">
           <div class="text-emerald-400 font-black text-sm"><i class="fa-solid fa-road mr-1"></i> Raiwind Road & Bugtia Chowk</div>
           <p class="text-slate-300 leading-relaxed">Our heavy material supply hub and commercial construction division, ensuring rapid distribution of cement, saria, bricks, and aggregates.</p>
         </div>
-        <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+        <div class="bg-slate-950 p-5 rounded-2xl border gold-border space-y-2">
           <div class="text-cyan-400 font-black text-sm"><i class="fa-solid fa-globe mr-1"></i> Overseas Investor Portal</div>
           <p class="text-slate-300 leading-relaxed">A dedicated digital bridge connecting overseas Pakistanis in Dubai, London, and New York with live site feeds and secure escrow milestones.</p>
         </div>
@@ -132,18 +135,18 @@
     </div>
 
     <!-- Purpose of this Platform & Future Goals -->
-    <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
-      <h3 class="text-xl font-black text-white border-b border-slate-800 pb-4"><i class="fa-solid fa-bullseye text-amber-400 mr-2"></i> The Purpose of This Platform & Core Goals</h3>
+    <div class="bg-slate-900 border gold-border p-8 rounded-3xl shadow-2xl space-y-6">
+      <h3 class="text-xl font-black text-white border-b gold-border pb-4"><i class="fa-solid fa-bullseye gold-text mr-2"></i> The Purpose of This Platform & Core Goals</h3>
       
       <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
         <p>This web platform was conceived and built to act as the ultimate digital backbone for Bin Taha Associates. Unlike standard real estate websites that merely display static images, our platform functions as an <strong>Instant Dispatch & Material Exchange Hub</strong> styled after global ride-hailing standards ("Uber/InDrive style dispatch").</p>
         
         <div class="grid md:grid-cols-2 gap-6 pt-2">
-          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
-            <div class="text-amber-400 font-black text-sm"><i class="fa-solid fa-bolt mr-2"></i> Zero-Drop Lead & CRM Automation</div>
+          <div class="bg-slate-950 p-5 rounded-2xl border gold-border space-y-2">
+            <div class="gold-text font-black text-sm"><i class="fa-solid fa-bolt mr-2"></i> Zero-Drop Lead & CRM Automation</div>
             <p>Every inquiry, material calculation, or property booking is instantly captured without drop, syncing directly with our Master CRM Inbox and WhatsApp (`0321-9404812`) for immediate response.</p>
           </div>
-          <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-2">
+          <div class="bg-slate-950 p-5 rounded-2xl border gold-border space-y-2">
             <div class="text-emerald-400 font-black text-sm"><i class="fa-solid fa-shield-halved mr-2"></i> Escrow Security & Written Penalties</div>
             <p>We believe in absolute accountability. Client funds are protected through milestone escrow accounts, backed by written timeline guarantees where delay penalties are borne by us.</p>
           </div>
@@ -161,7 +164,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800 text-center space-y-3">
+  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t gold-border text-center space-y-3">
     <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold">
       <i class="fa-solid fa-shield-halved"></i> 100% Secure Paperwork & Escrow Milestone Protection - Verified by Bin Taha Legal Team
     </div>
