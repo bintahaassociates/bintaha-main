@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth select-none">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .shining-gold { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
-    .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.45); }
-    .glass-card { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.25); }
+    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+    .gold-text { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
+    .gold-border { border-color: rgba(252, 211, 77, 0.4); }
+    .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
+    .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.35); }
+    .glass-card { background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.35); }
 
     /* 3D Dynamic Moving Eagle Animation */
     @keyframes eagle3DRotate {
@@ -33,7 +36,7 @@
     #splashScreen { transition: opacity 1s ease; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
   <!-- Cinematic Peak Splash Screen -->
   <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
@@ -41,15 +44,15 @@
       <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="w-28 h-28 rounded-3xl bg-slate-950 border border-amber-500/60 mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
+      <div class="w-28 h-28 rounded-3xl bg-slate-950 border gold-border mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
         <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
       </div>
       <div class="space-y-2">
-        <h2 class="text-3xl font-black text-white shining-gold">Bin Taha Associates</h2>
-        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">Ultimate Peak PropTech AI Ecosystem</p>
+        <h2 class="text-3xl font-black text-white gold-text">Bin Taha Associates</h2>
+        <p class="text-xs text-amber-300 font-bold uppercase tracking-widest">Ultimate Peak PropTech AI Ecosystem</p>
         <p class="text-[11px] text-slate-400 pt-1 font-semibold">Visionary CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
       </div>
-      <button onclick="enterPortal()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
+      <button onclick="enterPortal()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
         <i class="fa-solid fa-crown mr-2 text-sm"></i> Launch Ultimate Portal
       </button>
     </div>
@@ -59,8 +62,8 @@
   <div id="portalApp" class="flex-1 flex-col justify-between hidden">
 
     <!-- Live Market Ticker Bar -->
-    <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
-      <span class="bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow">🚀 Live Market Pulse</span>
+    <div class="gold-bg text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
+      <span class="bg-slate-950 text-amber-300 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow border gold-border">🚀 Live Market Pulse</span>
       <div class="ticker-wrap w-full">
         <div class="ticker-move">
           <span>LDA Avenue 1: Premium Residential Plots Available</span> &bull; 
@@ -72,53 +75,53 @@
     </div>
 
     <!-- Top Header & Multi-City Clocks -->
-    <header class="bg-slate-900/95 border-b border-slate-800 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
+    <header class="bg-slate-900/95 border-b gold-border py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         
         <!-- Logo & Branding -->
         <a href="index.html" class="flex items-center gap-3 group">
-          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
             <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
           </div>
           <div>
             <h1 class="text-base font-black text-white leading-tight">Bin Taha Associates</h1>
-            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Ultimate Properties Hub & AI Portal</p>
+            <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Ultimate Properties Hub & AI Portal</p>
           </div>
         </a>
 
         <!-- Live World Clocks -->
         <div class="flex items-center gap-2 flex-wrap text-[11px]">
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
         <!-- Global Currency Converter Widget -->
-        <div class="bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
-          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
-          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
+        <div class="bg-slate-950 border gold-border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
+          <span class="text-amber-300 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
+          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border gold-border outline-none">
             <option value="USD">USD ($)</option>
             <option value="AED">AED (Dh)</option>
             <option value="GBP">GBP (£)</option>
             <option value="SAR">SAR (SR)</option>
           </select>
-          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
+          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none">
           <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
         </div>
       </div>
 
-      <!-- Colorful Navigation Bar -->
-      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800/80">
+      <!-- Navigation Bar (Gold & Black Theme) -->
+      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t gold-border">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="properties.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
-          <a href="#dreamSection" class="bg-purple-600 hover:bg-purple-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-star mr-1"></i> Wishlist (<span id="dreamCount">0</span>)</a>
-          <a href="#roiCalculator" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> ROI Calculator</a>
-          <a href="#aboutSection" class="bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-circle-info mr-1"></i> About Us</a>
-          <button onclick="broadcastAllProperties()" class="bg-gradient-to-r from-teal-500 to-emerald-600 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black cursor-pointer"><i class="fa-brands fa-whatsapp mr-1"></i> Broadcast All</button>
+          <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="#dreamSection" class="bg-slate-900 hover:bg-slate-800 text-purple-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-star mr-1 text-amber-300"></i> Wishlist (<span id="dreamCount">0</span>)</a>
+          <a href="#roiCalculator" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> ROI Calculator</a>
+          <a href="#aboutSection" class="bg-slate-900 hover:bg-slate-800 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-circle-info mr-1"></i> About Us</a>
+          <button onclick="broadcastAllProperties()" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black cursor-pointer"><i class="fa-brands fa-whatsapp mr-1"></i> Broadcast All</button>
         </div>
-        <div class="text-xs text-amber-400 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 shadow">
+        <div class="text-xs text-amber-300 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border gold-border shadow">
           <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
         </div>
       </div>
@@ -131,11 +134,11 @@
       <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
         <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="space-y-3 relative z-10">
-          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">Ultimate Peak PropTech Ecosystem</span>
-          <h2 class="text-2xl sm:text-4xl font-black shining-gold">Find or List Verified Properties in Lahore</h2>
+          <span class="gold-bg text-slate-950 border gold-border text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider shadow">Ultimate Peak PropTech Ecosystem</span>
+          <h2 class="text-2xl sm:text-4xl font-black gold-text">Find or List Verified Properties in Lahore</h2>
           <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Explore top-tier residential and commercial properties across LDA Avenue 1, Jubilee Town, Izmir Town, Valencia Town, and Bugtia Chowk Raiwind Road. Featuring AI Valuation & Saved Wishlists.</p>
         </div>
-        <button onclick="toggleAddModal()" class="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
+        <button onclick="toggleAddModal()" class="gold-bg hover:opacity-90 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
           <i class="fa-solid fa-circle-plus mr-1.5 text-sm"></i> List Property with AI Wizard
         </button>
       </div>
@@ -144,24 +147,24 @@
       <div class="glass-card p-6 rounded-3xl shadow-xl space-y-4">
         <div class="flex flex-wrap justify-between items-center gap-3">
           <h3 class="text-sm font-black text-white flex items-center gap-2">
-            <i class="fa-solid fa-magnifying-glass text-amber-400"></i> Search Verified Listings
+            <i class="fa-solid fa-magnifying-glass text-amber-300"></i> Search Verified Listings
           </h3>
           <div class="flex gap-1.5 flex-wrap text-xs">
-            <button onclick="filterProperties('All')" class="bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl font-black shadow cursor-pointer">All Types</button>
-            <button onclick="filterProperties('Plot')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Plots</button>
-            <button onclick="filterProperties('House')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Houses</button>
-            <button onclick="filterProperties('Commercial')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer">Commercial</button>
+            <button onclick="filterProperties('All')" class="gold-bg text-slate-950 px-3.5 py-1.5 rounded-xl font-black shadow cursor-pointer">All Types</button>
+            <button onclick="filterProperties('Plot')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer border gold-border">Plots</button>
+            <button onclick="filterProperties('House')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer border gold-border">Houses</button>
+            <button onclick="filterProperties('Commercial')" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-1.5 rounded-xl font-bold cursor-pointer border gold-border">Commercial</button>
           </div>
         </div>
         <div>
-          <input type="text" id="propSearchInput" onkeyup="searchProperties()" placeholder="Search by title, society (e.g. LDA Avenue 1, Jubilee Town), or features..." class="w-full bg-slate-950 border border-slate-700 p-3.5 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500 shadow-inner">
+          <input type="text" id="propSearchInput" onkeyup="searchProperties()" placeholder="Search by title, society (e.g. LDA Avenue 1, Jubilee Town), or features..." class="w-full bg-slate-950 border gold-border p-3.5 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-400 shadow-inner">
         </div>
       </div>
 
       <!-- Properties Grid Display -->
       <div class="space-y-4">
         <div class="flex justify-between items-center text-xs">
-          <span id="propCountTag" class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-lg font-bold">0 Properties Available</span>
+          <span id="propCountTag" class="gold-bg text-slate-950 px-3 py-1 rounded-lg font-black shadow">0 Properties Available</span>
           <span class="text-slate-400">Direct CEO Hotline: <strong class="text-white">0321-9404812</strong></span>
         </div>
 
@@ -184,11 +187,11 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-bold">
           <div>
             <label class="block text-slate-300 mb-1">Investment Amount (PKR):</label>
-            <input type="number" id="roiAmount" value="20000000" onkeyup="calculateRoi()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-emerald-500">
+            <input type="number" id="roiAmount" value="20000000" onkeyup="calculateRoi()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400">
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Estimated Annual Growth Rate:</label>
-            <select id="roiRate" onchange="calculateRoi()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none">
+            <select id="roiRate" onchange="calculateRoi()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
               <option value="15">15% (Standard Market)</option>
               <option value="25" selected>25% (LDA & Jubilee Growth)</option>
               <option value="35">35% (Commercial High-Yield)</option>
@@ -196,7 +199,7 @@
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Holding Period:</label>
-            <select id="roiYears" onchange="calculateRoi()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none">
+            <select id="roiYears" onchange="calculateRoi()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
               <option value="1">1 Year</option>
               <option value="2" selected>2 Years</option>
               <option value="3">3 Years</option>
@@ -211,16 +214,16 @@
           </div>
           <div class="text-right sm:text-right text-center">
             <div class="text-xs text-slate-400 font-bold">Estimated Net Profit:</div>
-            <div id="roiNetProfit" class="text-xl sm:text-2xl font-black text-amber-400">+ PKR 11,250,000</div>
+            <div id="roiNetProfit" class="text-xl sm:text-2xl font-black text-amber-300">+ PKR 11,250,000</div>
           </div>
         </div>
       </div>
 
       <!-- Dream Properties Wishlist Section -->
       <div id="dreamSection" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <div class="flex justify-between items-center border-b gold-border pb-3">
           <div>
-            <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs font-black uppercase"><i class="fa-solid fa-star mr-1"></i> Wishlist</span>
+            <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-black uppercase"><i class="fa-solid fa-star mr-1 text-amber-300"></i> Wishlist</span>
             <h3 class="text-xl font-black text-white mt-1">Your Saved Dream Properties</h3>
           </div>
           <span id="dreamListCount" class="text-xs text-slate-400 font-bold">0 Items Saved</span>
@@ -233,8 +236,8 @@
       <!-- About Us Section -->
       <div id="aboutSection" class="glass-card p-8 rounded-3xl shadow-xl space-y-6">
         <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-slate-950 border border-blue-500/50 flex items-center justify-center shadow-lg">
-            <i class="fa-solid fa-building-shield text-blue-400 text-2xl"></i>
+          <div class="w-14 h-14 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center shadow-lg">
+            <i class="fa-solid fa-building-shield gold-text text-2xl"></i>
           </div>
           <div>
             <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-black uppercase">About Our Firm</span>
@@ -251,20 +254,20 @@
 
     <!-- AI Real Estate Assistant Floating Widget -->
     <div class="fixed bottom-6 right-6 z-40">
-      <div id="aiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 shadow-2xl mb-3 space-y-3 border border-amber-500/40">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-          <span class="text-xs font-black text-amber-400 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha AI Assistant</span>
+      <div id="aiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 shadow-2xl mb-3 space-y-3 border gold-border">
+        <div class="flex justify-between items-center border-b gold-border pb-2">
+          <span class="text-xs font-black text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha AI Assistant</span>
           <button onclick="toggleAiChat()" class="text-slate-400 hover:text-white text-xs"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="text-[11px] text-slate-300 space-y-2 max-h-48 overflow-y-auto">
-          <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">👋 Hello! I am your AI Property Advisor. Ask me anything about LDA Avenue 1, Jubilee Town plots, or construction services in Lahore!</div>
+          <div class="bg-slate-950 p-2.5 rounded-xl border gold-border">👋 Hello! I am your AI Property Advisor. Ask me anything about LDA Avenue 1, Jubilee Town plots, or construction services in Lahore!</div>
         </div>
         <div class="flex gap-2">
-          <input type="text" id="aiUserInput" placeholder="Type a question..." class="flex-1 bg-slate-950 border border-slate-700 px-3 py-2 rounded-xl text-xs text-white outline-none">
-          <button onclick="sendAiMessage()" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl font-black text-xs"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" id="aiUserInput" placeholder="Type a question..." class="flex-1 bg-slate-950 border gold-border px-3 py-2 rounded-xl text-xs text-white outline-none">
+          <button onclick="sendAiMessage()" class="gold-bg text-slate-950 px-3 py-2 rounded-xl font-black text-xs"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
-      <button onclick="toggleAiChat()" class="w-14 h-14 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-black text-lg shadow-2xl flex items-center justify-center gold-glow cursor-pointer hover:scale-110 transition">
+      <button onclick="toggleAiChat()" class="w-14 h-14 rounded-full gold-bg text-slate-950 font-black text-lg shadow-2xl flex items-center justify-center gold-glow cursor-pointer hover:scale-110 transition">
         <i class="fa-solid fa-robot"></i>
       </button>
     </div>
@@ -272,20 +275,20 @@
     <!-- Client Property Submission Modal with AI Valuation -->
     <div id="addPropModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-          <h3 class="text-base font-black text-white"><i class="fa-solid fa-wand-magic-sparkles text-amber-400 mr-2"></i> AI Property Wizard & Photo Link</h3>
+        <div class="flex justify-between items-center border-b gold-border pb-3">
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-wand-magic-sparkles text-amber-300 mr-2"></i> AI Property Wizard & Photo Link</h3>
           <button onclick="toggleAddModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="space-y-4 text-xs font-bold">
           <div>
             <label class="block text-slate-300 mb-1">Property Title / Plot No: *</label>
-            <input type="text" id="newTitle" placeholder="e.g. Plot 798 Block D, LDA Avenue 1" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+            <input type="text" id="newTitle" placeholder="e.g. Plot 798 Block D, LDA Avenue 1" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-300 mb-1">Category / Type: *</label>
-              <select id="newType" onchange="runAiValuation()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+              <select id="newType" onchange="runAiValuation()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none font-normal">
                 <option value="Plot">Plot (Residential/Commercial)</option>
                 <option value="House">House / Villa</option>
                 <option value="Commercial">Commercial Plaza / Shop</option>
@@ -293,7 +296,7 @@
             </div>
             <div>
               <label class="block text-slate-300 mb-1">Society / Location: *</label>
-              <select id="newSociety" onchange="runAiValuation()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+              <select id="newSociety" onchange="runAiValuation()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none font-normal">
                 <option value="LDA Avenue 1">LDA Avenue 1</option>
                 <option value="Jubilee Town">Jubilee Town</option>
                 <option value="Izmir Town">Izmir Town</option>
@@ -305,31 +308,31 @@
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-300 mb-1">Demand Price (PKR): *</label>
-              <input type="number" id="newPrice" placeholder="e.g. 15000000" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+              <input type="number" id="newPrice" placeholder="e.g. 15000000" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
             </div>
             <div>
               <label class="block text-slate-300 mb-1">Owner / Client Phone: *</label>
-              <input type="text" id="newPhone" placeholder="03001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner" value="03219404812">
+              <input type="text" id="newPhone" placeholder="03001234567" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner" value="03219404812">
             </div>
           </div>
 
           <div>
             <label class="block text-slate-300 mb-1">Property Image URL (Photo Link):</label>
-            <input type="text" id="newImg" placeholder="Paste image web link or leave blank for default" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+            <input type="text" id="newImg" placeholder="Paste image web link or leave blank for default" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
           </div>
           
           <!-- AI Valuation Box -->
-          <div class="bg-amber-500/10 border border-amber-500/30 p-3.5 rounded-xl space-y-1">
-            <div class="text-amber-400 font-black flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> AI Market Valuation Estimate:</div>
+          <div class="bg-amber-500/10 border gold-border p-3.5 rounded-xl space-y-1">
+            <div class="text-amber-300 font-black flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> AI Market Valuation Estimate:</div>
             <div id="aiValuationText" class="text-white text-sm font-black">Select location for instant AI estimate...</div>
           </div>
 
           <div>
             <label class="block text-slate-300 mb-1">Detailed Description & Features:</label>
-            <textarea id="newDesc" rows="2" placeholder="Mention size, features, demand status..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner"></textarea>
+            <textarea id="newDesc" rows="2" placeholder="Mention size, features, demand status..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner"></textarea>
           </div>
 
-          <button onclick="submitNewProperty()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
+          <button onclick="submitNewProperty()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
             <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Submit Property to Market Hub
           </button>
         </div>
@@ -337,7 +340,7 @@
     </div>
 
     <!-- Professional Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center space-y-2">
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t gold-border text-center space-y-2">
       <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
       <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
     </footer>
@@ -474,15 +477,15 @@
       }
 
       grid.innerHTML = dreams.map(p => `
-        <div class="bg-slate-950 border border-purple-500/30 rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
+        <div class="bg-slate-950 border gold-border rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between">
           <div class="h-40 overflow-hidden relative">
             <img src="${p.img}" alt="${p.title}" class="w-full h-full object-cover">
-            <span class="absolute top-3 left-3 bg-purple-950/80 backdrop-blur text-purple-300 px-2.5 py-1 rounded-xl text-[10px] font-black border border-purple-500/30">${p.type}</span>
+            <span class="absolute top-3 left-3 bg-slate-900/90 backdrop-blur text-amber-300 px-2.5 py-1 rounded-xl text-[10px] font-black border gold-border">${p.type}</span>
           </div>
           <div class="p-4 space-y-2">
             <div class="text-[11px] text-slate-400 font-bold"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${p.society}</div>
             <h4 class="font-black text-white text-sm">${p.title}</h4>
-            <div class="text-amber-400 text-xs font-black">PKR ${Number(p.price).toLocaleString()}</div>
+            <div class="text-amber-300 text-xs font-black">PKR ${Number(p.price).toLocaleString()}</div>
           </div>
         </div>
       `).join('');
@@ -494,21 +497,21 @@
       document.getElementById('propCountTag').innerText = `${data.length} Properties Available`;
 
       if (data.length === 0) {
-        grid.innerHTML = `<div class="col-span-full bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center text-slate-500 text-xs">No properties found matching your search.</div>`;
+        grid.innerHTML = `<div class="col-span-full bg-slate-900 border gold-border p-8 rounded-2xl text-center text-slate-500 text-xs">No properties found matching your search.</div>`;
         return;
       }
 
       grid.innerHTML = data.map(p => {
         let isStarred = dreams.some(d => d.id === p.id);
-        let starClass = isStarred ? "text-amber-400 bg-amber-500/20 border-amber-500/50" : "text-slate-400 bg-slate-950/80 border-slate-700";
+        let starClass = isStarred ? "text-amber-300 bg-amber-500/20 border-amber-400/50" : "text-slate-400 bg-slate-950/80 border-slate-700";
         let waShare = `https://wa.me/?text=` + encodeURIComponent(`🌟 *Bin Taha Associates Verified Property* 🌟\n\n📌 *Title:* ${p.title}\n🏢 *Society:* ${p.society}\n🏠 *Type:* ${p.type}\n💰 *Demand:* PKR ${Number(p.price).toLocaleString()}\n📝 *Details:* ${p.desc}\n\n📞 *Contact CEO Taha Mobeen:* 03219404812`);
         let mapLink = p.map || `https://maps.google.com/?q=${encodeURIComponent(p.society + ' Lahore')}`;
 
         return `
-          <div class="glass-card rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-amber-500 transition duration-300">
+          <div class="glass-card rounded-3xl overflow-hidden shadow-2xl flex flex-col justify-between hover:border-amber-400 transition duration-300">
             <div class="h-48 overflow-hidden relative">
               <img src="${p.img || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80'}" alt="${p.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500">
-              <span class="absolute top-3 left-3 bg-slate-950/85 backdrop-blur text-amber-400 px-2.5 py-1 rounded-xl text-[10px] font-black border border-amber-500/30">${p.type}</span>
+              <span class="absolute top-3 left-3 bg-slate-950/85 backdrop-blur text-amber-300 px-2.5 py-1 rounded-xl text-[10px] font-black border gold-border">${p.type}</span>
               <span class="absolute top-3 left-24 bg-emerald-500/90 text-slate-950 px-2.5 py-1 rounded-xl text-[10px] font-black shadow"><i class="fa-solid fa-eye mr-1"></i> ${p.views || 150} Views</span>
               <button onclick="toggleDreamWishlist(${p.id})" class="absolute top-3 right-3 w-8 h-8 rounded-full backdrop-blur flex items-center justify-center border transition cursor-pointer ${starClass}" title="Save to Dream Properties">
                 <i class="fa-solid fa-star text-xs"></i>
@@ -525,19 +528,19 @@
                 <p class="text-xs text-slate-300 line-clamp-2">${p.desc || 'No description provided.'}</p>
               </div>
 
-              <div class="space-y-3 pt-3 border-t border-slate-800">
+              <div class="space-y-3 pt-3 border-t gold-border">
                 <div class="flex justify-between items-center text-xs font-bold">
                   <span class="text-slate-400">Demand:</span>
-                  <span class="text-amber-400 text-sm font-black">PKR ${Number(p.price).toLocaleString()}</span>
+                  <span class="text-amber-300 text-sm font-black">PKR ${Number(p.price).toLocaleString()}</span>
                 </div>
                 <div class="flex gap-2">
-                  <a href="tel:${p.phone}" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl text-center text-xs font-bold transition flex items-center justify-center gap-1 shadow">
+                  <a href="tel:${p.phone}" class="flex-1 bg-slate-900 hover:bg-slate-800 text-white py-2 rounded-xl text-center text-xs font-bold transition flex items-center justify-center gap-1 shadow border gold-border">
                     <i class="fa-solid fa-phone text-emerald-400"></i> Call
                   </a>
                   <a href="https://wa.me/92${p.phone.replace(/^0/, '')}?text=${encodeURIComponent('Hello regarding your property (' + p.title + ') listed at Bin Taha Associates:')}" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white py-2 rounded-xl text-center text-xs font-black transition flex items-center justify-center gap-1 shadow">
                     <i class="fa-brands fa-whatsapp"></i> Chat
                   </a>
-                  <a href="${waShare}" target="_blank" title="Share Property" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-400 px-3 py-2 rounded-xl transition flex items-center justify-center border border-amber-500/30 shadow">
+                  <a href="${waShare}" target="_blank" title="Share Property" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center border gold-border shadow">
                     <i class="fa-solid fa-share-nodes"></i>
                   </a>
                 </div>
@@ -579,7 +582,6 @@
       props.unshift(newProp);
       localStorage.setItem('bintaha_properties_hub', JSON.stringify(props));
 
-      // GOOGLE SHEET WEBHOOK SYNC:
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec';
       if (googleScriptUrl) {
         fetch(googleScriptUrl, {
