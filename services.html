@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth select-none">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    .shining-gold { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
+    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+    .gold-text { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
+    .gold-border { border-color: rgba(252, 211, 77, 0.4); }
+    .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
     .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.45); }
-    .glass-card { background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.25); }
+    .glass-card { background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.35); }
 
     /* 3D Dynamic Moving Eagle Animation */
     @keyframes eagle3DRotate {
@@ -33,7 +36,7 @@
     #splashScreen { transition: opacity 1s ease; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
   <!-- Cinematic Splash Screen -->
   <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
@@ -41,15 +44,15 @@
       <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="w-28 h-28 rounded-3xl bg-slate-950 border border-amber-500/60 mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
+      <div class="w-28 h-28 rounded-3xl bg-slate-950 border gold-border mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
         <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
       </div>
       <div class="space-y-2">
-        <h2 class="text-3xl font-black text-white shining-gold">Bin Taha Associates</h2>
-        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest">Gemini AI Autonomous Ecosystem</p>
+        <h2 class="text-3xl font-black text-white gold-text">Bin Taha Associates</h2>
+        <p class="text-xs text-amber-300 font-bold uppercase tracking-widest">Gemini AI Autonomous Ecosystem</p>
         <p class="text-[11px] text-slate-400 pt-1 font-semibold">Visionary CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
       </div>
-      <button onclick="enterPortal()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
+      <button onclick="enterPortal()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
         <i class="fa-solid fa-robot mr-2 text-sm"></i> Launch Gemini AI Portal
       </button>
     </div>
@@ -59,8 +62,8 @@
   <div id="portalApp" class="flex-1 flex-col justify-between hidden">
 
     <!-- Live Market Ticker Bar -->
-    <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
-      <span class="bg-slate-950 text-amber-400 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow">🤖 Gemini AI Live Copilot</span>
+    <div class="gold-bg text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
+      <span class="bg-slate-950 text-amber-300 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow border gold-border">🤖 Gemini AI Live Copilot</span>
       <div class="ticker-wrap w-full">
         <div class="ticker-move">
           <span>Gemini API Autonomous Client Assistant Active</span> &bull; 
@@ -71,52 +74,52 @@
     </div>
 
     <!-- Top Header & Multi-City Clocks & Currency Converter -->
-    <header class="bg-slate-900/95 border-b border-slate-800 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
+    <header class="bg-slate-900/95 border-b gold-border py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         
         <!-- Logo & Branding -->
         <a href="index.html" class="flex items-center gap-3 group">
-          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
             <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
           </div>
           <div>
             <h1 class="text-base font-black text-white leading-tight">Bin Taha Associates</h1>
-            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Gemini AI & CAD Studio Hub</p>
+            <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Gemini AI & CAD Studio Hub</p>
           </div>
         </a>
 
         <!-- Live World Clocks -->
         <div class="flex items-center gap-2 flex-wrap text-[11px]">
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
         <!-- Global Currency Converter Widget -->
-        <div class="bg-slate-950 border border-slate-800 px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
-          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
-          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
+        <div class="bg-slate-950 border gold-border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
+          <span class="text-amber-300 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
+          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border gold-border outline-none">
             <option value="USD">USD ($)</option>
             <option value="AED">AED (Dh)</option>
             <option value="GBP">GBP (£)</option>
             <option value="SAR">SAR (SR)</option>
           </select>
-          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
+          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none">
           <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
         </div>
       </div>
 
       <!-- Colorful Navigation Bar -->
-      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800/80">
+      <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t gold-border">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-white px-3.5 py-2 rounded-xl transition shadow"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
-          <a href="services.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
-          <a href="#proCadStudio" class="bg-cyan-600 hover:bg-cyan-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
-          <a href="#materialEstimator" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
+          <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
+          <a href="#proCadStudio" class="bg-slate-900 hover:bg-slate-800 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
+          <a href="#materialEstimator" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
         </div>
-        <div class="text-xs text-amber-400 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 shadow">
+        <div class="text-xs text-amber-300 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border gold-border shadow">
           <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
         </div>
       </div>
@@ -129,17 +132,17 @@
       <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
         <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="space-y-3 relative z-10">
-          <span class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider">PEC Category C Registered Enterprise</span>
-          <h2 class="text-2xl sm:text-4xl font-black shining-gold">Gemini AI Powered Construction & CAD Studio</h2>
+          <span class="gold-bg text-slate-950 border gold-border text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider shadow">PEC Category C Registered Enterprise</span>
+          <h2 class="text-2xl sm:text-4xl font-black gold-text">Gemini AI Powered Construction & CAD Studio</h2>
           <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Experience autonomous AI consultation, exact engineering blueprints with wall dimensions, and instant Google Sheets CRM lead synchronization led by CEO Taha Mobeen Bhutta.</p>
         </div>
-        <button onclick="toggleServiceModal()" class="bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
+        <button onclick="toggleServiceModal()" class="gold-bg hover:opacity-90 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
           <i class="fa-solid fa-file-contract mr-1.5 text-sm"></i> Book Construction Service
         </button>
       </div>
 
       <!-- PRO ARCHITECTURAL CAD STUDIO -->
-      <div id="proCadStudio" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border border-cyan-500/50">
+      <div id="proCadStudio" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
         <div class="flex items-center justify-between flex-wrap gap-3">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-xl border border-cyan-500/30">
@@ -151,24 +154,24 @@
             </div>
           </div>
           <div class="flex gap-2 flex-wrap text-xs font-bold">
-            <button onclick="selectLayoutOption(1)" id="btnOpt1" class="bg-cyan-600 text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black">Option 1: Executive Family</button>
-            <button onclick="selectLayoutOption(2)" id="btnOpt2" class="bg-slate-800 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer">Option 2: Modern Open-Plan</button>
-            <button onclick="selectLayoutOption(3)" id="btnOpt3" class="bg-slate-800 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer">Option 3: Luxury Palace</button>
+            <button onclick="selectLayoutOption(1)" id="btnOpt1" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black">Option 1: Executive Family</button>
+            <button onclick="selectLayoutOption(2)" id="btnOpt2" class="bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer border gold-border">Option 2: Modern Open-Plan</button>
+            <button onclick="selectLayoutOption(3)" id="btnOpt3" class="bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer border gold-border">Option 3: Luxury Palace</button>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs font-bold">
           <div>
             <label class="block text-slate-300 mb-1">Plot Front Width (Ft): *</label>
-            <input type="number" id="cadFront" value="32" onkeyup="drawCadBlueprint()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-cyan-500">
+            <input type="number" id="cadFront" value="32" onkeyup="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400">
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Plot Length / Depth (Ft): *</label>
-            <input type="number" id="cadLength" value="70" onkeyup="drawCadBlueprint()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-cyan-500">
+            <input type="number" id="cadLength" value="70" onkeyup="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400">
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Storeys / Floors:</label>
-            <select id="cadStoreys" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none">
+            <select id="cadStoreys" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
               <option value="Single Storey">Single Storey</option>
               <option value="Double Storey" selected>Double Storey (G + 1)</option>
               <option value="Triple Storey">Triple Storey (G + 2)</option>
@@ -176,7 +179,7 @@
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Bedrooms Requirement:</label>
-            <select id="cadBeds" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none">
+            <select id="cadBeds" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
               <option value="3 Beds">3 Bedrooms</option>
               <option value="4 Beds" selected>4 Bedrooms with Baths</option>
               <option value="5 Beds">5 Luxury Bedrooms</option>
@@ -185,34 +188,34 @@
         </div>
 
         <!-- Canvas Display & Image Download Area -->
-        <div class="bg-slate-950 border border-cyan-500/30 p-6 rounded-2xl space-y-4 text-center">
-          <div class="flex justify-between items-center flex-wrap gap-3 border-b border-slate-800 pb-3">
+        <div class="bg-slate-950 border gold-border p-6 rounded-2xl space-y-4 text-center">
+          <div class="flex justify-between items-center flex-wrap gap-3 border-b gold-border pb-3">
             <div class="text-left">
-              <div class="text-xs text-amber-400 font-bold uppercase tracking-wider">Official Engineering Blueprint CAD Drawing</div>
+              <div class="text-xs text-amber-300 font-bold uppercase tracking-wider">Official Engineering Blueprint CAD Drawing</div>
               <h4 id="cadTitle" class="text-base font-black text-white">Plot Size: 32x70 Ft • Option 1 (Executive Family)</h4>
             </div>
-            <button onclick="downloadCadBlueprintImage()" class="bg-gradient-to-r from-cyan-400 to-cyan-600 hover:from-cyan-500 hover:to-cyan-700 text-slate-950 px-5 py-3 rounded-xl font-black text-xs shadow-xl transition cursor-pointer">
+            <button onclick="downloadCadBlueprintImage()" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-3 rounded-xl font-black text-xs shadow-xl transition cursor-pointer">
               <i class="fa-solid fa-download mr-1.5"></i> Download Pro CAD Blueprint (JPEG)
             </button>
           </div>
 
           <!-- HTML5 Canvas for Professional Architectural CAD Blueprint -->
-          <div class="overflow-x-auto bg-slate-900 p-4 rounded-2xl border border-slate-800 inline-block w-full">
+          <div class="overflow-x-auto bg-slate-900 p-4 rounded-2xl border gold-border inline-block w-full">
             <canvas id="cadCanvas" width="950" height="600" class="mx-auto rounded-xl shadow-2xl bg-slate-950 max-w-full h-auto"></canvas>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold text-left pt-2">
-            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-1">
+            <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
               <div class="text-cyan-400 font-bold"><i class="fa-solid fa-ruler-combined mr-1"></i> Exact Engineering Dimensions:</div>
               <div id="cadDimSummary" class="text-slate-300">Car Porch (16x18 ft), Drawing (14x16 ft), Lounge (20x18 ft), Kitchen (10x12 ft).</div>
             </div>
-            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-1">
+            <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
               <div class="text-cyan-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i> LDA Setbacks & Ducts:</div>
               <div class="text-slate-300">Front Lawn (5 ft), Rear Ventilation Duct (4 ft), Side Passage (3 ft) fully compliant.</div>
             </div>
-            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-1">
+            <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
               <div class="text-cyan-400 font-bold"><i class="fa-solid fa-calculator mr-1"></i> Estimated Structure Cost:</div>
-              <div id="cadCostSummary" class="text-amber-400 font-black text-sm">PKR 14,500,000 (Gray Structure)</div>
+              <div id="cadCostSummary" class="text-amber-300 font-black text-sm">PKR 14,500,000 (Gray Structure)</div>
             </div>
           </div>
         </div>
@@ -222,20 +225,20 @@
 
     <!-- GEMINI AI FLOATING AUTONOMOUS COPILOT WIDGET -->
     <div class="fixed bottom-6 right-6 z-50">
-      <div id="geminiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 sm:w-96 shadow-2xl mb-3 space-y-3 border border-amber-500/60">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-          <span class="text-xs font-black text-amber-400 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha Gemini AI Copilot</span>
+      <div id="geminiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 sm:w-96 shadow-2xl mb-3 space-y-3 border gold-border">
+        <div class="flex justify-between items-center border-b gold-border pb-2">
+          <span class="text-xs font-black text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha Gemini AI Copilot</span>
           <button onclick="toggleGeminiChat()" class="text-slate-400 hover:text-white text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="geminiChatHistory" class="text-[11px] text-slate-300 space-y-2 max-h-56 overflow-y-auto p-1">
-          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">👋 Welcome! I am your 24/7 Gemini AI Assistant for Bin Taha Associates. Ask me about plot maps (e.g. 32x70 ft), construction rates, or estimates in Lahore!</div>
+          <div class="bg-slate-950 p-3 rounded-xl border gold-border">👋 Welcome! I am your 24/7 Gemini AI Assistant for Bin Taha Associates. Ask me about plot maps (e.g. 32x70 ft), construction rates, or estimates in Lahore!</div>
         </div>
         <div class="flex gap-2 pt-1">
-          <input type="text" id="geminiUserInput" placeholder="Ask AI anything (e.g. 32x70 cost)..." onkeypress="handleGeminiEnter(event)" class="flex-1 bg-slate-950 border border-slate-700 px-3 py-2.5 rounded-xl text-xs text-white outline-none focus:border-amber-500">
-          <button onclick="sendToGeminiAI()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-3.5 py-2.5 rounded-xl font-black text-xs cursor-pointer"><i class="fa-solid fa-paper-plane"></i></button>
+          <input type="text" id="geminiUserInput" placeholder="Ask AI anything (e.g. 32x70 cost)..." onkeypress="handleGeminiEnter(event)" class="flex-1 bg-slate-950 border gold-border px-3 py-2.5 rounded-xl text-xs text-white outline-none focus:border-amber-400">
+          <button onclick="sendToGeminiAI()" class="gold-bg text-slate-950 px-3.5 py-2.5 rounded-xl font-black text-xs cursor-pointer"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
-      <button onclick="toggleGeminiChat()" class="w-14 h-14 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-slate-950 font-black text-lg shadow-2xl flex items-center justify-center gold-glow cursor-pointer hover:scale-110 transition">
+      <button onclick="toggleGeminiChat()" class="w-14 h-14 rounded-full gold-bg text-slate-950 font-black text-lg shadow-2xl flex items-center justify-center gold-glow cursor-pointer hover:scale-110 transition">
         <i class="fa-solid fa-robot"></i>
       </button>
     </div>
@@ -243,24 +246,24 @@
     <!-- Service Booking Modal -->
     <div id="serviceModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
-        <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-          <h3 class="text-base font-black text-white"><i class="fa-solid fa-helmet-safety text-amber-400 mr-2"></i> Book Construction Service & Sync to CRM</h3>
+        <div class="flex justify-between items-center border-b gold-border pb-3">
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-helmet-safety text-amber-300 mr-2"></i> Book Construction Service & Sync to CRM</h3>
           <button onclick="toggleServiceModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <div class="space-y-4 text-xs font-bold">
           <div>
             <label class="block text-slate-300 mb-1">Your Full Name: *</label>
-            <input type="text" id="bookingName" placeholder="Enter your name" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+            <input type="text" id="bookingName" placeholder="Enter your name" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
           </div>
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-300 mb-1">Phone Number: *</label>
-              <input type="text" id="bookingPhone" placeholder="03001234567" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+              <input type="text" id="bookingPhone" placeholder="03001234567" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
             </div>
             <div>
               <label class="block text-slate-300 mb-1">Service Type: *</label>
-              <select id="bookingService" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none font-normal">
+              <select id="bookingService" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none font-normal">
                 <option value="Gray Structure">Gray Structure Construction</option>
                 <option value="Turnkey Finishing">Turnkey Finishing & Design</option>
                 <option value="Map Approval">Architectural & Map Approval</option>
@@ -270,14 +273,14 @@
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Location / Society (e.g. LDA Avenue 1): *</label>
-            <input type="text" id="bookingLocation" placeholder="Plot / Block / Society Name" class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner">
+            <input type="text" id="bookingLocation" placeholder="Plot / Block / Society Name" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Project Details & Requirements:</label>
-            <textarea id="bookingDetails" rows="2" placeholder="Mention plot size, storeys, or specific needs..." class="w-full bg-slate-950 border border-slate-700 p-3 rounded-xl text-white outline-none focus:border-amber-500 font-normal shadow-inner"></textarea>
+            <textarea id="bookingDetails" rows="2" placeholder="Mention plot size, storeys, or specific needs..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner"></textarea>
           </div>
 
-          <button onclick="submitServiceBooking()" class="w-full bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-500 hover:to-amber-700 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
+          <button onclick="submitServiceBooking()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
             <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Sync to Google Sheet CRM
           </button>
         </div>
@@ -285,7 +288,7 @@
     </div>
 
     <!-- Professional Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-800 text-center space-y-2">
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t gold-border text-center space-y-2">
       <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
       <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
     </footer>
@@ -340,19 +343,16 @@
       if(e.key === 'Enter') sendToGeminiAI();
     }
 
-    // GEMINI AI INTEGRATION FUNCTION
     async function sendToGeminiAI() {
       const input = document.getElementById('geminiUserInput');
       const history = document.getElementById('geminiChatHistory');
       let text = input.value.trim();
       if(!text) return;
 
-      // Append user prompt
-      history.innerHTML += `<div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 text-right text-white">👤 ${text}</div>`;
+      history.innerHTML += `<div class="bg-slate-900 p-2.5 rounded-xl border gold-border text-right text-white">👤 ${text}</div>`;
       input.value = '';
       history.scrollTop = history.scrollHeight;
 
-      // Simulated Intelligent Gemini Response & Auto CRM Sync
       setTimeout(() => {
         let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping (like 32x70 ft) and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
         
@@ -360,10 +360,9 @@
           reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch (16x18), Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
         }
 
-        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border border-amber-500/30 text-amber-300">${reply}</div>`;
+        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">${reply}</div>`;
         history.scrollTop = history.scrollHeight;
 
-        // Auto Sync Lead to Google Sheet CRM
         const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
         if(googleScriptUrl) {
           fetch(googleScriptUrl, {
@@ -380,9 +379,9 @@
       for(let i=1; i<=3; i++) {
         let btn = document.getElementById('btnOpt' + i);
         if(i === optNum) {
-          btn.className = "bg-cyan-600 text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black";
+          btn.className = "gold-bg text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black";
         } else {
-          btn.className = "bg-slate-800 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer";
+          btn.className = "bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer border gold-border";
         }
       }
       drawCadBlueprint();
@@ -408,7 +407,7 @@
       ctx.fillStyle = '#050b14';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.05)';
+      ctx.strokeStyle = 'rgba(252, 211, 77, 0.05)';
       ctx.lineWidth = 1;
       for(let x=0; x<canvas.width; x+=25) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
@@ -417,7 +416,7 @@
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
       }
 
-      ctx.strokeStyle = '#38bdf8';
+      ctx.strokeStyle = '#fcd34d';
       ctx.lineWidth = 3;
       ctx.strokeRect(70, 60, 810, 460);
 
