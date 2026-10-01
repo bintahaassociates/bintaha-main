@@ -93,7 +93,6 @@
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
         <!-- Global Currency Converter Widget -->
@@ -103,21 +102,20 @@
             <option value="USD">USD ($)</option>
             <option value="AED">AED (Dh)</option>
             <option value="GBP">GBP (£)</option>
-            <option value="SAR">SAR (SR)</option>
           </select>
           <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none">
           <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
         </div>
       </div>
 
-      <!-- Colorful Navigation Bar -->
+      <!-- Unified Navigation Bar Matching All Pages -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t gold-border">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="https://bintahaassociates.github.io/bintaha-acconting/" class="bg-slate-900 hover:bg-slate-800 text-amber-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+          <a href="crm-dashboard.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-earth-americas mr-1"></i> Owners CRM</a>
+          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
           <a href="services.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
-          <a href="#proCadStudio" class="bg-slate-900 hover:bg-slate-800 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
-          <a href="#materialEstimator" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
         </div>
         <div class="text-xs text-amber-300 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border gold-border shadow">
           <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
@@ -296,6 +294,7 @@
   </div>
 
   <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
     let currentLayoutOption = 1;
 
     function enterPortal() {
@@ -311,10 +310,12 @@
 
     function updateClocks() {
       const now = new Date();
-      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+      const pk = document.getElementById('clockPk');
+      const db = document.getElementById('clockDubai');
+      const ld = document.getElementById('clockLondon');
+      if(pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      if(db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      if(ld) ld.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateClocks, 1000);
 
@@ -324,7 +325,6 @@
       let rate = 280;
       if(type === 'AED') rate = 76;
       if(type === 'GBP') rate = 355;
-      if(type === 'SAR') rate = 75;
       let total = val * rate;
       document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
     }
@@ -354,18 +354,17 @@
       history.scrollTop = history.scrollHeight;
 
       setTimeout(() => {
-        let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping (like 32x70 ft) and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
+        let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
         
         if(text.toLowerCase().includes('32') || text.toLowerCase().includes('70') || text.toLowerCase().includes('map')) {
-          reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch (16x18), Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
+          reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch, Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
         }
 
         history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">${reply}</div>`;
         history.scrollTop = history.scrollHeight;
 
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-        if(googleScriptUrl) {
-          fetch(googleScriptUrl, {
+        if(GOOGLE_SCRIPT_URL) {
+          fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST', mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'gemini_ai_lead', time: new Date().toISOString(), text, source: 'Gemini AI Widget' })
@@ -497,9 +496,8 @@
         details
       };
 
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if (googleScriptUrl) {
-        fetch(googleScriptUrl, {
+      if (GOOGLE_SCRIPT_URL) {
+        fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(bookingData)
