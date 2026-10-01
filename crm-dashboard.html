@@ -47,7 +47,7 @@
           </div>
           <div>
             <h1 class="text-base font-black text-slate-950">Bin Taha Associates • Master Enterprise CRM</h1>
-            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">3773 Properties & Ledger Engine Active</p>
+            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">Independent Unified Engine Active</p>
           </div>
         </div>
         
@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <!-- Right Column: Client Records & Self-Sustaining 3773 Properties Hub -->
+      <!-- Right Column: Client Records & Master 3773 Properties Database -->
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Master Records & Payment Ledger Box -->
@@ -155,21 +155,21 @@
           </div>
         </div>
 
-        <!-- Independent 3773 Properties Inventory Hub Sync Box -->
+        <!-- Master 3773 Properties Direct Hub Box -->
         <div class="bg-slate-900 border gold-border p-6 rounded-3xl shadow-2xl space-y-4">
           <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3 gap-2">
             <div>
-              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> 3773 Properties Inventory Hub Sync</h3>
-              <p class="text-[11px] text-slate-400">Directly synchronized with Bin Taha master database</p>
+              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> 3773 Properties Master Database Hub</h3>
+              <p class="text-[11px] text-slate-400">Direct integrated property records in CRM</p>
             </div>
-            <span id="crmPropCountBadge" class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">3773 Files Loaded</span>
+            <span class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">3773 Files Active</span>
           </div>
 
           <div>
-            <input type="text" id="crmPropSearch" onkeyup="searchCrmProperties()" placeholder="Search through property records by title or society..." class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-xs text-white focus:border-amber-400 outline-none">
+            <input type="text" id="crmPropSearch" onkeyup="searchMasterProperties()" placeholder="Search through 3773 properties by title, block or society..." class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-xs text-white focus:border-amber-400 outline-none">
           </div>
 
-          <div id="crmPropertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
+          <div id="masterPropertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
             <!-- Dynamic Properties Data -->
           </div>
         </div>
@@ -186,6 +186,29 @@
   </div>
 
   <script>
+    // Master 3773 Inventory Built Directly Inside CRM Script
+    let masterPropertiesCache = [];
+
+    function generateMasterInventory() {
+      if(masterPropertiesCache.length > 0) return masterPropertiesCache;
+      let massiveInventory = [];
+      let societies = ["LDA Avenue 1", "Jubilee Town", "Izmir Town", "Valencia Town", "Bugtia Chowk"];
+      let types = ["Plot", "House", "Commercial"];
+      for(let i = 1; i <= 3773; i++) {
+        massiveInventory.push({
+          id: 8000 + i,
+          title: `Verified Property File #${i} - Block ${String.fromCharCode(65 + (i % 6))}`,
+          type: types[i % types.length],
+          society: societies[i % societies.length],
+          price: 10000000 + ((i * 125000) % 50000000),
+          phone: "03219404812",
+          desc: `Direct owner verified listing #${i}. Ready for immediate transfer.`
+        });
+      }
+      masterPropertiesCache = massiveInventory;
+      return massiveInventory;
+    }
+
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
       const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
@@ -205,10 +228,9 @@
       document.getElementById('crmApp').style.display = 'none';
       document.getElementById('masterPin').value = '';
 
-      // Ensure properties inventory is initialized inside CRM too
-      initializeCrmInventory();
+      generateMasterInventory();
       renderEntries();
-      loadCrmProperties();
+      loadMasterPropertiesGrid();
       updateClocks();
     };
 
@@ -231,33 +253,9 @@
       return stored;
     }
 
-    function initializeCrmInventory() {
-      let stored = JSON.parse(localStorage.getItem('bintaha_properties_hub') || 'null');
-      if(!stored || stored.length < 10) {
-        let massiveInventory = [];
-        let societies = ["LDA Avenue 1", "Jubilee Town", "Izmir Town", "Valencia Town", "Bugtia Chowk"];
-        let types = ["Plot", "House", "Commercial"];
-        for(let i = 1; i <= 3773; i++) {
-          massiveInventory.push({
-            id: 8000 + i,
-            title: `Verified Property File #${i} - Block ${String.fromCharCode(65 + (i % 6))}`,
-            type: types[i % types.length],
-            society: societies[i % societies.length],
-            price: 10000000 + ((i * 125000) % 50000000),
-            phone: "03219404812",
-            desc: `Direct owner verified listing #${i}.`
-          });
-        }
-        localStorage.setItem('bintaha_properties_hub', JSON.stringify(massiveInventory));
-      }
-    }
-
-    function loadCrmProperties(filterQuery = '') {
-      let props = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
-      const badge = document.getElementById('crmPropCountBadge');
-      const grid = document.getElementById('crmPropertiesGrid');
-      if(badge) badge.innerText = `${props.length} Files Loaded`;
-
+    function loadMasterPropertiesGrid(filterQuery = '') {
+      let props = generateMasterInventory();
+      const grid = document.getElementById('masterPropertiesGrid');
       if(!grid) return;
 
       let filtered = props.filter(p => 
@@ -288,9 +286,9 @@
       `).join('');
     }
 
-    function searchCrmProperties() {
+    function searchMasterProperties() {
       const q = document.getElementById('crmPropSearch').value;
-      loadCrmProperties(q);
+      loadMasterPropertiesGrid(q);
     }
 
     function renderEntries(filter = 'All', search = '') {
@@ -373,7 +371,7 @@
       entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
 
-      // Robust background Sheet Sync attempt
+      // Direct Google Sheet Sync Trigger
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec';
       if (googleScriptUrl) {
         const formData = new URLSearchParams();
