@@ -202,7 +202,7 @@
         { id: 1, name: "Junaid Ali", phone: "03214776676", category: "Property", deal: 15000000, paid: 1500000, details: "LDA Avenue 1 Plot Buy", date: "31/08/2026" }
       ];
       let stored = JSON.parse(localStorage.getItem('binTahaUnifiedLedger') || 'null');
-      if(!stored || stored.length < 1) {
+      if(!stored) {
         localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(defaultData));
         return defaultData;
       }
