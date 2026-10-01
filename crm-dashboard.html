@@ -66,13 +66,19 @@
         </div>
       </div>
 
-      <!-- Navigation Links Bar -->
+      <!-- Navigation Links Bar (All Original Buttons Restored) -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-amber-600/40">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="index.html" class="bg-slate-950 text-amber-300 px-3 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="crm-dashboard.html" class="bg-slate-950 text-amber-300 px-3 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-          <a href="owners-crm.html" class="bg-slate-950 hover:bg-slate-900 text-slate-300 px-3 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-earth-americas mr-1"></i> Owners Directory</a>
-          <a href="properties.html" class="bg-slate-950 hover:bg-slate-900 text-cyan-400 px-3 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="index.html" class="bg-slate-950 text-amber-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="crm-dashboard.html" class="bg-slate-950 text-amber-300 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-slate-950 hover:bg-slate-900 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-user-tie mr-1"></i> Owner's CRM</a>
+          <a href="inbox.html" class="bg-slate-950 hover:bg-slate-900 text-purple-300 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
+          <a href="dealers.html" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-address-book mr-1"></i> Master Directory</a>
+          <a href="properties.html" class="bg-slate-950 hover:bg-slate-900 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="bg-slate-950 hover:bg-slate-900 text-amber-300 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-bolt mr-1"></i> Services Hub</a>
+        </div>
+        <div class="text-xs text-slate-950 font-black bg-white/40 px-3 py-1.5 rounded-xl border border-amber-600/40 shadow">
+          <i class="fa-solid fa-phone-volume text-slate-950 mr-1"></i> CEO Hotline: 0321-9404812
         </div>
       </div>
     </header>
@@ -199,10 +205,11 @@
 
     function getStoredEntries() {
       let defaultData = [
-        { id: 1, name: "Junaid Ali", phone: "03214776676", category: "Property", deal: 15000000, paid: 1500000, details: "LDA Avenue 1 Plot Buy", date: "31/08/2026" }
+        { id: 1, name: "Junaid Ali", phone: "03214776676", category: "Property", deal: 15000000, paid: 1500000, details: "LDA Avenue 1 Plot Buy", date: "31/08/2026" },
+        { id: 2, name: "Ch Sahide Gujjer", phone: "03001234567", category: "Property", deal: 25000000, paid: 2500500, details: "Jubilee Town Villa Booking", date: "01/09/2026" }
       ];
       let stored = JSON.parse(localStorage.getItem('binTahaUnifiedLedger') || 'null');
-      if(!stored) {
+      if(!stored || stored.length < 1) {
         localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(defaultData));
         return defaultData;
       }
