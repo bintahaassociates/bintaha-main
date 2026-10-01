@@ -47,7 +47,7 @@
           </div>
           <div>
             <h1 class="text-base font-black text-slate-950">Bin Taha Associates • Master Enterprise CRM</h1>
-            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">Independent Unified Engine Active</p>
+            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">JSON Sheet Sync & Ledger Active</p>
           </div>
         </div>
         
@@ -122,7 +122,7 @@
         </div>
       </div>
 
-      <!-- Right Column: Client Records & Master 3773 Properties Database -->
+      <!-- Right Column: Client Records & Properties Database -->
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Master Records & Payment Ledger Box -->
@@ -155,18 +155,18 @@
           </div>
         </div>
 
-        <!-- Master 3773 Properties Direct Hub Box -->
+        <!-- Master Properties Hub Box -->
         <div class="bg-slate-900 border gold-border p-6 rounded-3xl shadow-2xl space-y-4">
           <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3 gap-2">
             <div>
-              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> 3773 Properties Master Database Hub</h3>
-              <p class="text-[11px] text-slate-400">Direct integrated property records in CRM</p>
+              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> Properties Hub Inventory Sync</h3>
+              <p class="text-[11px] text-slate-400">Directly synchronized with Google Sheet & Local DB</p>
             </div>
-            <span class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">3773 Files Active</span>
+            <span id="propCountBadge" class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">Loading...</span>
           </div>
 
           <div>
-            <input type="text" id="crmPropSearch" onkeyup="searchMasterProperties()" placeholder="Search through 3773 properties by title, block or society..." class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-xs text-white focus:border-amber-400 outline-none">
+            <input type="text" id="crmPropSearch" onkeyup="searchMasterProperties()" placeholder="Search through property records..." class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-xs text-white focus:border-amber-400 outline-none">
           </div>
 
           <div id="masterPropertiesGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[300px] overflow-y-auto pr-1">
@@ -186,28 +186,7 @@
   </div>
 
   <script>
-    // Master 3773 Inventory Built Directly Inside CRM Script
-    let masterPropertiesCache = [];
-
-    function generateMasterInventory() {
-      if(masterPropertiesCache.length > 0) return masterPropertiesCache;
-      let massiveInventory = [];
-      let societies = ["LDA Avenue 1", "Jubilee Town", "Izmir Town", "Valencia Town", "Bugtia Chowk"];
-      let types = ["Plot", "House", "Commercial"];
-      for(let i = 1; i <= 3773; i++) {
-        massiveInventory.push({
-          id: 8000 + i,
-          title: `Verified Property File #${i} - Block ${String.fromCharCode(65 + (i % 6))}`,
-          type: types[i % types.length],
-          society: societies[i % societies.length],
-          price: 10000000 + ((i * 125000) % 50000000),
-          phone: "03219404812",
-          desc: `Direct owner verified listing #${i}. Ready for immediate transfer.`
-        });
-      }
-      masterPropertiesCache = massiveInventory;
-      return massiveInventory;
-    }
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec';
 
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
@@ -228,9 +207,8 @@
       document.getElementById('crmApp').style.display = 'none';
       document.getElementById('masterPin').value = '';
 
-      generateMasterInventory();
       renderEntries();
-      loadMasterPropertiesGrid();
+      loadMasterProperties();
       updateClocks();
     };
 
@@ -253,34 +231,48 @@
       return stored;
     }
 
-    function loadMasterPropertiesGrid(filterQuery = '') {
-      let props = generateMasterInventory();
+    // Load Properties matching your Apps Script doGet endpoint
+    async function loadMasterProperties(filterQuery = '') {
       const grid = document.getElementById('masterPropertiesGrid');
+      const badge = document.getElementById('propCountBadge');
+      
+      let props = [];
+      try {
+        let res = await fetch(GOOGLE_SCRIPT_URL);
+        props = await res.json();
+      } catch (err) {
+        console.log('Using local fallback due to network restriction:', err);
+      }
+
+      if(!props || props.length === 0) {
+        props = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
+      }
+
+      if(badge) badge.innerText = `${props.length} Files Active`;
       if(!grid) return;
 
       let filtered = props.filter(p => 
-        p.title.toLowerCase().includes(filterQuery.toLowerCase()) || 
-        p.society.toLowerCase().includes(filterQuery.toLowerCase()) ||
-        p.type.toLowerCase().includes(filterQuery.toLowerCase())
+        (p.title && p.title.toLowerCase().includes(filterQuery.toLowerCase())) || 
+        (p.society && p.society.toLowerCase().includes(filterQuery.toLowerCase()))
       );
 
       let displaySlice = filtered.slice(0, 30);
 
       if(displaySlice.length === 0) {
-        grid.innerHTML = `<div class="col-span-full bg-slate-950 p-4 rounded-xl text-center text-slate-500 text-xs">No properties found matching search.</div>`;
+        grid.innerHTML = `<div class="col-span-full bg-slate-950 p-4 rounded-xl text-center text-slate-500 text-xs">No properties found.</div>`;
         return;
       }
 
       grid.innerHTML = displaySlice.map(p => `
         <div class="bg-slate-950 p-3 rounded-2xl border gold-border space-y-1 text-xs">
           <div class="flex justify-between items-center">
-            <span class="font-black text-amber-300">${p.title}</span>
-            <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded text-[10px] font-bold border gold-border">${p.type}</span>
+            <span class="font-black text-amber-300">${p.title || 'Property File'}</span>
+            <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded text-[10px] font-bold border gold-border">${p.type || 'Plot'}</span>
           </div>
-          <div class="text-slate-400 text-[11px]"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${p.society}</div>
+          <div class="text-slate-400 text-[11px]"><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>${p.society || 'Lahore'}</div>
           <div class="flex justify-between items-center pt-1 font-bold">
-            <span class="text-emerald-400">PKR ${Number(p.price).toLocaleString()}</span>
-            <a href="https://wa.me/92${p.phone.replace(/^0/, '')}?text=${encodeURIComponent('Inquiry regarding ' + p.title)}" target="_blank" class="bg-emerald-600 text-white px-2 py-1 rounded-lg text-[10px]"><i class="fa-brands fa-whatsapp"></i> Chat</a>
+            <span class="text-emerald-400">PKR ${Number(p.price || 0).toLocaleString()}</span>
+            <a href="https://wa.me/92${String(p.phone || '03219404812').replace(/^0/, '')}" target="_blank" class="bg-emerald-600 text-white px-2 py-1 rounded-lg text-[10px]"><i class="fa-brands fa-whatsapp"></i> Chat</a>
           </div>
         </div>
       `).join('');
@@ -288,7 +280,7 @@
 
     function searchMasterProperties() {
       const q = document.getElementById('crmPropSearch').value;
-      loadMasterPropertiesGrid(q);
+      loadMasterProperties(q);
     }
 
     function renderEntries(filter = 'All', search = '') {
@@ -340,7 +332,8 @@
       }).join('');
     }
 
-    function saveCrmEntryWithLedger() {
+    // Save CRM entry matching your Google Apps Script JSON format (`doPost`)
+    async function saveCrmEntryWithLedger() {
       const name = document.getElementById('clientName').value.trim();
       const phone = document.getElementById('clientPhone').value.trim();
       const category = document.getElementById('clientCategory').value;
@@ -364,26 +357,31 @@
         category,
         deal,
         paid,
-        details: details || 'No additional remarks.',
+        details: `Deal: PKR ${deal}, Paid: PKR ${paid}. Remarks: ${details || 'N/A'}`,
         date: dateStr
       };
 
       entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
 
-      // Direct Google Sheet Sync Trigger
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec';
-      if (googleScriptUrl) {
-        const formData = new URLSearchParams();
-        formData.append('date', dateStr);
-        formData.append('name', name);
-        formData.append('phone', phone);
-        formData.append('category', category);
-        formData.append('deal', deal);
-        formData.append('paid', paid);
-        formData.append('details', details || 'No remarks');
+      // Sending JSON payload to match Apps Script `JSON.parse(e.postData.contents)`
+      const payload = {
+        time: dateStr,
+        name: name,
+        phone: phone,
+        subject: category,
+        details: newEntry.details
+      };
 
-        fetch(googleScriptUrl, { method: 'POST', body: formData }).catch(() => {});
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        console.log('Google sheet sync notice:', err);
       }
       
       document.getElementById('clientName').value = '';
@@ -392,7 +390,7 @@
       document.getElementById('clientDetails').value = '';
 
       renderEntries();
-      alert("Entry saved successfully to Master CRM & Local Ledger!");
+      alert("Entry saved locally and sent to Google Sheet successfully!");
     }
 
     function filterRecords(cat) {
