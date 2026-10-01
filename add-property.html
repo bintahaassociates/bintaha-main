@@ -31,7 +31,7 @@
         <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
       </div>
       <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
-        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Bin Taha CRM Active</span>
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Bin Taha CRM Direct Sync Active</span>
       </div>
     </div>
   </div>
@@ -58,12 +58,20 @@
   <main class="max-w-4xl mx-auto px-4 py-10 flex-1 w-full">
     <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl gold-glow">
       <div class="text-center max-w-xl mx-auto mb-8">
-        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">CRM & Google Sheet Sync Engine</span>
+        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">Direct Form Submitter to Google Sheet</span>
         <h2 class="text-2xl sm:text-3xl font-black shining-gold mt-3">Post Property to Master CRM</h2>
-        <p class="text-xs text-slate-400 mt-1">Publish verified listings directly into Bin Taha CRM database & Properties Sheet.</p>
+        <p class="text-xs text-slate-400 mt-1">Directly syncs verified property files to Google Sheet without CORS restrictions.</p>
       </div>
 
-      <form id="standalonePostForm" onsubmit="handlePostSubmit(event)" class="space-y-5">
+      <!-- Hidden iframe to prevent page redirection and bypass CORS -->
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(isSubmitted){ window.location.href='properties.html'; }"></iframe>
+
+      <!-- Standard Form targeting Google Apps Script URL directly -->
+      <form id="standalonePostForm" action="https://script.google.com/macros/s/AKfycbz6rDup-tZ2_qUH21ja8zw1tLGglXQvjlTKZvoJdMn-sZzfg5HCuhJQQI4fhiCMoxy1/exec" method="POST" target="hidden_iframe" onsubmit="prepareFormSubmission(event)" class="space-y-5">
+        
+        <!-- Hidden input to pass JSON payload matching your Apps Script doPost structure -->
+        <input type="hidden" name="payload" id="formPayload">
+
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Property Title *</label>
@@ -118,6 +126,7 @@
 
   <script>
     let localEncodedImg = '';
+    let isSubmitted = false;
 
     function encodeImageFile(e) {
       const file = e.target.files[0];
@@ -132,8 +141,8 @@
       }
     }
 
-    async function handlePostSubmit(e) {
-      e.preventDefault();
+    function prepareFormSubmission(e) {
+      isSubmitted = true;
       const img = localEncodedImg || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
       let now = new Date();
       let dateStr = String(now.getDate()).padStart(2, '0') + '/' + String(now.getMonth() + 1).padStart(2, '0') + '/' + now.getFullYear();
@@ -149,38 +158,24 @@
         img: img
       };
 
+      // Save locally as a backup hub
       const currentList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
       currentList.unshift(newListing);
       localStorage.setItem('bintaha_properties_hub', JSON.stringify(currentList));
 
+      // Build exact payload matching your Google Script doPost code
+      const payloadData = {
+        action: 'sync_new_property',
+        property: newListing,
+        time: dateStr
+      };
+
+      // Put serialized JSON into the hidden form field so Google Sheet receives it cleanly
+      document.getElementById('formPayload').value = JSON.stringify(payloadData);
+
       const submitBtn = document.getElementById('submitBtn');
-      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Syncing with Google Sheet...`;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Syncing directly with Google Sheet...`;
       submitBtn.disabled = true;
-
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz6rDup-tZ2_qUH21ja8zw1tLGglXQvjlTKZvoJdMn-sZzfg5HCuhJQQI4fhiCMoxy1/exec';
-      if (googleScriptUrl) {
-        const payload = {
-          action: 'sync_new_property',
-          property: newListing,
-          time: dateStr
-        };
-
-        try {
-          await fetch(googleScriptUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-        } catch (err) {
-          console.log('Google Sheet sync notice:', err);
-        }
-      }
-
-      setTimeout(() => {
-        alert('Property registered in local hub and successfully synced with Google Sheet!');
-        window.location.href = 'properties.html';
-      }, 800);
     }
   </script>
 </body>
