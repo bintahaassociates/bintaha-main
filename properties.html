@@ -138,7 +138,7 @@
   </footer>
 
   <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyLsiGO7Rv_9qJuLNdfioLTKfM8iFnAIEIPqG3vlZGrqc8HDQ4yE_Im8WA1j6AgaTo-/exec';
     let currentLimit = 30;
     let masterPropertyList = [];
 
@@ -151,7 +151,6 @@
     }
     setInterval(updateClocks, 1000);
 
-    // Fetch properties from Google Sheet (via doGet) and fallback to LocalStorage
     async function fetchSheetProperties() {
       let localProps = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
       
@@ -159,7 +158,6 @@
         let response = await fetch(GOOGLE_SCRIPT_URL);
         let sheetData = await response.json();
         if(sheetData && Array.isArray(sheetData) && sheetData.length > 0) {
-          // Merge sheet data with local storage data smoothly
           masterPropertyList = sheetData;
           localStorage.setItem('bintaha_properties_hub', JSON.stringify(sheetData));
         } else {
