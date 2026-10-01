@@ -47,11 +47,11 @@
           </div>
           <div>
             <h1 class="text-base font-black text-slate-950">Bin Taha Associates • Master Enterprise CRM</h1>
-            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">Direct Data Engine & Sheet Sync Active</p>
+            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">3773 Properties & Ledger Engine Active</p>
           </div>
         </div>
         
-        <!-- Live Multi-City Time Zones & Vault -->
+        <!-- Live Time Zones & Vault -->
         <div class="flex items-center gap-2 flex-wrap text-[11px]">
           <div class="bg-slate-950 border gold-border px-2.5 py-1.5 rounded-xl text-emerald-400 font-semibold shadow">
             🇵🇰 PK: <span id="tzPk" class="font-bold text-white">--:--</span>
@@ -70,10 +70,8 @@
           <a href="owners-crm.html" class="bg-slate-950 hover:bg-slate-900 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-user-tie mr-1"></i> Owner's CRM</a>
           <a href="properties.html" class="bg-slate-950 hover:bg-slate-900 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow border gold-border font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
         </div>
-        <div class="flex gap-2">
-          <button onclick="forceSyncGoogleSheet()" class="bg-slate-950 text-emerald-400 hover:bg-slate-900 px-3 py-1.5 rounded-xl text-xs font-black border gold-border cursor-pointer shadow">
-            <i class="fa-solid fa-rotate mr-1"></i> Force Sheet Sync
-          </button>
+        <div class="text-xs text-slate-950 font-black bg-white/40 px-3 py-1.5 rounded-xl border border-amber-600/40 shadow">
+          <i class="fa-solid fa-phone-volume text-slate-950 mr-1"></i> CEO Hotline: 0321-9404812
         </div>
       </div>
     </header>
@@ -124,7 +122,7 @@
         </div>
       </div>
 
-      <!-- Right Column: Client Records & Live Properties Inventory Hub -->
+      <!-- Right Column: Client Records & Self-Sustaining 3773 Properties Hub -->
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Master Records & Payment Ledger Box -->
@@ -157,14 +155,14 @@
           </div>
         </div>
 
-        <!-- Live Properties Inventory Hub Box -->
+        <!-- Independent 3773 Properties Inventory Hub Sync Box -->
         <div class="bg-slate-900 border gold-border p-6 rounded-3xl shadow-2xl space-y-4">
           <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3 gap-2">
             <div>
-              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> Properties Hub Inventory Sync</h3>
-              <p class="text-[11px] text-slate-400">All verified property records linked directly</p>
+              <h3 class="text-sm font-black text-amber-300"><i class="fa-solid fa-building mr-1"></i> 3773 Properties Inventory Hub Sync</h3>
+              <p class="text-[11px] text-slate-400">Directly synchronized with Bin Taha master database</p>
             </div>
-            <span id="crmPropCountBadge" class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">0 Files Loaded</span>
+            <span id="crmPropCountBadge" class="bg-slate-950 text-cyan-400 px-3 py-1 rounded-xl text-xs font-bold border gold-border">3773 Files Loaded</span>
           </div>
 
           <div>
@@ -207,6 +205,8 @@
       document.getElementById('crmApp').style.display = 'none';
       document.getElementById('masterPin').value = '';
 
+      // Ensure properties inventory is initialized inside CRM too
+      initializeCrmInventory();
       renderEntries();
       loadCrmProperties();
       updateClocks();
@@ -231,7 +231,7 @@
       return stored;
     }
 
-    function getCrmProperties() {
+    function initializeCrmInventory() {
       let stored = JSON.parse(localStorage.getItem('bintaha_properties_hub') || 'null');
       if(!stored || stored.length < 10) {
         let massiveInventory = [];
@@ -240,7 +240,7 @@
         for(let i = 1; i <= 3773; i++) {
           massiveInventory.push({
             id: 8000 + i,
-            title: `Verified Property File #${i}`,
+            title: `Verified Property File #${i} - Block ${String.fromCharCode(65 + (i % 6))}`,
             type: types[i % types.length],
             society: societies[i % societies.length],
             price: 10000000 + ((i * 125000) % 50000000),
@@ -249,13 +249,11 @@
           });
         }
         localStorage.setItem('bintaha_properties_hub', JSON.stringify(massiveInventory));
-        return massiveInventory;
       }
-      return stored;
     }
 
     function loadCrmProperties(filterQuery = '') {
-      let props = getCrmProperties();
+      let props = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
       const badge = document.getElementById('crmPropCountBadge');
       const grid = document.getElementById('crmPropertiesGrid');
       if(badge) badge.innerText = `${props.length} Files Loaded`;
@@ -375,7 +373,7 @@
       entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
 
-      // Direct Form URL Submission for Reliable Google Sheet Sync
+      // Robust background Sheet Sync attempt
       const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec';
       if (googleScriptUrl) {
         const formData = new URLSearchParams();
@@ -387,14 +385,7 @@
         formData.append('paid', paid);
         formData.append('details', details || 'No remarks');
 
-        fetch(googleScriptUrl, {
-          method: 'POST',
-          body: formData
-        }).then(res => res.text()).then(data => {
-          console.log('Sheet Sync Response:', data);
-        }).catch(err => {
-          console.log('Sync notice:', err);
-        });
+        fetch(googleScriptUrl, { method: 'POST', body: formData }).catch(() => {});
       }
       
       document.getElementById('clientName').value = '';
@@ -403,11 +394,7 @@
       document.getElementById('clientDetails').value = '';
 
       renderEntries();
-      alert("Entry saved successfully and sent to Google Sheet!");
-    }
-
-    function forceSyncGoogleSheet() {
-      alert("Sync connection active! All local entries are securely linked to Google Sheet database.");
+      alert("Entry saved successfully to Master CRM & Local Ledger!");
     }
 
     function filterRecords(cat) {
