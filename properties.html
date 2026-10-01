@@ -106,15 +106,16 @@
         </div>
       </div>
 
-      <!-- Navigation Bar with Add Property Button -->
+      <!-- Navigation Bar with Correct CRM Links -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-amber-600/40">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
           <a href="index.html" class="bg-slate-950 hover:bg-slate-900 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
           <a href="properties.html" class="bg-slate-950 text-amber-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="crm-dashboard.html" class="bg-slate-950 hover:bg-slate-900 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-slate-950 hover:bg-slate-900 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-user-tie mr-1"></i> Owner's CRM</a>
           <button onclick="toggleAddModal()" class="bg-slate-950 hover:bg-slate-900 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black cursor-pointer border gold-border"><i class="fa-solid fa-circle-plus mr-1"></i> Add Property</button>
           <a href="#dreamSection" class="bg-slate-950 hover:bg-slate-900 text-purple-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-star mr-1 text-amber-300"></i> Wishlist (<span id="dreamCount">0</span>)</a>
           <a href="#roiCalculator" class="bg-slate-950 hover:bg-slate-900 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> ROI Calculator</a>
-          <a href="#aboutSection" class="bg-slate-950 hover:bg-slate-900 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-circle-info mr-1"></i> About Us</a>
           <button onclick="broadcastAllProperties()" class="bg-slate-950 text-amber-300 px-3.5 py-2 rounded-xl transition shadow font-black cursor-pointer border gold-border"><i class="fa-brands fa-whatsapp mr-1"></i> Broadcast All</button>
         </div>
         <div class="text-xs text-slate-950 font-black bg-white/40 px-3 py-1.5 rounded-xl border border-amber-600/40 shadow">
@@ -395,7 +396,11 @@
     }
 
     function getStoredProperties() {
-      let whatsappExtracted = [{"id": 8000, "title": "DHA Phase 9 Prism 10 Marla Plot", "type": "Plot", "society": "LDA Avenue 1", "price": 18500000, "phone": "03219404812", "desc": "Verified file direct from owner.", "img": "https://images.unsplash.com/photo-1541888946425-d0fbb18f724f?auto=format&fit=crop&w=600&q=80"}];
+      let whatsappExtracted = [
+        { id: 8000, title: "DHA Phase 9 Prism 10 Marla Plot", type: "Plot", society: "LDA Avenue 1", price: 18500000, phone: "03219404812", desc: "Verified file direct from owner.", img: "https://images.unsplash.com/photo-1541888946425-d0fbb18f724f?auto=format&fit=crop&w=600&q=80" },
+        { id: 8001, title: "1 Kanal Luxury Modern Villa", type: "House", society: "Jubilee Town", price: 65000000, phone: "03219404812", desc: "Brand new double storey luxury villa with 5 bedrooms and imported fittings.", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" },
+        { id: 8002, title: "Jubilee Town Commercial Plaza Plot", type: "Commercial", society: "Jubilee Town", price: 35000000, phone: "03219404812", desc: "Prime commercial location facing main boulevard. High rental yield.", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" }
+      ];
       let stored = JSON.parse(localStorage.getItem('bintaha_properties_hub') || 'null');
       if (!stored || stored.length < 1) {
         localStorage.setItem('bintaha_properties_hub', JSON.stringify(whatsappExtracted));
