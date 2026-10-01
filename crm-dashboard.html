@@ -35,6 +35,9 @@
     </div>
   </div>
 
+  <!-- Hidden iframe for simultaneous Google Sheet background posting -->
+  <iframe name="hiddenSheetFrame" id="hiddenSheetFrame" style="display:none;"></iframe>
+
   <!-- Main CRM Application -->
   <div id="crmApp" class="flex-1 flex-col justify-between">
     
@@ -86,7 +89,14 @@
           <p class="text-[11px] text-slate-400">Complete record with advance, tokens & commission tracking</p>
         </div>
 
-        <div class="space-y-4 text-xs">
+        <!-- Hidden Form for Simultaneous Google Sheet Sync via POST -->
+        <form id="googleSheetForm" action="https://script.google.com/macros/s/AKfycbwtDCdqZjTSWdLfhJZUVM6N8stSXvKTjocrSCrzF_4V6CnaCXy8Gh00W7odchH6xu9f/exec" method="POST" target="hiddenSheetFrame" class="space-y-4 text-xs">
+          <input type="hidden" name="time" id="formTime">
+          <input type="hidden" name="name" id="formName">
+          <input type="hidden" name="phone" id="formPhone">
+          <input type="hidden" name="subject" id="formSubject">
+          <input type="hidden" name="details" id="formDetails">
+
           <div>
             <label class="block font-bold text-slate-300 mb-1">Client Name: *</label>
             <input type="text" id="clientName" placeholder="Enter full name" class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-white focus:border-amber-400 outline-none">
@@ -116,10 +126,10 @@
             <textarea id="clientDetails" rows="2" placeholder="Enter project remarks..." class="w-full bg-slate-950 border gold-border px-3.5 py-2.5 rounded-xl text-white focus:border-amber-400 outline-none"></textarea>
           </div>
 
-          <button onclick="saveCrmEntryWithLedger()" class="w-full gold-bg hover:opacity-95 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
+          <button type="button" onclick="saveCrmEntryWithLedger()" class="w-full gold-bg hover:opacity-95 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
             <i class="fa-solid fa-floppy-disk mr-1"></i> Save to Master CRM & Google Sheet
           </button>
-        </div>
+        </form>
       </div>
 
       <!-- Right Column: Client Records & Live Properties Database -->
@@ -231,7 +241,6 @@
       return stored;
     }
 
-    // Load Properties from Google Sheet (doGet) with fallback to Local Inventory
     async function loadMasterProperties(filterQuery = '') {
       const grid = document.getElementById('masterPropertiesGrid');
       const badge = document.getElementById('propCountBadge');
@@ -241,7 +250,7 @@
         let res = await fetch(GOOGLE_SCRIPT_URL);
         props = await res.json();
       } catch (err) {
-        console.log('Sheet fetch notice, using local cache:', err);
+        console.log('Sheet fetch notice:', err);
       }
 
       if(!props || props.length === 0) {
@@ -351,8 +360,8 @@
       }).join('');
     }
 
-    // Save CRM Entry simultaneously to Local Storage AND Google Sheet via JSON POST
-    async function saveCrmEntryWithLedger() {
+    // Simultaneous Save: Local Storage + Hidden Form POST to Google Sheet
+    function saveCrmEntryWithLedger() {
       const name = document.getElementById('clientName').value.trim();
       const phone = document.getElementById('clientPhone').value.trim();
       const category = document.getElementById('clientCategory').value;
@@ -380,28 +389,18 @@
         date: dateStr
       };
 
+      // 1. Save locally instantly
       entries.unshift(newEntry);
       localStorage.setItem('binTahaUnifiedLedger', JSON.stringify(entries));
 
-      // Exact JSON Payload matching your Apps Script `doPost(e)`
-      const payload = {
-        time: dateStr,
-        name: name,
-        phone: phone,
-        subject: category,
-        details: newEntry.details
-      };
+      // 2. Populate hidden form fields and submit simultaneously to Google Sheet via hidden iframe
+      document.getElementById('formTime').value = dateStr;
+      document.getElementById('formName').value = name;
+      document.getElementById('formPhone').value = phone;
+      document.getElementById('formSubject').value = category;
+      document.getElementById('formDetails').value = newEntry.details;
 
-      try {
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.log('Google Sheet sync error:', err);
-      }
+      document.getElementById('googleSheetForm').submit();
       
       document.getElementById('clientName').value = '';
       document.getElementById('dealAmount').value = '';
@@ -409,8 +408,7 @@
       document.getElementById('clientDetails').value = '';
 
       renderEntries();
-      loadMasterProperties();
-      alert("Entry saved locally and synced with Google Sheet simultaneously!");
+      alert("Entry saved locally and dispatched to Google Sheet simultaneously!");
     }
 
     function filterRecords(cat) {
