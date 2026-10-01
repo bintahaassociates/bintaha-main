@@ -38,31 +38,35 @@
   <!-- Main CRM Application -->
   <div id="crmApp" class="flex-1 flex-col justify-between">
     
-    <!-- Header -->
+    <!-- Header with Golden Background Matching Theme -->
     <header class="gold-bg border-b border-amber-600/50 py-4 px-6 space-y-3 shadow-lg">
       <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center overflow-hidden shadow-lg">
-            <img src="logo.png" alt="Logo" class="w-full h-full object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
           </div>
           <div>
             <h1 class="text-base font-black text-slate-950">Bin Taha Associates • Master Enterprise CRM</h1>
-            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">Payment Ledger & Google Sheet Sync Active</p>
+            <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">11-Point Engine & Payment Ledger Active</p>
           </div>
         </div>
         
-        <!-- Live Time Zones & Vault -->
+        <!-- Live Multi-City Time Zones Bar -->
         <div class="flex items-center gap-2 flex-wrap text-[11px]">
           <div class="bg-slate-950 border gold-border px-2.5 py-1.5 rounded-xl text-emerald-400 font-semibold shadow">
             🇵🇰 PK: <span id="tzPk" class="font-bold text-white">--:--</span>
           </div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1.5 rounded-xl text-amber-300 font-semibold shadow">
+            🇦🇪 Dubai: <span id="tzDubai" class="font-bold text-white">--:--</span>
+          </div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1.5 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="tzLondon" class="font-bold text-white">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1.5 rounded-xl text-rose-400 font-semibold shadow">
             <i class="fa-solid fa-vault mr-1"></i> Vault: <span id="totalVaultBalance" class="font-bold text-white">PKR 0</span>
           </div>
         </div>
       </div>
 
-      <!-- Navigation Links Bar (Clean and Correct) -->
+      <!-- Navigation Links Bar -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-amber-600/40">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
           <a href="index.html" class="bg-slate-950 text-amber-300 px-3 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
@@ -185,14 +189,17 @@
     function updateClocks() {
       const now = new Date();
       const pk = document.getElementById('tzPk');
+      const db = document.getElementById('tzDubai');
+      const ld = document.getElementById('tzLondon');
       if(pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      if(db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      if(ld) ld.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateClocks, 1000);
 
     function getStoredEntries() {
       let defaultData = [
-        { id: 1, name: "Junaid Ali", phone: "03214776676", category: "Property", deal: 15000000, paid: 1500000, details: "LDA Avenue 1 Plot Buy", date: "31/08/2026" },
-        { id: 2, name: "Ch Sahide Gujjer", phone: "03001234567", category: "Property", deal: 25000000, paid: 2500000, details: "Jubilee Town Villa Booking", date: "01/09/2026" }
+        { id: 1, name: "Junaid Ali", phone: "03214776676", category: "Property", deal: 15000000, paid: 1500000, details: "LDA Avenue 1 Plot Buy", date: "31/08/2026" }
       ];
       let stored = JSON.parse(localStorage.getItem('binTahaUnifiedLedger') || 'null');
       if(!stored || stored.length < 1) {
