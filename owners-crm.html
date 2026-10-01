@@ -9,6 +9,8 @@
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
     .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    .gold-border { border-color: rgba(252, 211, 77, 0.4); }
+    .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
     #globalApp { display: none; }
   </style>
 </head>
@@ -21,12 +23,12 @@
         <i class="fa-solid fa-earth-americas"></i>
       </div>
       <div>
-        <h2 class="text-xl font-black text-white">Global PropTech Engine</h2>
+        <h2 class="text-xl font-black text-white">Global Owners CRM</h2>
         <p class="text-xs text-amber-400 font-bold mt-1">CEO Taha Mobeen Bhutta • Bin Taha Associates</p>
       </div>
       <input type="password" id="masterPin" placeholder="Enter Master PIN" autocomplete="off" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
       <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
-        Unlock Global Engine
+        Unlock Owners CRM
       </button>
       <p id="pinError" class="text-rose-400 text-xs font-bold hidden">Incorrect PIN! Access Denied.</p>
     </div>
@@ -40,11 +42,11 @@
       <div class="flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
-            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
           </div>
           <div>
-            <h1 class="text-base font-black text-white">Bin Taha Associates • Global PropTech Engine</h1>
-            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Multi-Currency, World Clocks & Account Management Active</p>
+            <h1 class="text-base font-black text-white">Bin Taha Associates • Global Owners CRM</h1>
+            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Multi-Currency, World Clocks & Unified Sync Active</p>
           </div>
         </div>
 
@@ -53,31 +55,25 @@
           <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-amber-400 font-semibold">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
       </div>
 
-      <!-- Navigation & Global Currency Converter (Corrected Accounting & Dealers Links) -->
+      <!-- Navigation Links Bar Matching All Pages -->
       <div class="flex justify-between items-center gap-2 pt-2 flex-wrap">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="https://bintahaassociates.github.io/bintaha-acconting/" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
-          <a href="crm-dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-          <a href="owners-crm.html" class="bg-amber-400 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-earth-americas mr-1"></i> Global Owners CRM</a>
-          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
-          <a href="https://bintahaassociates.github.io/bintaha-acconting/dealers.html" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-address-book mr-1"></i> Master Directory</a>
-          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
-          <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services Hub</a>
-          <a href="https://bintahaassociates.github.io/bintaha-acconting/data-entry.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
+          <a href="https://bintahaassociates.github.io/bintaha-acconting/" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+          <a href="crm-dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-amber-400 text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-earth-americas mr-1"></i> Owners CRM</a>
+          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-3 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
         </div>
 
         <!-- World Currency Widget -->
         <div class="bg-slate-950 border border-slate-800 px-3 py-1 rounded-xl flex items-center gap-2 text-xs">
-          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Global Currency:</span>
+          <span class="text-amber-400 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
           <select id="currSelect" onchange="convertGlobalCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border border-slate-700 outline-none">
             <option value="USD">USD ($)</option>
             <option value="AED">AED (Dh)</option>
             <option value="GBP">GBP (£)</option>
-            <option value="SAR">SAR (SR)</option>
           </select>
           <input type="number" id="currVal" value="50000" onkeyup="convertGlobalCurrency()" class="w-20 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border border-slate-700 outline-none">
           <span id="currResult" class="text-emerald-400 font-bold">= PKR 14,000,000</span>
@@ -117,24 +113,23 @@
       <div class="bg-slate-900 border border-amber-500/40 p-6 rounded-3xl shadow-2xl gold-glow space-y-4">
         <div class="flex flex-wrap justify-between items-center gap-3">
           <h3 class="text-sm font-black text-white flex items-center gap-2">
-            <i class="fa-solid fa-database text-amber-400"></i> Unique Multi-Category Database & GPS / Call Logs
+            <i class="fa-solid fa-database text-amber-400"></i> Owners Directory & GPS / Call Logs
           </h3>
           <div class="flex gap-1.5 flex-wrap">
             <button onclick="filterCategory('All')" class="bg-amber-500 text-slate-950 px-3 py-1 rounded-lg text-xs font-black shadow cursor-pointer">All Records</button>
             <button onclick="filterCategory('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Property</button>
             <button onclick="filterCategory('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Construction</button>
-            <button onclick="filterCategory('Material')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg text-xs font-bold cursor-pointer">Material & Services</button>
           </div>
         </div>
         <div class="flex gap-3">
-          <input type="text" id="globalSearchInput" onkeyup="searchGlobalDirectory()" placeholder="Search by Plot No (e.g. 798), Owner Name, Phone or Society..." class="flex-1 bg-slate-950 border border-slate-700 p-3 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500">
+          <input type="text" id="globalSearchInput" onkeyup="searchGlobalDirectory()" placeholder="Search by Plot No, Owner Name, Phone or Society..." class="flex-1 bg-slate-950 border border-slate-700 p-3 rounded-xl text-xs text-white font-semibold outline-none focus:border-amber-500">
         </div>
       </div>
 
       <!-- Confidential Directory Table -->
       <div class="bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-          <h3 class="text-sm font-black text-white">Global Enterprise Leads, GPS & Automatic WhatsApp Drip</h3>
+          <h3 class="text-sm font-black text-white">Owners Leads, GPS & Automatic WhatsApp Drip</h3>
           <span class="text-xs text-amber-400 font-bold" id="recordCount">Total Records: Loading...</span>
         </div>
         <div class="overflow-x-auto">
@@ -160,12 +155,14 @@
 
     <!-- Footer -->
     <footer class="bg-slate-950 text-slate-500 py-6 text-xs border-t border-slate-800 text-center">
-      <p>&copy; 2026 Bin Taha Associates. Global PropTech Enterprise Engine secured for CEO Taha Mobeen Bhutta.</p>
+      <p>&copy; 2026 Bin Taha Associates. Global Owners CRM secured for CEO Taha Mobeen Bhutta.</p>
     </footer>
 
   </div>
 
   <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
+
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
       const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
@@ -192,10 +189,12 @@
 
     function updateWorldClocks() {
       const now = new Date();
-      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
+      const pk = document.getElementById('clockPk');
+      const db = document.getElementById('clockDubai');
+      const ld = document.getElementById('clockLondon');
+      if(pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      if(db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      if(ld) ld.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateWorldClocks, 1000);
 
@@ -205,7 +204,6 @@
       let rate = 280;
       if(type === 'AED') rate = 76;
       if(type === 'GBP') rate = 355;
-      if(type === 'SAR') rate = 75;
       let total = val * rate;
       document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
     }
@@ -260,9 +258,8 @@
         `;
       }).join('');
 
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
-      if (googleScriptUrl) {
-        fetch(googleScriptUrl, {
+      if (GOOGLE_SCRIPT_URL) {
+        fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'sync_global_engine', totalRecords: data.length, time: new Date().toISOString() })
