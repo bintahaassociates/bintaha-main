@@ -159,46 +159,31 @@
         <a href="tel:03219404812" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black shadow">
           <i class="fa-solid fa-phone"></i> 0321-9404812
         </a>
+        <!-- Top Bar Quick App Buttons -->
+<div class="flex items-center gap-1.5 ml-2">
+  <!-- PWA / Web Fast Install -->
+  <button id="pwaFastInstallBtn" class="bg-black/80 hover:bg-black text-amber-300 border border-amber-400 text-xs px-2.5 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Fast Install">
+    <span>⚡</span><span>Install App</span>
+  </button>
+
+  <!-- Android APK -->
+  <a href="./Bin%20Taha.apk" download="Bin Taha.apk" class="bg-black/80 hover:bg-black text-emerald-400 border border-emerald-500 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Download Android APK">
+    <span>🤖</span><span>APK</span>
+  </a>
+
+  <!-- Apple iOS -->
+  <button onclick="openAppleGuide()" class="bg-black/80 hover:bg-black text-white border border-slate-400 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="iPhone Install Guide">
+    <span>🍎</span><span>iOS</span>
+  </button>
+
+  <!-- Windows PC -->
+  <button onclick="installWindowsApp()" class="bg-black/80 hover:bg-black text-cyan-300 border border-cyan-400 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Windows App">
+    <span>💻</span><span>PC</span>
+  </button>
+</div>
       </div>
     </div>
   </div>
-<!-- Bin Taha App Download & Install Hub -->
-<section id="download-app-hub" style="background: #0d0f12; border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 18px; padding: 25px 20px; max-width: 900px; margin: 30px auto; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
-    <div style="font-size: 13px; color: #d4af37; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 5px;">Enterprise Mobile Experience</div>
-    <h3 style="color: #ffffff; font-size: 22px; margin-bottom: 10px;">Download Bin Taha App</h3>
-    <p style="color: #a0aec0; font-size: 14px; margin-bottom: 22px;">اپنے موبائل یا لیپ ٹاپ پر بن طاہا کنسول ڈاؤن لوڈ اور انسٹال کریں</p>
-
-    <!-- Fast Web Install Button -->
-    <div style="margin-bottom: 25px;">
-        <button id="pwaFastInstallBtn" style="background: linear-gradient(135deg, #d4af37, #aa7c11); color: #000; border: none; padding: 12px 28px; border-radius: 30px; font-size: 15px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);">
-            <span>⚡ 1-Click Fast Web Install (All Devices)</span>
-        </button>
-    </div>
-
-    <!-- 3 Platforms Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-        <!-- Android Direct APK -->
-        <a href="./Bin%20Taha.apk" download="Bin Taha.apk" style="background: #141820; border: 1px solid #2a3240; border-radius: 12px; padding: 18px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <div style="font-size: 32px; color: #3ddc84;">🤖</div>
-            <div style="color: #ffffff; font-weight: 600; font-size: 15px;">Android</div>
-            <div style="color: #d4af37; font-size: 12px; border: 1px solid #d4af37; padding: 4px 12px; border-radius: 15px;">Download .APK</div>
-        </a>
-
-        <!-- Apple iOS -->
-        <a href="javascript:void(0)" onclick="openAppleGuide()" style="background: #141820; border: 1px solid #2a3240; border-radius: 12px; padding: 18px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <div style="font-size: 32px; color: #ffffff;">🍎</div>
-            <div style="color: #ffffff; font-weight: 600; font-size: 15px;">Apple iOS</div>
-            <div style="color: #d4af37; font-size: 12px; border: 1px solid #d4af37; padding: 4px 12px; border-radius: 15px;">Install for iPhone</div>
-        </a>
-
-        <!-- Windows PC -->
-        <a href="javascript:void(0)" onclick="installWindowsApp()" style="background: #141820; border: 1px solid #2a3240; border-radius: 12px; padding: 18px; text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <div style="font-size: 32px; color: #00a4ef;">💻</div>
-            <div style="color: #ffffff; font-weight: 600; font-size: 15px;">Windows PC</div>
-            <div style="color: #d4af37; font-size: 12px; border: 1px solid #d4af37; padding: 4px 12px; border-radius: 15px;">Install Desktop App</div>
-        </a>
-    </div>
-</section>
   <!-- Live Market Ticker -->
   <div class="gold-bg text-slate-950 text-xs font-black py-2.5 px-4 shadow-xl flex items-center justify-between overflow-hidden">
     <div class="market-ticker-track flex items-center gap-6 uppercase tracking-wider text-xs">
