@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(() => console.log('ServiceWorker registered'))
+            .catch(err => console.log('SW registration failed: ', err));
+        });
+      }
+    </script>
   
   <!-- SEO & Google Ranking Meta Tags -->
   <title>Bin Taha Associates | Best Construction & Real Estate Company in Lahore</title>
