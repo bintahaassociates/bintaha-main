@@ -1,211 +1,690 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bin Taha Associates • Master CRM & Google Sheet Sync</title>
+  <title>Master Enterprise CRM & Payment Ledger | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-    .gold-text { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
-    .gold-border { border-color: rgba(252, 211, 77, 0.4); }
-    .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
-    .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.35); }
-    .glass-card { background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.35); }
-
-    @keyframes eagle3DRotate {
-      0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
-      50% { transform: perspective(1000px) rotateY(180deg) scale(1.12); filter: drop-shadow(0 0 40px rgba(252, 211, 77, 1)); }
-      100% { transform: perspective(1000px) rotateY(360deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
-    }
-    .moving-eagle-3d {
-      animation: eagle3DRotate 6s infinite linear;
-      transform-style: preserve-3d;
-    }
-
-    @keyframes tickerScroll {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-    .ticker-wrap { overflow: hidden; white-space: nowrap; }
-    .ticker-move { display: inline-block; animation: tickerScroll 28s linear infinite; }
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
+    .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
+    #crmApp { display: none; }
   </style>
-</head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
-  <!-- Live Market Ticker Bar -->
-  <div class="gold-bg text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
-    <span class="bg-slate-950 text-amber-300 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow border gold-border">🚀 Master CRM & Sheet Sync Active</span>
-    <div class="ticker-wrap w-full">
-      <div class="ticker-move">
-        <span>Bin Taha Associates Enterprise Control Center</span> &bull; 
-        <span>Real-Time Client Inquiries & Lead Management</span> &bull; 
-        <span>LDA Avenue 1, Jubilee Town & Raiwind Road Operations</span>
+<style id="luxury-gold-theme">
+  /* 1. Royal Metallic Golden Header & Navigation */
+  header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
+    background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
+    border-bottom: 2px solid #ffd700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* Header Links, Headings & Text */
+  header a, header button, header span, header p, header h1, header h2, header div,
+  nav a, nav button, nav span {
+    color: #111111 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
+  header [class*="bg-black"], header [class*="bg-slate-950"], 
+  header [class*="rounded-full"], header [class*="rounded-pill"],
+  header select, header input {
+    background: #0b0f19 !important;
+    border: 1px solid #d4af37 !important;
+    color: #ffffff !important;
+  }
+  header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
+    color: #f8fafc !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+  }
+  /* Currency inputs & text */
+  header input, header select {
+    color: #ffd700 !important;
+    font-weight: bold !important;
+  }
+
+  /* 3. 3D Embossed Luxury Golden Buttons */
+  button, .btn, a.gold-bg, button.gold-bg,
+  [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
+  header a[href], header button,
+  main button, main .btn {
+    background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
+    color: #0a0a0a !important;
+    border: 1px solid #ffe57f !important;
+    border-bottom: 2px solid #7d5707 !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.2s ease-in-out !important;
+  }
+
+  /* Hover State */
+  button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
+  header a[href]:hover, header button:hover {
+    filter: brightness(1.12) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+</style>
+
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Master Security Login Gate Overlay -->
+  <div id="securityGate" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/50 p-8 rounded-3xl max-w-sm w-full space-y-6 shadow-2xl text-center gold-glow">
+      <div class="w-16 h-16 bg-amber-500 text-slate-950 rounded-2xl mx-auto flex items-center justify-center font-black text-2xl shadow">
+        <i class="fa-solid fa-shield-halved"></i>
       </div>
+      <div>
+        <h2 class="text-xl font-black text-white">Restricted Master CRM</h2>
+        <p class="text-xs text-amber-400 font-bold mt-1">CEO Taha Mobeen Bhutta • Bin Taha Associates</p>
+      </div>
+      <input type="password" id="masterPin" placeholder="Enter Master PIN" autocomplete="off" class="w-full bg-slate-950 border border-slate-700 px-4 py-3 rounded-xl text-center text-sm text-white focus:border-amber-500 outline-none font-bold">
+      <button onclick="verifyMasterPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
+        Unlock Master CRM
+      </button>
+      <p id="pinError" class="text-rose-400 text-xs font-bold hidden">Incorrect PIN! Access Denied.</p>
     </div>
   </div>
 
-  <!-- Top Header -->
-  <header class="gold-bg border-b border-amber-600/50 py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl shadow-lg">
-    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-12 h-12 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
-          <img src="logo.png" alt="Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        </div>
-        <div>
-          <h1 class="text-base font-black text-slate-950 leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-slate-900 font-black uppercase tracking-wider">Master CRM Dashboard</p>
-        </div>
-      </a>
-
-      <!-- World Clocks -->
-      <div class="flex items-center gap-2 flex-wrap text-[11px]">
-        <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
-      </div>
-    </div>
-
-    <!-- Navigation Bar -->
-    <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-amber-600/40">
-      <div class="flex gap-2 flex-wrap text-xs font-bold">
-        <a href="index.html" class="bg-slate-950 hover:bg-slate-900 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
-        <a href="crm-dashboard.html" class="bg-slate-950 text-amber-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-        <a href="properties.html" class="bg-slate-950 hover:bg-slate-900 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
-        <a href="add-property.html" class="bg-slate-950 hover:bg-slate-900 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-circle-plus mr-1"></i> Post Listing</a>
-      </div>
-      <div class="text-xs text-slate-950 font-black bg-white/40 px-3 py-1.5 rounded-xl border border-amber-600/40 shadow">
-        <i class="fa-solid fa-phone-volume text-slate-950 mr-1"></i> CEO Hotline: 0321-9404812
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content Area -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-10">
+  <!-- Main CRM Application -->
+  <div id="crmApp" class="flex-1 flex-col justify-between">
     
-    <!-- Hero Banner -->
-    <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
-      <div class="space-y-3 relative z-10">
-        <span class="gold-bg text-slate-950 border gold-border text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider shadow">Executive Management Portal</span>
-        <h2 class="text-2xl sm:text-4xl font-black gold-text">Master CRM & Lead Database</h2>
-        <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Tracking all client inquiries, property listings, and operations in real-time under CEO Taha Mobeen Bhutta.</p>
-      </div>
-      <div class="flex gap-3">
-        <a href="add-property.html" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-3.5 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap uppercase tracking-wider">
-          <i class="fa-solid fa-plus mr-1"></i> Add Property
-        </a>
-      </div>
-    </div>
-
-    <!-- Stats Overview Cards -->
-    <div class="grid sm:grid-cols-3 gap-6">
-      <div class="glass-card p-6 rounded-3xl shadow-xl space-y-2 border gold-border">
-        <span class="text-[10px] text-amber-300 font-black uppercase tracking-wider">Total Active Leads / Inquiries</span>
-        <h3 id="statTotalLeads" class="text-3xl font-black text-white">0</h3>
-        <p class="text-[11px] text-slate-400">Synced directly from Google Sheet CRM logs.</p>
-      </div>
-      <div class="glass-card p-6 rounded-3xl shadow-xl space-y-2 border gold-border">
-        <span class="text-[10px] text-emerald-400 font-black uppercase tracking-wider">Total Properties Listed</span>
-        <h3 id="statTotalProps" class="text-3xl font-black text-white">0</h3>
-        <p class="text-[11px] text-slate-400">Active verified real estate files.</p>
-      </div>
-      <div class="glass-card p-6 rounded-3xl shadow-xl space-y-2 border gold-border">
-        <span class="text-[10px] text-cyan-400 font-black uppercase tracking-wider">System Status</span>
-        <h3 class="text-3xl font-black text-emerald-400">Online</h3>
-        <p class="text-[11px] text-slate-400">Google Apps Script Connected & Active.</p>
-      </div>
-    </div>
-
-    <!-- Leads Table Section -->
-    <div class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6">
-      <div class="flex justify-between items-center flex-wrap gap-3 border-b border-slate-800 pb-4">
-        <div>
-          <h3 class="text-base font-black text-white"><i class="fa-solid fa-address-book text-amber-300 mr-2"></i> Recent Leads & Inquiries Log</h3>
-          <p class="text-xs text-slate-400">All customer interactions and property submissions.</p>
+    <!-- Header with Branding & Multi-Time Zones -->
+    <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 space-y-3">
+      <div class="flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain">
+          </div>
+          <div>
+            <h1 class="text-lg font-black text-white">Bin Taha Associates • Master Enterprise CRM</h1>
+            <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Live Sheet Sync • Properties • Services • Ledger</p>
+          </div>
         </div>
-        <button onclick="loadCrmLeads()" class="gold-bg text-slate-950 px-4 py-2 rounded-xl font-black text-xs shadow cursor-pointer">
-          <i class="fa-solid fa-rotate mr-1"></i> Refresh CRM Data
+        
+        <div class="flex items-center gap-2 flex-wrap text-[11px]">
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-emerald-400 font-semibold">
+            🇵🇰 PK: <span id="tzPk" class="font-bold text-white">--:--</span>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-amber-400 font-semibold">
+            🇦🇪 Dubai: <span id="tzDubai" class="font-bold text-white">--:--</span>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-cyan-400 font-semibold">🇬🇧 London: <span id="tzLondon" class="font-bold text-white">--:--</span></div>
+          <div class="bg-slate-950 border border-slate-800 px-2.5 py-1.5 rounded-xl text-rose-400 font-semibold">
+            <i class="fa-solid fa-vault mr-1"></i> Vault: <span id="totalVaultBalance" class="font-bold text-white">PKR 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between items-center gap-2 pt-2 flex-wrap border-t border-slate-800">
+        <div class="flex gap-2 flex-wrap text-xs font-bold">
+          <a href="https://bintahaassociates.github.io/bintaha-acconting/index.html" class="bg-amber-500 text-slate-950 px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
+          <a href="crm-dashboard.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
+          <a href="owners-crm.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-earth-americas mr-1"></i> Owners Directory</a>
+          <a href="inbox.html" class="bg-slate-800 hover:bg-slate-700 text-purple-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-inbox mr-1"></i> CRM Inbox</a>
+          <a href="add-property.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-plus mr-1"></i> Post Listing</a>
+          <a href="properties.html" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services Hub</a>
+          <a href="https://bintahaassociates.github.io/bintaha-acconting/data-entry.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
+        </div>
+        <button onclick="refreshLiveCrmData()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl transition shadow">
+          <i class="fa-solid fa-rotate mr-1"></i> Refresh Live Data
         </button>
       </div>
+    </header>
 
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-950 text-amber-300 uppercase font-black text-[10px] border-b gold-border">
-            <tr>
-              <th class="p-3.5">Time / Date</th>
-              <th class="p-3.5">Client / Sender</th>
-              <th class="p-3.5">Phone Number</th>
-              <th class="p-3.5">Subject / Category</th>
-              <th class="p-3.5">Details / Remarks</th>
-            </tr>
-          </thead>
-          <tbody id="crmTableBody" class="divide-y divide-slate-800/60 font-semibold">
-            <tr><td colspan="5" class="p-6 text-center text-slate-500">Loading CRM logs from Google Sheet...</td></tr>
-          </tbody>
-        </table>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-8">
+
+      <!-- Live Stats -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-slate-900 border border-amber-500/30 p-5 rounded-3xl shadow-xl">
+          <p class="text-[11px] text-amber-400 font-bold uppercase">Total Properties</p>
+          <h3 id="statProperties" class="text-3xl font-black text-amber-400 mt-1">0</h3>
+          <p id="propertiesSyncHint" class="text-[10px] text-slate-500 mt-1">Sheet + local inventory</p>
+        </div>
+        <div class="bg-slate-900 border border-cyan-500/30 p-5 rounded-3xl shadow-xl">
+          <p class="text-[11px] text-cyan-400 font-bold uppercase">Service Inquiries</p>
+          <h3 id="statServices" class="text-3xl font-black text-cyan-400 mt-1">0</h3>
+          <p class="text-[10px] text-slate-500 mt-1">Bookings & service leads</p>
+        </div>
+        <div class="bg-slate-900 border border-purple-500/30 p-5 rounded-3xl shadow-xl">
+          <p class="text-[11px] text-purple-300 font-bold uppercase">CRM Leads</p>
+          <h3 id="statLeads" class="text-3xl font-black text-purple-300 mt-1">0</h3>
+          <p class="text-[10px] text-slate-500 mt-1">Inbox & contact messages</p>
+        </div>
+        <div class="bg-slate-900 border border-emerald-500/30 p-5 rounded-3xl shadow-xl">
+          <p class="text-[11px] text-emerald-400 font-bold uppercase">Ledger Entries</p>
+          <h3 id="statLedger" class="text-3xl font-black text-emerald-400 mt-1">0</h3>
+          <p class="text-[10px] text-slate-500 mt-1">Payment ledger records</p>
+        </div>
       </div>
-    </div>
 
-  </main>
+      <!-- Live Properties -->
+      <section class="bg-slate-900 border border-amber-500/30 p-6 rounded-3xl shadow-2xl space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <h2 class="text-base font-black text-white"><i class="fa-solid fa-building text-amber-400 mr-2"></i>Live Properties</h2>
+            <p class="text-[11px] text-slate-400">Fetched from Google Sheet (<code class="text-amber-400">?type=properties</code>) + <code class="text-amber-400">bintaha_full_inventory</code></p>
+          </div>
+          <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl">Add Property</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3">Title</th>
+                <th class="p-3">Location / Society</th>
+                <th class="p-3">Price</th>
+                <th class="p-3">Contact</th>
+                <th class="p-3 text-right">Type</th>
+              </tr>
+            </thead>
+            <tbody id="livePropertiesBody" class="divide-y divide-slate-800/60">
+              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">Loading live properties...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-  <!-- Footer -->
-  <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t gold-border text-center space-y-2">
-    <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
-  </footer>
+      <!-- Live Services -->
+      <section class="bg-slate-900 border border-cyan-500/30 p-6 rounded-3xl shadow-2xl space-y-4">
+        <div class="flex flex-wrap justify-between items-center gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <h2 class="text-base font-black text-white"><i class="fa-solid fa-bolt text-cyan-400 mr-2"></i>Service Inquiries</h2>
+            <p class="text-[11px] text-slate-400">Service bookings from Sheet + local CRM storage</p>
+          </div>
+          <a href="services.html" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black px-3 py-2 rounded-xl">Services Hub</a>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
+              <tr>
+                <th class="p-3">Client</th>
+                <th class="p-3">Service</th>
+                <th class="p-3">Location</th>
+                <th class="p-3">Phone</th>
+                <th class="p-3 text-right">Details</th>
+              </tr>
+            </thead>
+            <tbody id="liveServicesBody" class="divide-y divide-slate-800/60">
+              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">Loading service inquiries...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Ledger Split Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Left Column: Add New Client & Payment Ledger -->
+      <div class="lg:col-span-5 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-5 h-fit">
+        <div class="border-b border-slate-800 pb-3">
+          <h2 class="text-base font-black text-white"><i class="fa-solid fa-file-circle-plus text-amber-400 mr-2"></i> Add New Client & Payment Ledger</h2>
+          <p class="text-[11px] text-slate-400">Complete record with advance, tokens & commission tracking</p>
+        </div>
+
+        <div class="space-y-4 text-xs">
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Client Name: *</label>
+            <input type="text" id="clientName" placeholder="Enter full name" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Phone / WhatsApp Number: *</label>
+            <input type="text" id="clientPhone" placeholder="0300-1234567" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none" value="923219404812">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Service / Category: *</label>
+            <select id="clientCategory" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none font-semibold">
+              <option value="Property">Property Buy / Sell</option>
+              <option value="Construction">Civil Construction</option>
+              <option value="Material & Services">Material & Services</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Total Deal Amount (PKR):</label>
+            <input type="number" id="dealAmount" placeholder="e.g. 15000000" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Received Payment / Token (PKR):</label>
+            <input type="number" id="paidAmount" placeholder="e.g. 1500000" class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-300 mb-1">Details / Remarks (Plot No, Society, etc.):</label>
+            <textarea id="clientDetails" rows="2" placeholder="Enter project remarks..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-white focus:border-amber-500 outline-none"></textarea>
+          </div>
+
+          <button onclick="saveCrmEntryWithLedger()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 py-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer">
+            <i class="fa-solid fa-floppy-disk mr-1"></i> Save to Master CRM & Ledger
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Client Records, Ledger & Filters -->
+      <div class="lg:col-span-7 bg-slate-900 border border-slate-800 p-6 rounded-3xl shadow-2xl space-y-5">
+        <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-800 pb-3">
+          <div>
+            <h2 class="text-base font-black text-white">Master Records & Payment Ledger</h2>
+            <p class="text-[11px] text-slate-400">Financial tracking and category filtering</p>
+          </div>
+          <div class="flex gap-1.5 flex-wrap">
+            <button onclick="filterRecords('All')" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg text-xs font-black shadow cursor-pointer">All Records</button>
+            <button onclick="filterRecords('Property')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Property</button>
+            <button onclick="filterRecords('Construction')" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer">Construction</button>
+          </div>
+        </div>
+
+        <div>
+          <input type="text" id="searchInput" onkeyup="searchRecords()" placeholder="Search by name or phone number..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2 rounded-xl text-xs text-white focus:border-amber-500 outline-none">
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex justify-between items-center text-xs">
+            <span id="totalEntriesCount" class="bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-lg font-bold">0 Entries</span>
+            <button onclick="clearAllEntries()" class="text-rose-400 hover:text-rose-300 text-[11px] font-bold cursor-pointer"><i class="fa-solid fa-trash mr-1"></i> Clear All</button>
+          </div>
+
+          <div id="entriesContainer" class="space-y-3 max-h-[480px] overflow-y-auto pr-1">
+            <!-- Dynamic Data -->
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </main>
+
+    <footer class="bg-slate-950 text-slate-500 py-6 text-xs border-t border-slate-800 text-center">
+      <p>&copy; 2026 Bin Taha Associates. Secured Master CRM & Payment Ledger for CEO Taha Mobeen Bhutta.</p>
+    </footer>
+
+  </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxYVtGzeDtG7gqvjZwHFCHC_Yxa1lpoNiG0mBSCunieE39k7WqgxwQcthCEKkQl8vyX/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
+    const INVENTORY_KEY = 'bintaha_full_inventory';
+    const HUB_KEY = 'bintaha_properties_hub';
+    const SERVICES_KEY = 'bintaha_service_bookings';
+    const INBOX_KEY = 'bintaha_inbox_messages';
+    const LEDGER_KEY = 'binTahaUnifiedLedger';
 
-    function updateClocks() {
-      const now = new Date();
-      const pk = document.getElementById('clockPk');
-      const db = document.getElementById('clockDubai');
-      if(pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
-      if(db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
-    }
-    setInterval(updateClocks, 1000);
-
-    async function loadCrmLeads() {
-      const tbody = document.getElementById('crmTableBody');
-      const statLeads = document.getElementById('statTotalLeads');
-      const statProps = document.getElementById('statTotalProps');
-
-      let localProps = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
-      if(statProps) statProps.innerText = localProps.length;
-
-      try {
-        let response = await fetch(GOOGLE_SCRIPT_URL);
-        let data = await response.json();
-        
-        if(data && Array.isArray(data)) {
-          if(statProps) statProps.innerText = data.length;
-          if(statLeads) statLeads.innerText = data.length;
-
-          if(data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500">No records found in database.</td></tr>`;
-            return;
-          }
-
-          tbody.innerHTML = data.map(item => `
-            <tr class="hover:bg-slate-900/60 transition">
-              <td class="p-3.5 text-slate-400 font-mono">${item.time || 'N/A'}</td>
-              <td class="p-3.5 font-bold text-white">${item.title || item.name || 'Property Owner'}</td>
-              <td class="p-3.5 text-amber-300 font-mono">${item.phone || '03219404812'}</td>
-              <td class="p-3.5"><span class="bg-slate-900 text-cyan-400 px-2 py-0.5 rounded text-[10px] font-black border gold-border">${item.type || 'Inquiry'}</span></td>
-              <td class="p-3.5 text-slate-300">${item.society ? ('Society: ' + item.society + ' | Demand: PKR ' + Number(item.price || 0).toLocaleString()) : (item.desc || item.details || 'N/A')}</td>
-            </tr>
-          `).join('');
-        }
-      } catch (err) {
-        console.log('CRM Load notice:', err);
-        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-rose-400">Loaded from local cache. Google Sheet connection standby.</td></tr>`;
+    function verifyMasterPin() {
+      const pin = document.getElementById('masterPin').value.trim();
+      const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
+      if(pin === savedPin || pin === '03219404812') {
+        document.getElementById('securityGate').style.display = 'none';
+        document.getElementById('crmApp').style.display = 'flex';
+        document.getElementById('pinError').classList.add('hidden');
+        refreshLiveCrmData();
+      } else {
+        document.getElementById('pinError').classList.remove('hidden');
+        document.getElementById('crmApp').style.display = 'none';
+        document.getElementById('securityGate').style.display = 'flex';
       }
     }
 
     window.onload = function() {
+      document.getElementById('securityGate').style.display = 'flex';
+      document.getElementById('crmApp').style.display = 'none';
+      document.getElementById('masterPin').value = '';
+
+      renderEntries();
       updateClocks();
-      loadCrmLeads();
+      refreshLiveCrmData();
     };
+
+    function updateClocks() {
+      const now = new Date();
+      document.getElementById('tzPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('tzDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('tzLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+    }
+    setInterval(updateClocks, 1000);
+
+    function safeParse(key, fallback) {
+      try {
+        const raw = JSON.parse(localStorage.getItem(key) || 'null');
+        return raw == null ? fallback : raw;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function normalizeProperty(raw) {
+      if (!raw || typeof raw !== 'object') return null;
+      const society = raw.society || raw.location || raw.Society || raw.Location || 'Lahore';
+      const img = raw.img || raw.image || '';
+      return {
+        id: raw.id || raw.ID || Date.now(),
+        title: raw.title || raw.Title || raw.plot || 'Untitled Property',
+        type: raw.type || raw.Type || raw.category || 'Property',
+        society,
+        location: raw.location || society,
+        price: raw.price ?? raw.Price ?? raw.deal ?? 0,
+        phone: String(raw.phone || raw.Phone || '03219404812'),
+        img,
+        role: raw.role || 'Client',
+        listingType: raw.listingType || 'Sale',
+        area: raw.area || '',
+        desc: raw.desc || raw.description || ''
+      };
+    }
+
+    function mergeById(lists) {
+      const map = new Map();
+      lists.flat().forEach(item => {
+        const p = normalizeProperty(item);
+        if (!p) return;
+        const key = String(p.id);
+        if (!map.has(key)) map.set(key, p);
+      });
+      return Array.from(map.values()).sort((a, b) => Number(b.id) - Number(a.id));
+    }
+
+    function formatPrice(price) {
+      if (typeof price === 'number' && !isNaN(price) && price > 0) return 'PKR ' + price.toLocaleString();
+      return price ? String(price) : 'On Request';
+    }
+
+    function extractRows(data) {
+      if (Array.isArray(data)) return data;
+      if (!data || typeof data !== 'object') return [];
+      if (Array.isArray(data.properties)) return data.properties;
+      if (Array.isArray(data.services)) return data.services;
+      if (Array.isArray(data.data)) return data.data;
+      if (Array.isArray(data.rows)) return data.rows;
+      return [];
+    }
+
+    async function fetchSheetJson(query) {
+      try {
+        const res = await fetch(GOOGLE_SCRIPT_URL + query, { method: 'GET', redirect: 'follow' });
+        if (!res.ok) return [];
+        return extractRows(await res.json());
+      } catch (err) {
+        console.log('Sheet fetch notice:', query, err);
+        return [];
+      }
+    }
+
+    function readLocalProperties() {
+      const inventory = safeParse(INVENTORY_KEY, []);
+      const hub = safeParse(HUB_KEY, []);
+      return mergeById([
+        Array.isArray(inventory) ? inventory : [],
+        Array.isArray(hub) ? hub : []
+      ]);
+    }
+
+    function persistProperties(list) {
+      const merged = mergeById([list]);
+      localStorage.setItem(INVENTORY_KEY, JSON.stringify(merged));
+      localStorage.setItem(HUB_KEY, JSON.stringify(merged));
+      return merged;
+    }
+
+    function renderLiveProperties(list) {
+      const props = mergeById([list || []]);
+      document.getElementById('statProperties').innerText = props.length;
+      const tbody = document.getElementById('livePropertiesBody');
+
+      if (!props.length) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No properties found. Post a listing or sync Google Sheet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = props.map(p => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 font-bold text-white">${p.title}</td>
+          <td class="p-3 text-slate-200">${p.society || p.location || '—'}</td>
+          <td class="p-3 font-bold text-emerald-400 whitespace-nowrap">${formatPrice(p.price)}</td>
+          <td class="p-3">
+            <a href="tel:${p.phone}" class="text-cyan-300 font-semibold">${p.phone}</a>
+          </td>
+          <td class="p-3 text-right">
+            <span class="bg-slate-950 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-800">${p.type || p.listingType}</span>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function normalizeService(raw) {
+      if (!raw || typeof raw !== 'object') return null;
+      return {
+        id: raw.id || Date.now(),
+        name: raw.name || raw.Name || raw.client || 'Client',
+        phone: String(raw.phone || raw.Phone || '03219404812'),
+        service: raw.service || raw.Service || raw.subject || 'Service Inquiry',
+        location: raw.location || raw.Location || raw.society || '—',
+        details: raw.details || raw.text || raw.Details || '',
+        time: raw.time || ''
+      };
+    }
+
+    function readLocalServices() {
+      const bookings = safeParse(SERVICES_KEY, []);
+      const inbox = safeParse(INBOX_KEY, []);
+      const fromInbox = (Array.isArray(inbox) ? inbox : []).filter(m => {
+        const subject = String(m.subject || m.service || '').toLowerCase();
+        const action = String(m.action || '').toLowerCase();
+        return action === 'service_booking' || subject.includes('service') || subject.includes('booking') || subject.includes('construction') || subject.includes('material');
+      });
+      const map = new Map();
+      [...(Array.isArray(bookings) ? bookings : []), ...fromInbox].forEach(item => {
+        const s = normalizeService(item);
+        if (!s) return;
+        const key = String(s.id) + '|' + s.phone + '|' + s.service;
+        if (!map.has(key)) map.set(key, s);
+      });
+      return Array.from(map.values());
+    }
+
+    function renderLiveServices(list) {
+      const services = (list || []).map(normalizeService).filter(Boolean);
+      document.getElementById('statServices').innerText = services.length;
+      const tbody = document.getElementById('liveServicesBody');
+
+      if (!services.length) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No service inquiries yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = services.map(s => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 font-bold text-white">${s.name}</td>
+          <td class="p-3 text-cyan-300 font-semibold">${s.service}</td>
+          <td class="p-3 text-slate-200">${s.location}</td>
+          <td class="p-3"><a href="tel:${s.phone}" class="text-emerald-400 font-semibold">${s.phone}</a></td>
+          <td class="p-3 text-right text-slate-400 max-w-xs truncate">${s.details || '—'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function updateLeadStats() {
+      const leads = safeParse(INBOX_KEY, []);
+      document.getElementById('statLeads').innerText = Array.isArray(leads) ? leads.length : 0;
+    }
+
+    async function refreshLiveCrmData() {
+      const hint = document.getElementById('propertiesSyncHint');
+      hint.innerText = 'Syncing Google Sheet...';
+
+      const localProps = readLocalProperties();
+      renderLiveProperties(localProps);
+
+      const localServices = readLocalServices();
+      renderLiveServices(localServices);
+      updateLeadStats();
+      renderEntries();
+
+      const sheetProps = await fetchSheetJson('?type=properties');
+      if (sheetProps.length) {
+        const merged = persistProperties(mergeById([sheetProps, localProps]));
+        renderLiveProperties(merged);
+        hint.innerText = 'Live Sheet synced (' + sheetProps.length + ' rows)';
+      } else {
+        hint.innerText = 'Showing local inventory' + (localProps.length ? ' (' + localProps.length + ')' : '');
+      }
+
+      const sheetServices = await fetchSheetJson('?type=services');
+      if (sheetServices.length) {
+        try {
+          const existing = safeParse(SERVICES_KEY, []);
+          const mergedServices = [...sheetServices, ...(Array.isArray(existing) ? existing : [])];
+          const dedup = [];
+          const seen = new Set();
+          mergedServices.forEach(item => {
+            const s = normalizeService(item);
+            if (!s) return;
+            const key = String(s.id) + '|' + s.phone + '|' + s.service;
+            if (seen.has(key)) return;
+            seen.add(key);
+            dedup.push(s);
+          });
+          localStorage.setItem(SERVICES_KEY, JSON.stringify(dedup));
+          renderLiveServices(dedup);
+        } catch (e) {
+          renderLiveServices([...sheetServices, ...localServices]);
+        }
+      }
+    }
+
+    function getStoredEntries() {
+      let stored = safeParse(LEDGER_KEY, null);
+      if (!stored || !Array.isArray(stored)) {
+        localStorage.setItem(LEDGER_KEY, JSON.stringify([]));
+        return [];
+      }
+      return stored;
+    }
+
+    function renderEntries(filter = 'All', search = '') {
+      const entries = getStoredEntries();
+      const container = document.getElementById('entriesContainer');
+      document.getElementById('statLedger').innerText = entries.length;
+      
+      let totalVault = 0;
+      entries.forEach(e => { totalVault += parseFloat(e.paid || 0); });
+      document.getElementById('totalVaultBalance').innerText = `PKR ${totalVault.toLocaleString()}`;
+
+      let filtered = entries.filter(e => {
+        let matchCat = (filter === 'All' || e.category === filter);
+        let matchSearch = String(e.name || '').toLowerCase().includes(search.toLowerCase()) || String(e.phone || '').includes(search);
+        return matchCat && matchSearch;
+      });
+
+      document.getElementById('totalEntriesCount').innerText = `${filtered.length} Entries`;
+
+      if(filtered.length === 0) {
+        container.innerHTML = `<div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center text-slate-500 text-xs">No ledger records yet. Add a client entry above.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map((e, index) => {
+        let balance = (e.deal || 0) - (e.paid || 0);
+        return `
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl space-y-2 text-xs">
+            <div class="flex justify-between items-center border-b border-slate-800/60 pb-2">
+              <span class="font-black text-amber-400">Entry #${index + 1} (${e.date})</span>
+              <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-800">${e.category}</span>
+            </div>
+            <div>
+              <h4 class="font-black text-white text-sm">${e.name}</h4>
+              <p class="text-slate-400 text-[11px]"><i class="fa-solid fa-phone mr-1 text-emerald-400"></i> ${e.phone}</p>
+            </div>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800/80 text-slate-300 space-y-1">
+              <div class="grid grid-cols-3 gap-2 font-bold pb-1 border-b border-slate-800">
+                <span class="text-white">Deal: PKR ${(e.deal||0).toLocaleString()}</span>
+                <span class="text-emerald-400">Paid: PKR ${(e.paid||0).toLocaleString()}</span>
+                <span class="text-rose-400">Bal: PKR ${balance.toLocaleString()}</span>
+              </div>
+              <p class="pt-1"><b class="text-amber-300">Remarks:</b> ${e.details}</p>
+              <div class="pt-1 flex justify-end">
+                <a href="https://wa.me/${e.phone}?text=Hello%20${encodeURIComponent(e.name)},%20regarding%20your%20account%20at%20Bin%20Taha%20Associates:" target="_blank" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-black text-[10px] inline-flex items-center gap-1">
+                  <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Ledger
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function saveCrmEntryWithLedger() {
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const category = document.getElementById('clientCategory').value;
+      const deal = parseFloat(document.getElementById('dealAmount').value) || 0;
+      const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
+      const details = document.getElementById('clientDetails').value.trim();
+
+      if(!name || !phone) {
+        alert("Please enter Client Name and Phone number!");
+        return;
+      }
+
+      let entries = getStoredEntries();
+      let now = new Date();
+      let dateStr = String(now.getDate()).padStart(2, '0') + '/' + String(now.getMonth() + 1).padStart(2, '0') + '/' + now.getFullYear();
+
+      let newEntry = {
+        id: Date.now(),
+        name,
+        phone,
+        category,
+        deal,
+        paid,
+        details: details || 'No additional remarks.',
+        date: dateStr
+      };
+
+      entries.unshift(newEntry);
+      localStorage.setItem(LEDGER_KEY, JSON.stringify(entries));
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'sync_crm_ledger',
+          date: dateStr,
+          bank: 'Allied Bank (ABL)',
+          type: 'Credit',
+          head: category,
+          party: name,
+          amount: paid,
+          time: new Date().toISOString()
+        })
+      }).catch(err => console.log('CRM Sheet sync notice:', err));
+      
+      document.getElementById('clientName').value = '';
+      document.getElementById('dealAmount').value = '';
+      document.getElementById('paidAmount').value = '';
+      document.getElementById('clientDetails').value = '';
+
+      renderEntries();
+      alert("Entry and Payment Ledger successfully saved and synced to Google Sheet!");
+    }
+
+    function filterRecords(cat) {
+      renderEntries(cat, document.getElementById('searchInput').value);
+    }
+
+    function searchRecords() {
+      renderEntries('All', document.getElementById('searchInput').value);
+    }
+
+    function clearAllEntries() {
+      if(confirm("Are you sure you want to clear all ledger records?")) {
+        localStorage.removeItem(LEDGER_KEY);
+        renderEntries();
+      }
+    }
   </script>
+<script src="ai-engine.js"></script>
 </body>
 </html>

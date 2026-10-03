@@ -23,6 +23,67 @@
       transform-style: preserve-3d;
     }
   </style>
+
+<style id="luxury-gold-theme">
+  /* 1. Royal Metallic Golden Header & Navigation */
+  header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
+    background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
+    border-bottom: 2px solid #ffd700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* Header Links, Headings & Text */
+  header a, header button, header span, header p, header h1, header h2, header div,
+  nav a, nav button, nav span {
+    color: #111111 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
+  header [class*="bg-black"], header [class*="bg-slate-950"], 
+  header [class*="rounded-full"], header [class*="rounded-pill"],
+  header select, header input {
+    background: #0b0f19 !important;
+    border: 1px solid #d4af37 !important;
+    color: #ffffff !important;
+  }
+  header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
+    color: #f8fafc !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+  }
+  /* Currency inputs & text */
+  header input, header select {
+    color: #ffd700 !important;
+    font-weight: bold !important;
+  }
+
+  /* 3. 3D Embossed Luxury Golden Buttons */
+  button, .btn, a.gold-bg, button.gold-bg,
+  [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
+  header a[href], header button,
+  main button, main .btn {
+    background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
+    color: #0a0a0a !important;
+    border: 1px solid #ffe57f !important;
+    border-bottom: 2px solid #7d5707 !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.2s ease-in-out !important;
+  }
+
+  /* Hover State */
+  button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
+  header a[href]:hover, header button:hover {
+    filter: brightness(1.12) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+</style>
+
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -172,5 +233,6 @@
       <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
     </div>
   </footer>
+<script src="ai-engine.js"></script>
 </body>
 </html>

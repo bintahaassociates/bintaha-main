@@ -35,6 +35,67 @@
 
     #splashScreen { transition: opacity 1s ease; }
   </style>
+
+<style id="luxury-gold-theme">
+  /* 1. Royal Metallic Golden Header & Navigation */
+  header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
+    background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
+    border-bottom: 2px solid #ffd700 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  }
+  
+  /* Header Links, Headings & Text */
+  header a, header button, header span, header p, header h1, header h2, header div,
+  nav a, nav button, nav span {
+    color: #111111 !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  }
+
+  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
+  header [class*="bg-black"], header [class*="bg-slate-950"], 
+  header [class*="rounded-full"], header [class*="rounded-pill"],
+  header select, header input {
+    background: #0b0f19 !important;
+    border: 1px solid #d4af37 !important;
+    color: #ffffff !important;
+  }
+  header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
+    color: #f8fafc !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+  }
+  /* Currency inputs & text */
+  header input, header select {
+    color: #ffd700 !important;
+    font-weight: bold !important;
+  }
+
+  /* 3. 3D Embossed Luxury Golden Buttons */
+  button, .btn, a.gold-bg, button.gold-bg,
+  [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
+  header a[href], header button,
+  main button, main .btn {
+    background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
+    color: #0a0a0a !important;
+    border: 1px solid #ffe57f !important;
+    border-bottom: 2px solid #7d5707 !important;
+    border-radius: 8px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+    transition: all 0.2s ease-in-out !important;
+  }
+
+  /* Hover State */
+  button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
+  header a[href]:hover, header button:hover {
+    filter: brightness(1.12) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+</style>
+
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
@@ -93,6 +154,7 @@
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold shadow">🇬🇧 London: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+          <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
         <!-- Global Currency Converter Widget -->
@@ -102,20 +164,21 @@
             <option value="USD">USD ($)</option>
             <option value="AED">AED (Dh)</option>
             <option value="GBP">GBP (£)</option>
+            <option value="SAR">SAR (SR)</option>
           </select>
           <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none">
           <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
         </div>
       </div>
 
-      <!-- Unified Navigation Bar Matching All Pages -->
+      <!-- Colorful Navigation Bar -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t gold-border">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="https://bintahaassociates.github.io/bintaha-acconting/" class="bg-slate-900 hover:bg-slate-800 text-amber-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Accounting ERP</a>
-          <a href="crm-dashboard.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-chart-line mr-1"></i> Master CRM</a>
-          <a href="owners-crm.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-earth-americas mr-1"></i> Owners CRM</a>
-          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-cyan-400 px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
           <a href="services.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
+          <a href="#proCadStudio" class="bg-slate-900 hover:bg-slate-800 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
+          <a href="#materialEstimator" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
         </div>
         <div class="text-xs text-amber-300 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border gold-border shadow">
           <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
@@ -292,9 +355,8 @@
     </footer>
 
   </div>
-
+ <script src="ai-engine.js"></script>
   <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTd5S6F6l7X9555Hawy6PMAr0WixSXQz1sQ-fqiBQwzPQuF_Z7aZrlvHerzv6ZJBE4/exec';
     let currentLayoutOption = 1;
 
     function enterPortal() {
@@ -310,12 +372,10 @@
 
     function updateClocks() {
       const now = new Date();
-      const pk = document.getElementById('clockPk');
-      const db = document.getElementById('clockDubai');
-      const ld = document.getElementById('clockLondon');
-      if(pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
-      if(db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
-      if(ld) ld.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockNy').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateClocks, 1000);
 
@@ -325,6 +385,7 @@
       let rate = 280;
       if(type === 'AED') rate = 76;
       if(type === 'GBP') rate = 355;
+      if(type === 'SAR') rate = 75;
       let total = val * rate;
       document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
     }
@@ -354,17 +415,18 @@
       history.scrollTop = history.scrollHeight;
 
       setTimeout(() => {
-        let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
+        let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping (like 32x70 ft) and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
         
         if(text.toLowerCase().includes('32') || text.toLowerCase().includes('70') || text.toLowerCase().includes('map')) {
-          reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch, Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
+          reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch (16x18), Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
         }
 
         history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">${reply}</div>`;
         history.scrollTop = history.scrollHeight;
 
-        if(GOOGLE_SCRIPT_URL) {
-          fetch(GOOGLE_SCRIPT_URL, {
+        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
+        if(googleScriptUrl) {
+          fetch(googleScriptUrl, {
             method: 'POST', mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'gemini_ai_lead', time: new Date().toISOString(), text, source: 'Gemini AI Widget' })
@@ -487,19 +549,33 @@
       }
 
       let bookingData = {
+        id: Date.now(),
         action: 'service_booking',
         time: new Date().toISOString(),
         name,
         phone,
         service,
         location,
-        details
+        details,
+        subject: service || 'Service Booking',
+        text: details || (service + ' @ ' + location)
       };
 
-      if (GOOGLE_SCRIPT_URL) {
-        fetch(GOOGLE_SCRIPT_URL, {
+      try {
+        const bookings = JSON.parse(localStorage.getItem('bintaha_service_bookings') || '[]');
+        bookings.unshift(bookingData);
+        localStorage.setItem('bintaha_service_bookings', JSON.stringify(bookings));
+
+        const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
+        inboxList.unshift(bookingData);
+        localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
+      } catch (e) {}
+
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
+      if (googleScriptUrl) {
+        fetch(googleScriptUrl, {
           method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(bookingData)
         }).catch(err => console.log('Google Sheet sync notice:', err));
       }
@@ -512,10 +588,51 @@
       alert("✨ Success! Your service booking has been successfully submitted to Bin Taha CRM & Google Sheets!");
     }
 
-    window.onload = function() {
-      updateClocks();
-      drawCadBlueprint();
-    };
+  window.onload = function() {
+    if (typeof updateClocks === "function") updateClocks();
+    if (typeof drawCadBlueprint === "function") drawCadBlueprint();
+};
+
+// Gemini AI CAD Studio Trigger
+async function runAiCadStudio() {
+    const widthInput = document.querySelector('input[name*="width"], input[placeholder*="Width"], input[id*="width"]');
+    const depthInput = document.querySelector('input[name*="length"], input[name*="depth"], input[placeholder*="Depth"], input[placeholder*="Length"]');
+    const floorSelect = document.querySelector('select[name*="floor"], select[id*="floor"]');
+    const bedSelect = document.querySelector('select[name*="bed"], select[id*="bed"]');
+
+    const width = widthInput && widthInput.value ? widthInput.value : "30";
+    const depth = depthInput && depthInput.value ? depthInput.value : "60";
+    const floors = floorSelect && floorSelect.value ? floorSelect.value : "Double Storey";
+    const beds = bedSelect && bedSelect.value ? bedSelect.value : "4 Beds";
+
+    let resultBox = document.getElementById("cadAiLiveOutput");
+    if (!resultBox) {
+        resultBox = document.createElement("div");
+        resultBox.id = "cadAiLiveOutput";
+        resultBox.className = "mt-6 p-6 rounded-2xl border-2 border-amber-500 bg-slate-900 shadow-2xl text-slate-100 text-sm";
+        const targetContainer = document.querySelector("#cadCanvas")?.parentElement || document.querySelector("main") || document.body;
+        targetContainer.appendChild(resultBox);
+    }
+
+    resultBox.innerHTML = `
+        <div class="flex items-center gap-3 text-amber-400 font-bold animate-pulse text-base">
+            <span>✨</span> Gemini AI Architecture Engine Active... Generating Floor Plan & By-laws Specs...
+        </div>
+    `;
+
+    try {
+        const aiResponse = await generateCADBlueprint(width, depth, floors, beds);
+        resultBox.innerHTML = `
+            <div class="border-b border-amber-500/40 pb-3 mb-4 flex items-center justify-between">
+                <span class="text-amber-400 font-black text-lg tracking-wide">🏛️ AI Architectural Blueprint & Zoning Specification</span>
+                <span class="text-xs bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-full">OFFICIAL SPEC</span>
+            </div>
+            <div class="whitespace-pre-wrap leading-relaxed font-sans text-xs sm:text-sm text-slate-200">${aiResponse}</div>
+        `;
+    } catch(err) {
+        resultBox.innerHTML = `<div class="text-red-400 font-bold">Error: ${err.message}</div>`;
+    }
+}
   </script>
 </body>
 </html>
