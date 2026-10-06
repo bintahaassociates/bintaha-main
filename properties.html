@@ -6,7 +6,8 @@
   <title>Bin Taha Associates • Ultimate Peak PropTech Ecosystem</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>  
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-text { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
     .gold-border { border-color: rgba(252, 211, 77, 0.4); }
@@ -483,20 +484,57 @@
       document.getElementById('aiValuationText').innerText = `Estimated Market Value: PKR ${base.toLocaleString()} (AI Verified)`;
     }
 
-    function getStoredProperties() {
-      let defaults = [
-        { id: 1, title: "Plot 798 Block D", type: "Plot", society: "LDA Avenue 1", price: 25000000, phone: "03040000350", views: 342, desc: "Prime location plot, near park, ready for construction.", img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com/?q=LDA+Avenue+1+Lahore" },
-        { id: 2, title: "Luxury 1 Kanal Villa", type: "House", society: "Jubilee Town", price: 65000000, phone: "03219404812", views: 512, desc: "Brand new modern architecture house with 5 bedrooms.", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com/?q=Jubilee+Town+Lahore" },
-        { id: 3, title: "Commercial Plaza Shop", type: "Commercial", society: "Valencia Town", price: 45000000, phone: "03219404812", views: 289, desc: "High rental yield commercial shop on main boulevard.", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80", map: "https://maps.google.com/?q=Valencia+Town+Lahore" }
-      ];
-      let stored = JSON.parse(localStorage.getItem('bintaha_properties_hub') || 'null');
-      if (!stored) {
-        localStorage.setItem('bintaha_properties_hub', JSON.stringify(defaults));
-        return defaults;
+   // Supabase Cloud Connection
+    const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
+    const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    let cloudPropertiesList = [];
+
+    async function loadPropertiesFromSupabase() {
+      if (!_sb) {
+        console.warn("Supabase library not ready yet.");
+        return;
       }
-      return stored;
+      try {
+        const { data, error } = await _sb
+          .from('properties')
+          .select('*')
+          .order('id', { ascending: false })
+          .limit(100);
+
+        if (error) {
+          console.error("Supabase Error:", error);
+          return;
+        }
+
+        if (data && data.length > 0) {
+          cloudPropertiesList = data.map(item => ({
+            id: item.id || item.iD || Date.now(),
+            title: item.Title || item.title || 'Property',
+            type: item.Type || item.type || 'Plot',
+            society: item.Society || item.society || 'Lahore',
+            price: item.Price || item.price || 0,
+            phone: item.Phone || item.phone || '03219404812',
+            views: 180,
+            desc: item.Description || item.description || '',
+            img: item.Image || item.image || 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80',
+            map: `https://maps.google.com/?q=${encodeURIComponent((item.Society || item.society || 'Lahore') + ' Lahore')}`
+          }));
+
+          renderProperties(cloudPropertiesList);
+        }
+      } catch (err) {
+        console.error("Fetch Exception:", err);
+      }
     }
 
+    function getStoredProperties() {
+      if (cloudPropertiesList && cloudPropertiesList.length > 0) {
+        return cloudPropertiesList;
+      }
+      return JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
+    }
     function getDreamWishlist() {
       return JSON.parse(localStorage.getItem('bintaha_dream_wishlist') || '[]');
     }
@@ -688,7 +726,9 @@
       renderProperties(getStoredProperties());
       renderDreamWishlist();
       calculateRoi();
+      loadPropertiesFromSupabase();
     };
+    
   </script>
 <script src="ai-engine.js"></script>
 </body>
