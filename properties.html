@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Properties Hub | Bin Taha Associates</title>
+  <title>Properties Showcase & Real-Time CRM Hub | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
     .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
+    .badge-shimmer {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.5) 50%, rgba(245, 158, 11, 0.2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 2.5s infinite;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+
     @keyframes eagle3DRotate {
         0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
         50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
@@ -45,7 +52,12 @@
       font-weight: 700 !important;
       text-shadow: none !important;
     }
+    header input, header select {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
     button, .btn, a.gold-bg, button.gold-bg,
+    [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
     header a[href], header button,
     main button, main .btn {
       background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
@@ -54,26 +66,43 @@
       border-bottom: 2px solid #7d5707 !important;
       border-radius: 8px !important;
       font-weight: 800 !important;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35) !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
       transition: all 0.2s ease-in-out !important;
+    }
+    button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
+    header a[href]:hover, header button:hover {
+      filter: brightness(1.12) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     }
   </style>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
+  <!-- Top bar -->
   <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
         <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
         <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
+        <span><i class="fa-solid fa-envelope text-amber-400 mr-1"></i>info@bintahaassociates.com</span>
         <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
       </div>
       <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
-        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check mr-1"></i>Live Cloud Database Sync</span>
+        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="hover:text-white transition" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+        <span class="text-slate-600">|</span>
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-database mr-1"></i>Live Cloud Database</span>
       </div>
     </div>
   </div>
 
+  <!-- Header -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
       <a href="index.html" class="flex items-center gap-3">
@@ -84,41 +113,106 @@
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
-        <a href="dream.html" class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
+        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-user-group mr-1"></i>About Us</a>
+        <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
         <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg font-black"><i class="fa-solid fa-city mr-1"></i>Properties</a>
-        <a href="add-property.html" class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-plus-circle mr-1"></i>Post Listing</a>
-        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-chart-line mr-1"></i>CRM</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-envelope mr-1"></i>Contact</a>
+        <a href="add-property.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-plus-circle mr-1"></i>Post Listing</a>
+        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-cogs mr-1"></i>Services</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-envelope mr-1"></i>Contact</a>
       </nav>
+      <div class="flex items-center gap-2">
+        <a href="add-property.html" class="bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-lg transition shadow flex items-center gap-1.5">
+          <i class="fa-solid fa-plus"></i> Post Property
+        </a>
+      </div>
     </div>
   </header>
 
+  <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
-      <div>
-        <h2 class="text-2xl font-black shining-gold">Live Properties Inventory</h2>
-        <p class="text-xs text-slate-400 mt-1">Directly synced with Supabase Master CRM Database.</p>
+    <!-- Top Hero Card & Stats -->
+    <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 sm:p-8 mb-8 gold-glow">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+        <div>
+          <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">Verified Master Inventory</span>
+          <h2 class="text-2xl sm:text-3xl font-black shining-gold mt-2">Verified Real Estate Showcase</h2>
+          <p class="text-xs text-slate-400 mt-1">Live properties directly synced with Bin Taha CRM and Supabase Cloud Database.</p>
+        </div>
+        <!-- Stats Badges -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
+          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
+            <span class="block text-lg font-black text-amber-400" id="totalCount">0</span>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Total Listings</span>
+          </div>
+          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
+            <span class="block text-lg font-black text-emerald-400" id="plotCount">0</span>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Plots</span>
+          </div>
+          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
+            <span class="block text-lg font-black text-blue-400" id="houseCount">0</span>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Homes</span>
+          </div>
+          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
+            <span class="block text-lg font-black text-purple-400" id="commercialCount">0</span>
+            <span class="text-[10px] text-slate-400 uppercase font-bold">Commercial</span>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center gap-3 w-full md:w-auto">
-        <input type="text" id="searchInput" onkeyup="filterProperties()" placeholder="Search Society (e.g. LDA, DHA)..." class="w-full md:w-64 bg-slate-900 border border-slate-700 px-4 py-2.5 rounded-xl text-xs text-white">
-        <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-4 py-2.5 rounded-xl text-xs font-black whitespace-nowrap shadow flex items-center gap-1.5">
-          <i class="fa-solid fa-plus"></i> Add New
-        </a>
+
+      <!-- Filters & Search Bar -->
+      <div class="mt-6 pt-6 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2" id="filterTabs">
+          <button onclick="setCategoryFilter('all')" class="category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition">All Listings</button>
+          <button onclick="setCategoryFilter('plot')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Plots</button>
+          <button onclick="setCategoryFilter('house')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Houses / Villas</button>
+          <button onclick="setCategoryFilter('commercial')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Commercial</button>
+        </div>
+
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <div class="relative w-full sm:w-72">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
+            <input type="text" id="propertySearch" onkeyup="handleSearch()" placeholder="Search society, block, demand..." class="w-full bg-slate-900 border border-slate-700 pl-9 pr-4 py-2 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500">
+          </div>
+          <a href="add-property.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl text-xs font-black transition shadow whitespace-nowrap">
+            <i class="fa-solid fa-plus-circle mr-1"></i> Add Property
+          </a>
+        </div>
       </div>
     </div>
 
     <!-- Properties Grid -->
-    <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="col-span-full py-12 text-center text-slate-400">
+    <div id="propertiesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-full py-16 text-center text-slate-400">
         <i class="fa-solid fa-spinner fa-spin text-3xl text-amber-500 mb-3"></i>
-        <p class="text-sm">Connecting with Supabase Cloud...</p>
+        <p class="text-sm">Connecting with Supabase Master Database...</p>
       </div>
     </div>
   </main>
 
-  <footer class="bg-slate-950 text-slate-400 py-6 text-xs border-t border-slate-800 text-center">
-    <p>&copy; 2026 Bin Taha Associates. All rights reserved.</p>
+  <!-- Property Detail Modal -->
+  <div id="propDetailModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-amber-500/40 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+      <button onclick="closePropModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full w-9 h-9 flex items-center justify-center">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
+      <div class="flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-white transition" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+      <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
@@ -126,70 +220,128 @@
     const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
     const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
-    let allProperties = [];
+    let masterList = [];
+    let currentCategory = 'all';
 
-    async function loadProperties() {
-      const grid = document.getElementById('propertiesGrid');
-      
+    async function fetchProperties() {
       try {
-        let fetchedList = [];
+        let loaded = [];
         if (_sb) {
           const { data, error } = await _sb.from('properties').select('*').order('id', { ascending: false });
           if (!error && data && data.length > 0) {
-            fetchedList = data.map(item => ({
+            loaded = data.map(item => ({
               id: item.id,
-              title: item.Title || 'Prime Property',
+              title: item.Title || 'Verified Property',
               type: item.Type || 'Plot',
               society: item.Society || 'Lahore',
               price: item.Price || 'Demand on Call',
               phone: item.Phone || '03219404812',
-              desc: item.Description || '',
-              img: item.Image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
+              desc: item.Description || 'Direct verified listing from Bin Taha Associates.',
+              img: item.Image || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+              views: Math.floor(Math.random() * 30) + 15
             }));
           }
         }
 
-        if (fetchedList.length === 0) {
-          fetchedList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
+        if (loaded.length === 0) {
+          loaded = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
         }
 
-        allProperties = fetchedList;
-        renderProperties(allProperties);
+        masterList = loaded;
+        updateCounts();
+        renderShowcase();
 
-      } catch (err) {
-        console.error("Load error:", err);
-        renderProperties(JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]'));
+      } catch (e) {
+        console.error("Fetch err:", e);
+        masterList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
+        updateCounts();
+        renderShowcase();
       }
     }
 
-    function renderProperties(list) {
-      const grid = document.getElementById('propertiesGrid');
-      if (!list || list.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400">کوئی پراپرٹی دستیاب نہیں ہے۔ اوپر 'Add New' پر کلک کر کے پراپرٹی شامل کریں۔</div>`;
+    function updateCounts() {
+      document.getElementById('totalCount').innerText = masterList.length;
+      document.getElementById('plotCount').innerText = masterList.filter(p => (p.type || '').toLowerCase().includes('plot')).length;
+      document.getElementById('houseCount').innerText = masterList.filter(p => (p.type || '').toLowerCase().includes('house') || (p.type || '').toLowerCase().includes('home')).length;
+      document.getElementById('commercialCount').innerText = masterList.filter(p => (p.type || '').toLowerCase().includes('commercial') || (p.type || '').toLowerCase().includes('shop')).length;
+    }
+
+    function setCategoryFilter(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.className = 'category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition';
+      });
+      event.target.className = 'category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition';
+      renderShowcase();
+    }
+
+    function handleSearch() {
+      renderShowcase();
+    }
+
+    function renderShowcase() {
+      const container = document.getElementById('propertiesList');
+      const searchKey = (document.getElementById('propertySearch').value || '').toLowerCase();
+
+      let filtered = masterList.filter(item => {
+        const matchesCategory = (currentCategory === 'all') ? true :
+          (currentCategory === 'plot' && (item.type || '').toLowerCase().includes('plot')) ||
+          (currentCategory === 'house' && ((item.type || '').toLowerCase().includes('house') || (item.type || '').toLowerCase().includes('home'))) ||
+          (currentCategory === 'commercial' && ((item.type || '').toLowerCase().includes('commercial') || (item.type || '').toLowerCase().includes('shop')));
+
+        const matchesSearch = (item.title && item.title.toLowerCase().includes(searchKey)) ||
+          (item.society && item.society.toLowerCase().includes(searchKey)) ||
+          (item.price && item.price.toLowerCase().includes(searchKey));
+
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="col-span-full py-16 text-center text-slate-400 bg-slate-800/40 rounded-2xl border border-slate-700">
+          <i class="fa-solid fa-house-chimney-crack text-4xl text-amber-500/50 mb-3"></i>
+          <p class="text-sm font-bold text-slate-300">کوئی پراپرٹی نہیں ملی</p>
+          <p class="text-xs text-slate-500 mt-1">آپ 'Add Property' پر جا کر نئی لسٹنگ شامل کر سکتے ہیں۔</p>
+        </div>`;
         return;
       }
 
-      grid.innerHTML = list.map(item => `
-        <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden shadow-xl hover:border-amber-500/50 transition">
-          <div class="relative h-48 w-full bg-slate-900">
-            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'">
-            <span class="absolute top-3 left-3 bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-md shadow">${item.type}</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start gap-2 mb-2">
-              <h3 class="font-bold text-base text-white line-clamp-1">${item.title}</h3>
+      container.innerHTML = filtered.map(item => `
+        <div class="bg-slate-800 rounded-3xl border border-slate-700/80 overflow-hidden shadow-xl hover:border-amber-500/50 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="relative h-52 w-full bg-slate-900 overflow-hidden">
+              <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'">
+              <span class="absolute top-3 left-3 bg-amber-500 text-slate-950 text-[10px] font-black uppercase px-2.5 py-1 rounded-lg shadow">${item.type}</span>
+              <span class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md text-amber-400 text-[10px] font-bold px-2 py-1 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-eye text-xs mr-1"></i> ${item.views} Views
+              </span>
             </div>
-            <p class="text-xs text-slate-400 mb-3 flex items-center gap-1.5">
-              <i class="fa-solid fa-location-dot text-rose-500"></i> ${item.society}
-            </p>
-            <p class="text-xs text-slate-300 line-clamp-2 mb-4">${item.desc || 'Direct verified listing from Bin Taha Associates.'}</p>
-            <div class="pt-3 border-t border-slate-700/80 flex items-center justify-between">
+
+            <div class="p-5">
+              <h3 class="font-bold text-base text-white line-clamp-1 mb-1.5 group-hover:text-amber-400 transition">${item.title}</h3>
+              <p class="text-xs text-slate-400 mb-3 flex items-center gap-1.5">
+                <i class="fa-solid fa-location-dot text-rose-500"></i> ${item.society}
+              </p>
+              <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed mb-4">${item.desc}</p>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0">
+            <div class="pt-3 border-t border-slate-700/80 flex items-center justify-between mb-3">
               <div>
-                <span class="text-[10px] uppercase text-slate-400 block font-semibold">Demand</span>
-                <span class="text-base font-black text-amber-400">${item.price}</span>
+                <span class="text-[10px] uppercase text-slate-400 block font-semibold">Demand / Price</span>
+                <span class="text-lg font-black text-amber-400">${item.price}</span>
               </div>
-              <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, I am interested in: ${encodeURIComponent(item.title)} (${encodeURIComponent(item.society)})" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              <button onclick="viewDetails(${item.id})" class="text-xs text-slate-300 hover:text-white underline font-semibold cursor-pointer">
+                View Details
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, I am interested in this listing: ${encodeURIComponent(item.title)} (${encodeURIComponent(item.society)}) - Demand: ${encodeURIComponent(item.price)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+              </a>
+              <a href="tel:03219404812" class="bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-phone text-xs"></i> Call Owner
               </a>
             </div>
           </div>
@@ -197,17 +349,39 @@
       `).join('');
     }
 
-    function filterProperties() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      const filtered = allProperties.filter(p => 
-        (p.society && p.society.toLowerCase().includes(q)) ||
-        (p.title && p.title.toLowerCase().includes(q)) ||
-        (p.type && p.type.toLowerCase().includes(q))
-      );
-      renderProperties(filtered);
+    function viewDetails(id) {
+      const p = masterList.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('modalBody').innerHTML = `
+        <div class="space-y-4">
+          <div class="h-64 w-full rounded-2xl overflow-hidden border border-slate-700">
+            <img src="${p.img}" class="w-full h-full object-cover">
+          </div>
+          <div class="flex justify-between items-center gap-2">
+            <span class="bg-amber-500 text-slate-950 font-black text-xs uppercase px-2.5 py-1 rounded-md">${p.type}</span>
+            <span class="text-xl font-black text-amber-400">${p.price}</span>
+          </div>
+          <h2 class="text-xl font-bold text-white">${p.title}</h2>
+          <p class="text-xs text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-rose-500"></i> ${p.society}</p>
+          <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed">
+            <h4 class="font-bold text-white uppercase mb-1">Specifications:</h4>
+            ${p.desc}
+          </div>
+          <div class="pt-2 flex gap-3">
+            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, Inquiry about: ${encodeURIComponent(p.title)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+      `;
+      document.getElementById('propDetailModal').classList.remove('hidden');
     }
 
-    window.addEventListener('DOMContentLoaded', loadProperties);
+    function closePropModal() {
+      document.getElementById('propDetailModal').classList.add('hidden');
+    }
+
+    window.addEventListener('DOMContentLoaded', fetchProperties);
   </script>
 </body>
 </html>
