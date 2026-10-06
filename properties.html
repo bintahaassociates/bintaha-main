@@ -20,6 +20,22 @@
         animation: eagle3DRotate 6s infinite linear;
         transform-style: preserve-3d;
     }
+    .marquee-container {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+    .marquee-content {
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+    }
+    .marquee-container:hover .marquee-content {
+        animation-play-state: paused;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
   </style>
 
   <style id="luxury-gold-theme">
@@ -74,59 +90,82 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Top bar -->
-  <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-5 text-center md:text-left flex-wrap justify-center font-medium">
-        <span><i class="fa-solid fa-clock text-emerald-400 mr-1.5"></i>Open 24/7 Doorstep Service</span>
-        <span><i class="fa-solid fa-phone text-blue-400 mr-1.5"></i>0321 9404812</span>
-        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i>Lahore, PK</span>
+  <!-- 1. Top Bar: World Time & Currency Converter -->
+  <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-8 border-b border-slate-800">
+    <div class="max-w-[1700px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <!-- Live Clock & Currency Info -->
+      <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center font-medium">
+        <span><i class="fa-regular fa-clock text-amber-400 mr-1"></i>PKT: <strong id="livePktTime" class="text-white">--:--:--</strong></span>
+        <span><i class="fa-solid fa-earth-americas text-blue-400 mr-1"></i>UK: <span id="liveUkTime" class="text-slate-300">--:--</span></span>
+        <span><i class="fa-solid fa-earth-americas text-purple-400 mr-1"></i>USA: <span id="liveUsaTime" class="text-slate-300">--:--</span></span>
+        <span class="text-slate-700">|</span>
+        <span><i class="fa-solid fa-dollar-sign text-emerald-400 mr-1"></i>USD/PKR: <strong class="text-white">278.50</strong></span>
+        <span><i class="fa-solid fa-money-bill-wave text-cyan-400 mr-1"></i>AED/PKR: <strong class="text-white">75.80</strong></span>
       </div>
-      <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
-        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
-        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="hover:text-white transition" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
-        <span class="text-slate-600">|</span>
-        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Supabase Cloud Synchronized</span>
+      <!-- Contact & Socials -->
+      <div class="flex items-center gap-4 text-xs flex-wrap justify-center">
+        <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
+        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
+        <div class="flex items-center gap-2 text-sm ml-2">
+          <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="hover:text-pink-500 transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://x.com/Tahamobeenbhut" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="hover:text-red-500 transition"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Perfectly Aligned Luxury Header -->
+  <!-- 2. Live Market Rates Scrolling Marquee -->
+  <div class="bg-amber-500/15 border-b border-amber-500/30 py-1.5 px-4 text-xs marquee-container text-amber-300 font-bold">
+    <div class="marquee-content flex items-center gap-8">
+      <span><i class="fa-solid fa-bullhorn text-amber-400 mr-1.5"></i><strong>Live Property Rates Update:</strong></span>
+      <span>• LDA Avenue 1 (10 Marla): <strong>1.45 Cr - 1.85 Cr</strong></span>
+      <span>• LDA Avenue 1 (1 Kanal): <strong>2.80 Cr - 3.50 Cr</strong></span>
+      <span>• DHA Rahbar Phase 11 (5 Marla): <strong>1.10 Cr - 1.35 Cr</strong></span>
+      <span>• DHA Phase 9 Prism (1 Kanal): <strong>2.60 Cr - 3.40 Cr</strong></span>
+      <span>• Jubilee Town (5 Marla Plot): <strong>85 Lac - 1.15 Cr</strong></span>
+      <span>• Izmir Town (10 Marla House): <strong>3.20 Cr - 4.10 Cr</strong></span>
+      <span>• Bahria Town Lahore: <strong>High Investment Volume Observed</strong></span>
+    </div>
+  </div>
+
+  <!-- 3. Corner Aligned Big Logo & Spaced Royal Header -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
-      <a href="index.html" class="flex items-center gap-3.5">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+    <div class="max-w-[1700px] mx-auto px-4 sm:px-8 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      
+      <!-- Big Logo & Title pushed to corner -->
+      <a href="index.html" class="flex items-center gap-4 group">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-14 w-14 sm:h-16 sm:w-16 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
-          <h1 class="text-xl font-black text-white leading-tight tracking-wide">Bin Taha Associates</h1>
-          <p class="text-[11px] text-amber-400 font-extrabold uppercase tracking-wider">FBR & PEC Category C Certified</p>
+          <h1 class="text-2xl sm:text-3xl font-black text-white leading-none tracking-wide group-hover:text-amber-400 transition">Bin Taha Associates</h1>
+          <p class="text-xs text-amber-400 font-extrabold uppercase tracking-widest mt-1">FBR & PEC Category C Certified</p>
         </div>
       </a>
       
-      <!-- Nicely spaced bigger navigation buttons -->
-      <nav class="flex flex-wrap items-center gap-2 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-house mr-1.5"></i>Home</a>
-        <a href="about.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-user-group mr-1.5"></i>About Us</a>
-        <a href="dream.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-star text-amber-400 mr-1.5"></i>Our Dream</a>
-        <a href="properties.html" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl font-black"><i class="fa-solid fa-city mr-1.5"></i>Properties</a>
-        <a href="add-property.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-plus-circle mr-1.5"></i>Post Listing</a>
-        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-chart-line mr-1.5"></i>CRM</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-envelope mr-1.5"></i>Contact</a>
+      <!-- Bigger, beautifully aligned Navigation Buttons -->
+      <nav class="flex flex-wrap items-center gap-2 sm:gap-3 text-xs sm:text-sm font-bold">
+        <a href="index.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-user-group"></i> About Us</a>
+        <a href="dream.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-star text-amber-400"></i> Our Dream</a>
+        <a href="properties.html" class="bg-amber-500 text-slate-950 px-4 py-2.5 rounded-xl font-black flex items-center gap-2 shadow-md"><i class="fa-solid fa-city"></i> Properties</a>
+        <a href="add-property.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-plus-circle"></i> Post Listing</a>
+        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-chart-line"></i> CRM</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white px-4 py-2.5 rounded-xl transition flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Contact</a>
       </nav>
 
+      <!-- Right Action Button -->
       <div class="flex items-center gap-3">
-        <a href="add-property.html" class="bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 cursor-pointer">
-          <i class="fa-solid fa-plus-circle"></i> Add Property
+        <a href="add-property.html" class="bg-amber-500 text-slate-950 text-xs sm:text-sm font-black px-5 py-2.5 rounded-xl transition shadow flex items-center gap-2">
+          <i class="fa-solid fa-plus-circle text-base"></i> Add Property
         </a>
       </div>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
+  <main class="max-w-[1700px] mx-auto px-4 sm:px-8 py-8 flex-1 w-full">
     
     <!-- Hero Showcase Header & Quick Counts -->
     <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-8 mb-8 gold-glow">
@@ -138,51 +177,51 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
-          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[95px]">
             <span class="block text-xl font-black text-amber-400" id="totalCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Total Listings</span>
           </div>
-          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[95px]">
             <span class="block text-xl font-black text-emerald-400" id="plotCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Plots</span>
           </div>
-          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[95px]">
             <span class="block text-xl font-black text-blue-400" id="houseCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Homes</span>
           </div>
-          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[95px]">
             <span class="block text-xl font-black text-purple-400" id="commercialCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Commercial</span>
           </div>
         </div>
       </div>
 
-      <!-- Society Quick Filter Pills (Original Missing Feature Restored) -->
+      <!-- Quick Society Filter Pills -->
       <div class="mt-6 pt-5 border-t border-slate-700/80">
         <label class="block text-[11px] font-bold text-slate-400 uppercase mb-2">Quick Society Filter:</label>
         <div class="flex flex-wrap items-center gap-2" id="societyPills">
-          <button onclick="filterBySociety('all')" class="society-btn active bg-amber-500 text-slate-950 px-3 py-1.5 rounded-xl text-xs font-black transition">All Societies</button>
-          <button onclick="filterBySociety('LDA Avenue')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">LDA Avenue 1</button>
-          <button onclick="filterBySociety('DHA Rahbar')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Rahbar</button>
-          <button onclick="filterBySociety('DHA')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Lahore</button>
-          <button onclick="filterBySociety('Izmir')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Izmir Town</button>
-          <button onclick="filterBySociety('Jubilee')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Jubilee Town</button>
-          <button onclick="filterBySociety('Bahria')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Bahria Town</button>
-          <button onclick="filterBySociety('Lake City')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Lake City</button>
+          <button onclick="filterBySociety('all')" class="society-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition">All Societies</button>
+          <button onclick="filterBySociety('LDA Avenue')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">LDA Avenue 1</button>
+          <button onclick="filterBySociety('DHA Rahbar')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Rahbar</button>
+          <button onclick="filterBySociety('DHA')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Lahore</button>
+          <button onclick="filterBySociety('Izmir')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Izmir Town</button>
+          <button onclick="filterBySociety('Jubilee')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Jubilee Town</button>
+          <button onclick="filterBySociety('Bahria')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Bahria Town</button>
+          <button onclick="filterBySociety('Lake City')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Lake City</button>
         </div>
       </div>
 
       <!-- Categories & Search Bar -->
       <div class="mt-4 pt-4 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-2" id="filterTabs">
-          <button onclick="setCategoryFilter('all')" class="category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition">All Types</button>
-          <button onclick="setCategoryFilter('plot')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Plots</button>
-          <button onclick="setCategoryFilter('house')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Houses</button>
-          <button onclick="setCategoryFilter('commercial')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Commercial</button>
+          <button onclick="setCategoryFilter('all')" class="category-btn active bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-black transition">All Types</button>
+          <button onclick="setCategoryFilter('plot')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 transition">Plots</button>
+          <button onclick="setCategoryFilter('house')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 transition">Houses</button>
+          <button onclick="setCategoryFilter('commercial')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 transition">Commercial</button>
         </div>
 
         <div class="flex items-center gap-3 w-full sm:w-auto">
-          <div class="relative w-full sm:w-72">
+          <div class="relative w-full sm:w-80">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
             <input type="text" id="propertySearch" onkeyup="handleSearch()" placeholder="Search society, block, demand..." class="w-full bg-slate-900 border border-slate-700 pl-9 pr-4 py-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500">
           </div>
@@ -211,7 +250,7 @@
 
   <!-- Footer -->
   <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
+    <div class="max-w-[1700px] mx-auto px-6 flex flex-col items-center gap-6">
       <div class="flex flex-wrap justify-center gap-3 text-sm">
         <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
         <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -225,6 +264,16 @@
   </footer>
 
   <script>
+    // Live Clocks Script
+    function updateWorldClocks() {
+      const now = new Date();
+      document.getElementById('livePktTime').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour12: true });
+      document.getElementById('liveUkTime').innerText = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false });
+      document.getElementById('liveUsaTime').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
+
     const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
     const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
@@ -279,18 +328,18 @@
     function setCategoryFilter(cat) {
       currentCategory = cat;
       document.querySelectorAll('.category-btn').forEach(b => {
-        b.className = 'category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition';
+        b.className = 'category-btn bg-slate-900 text-slate-300 hover:text-white px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 transition';
       });
-      event.target.className = 'category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition';
+      event.target.className = 'category-btn active bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-xs font-black transition';
       renderShowcase();
     }
 
     function filterBySociety(soc) {
       currentSociety = soc;
       document.querySelectorAll('.society-btn').forEach(b => {
-        b.className = 'society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition';
+        b.className = 'society-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition';
       });
-      event.target.className = 'society-btn active bg-amber-500 text-slate-950 px-3 py-1.5 rounded-xl text-xs font-black transition';
+      event.target.className = 'society-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition';
       renderShowcase();
     }
 
