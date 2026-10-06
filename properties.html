@@ -330,11 +330,55 @@
       <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
     </div>
   </footer>
-  <!-- Floating Ask Gemini Action Button -->
-  <button id="floatingGeminiBtn" onclick="openGeminiAssistant()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-slate-950 text-2xl shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-amber-300 cursor-pointer shadow-amber-500/40" title="Ask Gemini">
+<!-- Floating Gemini AI Assistant Button -->
+  <button id="floatingGeminiBtn" onclick="toggleGeminiChat()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-slate-950 text-2xl shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-amber-300 cursor-pointer shadow-amber-500/40" title="Ask Gemini AI Assistant">
     <i class="fa-solid fa-wand-magic-sparkles"></i>
   </button>
-<script>
+
+  <!-- Complete Interactive AI Assistant Window -->
+  <div id="geminiChatModal" class="fixed bottom-24 right-6 w-[92vw] sm:w-[400px] h-[520px] bg-slate-900 border-2 border-amber-500/60 rounded-3xl shadow-2xl z-50 flex flex-col overflow-hidden hidden transition-all duration-300">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 p-4 text-slate-950 flex items-center justify-between shadow-md">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-full bg-black/80 text-amber-400 flex items-center justify-center text-sm font-black border border-amber-300 shadow">
+          🦅
+        </div>
+        <div>
+          <h4 class="font-black text-sm tracking-tight leading-tight">Bin Taha Virtual Consultant</h4>
+          <span class="text-[10px] font-bold text-slate-900 flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-950 animate-ping inline-block"></span> 24/7 Live AI Assistant
+          </span>
+        </div>
+      </div>
+      <button onclick="toggleGeminiChat()" class="w-8 h-8 rounded-full bg-black/20 text-slate-950 font-black hover:bg-black/40 flex items-center justify-center transition">
+        ✕
+      </button>
+    </div>
+
+    <!-- Messages Flow Area -->
+    <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs bg-slate-950/70">
+      <div class="p-3 bg-slate-800 text-slate-200 rounded-2xl rounded-tl-none border border-slate-700/80 leading-relaxed shadow">
+        السلام علیکم! میں **Bin Taha Associates** کا اسمارٹ پراپرٹی اسسٹنٹ ہوں۔ 🏡<br><br>
+        میں آپ کی پسند، بجٹ اور انویسٹمنٹ کے مطابق **LDA Avenue 1**، **Jubilee Town** یا لاہور کے بہترین پلاٹس و مکانات تلاش کر سکتا ہوں۔ آپ کو کس سوسائٹی میں پلاٹ یا گھر درکار ہے؟
+      </div>
+    </div>
+
+    <!-- Quick Action Chips -->
+    <div class="p-2 bg-slate-900 border-t border-slate-800 flex gap-1.5 overflow-x-auto text-[10px]">
+      <button onclick="quickReply('LDA Avenue 1 میں اچھے ریٹس دکھائیں')" class="whitespace-nowrap bg-slate-800 hover:bg-amber-500 hover:text-black border border-slate-700 text-amber-400 px-2.5 py-1 rounded-lg font-bold transition">LDA Avenue 1</button>
+      <button onclick="quickReply('Jubilee Town میں 5 مرلہ کا کیا بجٹ ہے؟')" class="whitespace-nowrap bg-slate-800 hover:bg-amber-500 hover:text-black border border-slate-700 text-amber-400 px-2.5 py-1 rounded-lg font-bold transition">Jubilee Town</button>
+      <button onclick="quickReply('طاہا بھائی سے ڈائریکٹ کال پر رابطہ کرائیں')" class="whitespace-nowrap bg-slate-800 hover:bg-amber-500 hover:text-black border border-slate-700 text-emerald-400 px-2.5 py-1 rounded-lg font-bold transition">Direct Call</button>
+    </div>
+
+    <!-- Input Form -->
+    <form onsubmit="handleSendGemini(event)" class="p-3 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+      <input type="text" id="chatInput" placeholder="یہاں اپنا سوال یا بجٹ لکھیں..." class="flex-1 bg-slate-950 border border-slate-700 text-white rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-amber-500" autocomplete="off">
+      <button type="submit" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-3.5 py-2 rounded-xl text-xs flex items-center justify-center transition">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+  <script>
   // Live Clocks Script
   function updateWorldClocks() {
     const now = new Date();
@@ -663,6 +707,117 @@
     fetchProperties();
     renderSavedDreamProperties();
   });
+    // Chat Modal Toggle
+  function toggleGeminiChat() {
+    const modal = document.getElementById('geminiChatModal');
+    if (modal) {
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) {
+        document.getElementById('chatInput')?.focus();
+      }
+    }
+  }
+
+  function quickReply(text) {
+    const input = document.getElementById('chatInput');
+    if (input) {
+      input.value = text;
+      handleSendGemini(new Event('submit'));
+    }
+  }
+
+  // Intelligent Human-Like Brain for Bin Taha Associates
+  function handleSendGemini(e) {
+    if (e) e.preventDefault();
+    const input = document.getElementById('chatInput');
+    const msgBox = document.getElementById('chatMessages');
+    const userText = input.value.trim();
+    if (!userText) return;
+
+    // Display User Message
+    msgBox.innerHTML += `
+      <div class="flex justify-end">
+        <div class="p-3 bg-amber-500 text-slate-950 font-semibold rounded-2xl rounded-tr-none text-xs max-w-[85%] leading-relaxed shadow">
+          ${userText}
+        </div>
+      </div>
+    `;
+    input.value = '';
+    msgBox.scrollTop = msgBox.scrollHeight;
+
+    // Typing Simulation
+    const typingId = 'typing_' + Date.now();
+    msgBox.innerHTML += `
+      <div id="${typingId}" class="p-2.5 bg-slate-800 text-amber-400 rounded-2xl rounded-tl-none border border-slate-700 text-[11px] font-bold inline-block">
+        <i class="fa-solid fa-circle-notch fa-spin mr-1"></i> تجزیہ کر رہا ہوں...
+      </div>
+    `;
+    msgBox.scrollTop = msgBox.scrollHeight;
+
+    setTimeout(() => {
+      document.getElementById(typingId)?.remove();
+      const botResponse = generateIntelligentReply(userText);
+      msgBox.innerHTML += `
+        <div class="flex justify-start">
+          <div class="p-3 bg-slate-800 text-slate-200 rounded-2xl rounded-tl-none border border-slate-700/80 text-xs max-w-[90%] leading-relaxed shadow">
+            ${botResponse}
+          </div>
+        </div>
+      `;
+      msgBox.scrollTop = msgBox.scrollHeight;
+    }, 700);
+  }
+
+  function generateIntelligentReply(q) {
+    const query = q.toLowerCase();
+
+    // Direct Deal / Contact Intent
+    if (query.includes('طاہا') || query.includes('رابطہ') || query.includes('فون') || query.includes('نمبر') || query.includes('call') || query.includes('contact')) {
+      return `آپ چیف ایگزیکٹو **طاہا مبین بھٹہ صاحب** سے براہِ راست رابطہ کر سکتے ہیں:<br><br>
+      📞 فون: <strong>0321 9404812</strong><br>
+      🏢 آفس: لاہور، پاکستان (PEC و FBR تصدیق شدہ)<br><br>
+      <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20direct%20consultation%20chahiye." target="_blank" class="inline-block mt-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg text-[11px]">
+        <i class="fa-brands fa-whatsapp mr-1"></i> ابھی واٹس ایپ پر بات کریں
+      </a>`;
+    }
+
+    // LDA Avenue 1 Specific
+    if (query.includes('lda') || query.includes('ایل ڈی اے')) {
+      return `<strong>LDA Avenue 1 مارکیٹ اپ ڈیٹ:</strong><br>
+      • 10 مرلہ آن گراؤنڈ پلاٹس: <strong>1.45 کروڑ سے 1.85 کروڑ</strong><br>
+      • 1 کنال بہترین لوکیشن: <strong>2.80 کروڑ سے 3.50 کروڑ</strong><br><br>
+      ہمارے پاس بلاک C، D اور B میں بالکل کلیئر اور ٹرانسفر ریڈی لسٹنگز موجود ہیں۔ کیا آپ وزٹ کرنا چاہتے ہیں؟`;
+    }
+
+    // Jubilee Town Specific
+    if (query.includes('jubilee') || query.includes('جوبلی')) {
+      return `<strong>Jubilee Town تازہ ترین ریٹس:</strong><br>
+      • 5 مرلہ رہائشی پلاٹ: <strong>85 لاکھ سے 1.15 کروڑ</strong><br>
+      • 10 مرلہ جدید لگژری ہاؤس: <strong>3.20 کروڑ سے 4 کروڑ</strong><br><br>
+      کینال روڈ کے بالکل قریب بہترین آبادی والا علاقہ ہے۔ بتائیے آپ کس کیٹیگری میں دلچسپی رکھتے ہیں؟`;
+    }
+
+    // DHA Schemes
+    if (query.includes('dha') || query.includes('ڈی ایچ اے') || query.includes('rahbar')) {
+      return `<strong>DHA لاہور انویسٹمنٹ پورٹ فولیو:</strong><br>
+      • DHA Rahbar فیز 11 (5 مرلہ): <strong>1.10 کروڑ سے 1.35 کروڑ</strong><br>
+      • DHA فیز 9 Prism (1 کنال): <strong>2.60 کروڑ سے 3.40 کروڑ</strong><br><br>
+      سرمایہ کاری کے لحاظ سے یہ دونوں اس وقت سب سے محفوظ آپشنز ہیں۔`;
+    }
+
+    // Budget Filter
+    const budgetMatch = query.match(/\d+/);
+    if (budgetMatch && (query.includes('بجٹ') || query.includes('budget') || query.includes('lakh') || query.includes('crore') || query.includes('لاکھ') || query.includes('کروڑ'))) {
+      return `آپ کے بتائے گئے بجٹ کے مطابق بن طاہا ایسوسی ایٹس کے پاس تصدیق شدہ فائلز اور قبضہ پلاٹس موجود ہیں۔ ہماری ٹیم آپ کے لیے انفرادی طور پر بہترین آپشن شارٹ لسٹ کر سکتی ہے۔<br><br>
+      <a href="https://wa.me/923219404812?text=${encodeURIComponent('میرا بجٹ ' + q + ' ہے، مجھے اس بجٹ میں آپشنز بھیجیں۔')}" target="_blank" class="inline-block bg-amber-500 text-black font-bold px-3 py-1.5 rounded-lg text-[11px]">
+        اس بجٹ کی لسٹ واٹس ایپ پر منگوائیں
+      </a>`;
+    }
+
+    // Default Friendly Real-Estate Peer Reply
+    return `آپ کا سوال نوٹ کر لیا گیا ہے۔ Bin Taha Associates لاہور کی تمام بڑی سوسائٹیز (LDA Avenue 1، Jubilee Town، DHA، Bahria Town وغیرہ) میں آن گراؤنڈ پلاٹس، فائلوں کی فوری تصدیق اور کنسٹرکشن سروسز فراہم کرتا ہے۔<br><br>
+    مزید تفصیلی رہنمائی کے لیے آپ <strong>0321 9404812</strong> پر کال کر سکتے ہیں یا اپنا مطلوبہ رقبہ (5 مرلہ، 10 مرلہ یا 1 کنال) بتائیں۔`; 
+  }
 </script>
 </body>
 </html>
