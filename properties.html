@@ -330,10 +330,6 @@
       <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
     </div>
   </footer>
-  <!-- Floating Golden Action Button -->
-  <button id="floatingGoldBtn" onclick="window.open('https://wa.me/923219404812?text=Assalam-o-Alaikum%2C%20Bin%20Taha%20Associates%20se%20rabta%20karna%20chahta%20hoon.', '_blank')" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-slate-950 text-2xl shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-amber-300 cursor-pointer shadow-amber-500/40" title="Quick Assistance">
-    <i class="fa-solid fa-wand-magic-sparkles"></i>
-  </button>
   <!-- Floating Ask Gemini Action Button -->
   <button id="floatingGeminiBtn" onclick="openGeminiAssistant()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-slate-950 text-2xl shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-amber-300 cursor-pointer shadow-amber-500/40" title="Ask Gemini">
     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -351,6 +347,12 @@
   }
   setInterval(updateWorldClocks, 1000);
   updateWorldClocks();
+  function openGeminiAssistant() {
+    const query = prompt("Ask Gemini about Lahore properties (LDA Avenue, Jubilee Town, etc.):");
+    if (query) {
+      window.open(`https://wa.me/923219404812?text=${encodeURIComponent("Gemini Query: " + query)}`, '_blank');
+    }
+  }
 
   const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
