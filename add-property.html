@@ -6,6 +6,7 @@
   <title>Post Property Listing | Bin Taha Associates CRM</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
     .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
@@ -309,7 +310,24 @@
         const hubList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
         hubList.unshift(newProperty);
         localStorage.setItem('bintaha_properties_hub', JSON.stringify(hubList));
-
+        // Save to Supabase Cloud Database
+    if (_sb) {
+      try {
+        await _sb.from('properties').insert([{
+          Title: newProperty.title,
+          Type: newProperty.type,
+          Society: newProperty.society || newProperty.location,
+          Price: parseFloat(newProperty.price) || 0,
+          Phone: newProperty.phone || '03219404812',
+          Description: newProperty.desc || '',
+          Image: newProperty.image || '',
+          Time: new Date().toISOString()
+        }]);
+      } catch (err) {
+        console.error("Supabase insert error:", err);
+      }
+    }
+        
         // CRM GOOGLE SHEET WEBHOOK — text/plain avoids CORS preflight drop under no-cors
         const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
         const payload = {
