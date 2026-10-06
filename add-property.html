@@ -247,6 +247,9 @@
 
   <script>
     let localEncodedImg = '';
+    const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
+    const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
 
     function encodeImageFile(e) {
       const file = e.target.files[0];
@@ -311,21 +314,23 @@
         hubList.unshift(newProperty);
         localStorage.setItem('bintaha_properties_hub', JSON.stringify(hubList));
         // Save to Supabase Cloud Database
-    if (_sb) {
-      try {
-        await _sb.from('properties').insert([{
-          Title: newProperty.title,
-          Type: newProperty.type,
-          Society: newProperty.society || newProperty.location,
-          Price: parseFloat(newProperty.price) || 0,
-          Phone: newProperty.phone || '03219404812',
-          Description: newProperty.desc || '',
-          Image: newProperty.image || '',
-          Time: new Date().toISOString()
-        }]);
-      } catch (err) {
-        console.error("Supabase insert error:", err);
-      }
+    // Save to Supabase Cloud Database
+        if (_sb) {
+          try {
+            const { error: sbErr } = await _sb.from('properties').insert([{
+              Title: String(newProperty.title || ''),
+              Type: String(newProperty.type || 'Plot'),
+              Society: String(newProperty.society || newProperty.location || ''),
+              Price: String(newProperty.price || '0'),
+              Phone: String(newProperty.phone || '3219404812'),
+              Description: String(newProperty.desc || ''),
+              Image: String(newProperty.image || '')
+            }]);
+            if (sbErr) console.error("Supabase Error:", sbErr.message);
+          } catch (err) {
+            console.error("Supabase insert error:", err);
+          }
+        }
     }
         
         // CRM GOOGLE SHEET WEBHOOK — text/plain avoids CORS preflight drop under no-cors
