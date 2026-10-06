@@ -767,79 +767,44 @@
       msgBox.scrollTop = msgBox.scrollHeight;
     }, 700);
   }
-
- let chatSession = {
-    step: 0,
-    clientName: '',
-    purpose: '',
-    society: '',
-    budget: ''
-  };
-
-  function generateIntelligentReply(rawText) {
-    const q = rawText.trim().toLowerCase();
     
-    // Salaam & Greetings
-    if (q.includes('salam') || q.includes('slam') || q.includes('hello') || q.includes('hi') || q.includes('assalam')) {
-      chatSession.step = 1;
-      return `Walaikum Assalam! Bin Taha Associates mein khush-aamdeed. Main Taha Bhutta sahab ka personal property assistant hoon. <br><br>Aap batayein, aaj aap kis tarah ki property dekh rahe hain? <strong>Plot</strong> lena chahte hain ya <strong>Bana banaya ghar</strong>?`;
-    }
+const GEMINI_API_KEY = "AQ.Ab8RN6IKJwst0GZ_kMBTDRZoAmkf_0Ipq2Z2UQreP4Ubfk4kXg";
 
-    // Hal chaal
-    if (q.includes('kaise') || q.includes('kese') || q.includes('kya hal') || q.includes('kia hal')) {
-      return `Alhamdulillah main bilkul theek-thaak hoon! Aap batayein aap ka din kaisa guzar raha hai? Lahore real estate mein kisi specific society ya investment ke baare mein maloomat chahiye?`;
-    }
+  async function generateIntelligentReply(userQuestion) {
+    const systemPrompt = `Aap Bin Taha Associates Lahore ke live intelligent property consultant hain. 
+Aapko client ke sawal ka seedha, to-the-point aur mukhtasar jawab dena hai. 
+Aapko Lahore real estate (LDA Avenue 1, Jubilee Town, DHA Lahore wagera) ke baare mein maloomat hain. 
+Bin Taha Associates ke CEO Taha Mobeen Bhutta hain aur official phone number 0321 9404812 hai. 
+Client jis zaban (Urdu, Roman Urdu ya English) mein pooche, usi zaban mein seedha jawab dein bina kisi faltu bahes ke.`;
 
-    // Purpose: Plot ya Ghar
-    if (q.includes('plot') || q.includes('file') || q.includes('zameen')) {
-      chatSession.purpose = 'Plot';
-      return `Zabardast! Lahore mein is waqt plots par capital growth bohot solid mil rahi hai. <br><br>Aap ka target kaunsi society hai? Jaise <strong>LDA Avenue 1</strong>, <strong>Jubilee Town</strong>, <strong>DHA Lahore</strong> ya <strong>Bahria Town</strong>?`;
-    }
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              role: "user",
+              parts: [
+                { text: systemPrompt },
+                { text: "Client Query: " + userQuestion }
+              ]
+            }
+          ]
+        })
+      });
 
-    if (q.includes('ghar') || q.includes('house') || q.includes('home') || q.includes('kothi') || q.includes('villa')) {
-      chatSession.purpose = 'House';
-      return `Bana banaya ghar family ke rehne ke liye behtareen decision hai. Hamare paas solid construction aur modern design ke verified ghar available hain. <br><br>Aap ko <strong>5 Marla</strong> mein dekhna hai ya <strong>10 Marla</strong> mein? Aur preferred area kaunsa hai?`;
+      const data = await response.json();
+      if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
+        return data.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+      } else {
+        return "Main abhi online connect nahi ho pa raha hoon. Barah-e-raast 0321 9404812 par call ya WhatsApp karein.";
+      }
+    } catch (err) {
+      return "Network issue ki wajah se live reply nahi mil saka. Barah-e-raast rabta karein: 0321 9404812.";
     }
-
-    // Society Specific natural talks
-    if (q.includes('lda') || q.includes('avenue')) {
-      chatSession.society = 'LDA Avenue 1';
-      return `LDA Avenue 1 hamara main hub hai aur yahan on-ground possession plots ki demand bohot tez hai! <br><br>Yahan 10 Marla plot aam tor par 1.45 Cr se 1.85 Cr tak milta hai aur 1 Kanal 2.80 Cr se 3.50 Cr tak. Aap ka approximate <strong>budget</strong> kya ban raha hai taaki main direct clear file shortlist karoon?`;
-    }
-
-    if (q.includes('jubilee') || q.includes('jubli')) {
-      chatSession.society = 'Jubilee Town';
-      return `Jubilee Town Canal Road ke qareeb family living ke liye ideal hai. Wahan 5 Marla plot 85 Lac se 1.15 Cr aur brand new ghar 3 Cr se 3.5 Cr ki range mein hain. <br><br>Aap foran construction shuru karne ke liye dekh rahe hain ya investment ke liye?`;
-    }
-
-    if (q.includes('dha') || q.includes('rahbar') || q.includes('prism')) {
-      chatSession.society = 'DHA';
-      return `DHA Phase 9 Prism aur DHA Rahbar Phase 11 dono solid portfolio hain. Rahbar mein 5 Marla ready plots 1.10 Cr se 1.35 Cr ke darmiyan trade ho rahe hain. <br><br>Aap end-user hain ya short-term investment karke profit book karna chahte hain?`;
-    }
-
-    // Commercial
-    if (q.includes('commercial') || q.includes('shop') || q.includes('plaza') || q.includes('rent') || q.includes('kiraya')) {
-      return `Commercial properties mein rental income aur appreciation dono top class milti hain. Hamare paas Johar Town aur main boulevards par plazas aur shops ke verified options hain jahan monthly rent 2 se 4 lakh secure hota hai. <br><br>Aap ka total investment size kitna hai?`;
-    }
-
-    // Budget Handling
-    const numbers = q.match(/\d+/g);
-    if (numbers && (q.includes('lac') || q.includes('lakh') || q.includes('crore') || q.includes('cr') || q.includes('budget') || q.includes('hazar'))) {
-      chatSession.budget = q;
-      return `Aap ka budget note kar liya hai (${q}). Is figure mein hamare paas on-ground verified options aur 100% legal clear deals available hain jisme koi litigation ya boundary issue nahi hoga. <br><br>Kya aap chahenge ke main is budget ki specific files aur photos aapke WhatsApp par share karwa doon?`;
-    }
-
-    // Agreement to WhatsApp
-    if (q.includes('haan') || q.includes('yes') || q.includes('theek') || q.includes('send') || q.includes('bhejo') || q.includes('share') || q.includes('ok')) {
-      return `Bohot khoob! Main abhi aap ki details process kar raha hoon. Aap neeche click karke direct Taha Bhutta sahab se baat kar sakte hain aur verified map location le sakte hain: <br><br>
-      <a href="https://wa.me/923219404812?text=${encodeURIComponent('Assalam-o-Alaikum, website chat assistant se direct deal connect kar raha hoon.')}" target="_blank" class="inline-block mt-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">
-        WhatsApp par direct options dekhein
-      </a>`;
-    }
-
-    // Natural Fallback
-    return `Main aap ki baat samajh raha hoon. Real estate mein step lene se pehle har pehlu dekhna zaroori hota hai. <br><br>Aap be-jhijhak batayein, aap ko kis cheez ke mutalliq guide karoon? Market rates, transfer fees, ya specific location visit?`;
-  }
-</script>
+  }</script>
 </body>
 </html>
