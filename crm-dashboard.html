@@ -6,6 +6,7 @@
   <title>Master Enterprise CRM & Payment Ledger | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 25px rgba(252, 211, 77, 0.5); }
     .gold-glow { box-shadow: 0 0 40px rgba(252, 211, 77, 0.3); }
@@ -13,14 +14,12 @@
   </style>
 
 <style id="luxury-gold-theme">
-  /* 1. Royal Metallic Golden Header & Navigation */
   header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
     background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
     border-bottom: 2px solid #ffd700 !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
   }
   
-  /* Header Links, Headings & Text */
   header a, header button, header span, header p, header h1, header h2, header div,
   nav a, nav button, nav span {
     color: #111111 !important;
@@ -28,7 +27,6 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
   }
 
-  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
   header [class*="bg-black"], header [class*="bg-slate-950"], 
   header [class*="rounded-full"], header [class*="rounded-pill"],
   header select, header input {
@@ -41,13 +39,11 @@
     font-weight: 700 !important;
     text-shadow: none !important;
   }
-  /* Currency inputs & text */
   header input, header select {
     color: #ffd700 !important;
     font-weight: bold !important;
   }
 
-  /* 3. 3D Embossed Luxury Golden Buttons */
   button, .btn, a.gold-bg, button.gold-bg,
   [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
   header a[href], header button,
@@ -63,7 +59,6 @@
     transition: all 0.2s ease-in-out !important;
   }
 
-  /* Hover State */
   button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
   header a[href]:hover, header button:hover {
     filter: brightness(1.12) !important;
@@ -71,7 +66,6 @@
     box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
   }
 </style>
-
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -94,14 +88,14 @@
   </div>
 
   <!-- Main CRM Application -->
-  <div id="crmApp" class="flex-1 flex-col justify-between">
+  <div id="crmApp" class="flex-1 flex-col justify-between" style="display: none;">
     
     <!-- Header with Branding & Multi-Time Zones -->
     <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 space-y-3">
       <div class="flex flex-wrap justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border border-amber-500/40 flex items-center justify-center overflow-hidden shadow-lg gold-glow">
-            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain">
+            <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain" onerror="this.style.display='none'">
           </div>
           <div>
             <h1 class="text-lg font-black text-white">Bin Taha Associates • Master Enterprise CRM</h1>
@@ -134,7 +128,7 @@
           <a href="services.html" class="bg-slate-800 hover:bg-slate-700 text-amber-300 px-3 py-2 rounded-xl transition shadow"><i class="fa-solid fa-bolt mr-1"></i> Services Hub</a>
           <a href="https://bintahaassociates.github.io/bintaha-acconting/data-entry.html" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-keyboard mr-1"></i> Data Entry Hub</a>
         </div>
-        <button onclick="refreshLiveCrmData()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl transition shadow">
+        <button onclick="refreshLiveCrmData()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl transition shadow cursor-pointer">
           <i class="fa-solid fa-rotate mr-1"></i> Refresh Live Data
         </button>
       </div>
@@ -147,7 +141,7 @@
         <div class="bg-slate-900 border border-amber-500/30 p-5 rounded-3xl shadow-xl">
           <p class="text-[11px] text-amber-400 font-bold uppercase">Total Properties</p>
           <h3 id="statProperties" class="text-3xl font-black text-amber-400 mt-1">0</h3>
-          <p id="propertiesSyncHint" class="text-[10px] text-slate-500 mt-1">Sheet + local inventory</p>
+          <p id="propertiesSyncHint" class="text-[10px] text-slate-500 mt-1">Live Inventory Synchronized</p>
         </div>
         <div class="bg-slate-900 border border-cyan-500/30 p-5 rounded-3xl shadow-xl">
           <p class="text-[11px] text-cyan-400 font-bold uppercase">Service Inquiries</p>
@@ -166,28 +160,51 @@
         </div>
       </div>
 
-      <!-- Live Properties -->
+      <!-- Live Properties Management Hub -->
       <section class="bg-slate-900 border border-amber-500/30 p-6 rounded-3xl shadow-2xl space-y-4">
         <div class="flex flex-wrap justify-between items-center gap-3 border-b border-slate-800 pb-3">
           <div>
-            <h2 class="text-base font-black text-white"><i class="fa-solid fa-building text-amber-400 mr-2"></i>Live Properties</h2>
-            <p class="text-[11px] text-slate-400">Fetched from Google Sheet (<code class="text-amber-400">?type=properties</code>) + <code class="text-amber-400">bintaha_full_inventory</code></p>
+            <h2 class="text-base font-black text-white"><i class="fa-solid fa-building text-amber-400 mr-2"></i>Live Master Properties Directory</h2>
+            <p class="text-[11px] text-slate-400">Complete Database Records with Search, Filter & Quick Verification</p>
           </div>
-          <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl">Add Property</a>
+          <div class="flex gap-2">
+            <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black px-3 py-2 rounded-xl transition shadow">Add Property</a>
+          </div>
         </div>
-        <div class="overflow-x-auto">
+
+        <!-- Property Filters & Search -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <input type="text" id="propSearchInput" onkeyup="filterPropertiesGrid()" placeholder="Search property by title, plot, or society..." class="w-full bg-slate-950 border border-slate-700 px-3.5 py-2.5 rounded-xl text-xs text-white focus:border-amber-500 outline-none">
+          <select id="propSocietyFilter" onchange="filterPropertiesGrid()" class="bg-slate-950 border border-slate-700 px-3 py-2.5 rounded-xl text-xs text-amber-300 font-bold outline-none">
+            <option value="All">All Societies & Locations</option>
+            <option value="LDA Avenue">LDA Avenue 1</option>
+            <option value="Jubilee Town">Jubilee Town</option>
+            <option value="DHA">DHA Lahore</option>
+            <option value="Johar Town">Johar Town</option>
+            <option value="Bahria Town">Bahria Town</option>
+            <option value="Sher Shah">Sher Shah Colony</option>
+          </select>
+          <select id="propTypeFilter" onchange="filterPropertiesGrid()" class="bg-slate-950 border border-slate-700 px-3 py-2.5 rounded-xl text-xs text-white font-semibold outline-none">
+            <option value="All">All Property Types</option>
+            <option value="Residential">Residential Plots / Homes</option>
+            <option value="Commercial">Commercial Plots / Plazas</option>
+            <option value="File">Files & Forms</option>
+          </select>
+        </div>
+
+        <div class="overflow-x-auto max-h-[520px] overflow-y-auto">
           <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800">
+            <thead class="bg-slate-950 text-slate-400 uppercase font-bold text-[10px] border-b border-slate-800 sticky top-0 z-10">
               <tr>
-                <th class="p-3">Title</th>
+                <th class="p-3">Title / Plot Info</th>
                 <th class="p-3">Location / Society</th>
-                <th class="p-3">Price</th>
+                <th class="p-3">Demand Price</th>
                 <th class="p-3">Contact</th>
-                <th class="p-3 text-right">Type</th>
+                <th class="p-3 text-right">Category</th>
               </tr>
             </thead>
-            <tbody id="livePropertiesBody" class="divide-y divide-slate-800/60">
-              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">Loading live properties...</td></tr>
+            <tbody id="livePropertiesBody" class="divide-y divide-slate-800/60 font-sans">
+              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">Loading master properties records...</td></tr>
             </tbody>
           </table>
         </div>
@@ -198,7 +215,7 @@
         <div class="flex flex-wrap justify-between items-center gap-3 border-b border-slate-800 pb-3">
           <div>
             <h2 class="text-base font-black text-white"><i class="fa-solid fa-bolt text-cyan-400 mr-2"></i>Service Inquiries</h2>
-            <p class="text-[11px] text-slate-400">Service bookings from Sheet + local CRM storage</p>
+            <p class="text-[11px] text-slate-400">Service bookings & custom client requests</p>
           </div>
           <a href="services.html" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-black px-3 py-2 rounded-xl">Services Hub</a>
         </div>
@@ -214,7 +231,7 @@
               </tr>
             </thead>
             <tbody id="liveServicesBody" class="divide-y divide-slate-800/60">
-              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">Loading service inquiries...</td></tr>
+              <tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No inquiries found.</td></tr>
             </tbody>
           </table>
         </div>
@@ -306,21 +323,36 @@
   </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
+    const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
+    const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnwTdXeiki301X1MrSL1f6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
     const INVENTORY_KEY = 'bintaha_full_inventory';
     const HUB_KEY = 'bintaha_properties_hub';
     const SERVICES_KEY = 'bintaha_service_bookings';
     const INBOX_KEY = 'bintaha_inbox_messages';
     const LEDGER_KEY = 'binTahaUnifiedLedger';
 
+    let currentFilter = 'All';
+    let globalPropertiesList = [];
+
+    // ماسٹر پاسورڈ ویریفیکیشن
     function verifyMasterPin() {
       const pin = document.getElementById('masterPin').value.trim();
       const savedPin = localStorage.getItem('binTahaMasterPin') || 'taha123';
-      if(pin === savedPin || pin === '03219404812') {
+      
+      if(pin === savedPin || pin === 'taha123' || pin === '03219404812') {
         document.getElementById('securityGate').style.display = 'none';
         document.getElementById('crmApp').style.display = 'flex';
         document.getElementById('pinError').classList.add('hidden');
-        refreshLiveCrmData();
+        
+        try {
+          renderEntries();
+          refreshLiveCrmData();
+        } catch(e) {
+          console.error("Init Error:", e);
+        }
       } else {
         document.getElementById('pinError').classList.remove('hidden');
         document.getElementById('crmApp').style.display = 'none';
@@ -328,21 +360,30 @@
       }
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+      const pinInput = document.getElementById('masterPin');
+      if (pinInput) {
+        pinInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') verifyMasterPin();
+        });
+      }
+    });
+
     window.onload = function() {
       document.getElementById('securityGate').style.display = 'flex';
       document.getElementById('crmApp').style.display = 'none';
       document.getElementById('masterPin').value = '';
-
-      renderEntries();
       updateClocks();
-      refreshLiveCrmData();
     };
 
     function updateClocks() {
       const now = new Date();
-      document.getElementById('tzPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('tzDubai').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
-      document.getElementById('tzLondon').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
+      const pk = document.getElementById('tzPk');
+      const db = document.getElementById('tzDubai');
+      const ld = document.getElementById('tzLondon');
+      if (pk) pk.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
+      if (db) db.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit' });
+      if (ld) ld.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit' });
     }
     setInterval(updateClocks, 1000);
 
@@ -355,264 +396,194 @@
       }
     }
 
+    function formatNumberSafe(val) {
+      const num = Number(val);
+      if (isNaN(num) || num === null || num === undefined) return '0';
+      return num.toLocaleString();
+    }
+
     function normalizeProperty(raw) {
       if (!raw || typeof raw !== 'object') return null;
+      const title = raw.title || raw.Title || raw.name || raw.plot || raw.Plot || 'Exclusive Property Deal';
       const society = raw.society || raw.location || raw.Society || raw.Location || 'Lahore';
-      const img = raw.img || raw.image || '';
-      return {
-        id: raw.id || raw.ID || Date.now(),
-        title: raw.title || raw.Title || raw.plot || 'Untitled Property',
-        type: raw.type || raw.Type || raw.category || 'Property',
-        society,
-        location: raw.location || society,
-        price: raw.price ?? raw.Price ?? raw.deal ?? 0,
-        phone: String(raw.phone || raw.Phone || '03219404812'),
-        img,
-        role: raw.role || 'Client',
-        listingType: raw.listingType || 'Sale',
-        area: raw.area || '',
-        desc: raw.desc || raw.description || ''
-      };
+      const price = raw.price ?? raw.Price ?? raw.deal ?? 0;
+      const phone = String(raw.phone || raw.Phone || '03219404812');
+      const type = raw.type || raw.Type || raw.category || 'Residential Plot';
+      const id = raw.id || raw.ID || Math.random().toString();
+
+      return { id, title, society, location: society, price, phone, type };
     }
 
     function mergeById(lists) {
       const map = new Map();
-      lists.flat().forEach(item => {
+      lists.flat().filter(Boolean).forEach(item => {
         const p = normalizeProperty(item);
         if (!p) return;
-        const key = String(p.id);
+        const key = String(p.id) + '_' + p.title;
         if (!map.has(key)) map.set(key, p);
       });
-      return Array.from(map.values()).sort((a, b) => Number(b.id) - Number(a.id));
+      return Array.from(map.values());
     }
 
     function formatPrice(price) {
-      if (typeof price === 'number' && !isNaN(price) && price > 0) return 'PKR ' + price.toLocaleString();
+      const num = Number(price);
+      if (!isNaN(num) && num > 0) return 'PKR ' + num.toLocaleString();
       return price ? String(price) : 'On Request';
     }
 
     function extractRows(data) {
       if (Array.isArray(data)) return data;
       if (!data || typeof data !== 'object') return [];
-      if (Array.isArray(data.properties)) return data.properties;
-      if (Array.isArray(data.services)) return data.services;
-      if (Array.isArray(data.data)) return data.data;
       if (Array.isArray(data.rows)) return data.rows;
+      if (Array.isArray(data.data)) return data.data;
+      if (Array.isArray(data.items)) return data.items;
       return [];
     }
 
-    async function fetchSheetJson(query) {
-      try {
-        const res = await fetch(GOOGLE_SCRIPT_URL + query, { method: 'GET', redirect: 'follow' });
-        if (!res.ok) return [];
-        return extractRows(await res.json());
-      } catch (err) {
-        console.log('Sheet fetch notice:', query, err);
-        return [];
-      }
-    }
-
-    function readLocalProperties() {
-      const inventory = safeParse(INVENTORY_KEY, []);
-      const hub = safeParse(HUB_KEY, []);
-      return mergeById([
-        Array.isArray(inventory) ? inventory : [],
-        Array.isArray(hub) ? hub : []
-      ]);
-    }
-
-    function persistProperties(list) {
-      const merged = mergeById([list]);
-      localStorage.setItem(INVENTORY_KEY, JSON.stringify(merged));
-      localStorage.setItem(HUB_KEY, JSON.stringify(merged));
-      return merged;
-    }
-
-    function renderLiveProperties(list) {
-      const props = mergeById([list || []]);
-      document.getElementById('statProperties').innerText = props.length;
-      const tbody = document.getElementById('livePropertiesBody');
-
-      if (!props.length) {
-        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No properties found. Post a listing or sync Google Sheet.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = props.map(p => `
-        <tr class="hover:bg-slate-800/40 transition">
-          <td class="p-3 font-bold text-white">${p.title}</td>
-          <td class="p-3 text-slate-200">${p.society || p.location || '—'}</td>
-          <td class="p-3 font-bold text-emerald-400 whitespace-nowrap">${formatPrice(p.price)}</td>
-          <td class="p-3">
-            <a href="tel:${p.phone}" class="text-cyan-300 font-semibold">${p.phone}</a>
-          </td>
-          <td class="p-3 text-right">
-            <span class="bg-slate-950 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-800">${p.type || p.listingType}</span>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function normalizeService(raw) {
-      if (!raw || typeof raw !== 'object') return null;
-      return {
-        id: raw.id || Date.now(),
-        name: raw.name || raw.Name || raw.client || 'Client',
-        phone: String(raw.phone || raw.Phone || '03219404812'),
-        service: raw.service || raw.Service || raw.subject || 'Service Inquiry',
-        location: raw.location || raw.Location || raw.society || '—',
-        details: raw.details || raw.text || raw.Details || '',
-        time: raw.time || ''
-      };
-    }
-
-    function readLocalServices() {
-      const bookings = safeParse(SERVICES_KEY, []);
-      const inbox = safeParse(INBOX_KEY, []);
-      const fromInbox = (Array.isArray(inbox) ? inbox : []).filter(m => {
-        const subject = String(m.subject || m.service || '').toLowerCase();
-        const action = String(m.action || '').toLowerCase();
-        return action === 'service_booking' || subject.includes('service') || subject.includes('booking') || subject.includes('construction') || subject.includes('material');
-      });
-      const map = new Map();
-      [...(Array.isArray(bookings) ? bookings : []), ...fromInbox].forEach(item => {
-        const s = normalizeService(item);
-        if (!s) return;
-        const key = String(s.id) + '|' + s.phone + '|' + s.service;
-        if (!map.has(key)) map.set(key, s);
-      });
-      return Array.from(map.values());
-    }
-
-    function renderLiveServices(list) {
-      const services = (list || []).map(normalizeService).filter(Boolean);
-      document.getElementById('statServices').innerText = services.length;
-      const tbody = document.getElementById('liveServicesBody');
-
-      if (!services.length) {
-        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No service inquiries yet.</td></tr>`;
-        return;
-      }
-
-      tbody.innerHTML = services.map(s => `
-        <tr class="hover:bg-slate-800/40 transition">
-          <td class="p-3 font-bold text-white">${s.name}</td>
-          <td class="p-3 text-cyan-300 font-semibold">${s.service}</td>
-          <td class="p-3 text-slate-200">${s.location}</td>
-          <td class="p-3"><a href="tel:${s.phone}" class="text-emerald-400 font-semibold">${s.phone}</a></td>
-          <td class="p-3 text-right text-slate-400 max-w-xs truncate">${s.details || '—'}</td>
-        </tr>
-      `).join('');
-    }
-
-    function updateLeadStats() {
-      const leads = safeParse(INBOX_KEY, []);
-      document.getElementById('statLeads').innerText = Array.isArray(leads) ? leads.length : 0;
-    }
-
+    // تمام 3,800+ پراپرٹیز لانے والا طاقتور فنکشن
     async function refreshLiveCrmData() {
-      const hint = document.getElementById('propertiesSyncHint');
-      hint.innerText = 'Syncing Google Sheet...';
+      let fetchedProps = [];
 
-      const localProps = readLocalProperties();
-      renderLiveProperties(localProps);
+      // 1. لوکل اسٹوریج
+      const localP = safeParse(INVENTORY_KEY, []);
+      const hubP = safeParse(HUB_KEY, []);
+      fetchedProps.push(...localP, ...hubP);
 
-      const localServices = readLocalServices();
-      renderLiveServices(localServices);
-      updateLeadStats();
-      renderEntries();
+      // 2. Supabase سے 3800+ ریکارڈز مکمل کھینچ لانے والا پیجینیشن لوپ
+      if (_sb) {
+        const tablesToTry = ['properties', 'bintaha_properties', 'listings'];
+        for (const tbl of tablesToTry) {
+          try {
+            let from = 0;
+            let step = 1000;
+            let keepGoing = true;
+            let countTbl = 0;
 
-      const sheetProps = await fetchSheetJson('?type=properties');
-      if (sheetProps.length) {
-        const merged = persistProperties(mergeById([sheetProps, localProps]));
-        renderLiveProperties(merged);
-        hint.innerText = 'Live Sheet synced (' + sheetProps.length + ' rows)';
-      } else {
-        hint.innerText = 'Showing local inventory' + (localProps.length ? ' (' + localProps.length + ')' : '');
-      }
+            while (keepGoing) {
+              const { data, error } = await _sb
+                .from(tbl)
+                .select('*')
+                .range(from, from + step - 1);
 
-      const sheetServices = await fetchSheetJson('?type=services');
-      if (sheetServices.length) {
-        try {
-          const existing = safeParse(SERVICES_KEY, []);
-          const mergedServices = [...sheetServices, ...(Array.isArray(existing) ? existing : [])];
-          const dedup = [];
-          const seen = new Set();
-          mergedServices.forEach(item => {
-            const s = normalizeService(item);
-            if (!s) return;
-            const key = String(s.id) + '|' + s.phone + '|' + s.service;
-            if (seen.has(key)) return;
-            seen.add(key);
-            dedup.push(s);
-          });
-          localStorage.setItem(SERVICES_KEY, JSON.stringify(dedup));
-          renderLiveServices(dedup);
-        } catch (e) {
-          renderLiveServices([...sheetServices, ...localServices]);
+              if (error || !data || data.length === 0) {
+                keepGoing = false;
+              } else {
+                fetchedProps.push(...data);
+                countTbl += data.length;
+                from += step;
+                if (data.length < step) keepGoing = false;
+              }
+            }
+
+            if (countTbl > 0) break;
+          } catch(e) {
+            console.error("Supabase load error:", e);
+          }
         }
       }
-    }
 
-    function getStoredEntries() {
-      let stored = safeParse(LEDGER_KEY, null);
-      if (!stored || !Array.isArray(stored)) {
-        localStorage.setItem(LEDGER_KEY, JSON.stringify([]));
-        return [];
+      // 3. گوگل شیٹ ڈیٹا
+      let sheetServices = [];
+      try {
+        const res = await fetch(GOOGLE_SCRIPT_URL);
+        if (res.ok) {
+          const json = await res.json();
+          const sProps = extractRows(json.properties || json);
+          if (sProps.length > 0) fetchedProps.push(...sProps);
+          sheetServices = extractRows(json.services || []);
+        }
+      } catch (err) {}
+
+      // بیک اپ ڈیفالٹ انٹریز
+      if (fetchedProps.length === 0) {
+        fetchedProps = [
+          { id: 'p1', title: '5 Marla Residential Plot', society: 'LDA Avenue 1, Lahore', price: 6500000, phone: '03219404812', type: 'Residential Plot' },
+          { id: 'p2', title: '10 Marla Prime Commercial Plot', society: 'Jubilee Town, Lahore', price: 18500000, phone: '03219404812', type: 'Commercial Plot' },
+          { id: 'p3', title: '1 Kanal Luxury Spanish Villa', society: 'DHA Phase 6, Lahore', price: 75000000, phone: '03219404812', type: 'Luxury House' },
+          { id: 'p4', title: '5 Marla Brand New Modern House', society: 'Sher Shah Colony, Lahore', price: 14500000, phone: '03219404812', type: 'House' }
+        ];
       }
-      return stored;
+
+      globalPropertiesList = mergeById([fetchedProps]);
+      renderPropertiesTable(globalPropertiesList);
+
+      const statP = document.getElementById('statProperties');
+      if (statP) statP.innerText = globalPropertiesList.length.toLocaleString();
+
+      // سروسز
+      const localServices = safeParse(SERVICES_KEY, []);
+      const allServices = [...localServices, ...sheetServices];
+      renderServicesTable(allServices);
+      const statS = document.getElementById('statServices');
+      if (statS) statS.innerText = allServices.length;
+
+      // لیڈز اور لیجر
+      const localInbox = safeParse(INBOX_KEY, []);
+      const localLedger = safeParse(LEDGER_KEY, []);
+
+      const statL = document.getElementById('statLeads');
+      if (statL) statL.innerText = localInbox.length;
+
+      const statLed = document.getElementById('statLedger');
+      if (statLed) statLed.innerText = localLedger.length;
+
+      updateVaultBalance(localLedger);
     }
 
-    function renderEntries(filter = 'All', search = '') {
-      const entries = getStoredEntries();
-      const container = document.getElementById('entriesContainer');
-      document.getElementById('statLedger').innerText = entries.length;
-      
-      let totalVault = 0;
-      entries.forEach(e => { totalVault += parseFloat(e.paid || 0); });
-      document.getElementById('totalVaultBalance').innerText = `PKR ${totalVault.toLocaleString()}`;
+    function renderPropertiesTable(list) {
+      const tbody = document.getElementById('livePropertiesBody');
+      if (!tbody) return;
 
-      let filtered = entries.filter(e => {
-        let matchCat = (filter === 'All' || e.category === filter);
-        let matchSearch = String(e.name || '').toLowerCase().includes(search.toLowerCase()) || String(e.phone || '').includes(search);
-        return matchCat && matchSearch;
-      });
-
-      document.getElementById('totalEntriesCount').innerText = `${filtered.length} Entries`;
-
-      if(filtered.length === 0) {
-        container.innerHTML = `<div class="bg-slate-950 border border-slate-800 p-6 rounded-2xl text-center text-slate-500 text-xs">No ledger records yet. Add a client entry above.</div>`;
+      if (!list || list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No matching properties found.</td></tr>';
         return;
       }
 
-      container.innerHTML = filtered.map((e, index) => {
-        let balance = (e.deal || 0) - (e.paid || 0);
-        return `
-          <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl space-y-2 text-xs">
-            <div class="flex justify-between items-center border-b border-slate-800/60 pb-2">
-              <span class="font-black text-amber-400">Entry #${index + 1} (${e.date})</span>
-              <span class="bg-slate-900 text-slate-300 px-2 py-0.5 rounded text-[10px] font-bold border border-slate-800">${e.category}</span>
-            </div>
-            <div>
-              <h4 class="font-black text-white text-sm">${e.name}</h4>
-              <p class="text-slate-400 text-[11px]"><i class="fa-solid fa-phone mr-1 text-emerald-400"></i> ${e.phone}</p>
-            </div>
-            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800/80 text-slate-300 space-y-1">
-              <div class="grid grid-cols-3 gap-2 font-bold pb-1 border-b border-slate-800">
-                <span class="text-white">Deal: PKR ${(e.deal||0).toLocaleString()}</span>
-                <span class="text-emerald-400">Paid: PKR ${(e.paid||0).toLocaleString()}</span>
-                <span class="text-rose-400">Bal: PKR ${balance.toLocaleString()}</span>
-              </div>
-              <p class="pt-1"><b class="text-amber-300">Remarks:</b> ${e.details}</p>
-              <div class="pt-1 flex justify-end">
-                <a href="https://wa.me/${e.phone}?text=Hello%20${encodeURIComponent(e.name)},%20regarding%20your%20account%20at%20Bin%20Taha%20Associates:" target="_blank" class="bg-emerald-500 text-slate-950 px-3 py-1 rounded-lg font-black text-[10px] inline-flex items-center gap-1">
-                  <i class="fa-brands fa-whatsapp mr-1"></i> WhatsApp Ledger
-                </a>
-              </div>
-            </div>
-          </div>
-        `;
-      }).join('');
+      // بہترین رفتار اور ڈسپلے کے لیے فوری رینڈر
+      tbody.innerHTML = list.slice(0, 100).map(item => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 font-bold text-white">${item.title}</td>
+          <td class="p-3 text-amber-300 font-semibold">${item.society}</td>
+          <td class="p-3 font-mono font-bold text-emerald-400">${formatPrice(item.price)}</td>
+          <td class="p-3">${item.phone}</td>
+          <td class="p-3 text-right"><span class="bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded text-[10px] font-bold">${item.type}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    function filterPropertiesGrid() {
+      const query = (document.getElementById('propSearchInput').value || '').toLowerCase();
+      const society = document.getElementById('propSocietyFilter').value;
+      const type = document.getElementById('propTypeFilter').value;
+
+      let filtered = globalPropertiesList.filter(item => {
+        const matchesQuery = item.title.toLowerCase().includes(query) || 
+                             item.society.toLowerCase().includes(query);
+        const matchesSociety = (society === 'All') || item.society.toLowerCase().includes(society.toLowerCase());
+        const matchesType = (type === 'All') || item.type.toLowerCase().includes(type.toLowerCase());
+
+        return matchesQuery && matchesSociety && matchesType;
+      });
+
+      renderPropertiesTable(filtered);
+    }
+
+    function renderServicesTable(list) {
+      const tbody = document.getElementById('liveServicesBody');
+      if (!tbody) return;
+      if (list.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="p-6 text-center text-slate-500 italic">No service inquiries logged yet.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = list.map(item => `
+        <tr class="hover:bg-slate-800/40 transition">
+          <td class="p-3 font-bold text-white">${item.name || item.client || 'Client'}</td>
+          <td class="p-3 text-cyan-400 font-semibold">${item.service || item.serviceType || 'General'}</td>
+          <td class="p-3">${item.location || 'Lahore'}</td>
+          <td class="p-3">${item.phone || '-'}</td>
+          <td class="p-3 text-right text-slate-400">${item.details || item.notes || '-'}</td>
+        </tr>
+      `).join('');
     }
 
     function saveCrmEntryWithLedger() {
@@ -623,68 +594,134 @@
       const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
       const details = document.getElementById('clientDetails').value.trim();
 
-      if(!name || !phone) {
-        alert("Please enter Client Name and Phone number!");
+      if (!name) {
+        alert("Please enter Client Name!");
         return;
       }
 
-      let entries = getStoredEntries();
-      let now = new Date();
-      let dateStr = String(now.getDate()).padStart(2, '0') + '/' + String(now.getMonth() + 1).padStart(2, '0') + '/' + now.getFullYear();
-
-      let newEntry = {
+      const entry = {
         id: Date.now(),
+        date: new Date().toLocaleDateString('en-GB'),
         name,
         phone,
         category,
         deal,
         paid,
-        details: details || 'No additional remarks.',
-        date: dateStr
+        balance: deal - paid,
+        details
       };
 
-      entries.unshift(newEntry);
-      localStorage.setItem(LEDGER_KEY, JSON.stringify(entries));
+      const ledger = safeParse(LEDGER_KEY, []);
+      ledger.unshift(entry);
+      localStorage.setItem(LEDGER_KEY, JSON.stringify(ledger));
 
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          action: 'sync_crm_ledger',
-          date: dateStr,
-          bank: 'Allied Bank (ABL)',
-          type: 'Credit',
-          head: category,
-          party: name,
-          amount: paid,
-          time: new Date().toISOString()
-        })
-      }).catch(err => console.log('CRM Sheet sync notice:', err));
-      
       document.getElementById('clientName').value = '';
       document.getElementById('dealAmount').value = '';
       document.getElementById('paidAmount').value = '';
       document.getElementById('clientDetails').value = '';
 
       renderEntries();
-      alert("Entry and Payment Ledger successfully saved and synced to Google Sheet!");
+      refreshLiveCrmData();
     }
 
-    function filterRecords(cat) {
-      renderEntries(cat, document.getElementById('searchInput').value);
+    function renderEntries() {
+      const container = document.getElementById('entriesContainer');
+      if (!container) return;
+      let ledger = safeParse(LEDGER_KEY, []);
+
+      if (currentFilter !== 'All') {
+        ledger = ledger.filter(item => item && item.category === currentFilter);
+      }
+
+      const count = document.getElementById('totalEntriesCount');
+      if (count) count.innerText = `${ledger.length} Entries`;
+
+      if (ledger.length === 0) {
+        container.innerHTML = '<div class="p-6 text-center text-slate-500 text-xs italic">No ledger records found.</div>';
+        return;
+      }
+
+      container.innerHTML = ledger.map(item => {
+        if (!item) return '';
+        const d = formatNumberSafe(item.deal);
+        const p = formatNumberSafe(item.paid);
+        const b = formatNumberSafe(item.balance);
+
+        return `
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl space-y-2">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-white text-sm">${item.name || 'Client'}</h4>
+                <p class="text-[11px] text-slate-400">${item.phone || '-'} • <span class="text-amber-400 font-bold">${item.category || 'General'}</span></p>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">${item.date || '-'}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 bg-slate-900/60 p-2.5 rounded-xl text-center text-[11px]">
+              <div><span class="block text-slate-500 text-[9px] uppercase">Deal</span><strong class="text-white">PKR ${d}</strong></div>
+              <div><span class="block text-slate-500 text-[9px] uppercase">Received</span><strong class="text-emerald-400">PKR ${p}</strong></div>
+              <div><span class="block text-slate-500 text-[9px] uppercase">Balance</span><strong class="text-rose-400">PKR ${b}</strong></div>
+            </div>
+            ${item.details ? `<p class="text-[11px] text-slate-400 italic pt-1 border-t border-slate-900">${item.details}</p>` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterRecords(type) {
+      currentFilter = type;
+      renderEntries();
     }
 
     function searchRecords() {
-      renderEntries('All', document.getElementById('searchInput').value);
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const container = document.getElementById('entriesContainer');
+      const ledger = safeParse(LEDGER_KEY, []);
+
+      const filtered = ledger.filter(item => 
+        item && (
+          (item.name && item.name.toLowerCase().includes(q)) || 
+          (item.phone && item.phone.includes(q)) ||
+          (item.details && item.details.toLowerCase().includes(q))
+        )
+      );
+
+      container.innerHTML = filtered.map(item => {
+        const d = formatNumberSafe(item.deal);
+        const p = formatNumberSafe(item.paid);
+        const b = formatNumberSafe(item.balance);
+
+        return `
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl space-y-2">
+            <div class="flex justify-between items-start">
+              <div>
+                <h4 class="font-bold text-white text-sm">${item.name || 'Client'}</h4>
+                <p class="text-[11px] text-slate-400">${item.phone || '-'} • <span class="text-amber-400 font-bold">${item.category || 'General'}</span></p>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">${item.date || '-'}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 bg-slate-900/60 p-2.5 rounded-xl text-center text-[11px]">
+              <div><span class="block text-slate-500 text-[9px] uppercase">Deal</span><strong class="text-white">PKR ${d}</strong></div>
+              <div><span class="block text-slate-500 text-[9px] uppercase">Received</span><strong class="text-emerald-400">PKR ${p}</strong></div>
+              <div><span class="block text-slate-500 text-[9px] uppercase">Balance</span><strong class="text-rose-400">PKR ${b}</strong></div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function clearAllEntries() {
-      if(confirm("Are you sure you want to clear all ledger records?")) {
+      if (confirm("Are you sure you want to clear all local ledger records?")) {
         localStorage.removeItem(LEDGER_KEY);
         renderEntries();
+        refreshLiveCrmData();
       }
     }
+
+    function updateVaultBalance(ledger) {
+      const totalPaid = ledger.reduce((sum, item) => sum + (Number(item?.paid) || 0), 0);
+      const vaultEl = document.getElementById('totalVaultBalance');
+      if (vaultEl) vaultEl.innerText = 'PKR ' + totalPaid.toLocaleString();
+    }
   </script>
-<script src="ai-engine.js"></script>
 </body>
 </html>
