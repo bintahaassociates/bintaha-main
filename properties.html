@@ -3,19 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Properties Showcase & Real-Time CRM Hub | Bin Taha Associates</title>
+  <title>Properties Hub | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
     .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
-    .badge-shimmer {
-      background: linear-gradient(90deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.5) 50%, rgba(245, 158, 11, 0.2) 100%);
-      background-size: 200% 100%;
-      animation: shimmer 2.5s infinite;
-    }
-    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 
     @keyframes eagle3DRotate {
         0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
@@ -34,12 +28,14 @@
       border-bottom: 2px solid #ffd700 !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
     }
+    
     header a, header button, header span, header p, header h1, header h2, header div,
     nav a, nav button, nav span {
       color: #111111 !important;
       font-weight: 800 !important;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
     }
+
     header [class*="bg-black"], header [class*="bg-slate-950"], 
     header [class*="rounded-full"], header [class*="rounded-pill"],
     header select, header input {
@@ -52,10 +48,7 @@
       font-weight: 700 !important;
       text-shadow: none !important;
     }
-    header input, header select {
-      color: #ffd700 !important;
-      font-weight: bold !important;
-    }
+
     button, .btn, a.gold-bg, button.gold-bg,
     [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
     header a[href], header button,
@@ -64,12 +57,13 @@
       color: #0a0a0a !important;
       border: 1px solid #ffe57f !important;
       border-bottom: 2px solid #7d5707 !important;
-      border-radius: 8px !important;
+      border-radius: 10px !important;
       font-weight: 800 !important;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
       transition: all 0.2s ease-in-out !important;
     }
+
     button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
     header a[href]:hover, header button:hover {
       filter: brightness(1.12) !important;
@@ -81,13 +75,12 @@
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
   <!-- Top bar -->
-  <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-6 border-b border-slate-800">
+  <div class="bg-slate-950 text-slate-400 text-xs py-2.5 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
-      <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
-        <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
-        <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
-        <span><i class="fa-solid fa-envelope text-amber-400 mr-1"></i>info@bintahaassociates.com</span>
-        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
+      <div class="flex items-center gap-5 text-center md:text-left flex-wrap justify-center font-medium">
+        <span><i class="fa-solid fa-clock text-emerald-400 mr-1.5"></i>Open 24/7 Doorstep Service</span>
+        <span><i class="fa-solid fa-phone text-blue-400 mr-1.5"></i>0321 9404812</span>
+        <span><i class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i>Lahore, PK</span>
       </div>
       <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
         <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -97,33 +90,36 @@
         <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
         <span class="text-slate-600">|</span>
-        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-database mr-1"></i>Live Cloud Database</span>
+        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>Supabase Cloud Synchronized</span>
       </div>
     </div>
   </div>
 
-  <!-- Header -->
+  <!-- Perfectly Aligned Luxury Header -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-11 w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-4">
+      <a href="index.html" class="flex items-center gap-3.5">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">FBR & PEC Category C Certified</p>
+          <h1 class="text-xl font-black text-white leading-tight tracking-wide">Bin Taha Associates</h1>
+          <p class="text-[11px] text-amber-400 font-extrabold uppercase tracking-wider">FBR & PEC Category C Certified</p>
         </div>
       </a>
-      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
-        <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-user-group mr-1"></i>About Us</a>
-        <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
-        <a href="properties.html" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg font-black"><i class="fa-solid fa-city mr-1"></i>Properties</a>
-        <a href="add-property.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-plus-circle mr-1"></i>Post Listing</a>
-        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-cogs mr-1"></i>Services</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-envelope mr-1"></i>Contact</a>
+      
+      <!-- Nicely spaced bigger navigation buttons -->
+      <nav class="flex flex-wrap items-center gap-2 text-xs font-bold">
+        <a href="index.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-house mr-1.5"></i>Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-user-group mr-1.5"></i>About Us</a>
+        <a href="dream.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-star text-amber-400 mr-1.5"></i>Our Dream</a>
+        <a href="properties.html" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl font-black"><i class="fa-solid fa-city mr-1.5"></i>Properties</a>
+        <a href="add-property.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-plus-circle mr-1.5"></i>Post Listing</a>
+        <a href="crm-dashboard.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-chart-line mr-1.5"></i>CRM</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white px-3.5 py-2 rounded-xl transition"><i class="fa-solid fa-envelope mr-1.5"></i>Contact</a>
       </nav>
-      <div class="flex items-center gap-2">
-        <a href="add-property.html" class="bg-amber-500 text-slate-950 text-xs font-black px-3.5 py-1.5 rounded-lg transition shadow flex items-center gap-1.5">
-          <i class="fa-solid fa-plus"></i> Post Property
+
+      <div class="flex items-center gap-3">
+        <a href="add-property.html" class="bg-amber-500 text-slate-950 text-xs font-black px-4 py-2 rounded-xl transition shadow flex items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-plus-circle"></i> Add Property
         </a>
       </div>
     </div>
@@ -131,57 +127,70 @@
 
   <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full">
-    <!-- Top Hero Card & Stats -->
-    <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 sm:p-8 mb-8 gold-glow">
+    
+    <!-- Hero Showcase Header & Quick Counts -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-8 mb-8 gold-glow">
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
         <div>
-          <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">Verified Master Inventory</span>
+          <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3.5 py-1.5 rounded-full tracking-wider">Verified Master Inventory</span>
           <h2 class="text-2xl sm:text-3xl font-black shining-gold mt-2">Verified Real Estate Showcase</h2>
           <p class="text-xs text-slate-400 mt-1">Live properties directly synced with Bin Taha CRM and Supabase Cloud Database.</p>
         </div>
-        <!-- Stats Badges -->
+
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full lg:w-auto">
-          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
-            <span class="block text-lg font-black text-amber-400" id="totalCount">0</span>
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+            <span class="block text-xl font-black text-amber-400" id="totalCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Total Listings</span>
           </div>
-          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
-            <span class="block text-lg font-black text-emerald-400" id="plotCount">0</span>
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+            <span class="block text-xl font-black text-emerald-400" id="plotCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Plots</span>
           </div>
-          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
-            <span class="block text-lg font-black text-blue-400" id="houseCount">0</span>
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+            <span class="block text-xl font-black text-blue-400" id="houseCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Homes</span>
           </div>
-          <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700 text-center">
-            <span class="block text-lg font-black text-purple-400" id="commercialCount">0</span>
+          <div class="bg-slate-900/90 p-3 rounded-2xl border border-slate-700 text-center min-w-[85px]">
+            <span class="block text-xl font-black text-purple-400" id="commercialCount">0</span>
             <span class="text-[10px] text-slate-400 uppercase font-bold">Commercial</span>
           </div>
         </div>
       </div>
 
-      <!-- Filters & Search Bar -->
-      <div class="mt-6 pt-6 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
+      <!-- Society Quick Filter Pills (Original Missing Feature Restored) -->
+      <div class="mt-6 pt-5 border-t border-slate-700/80">
+        <label class="block text-[11px] font-bold text-slate-400 uppercase mb-2">Quick Society Filter:</label>
+        <div class="flex flex-wrap items-center gap-2" id="societyPills">
+          <button onclick="filterBySociety('all')" class="society-btn active bg-amber-500 text-slate-950 px-3 py-1.5 rounded-xl text-xs font-black transition">All Societies</button>
+          <button onclick="filterBySociety('LDA Avenue')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">LDA Avenue 1</button>
+          <button onclick="filterBySociety('DHA Rahbar')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Rahbar</button>
+          <button onclick="filterBySociety('DHA')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">DHA Lahore</button>
+          <button onclick="filterBySociety('Izmir')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Izmir Town</button>
+          <button onclick="filterBySociety('Jubilee')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Jubilee Town</button>
+          <button onclick="filterBySociety('Bahria')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Bahria Town</button>
+          <button onclick="filterBySociety('Lake City')" class="society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Lake City</button>
+        </div>
+      </div>
+
+      <!-- Categories & Search Bar -->
+      <div class="mt-4 pt-4 border-t border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-2" id="filterTabs">
-          <button onclick="setCategoryFilter('all')" class="category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition">All Listings</button>
-          <button onclick="setCategoryFilter('plot')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Plots</button>
-          <button onclick="setCategoryFilter('house')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Houses / Villas</button>
-          <button onclick="setCategoryFilter('commercial')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition">Commercial</button>
+          <button onclick="setCategoryFilter('all')" class="category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition">All Types</button>
+          <button onclick="setCategoryFilter('plot')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Plots</button>
+          <button onclick="setCategoryFilter('house')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Houses</button>
+          <button onclick="setCategoryFilter('commercial')" class="category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition">Commercial</button>
         </div>
 
         <div class="flex items-center gap-3 w-full sm:w-auto">
           <div class="relative w-full sm:w-72">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
-            <input type="text" id="propertySearch" onkeyup="handleSearch()" placeholder="Search society, block, demand..." class="w-full bg-slate-900 border border-slate-700 pl-9 pr-4 py-2 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500">
+            <input type="text" id="propertySearch" onkeyup="handleSearch()" placeholder="Search society, block, demand..." class="w-full bg-slate-900 border border-slate-700 pl-9 pr-4 py-2.5 rounded-xl text-xs text-white focus:outline-none focus:border-amber-500">
           </div>
-          <a href="add-property.html" class="bg-amber-500 text-slate-950 px-3.5 py-2 rounded-xl text-xs font-black transition shadow whitespace-nowrap">
-            <i class="fa-solid fa-plus-circle mr-1"></i> Add Property
-          </a>
         </div>
       </div>
     </div>
 
-    <!-- Properties Grid -->
+    <!-- Properties Showcase Grid -->
     <div id="propertiesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <div class="col-span-full py-16 text-center text-slate-400">
         <i class="fa-solid fa-spinner fa-spin text-3xl text-amber-500 mb-3"></i>
@@ -222,6 +231,7 @@
 
     let masterList = [];
     let currentCategory = 'all';
+    let currentSociety = 'all';
 
     async function fetchProperties() {
       try {
@@ -269,9 +279,18 @@
     function setCategoryFilter(cat) {
       currentCategory = cat;
       document.querySelectorAll('.category-btn').forEach(b => {
-        b.className = 'category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold transition';
+        b.className = 'category-btn bg-slate-900 text-slate-300 hover:text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition';
       });
       event.target.className = 'category-btn active bg-amber-500 text-slate-950 px-3.5 py-1.5 rounded-xl text-xs font-black transition';
+      renderShowcase();
+    }
+
+    function filterBySociety(soc) {
+      currentSociety = soc;
+      document.querySelectorAll('.society-btn').forEach(b => {
+        b.className = 'society-btn bg-slate-900 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-slate-700 transition';
+      });
+      event.target.className = 'society-btn active bg-amber-500 text-slate-950 px-3 py-1.5 rounded-xl text-xs font-black transition';
       renderShowcase();
     }
 
@@ -289,11 +308,14 @@
           (currentCategory === 'house' && ((item.type || '').toLowerCase().includes('house') || (item.type || '').toLowerCase().includes('home'))) ||
           (currentCategory === 'commercial' && ((item.type || '').toLowerCase().includes('commercial') || (item.type || '').toLowerCase().includes('shop')));
 
+        const matchesSociety = (currentSociety === 'all') ? true :
+          (item.society && item.society.toLowerCase().includes(currentSociety.toLowerCase()));
+
         const matchesSearch = (item.title && item.title.toLowerCase().includes(searchKey)) ||
           (item.society && item.society.toLowerCase().includes(searchKey)) ||
           (item.price && item.price.toLowerCase().includes(searchKey));
 
-        return matchesCategory && matchesSearch;
+        return matchesCategory && matchesSociety && matchesSearch;
       });
 
       if (filtered.length === 0) {
@@ -340,8 +362,8 @@
               <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, I am interested in this listing: ${encodeURIComponent(item.title)} (${encodeURIComponent(item.society)}) - Demand: ${encodeURIComponent(item.price)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
                 <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
               </a>
-              <a href="tel:03219404812" class="bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
-                <i class="fa-solid fa-phone text-xs"></i> Call Owner
+              <a href="https://maps.google.com/?q=${encodeURIComponent(item.society + ' Lahore')}" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-map-location-dot text-xs"></i> Map Pin
               </a>
             </div>
           </div>
@@ -367,9 +389,12 @@
             <h4 class="font-bold text-white uppercase mb-1">Specifications:</h4>
             ${p.desc}
           </div>
-          <div class="pt-2 flex gap-3">
-            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, Inquiry about: ${encodeURIComponent(p.title)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl flex items-center justify-center gap-2">
-              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          <div class="pt-2 grid grid-cols-2 gap-3">
+            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum, Inquiry about: ${encodeURIComponent(p.title)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3 rounded-xl flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp
+            </a>
+            <a href="tel:03219404812" class="bg-amber-500 hover:bg-amber-600 text-slate-950 text-xs font-black py-3 rounded-xl flex items-center justify-center gap-2">
+              <i class="fa-solid fa-phone"></i> Direct Call
             </a>
           </div>
         </div>
