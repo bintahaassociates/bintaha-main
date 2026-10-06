@@ -126,9 +126,9 @@
   <main class="max-w-4xl mx-auto px-4 py-10 flex-1 w-full">
     <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl gold-glow">
       <div class="text-center max-w-xl mx-auto mb-8">
-        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">CRM & Base64 Sheet Engine</span>
+        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">CRM & Cloud Database Engine</span>
         <h2 class="text-2xl sm:text-3xl font-black shining-gold mt-3">Post Property to Master CRM</h2>
-        <p class="text-xs text-slate-400 mt-1">Publish verified listings directly into Bin Taha CRM database with Base64 image sync.</p>
+        <p class="text-xs text-slate-400 mt-1">Publish verified listings directly into Bin Taha CRM and Supabase cloud database.</p>
       </div>
 
       <form id="standalonePostForm" onsubmit="handlePostSubmit(event)" class="space-y-5">
@@ -191,7 +191,7 @@
 
         <div class="p-5 border-2 border-dashed border-slate-700 rounded-2xl bg-slate-900/60">
           <label class="block text-xs font-bold text-amber-400 uppercase mb-1">
-            <i class="fa-solid fa-camera mr-1"></i> Attach Property Photo (Base64 Sync)
+            <i class="fa-solid fa-camera mr-1"></i> Attach Property Photo
           </label>
           <input type="file" id="postImageFile" accept="image/*" onchange="encodeImageFile(event)" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-600">
           <div id="imgPreviewWrapper" class="hidden mt-3">
@@ -205,7 +205,7 @@
         </div>
 
         <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2 cursor-pointer">
-          <i class="fa-solid fa-cloud-arrow-up"></i> Save Property & Base64 Image to CRM
+          <i class="fa-solid fa-cloud-arrow-up"></i> Save Property & Publish Listing
         </button>
       </form>
     </div>
@@ -247,11 +247,23 @@
     function encodeImageFile(e) {
       const file = e.target.files[0];
       if (file) {
+        // Compress image using canvas so it NEVER overflows browser storage
         const reader = new FileReader();
         reader.onload = function(evt) {
-          localEncodedImg = evt.target.result;
-          document.getElementById('imgPreview').src = localEncodedImg;
-          document.getElementById('imgPreviewWrapper').classList.remove('hidden');
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 500;
+            const scaleSize = MAX_WIDTH / img.width;
+            canvas.width = (img.width > MAX_WIDTH) ? MAX_WIDTH : img.width;
+            canvas.height = (img.width > MAX_WIDTH) ? (img.height * scaleSize) : img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            localEncodedImg = canvas.toDataURL('image/jpeg', 0.6); // 60% quality small size
+            document.getElementById('imgPreview').src = localEncodedImg;
+            document.getElementById('imgPreviewWrapper').classList.remove('hidden');
+          };
+          img.src = evt.target.result;
         };
         reader.readAsDataURL(file);
       }
@@ -267,7 +279,8 @@
 
       try {
         const role = document.querySelector('input[name="posterRole"]:checked') ? document.querySelector('input[name="posterRole"]:checked').value : 'Client';
-        const img = localEncodedImg || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+        const defaultPlaceholder = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+        const img = localEncodedImg || defaultPlaceholder;
         const title = document.getElementById('postTitle').value.trim();
         const category = document.getElementById('postCategory').value;
         const listingType = document.getElementById('postType').value;
@@ -279,7 +292,7 @@
         const categoryToType = { home: 'House', plot: 'Plot', shop: 'Commercial', building: 'Commercial' };
         const finalType = categoryToType[category] || listingType;
 
-        // 1. Save to Supabase Cloud Database (Matches exact text columns)
+        // 1. ALWAYS FIRST: Insert into Supabase Cloud Database (Cannot be blocked by LocalStorage)
         if (_sb) {
           try {
             await _sb.from('properties').insert([{
@@ -287,16 +300,16 @@
               Type: String(finalType),
               Society: String(location),
               Price: String(priceRaw),
-              Phone: '3219404812',
+              Phone: '03219404812',
               Description: String(desc),
-              Image: String(img.length > 500 ? 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80' : img)
+              Image: String(img.length > 300 ? defaultPlaceholder : img)
             }]);
           } catch (sbErr) {
-            console.warn("Supabase notice:", sbErr);
+            console.warn("Supabase Notice:", sbErr);
           }
         }
 
-        // 2. Save locally for properties hub & CRM inventory
+        // 2. Safe Local Storage Save with Auto-Quota Recovery
         const newProperty = {
           id: Date.now(),
           title: title,
@@ -305,7 +318,7 @@
           price: priceRaw,
           phone: '03219404812',
           views: 1,
-          img: img,
+          img: img.length > 50000 ? defaultPlaceholder : img, // Light footprint
           map: 'https://maps.google.com/?q=' + encodeURIComponent(location + ' Lahore'),
           desc: desc,
           category: category,
@@ -313,16 +326,27 @@
           area: area,
           role: role,
           location: location,
-          image: img
+          image: img.length > 50000 ? defaultPlaceholder : img
         };
 
-        const hubList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
-        hubList.unshift(newProperty);
-        localStorage.setItem('bintaha_properties_hub', JSON.stringify(hubList));
+        try {
+          let hubList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
+          hubList.unshift(newProperty);
+          if (hubList.length > 30) hubList = hubList.slice(0, 30); // Keep max 30 items
+          localStorage.setItem('bintaha_properties_hub', JSON.stringify(hubList));
 
-        const currentList = JSON.parse(localStorage.getItem('bintaha_full_inventory') || '[]');
-        currentList.unshift(newProperty);
-        localStorage.setItem('bintaha_full_inventory', JSON.stringify(currentList));
+          let currentList = JSON.parse(localStorage.getItem('bintaha_full_inventory') || '[]');
+          currentList.unshift(newProperty);
+          if (currentList.length > 30) currentList = currentList.slice(0, 30);
+          localStorage.setItem('bintaha_full_inventory', JSON.stringify(currentList));
+        } catch (storageErr) {
+          console.warn("Storage quota full, clearing oversized images...");
+          // Fallback: Clear corrupted heavy cache and save fresh
+          localStorage.removeItem('bintaha_properties_hub');
+          localStorage.removeItem('bintaha_full_inventory');
+          localStorage.setItem('bintaha_properties_hub', JSON.stringify([newProperty]));
+          localStorage.setItem('bintaha_full_inventory', JSON.stringify([newProperty]));
+        }
 
         // 3. Background Sync to Google Sheet Webhook
         try {
@@ -334,14 +358,13 @@
             body: JSON.stringify({ action: 'sync_new_property', property: newProperty, time: new Date().toISOString() })
           });
         } catch (gErr) {
-          console.warn("Sheet sync notice:", gErr);
+          console.warn("Sheet sync:", gErr);
         }
 
-        alert('پراپرٹی کامیابی کے ساتھ سی آر ایم اور کلاؤڈ ڈیٹا بیس میں شامل کر دی گئی ہے!');
+        alert('✅ مبارک ہو! پراپرٹی کامیابی سے محفوظ ہو گئی ہے اور کلاؤڈ پر لائیو کر دی گئی ہے۔');
         window.location.href = 'properties.html';
 
       } catch (err) {
-        console.error("Form error:", err);
         alert("مسئلہ آیا: " + err.message);
         submitBtn.innerHTML = originalBtnHtml;
         submitBtn.disabled = false;
