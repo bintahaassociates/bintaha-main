@@ -768,55 +768,77 @@
     }, 700);
   }
 
-  function generateIntelligentReply(q) {
-    const query = q.toLowerCase();
+ let chatSession = {
+    step: 0,
+    clientName: '',
+    purpose: '',
+    society: '',
+    budget: ''
+  };
 
-    // Direct Deal / Contact Intent
-    if (query.includes('طاہا') || query.includes('رابطہ') || query.includes('فون') || query.includes('نمبر') || query.includes('call') || query.includes('contact')) {
-      return `آپ چیف ایگزیکٹو **طاہا مبین بھٹہ صاحب** سے براہِ راست رابطہ کر سکتے ہیں:<br><br>
-      📞 فون: <strong>0321 9404812</strong><br>
-      🏢 آفس: لاہور، پاکستان (PEC و FBR تصدیق شدہ)<br><br>
-      <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20direct%20consultation%20chahiye." target="_blank" class="inline-block mt-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg text-[11px]">
-        <i class="fa-brands fa-whatsapp mr-1"></i> ابھی واٹس ایپ پر بات کریں
+  function generateIntelligentReply(rawText) {
+    const q = rawText.trim().toLowerCase();
+    
+    // Salaam & Greetings
+    if (q.includes('salam') || q.includes('slam') || q.includes('hello') || q.includes('hi') || q.includes('assalam')) {
+      chatSession.step = 1;
+      return `Walaikum Assalam! Bin Taha Associates mein khush-aamdeed. Main Taha Bhutta sahab ka personal property assistant hoon. <br><br>Aap batayein, aaj aap kis tarah ki property dekh rahe hain? <strong>Plot</strong> lena chahte hain ya <strong>Bana banaya ghar</strong>?`;
+    }
+
+    // Hal chaal
+    if (q.includes('kaise') || q.includes('kese') || q.includes('kya hal') || q.includes('kia hal')) {
+      return `Alhamdulillah main bilkul theek-thaak hoon! Aap batayein aap ka din kaisa guzar raha hai? Lahore real estate mein kisi specific society ya investment ke baare mein maloomat chahiye?`;
+    }
+
+    // Purpose: Plot ya Ghar
+    if (q.includes('plot') || q.includes('file') || q.includes('zameen')) {
+      chatSession.purpose = 'Plot';
+      return `Zabardast! Lahore mein is waqt plots par capital growth bohot solid mil rahi hai. <br><br>Aap ka target kaunsi society hai? Jaise <strong>LDA Avenue 1</strong>, <strong>Jubilee Town</strong>, <strong>DHA Lahore</strong> ya <strong>Bahria Town</strong>?`;
+    }
+
+    if (q.includes('ghar') || q.includes('house') || q.includes('home') || q.includes('kothi') || q.includes('villa')) {
+      chatSession.purpose = 'House';
+      return `Bana banaya ghar family ke rehne ke liye behtareen decision hai. Hamare paas solid construction aur modern design ke verified ghar available hain. <br><br>Aap ko <strong>5 Marla</strong> mein dekhna hai ya <strong>10 Marla</strong> mein? Aur preferred area kaunsa hai?`;
+    }
+
+    // Society Specific natural talks
+    if (q.includes('lda') || q.includes('avenue')) {
+      chatSession.society = 'LDA Avenue 1';
+      return `LDA Avenue 1 hamara main hub hai aur yahan on-ground possession plots ki demand bohot tez hai! <br><br>Yahan 10 Marla plot aam tor par 1.45 Cr se 1.85 Cr tak milta hai aur 1 Kanal 2.80 Cr se 3.50 Cr tak. Aap ka approximate <strong>budget</strong> kya ban raha hai taaki main direct clear file shortlist karoon?`;
+    }
+
+    if (q.includes('jubilee') || q.includes('jubli')) {
+      chatSession.society = 'Jubilee Town';
+      return `Jubilee Town Canal Road ke qareeb family living ke liye ideal hai. Wahan 5 Marla plot 85 Lac se 1.15 Cr aur brand new ghar 3 Cr se 3.5 Cr ki range mein hain. <br><br>Aap foran construction shuru karne ke liye dekh rahe hain ya investment ke liye?`;
+    }
+
+    if (q.includes('dha') || q.includes('rahbar') || q.includes('prism')) {
+      chatSession.society = 'DHA';
+      return `DHA Phase 9 Prism aur DHA Rahbar Phase 11 dono solid portfolio hain. Rahbar mein 5 Marla ready plots 1.10 Cr se 1.35 Cr ke darmiyan trade ho rahe hain. <br><br>Aap end-user hain ya short-term investment karke profit book karna chahte hain?`;
+    }
+
+    // Commercial
+    if (q.includes('commercial') || q.includes('shop') || q.includes('plaza') || q.includes('rent') || q.includes('kiraya')) {
+      return `Commercial properties mein rental income aur appreciation dono top class milti hain. Hamare paas Johar Town aur main boulevards par plazas aur shops ke verified options hain jahan monthly rent 2 se 4 lakh secure hota hai. <br><br>Aap ka total investment size kitna hai?`;
+    }
+
+    // Budget Handling
+    const numbers = q.match(/\d+/g);
+    if (numbers && (q.includes('lac') || q.includes('lakh') || q.includes('crore') || q.includes('cr') || q.includes('budget') || q.includes('hazar'))) {
+      chatSession.budget = q;
+      return `Aap ka budget note kar liya hai (${q}). Is figure mein hamare paas on-ground verified options aur 100% legal clear deals available hain jisme koi litigation ya boundary issue nahi hoga. <br><br>Kya aap chahenge ke main is budget ki specific files aur photos aapke WhatsApp par share karwa doon?`;
+    }
+
+    // Agreement to WhatsApp
+    if (q.includes('haan') || q.includes('yes') || q.includes('theek') || q.includes('send') || q.includes('bhejo') || q.includes('share') || q.includes('ok')) {
+      return `Bohot khoob! Main abhi aap ki details process kar raha hoon. Aap neeche click karke direct Taha Bhutta sahab se baat kar sakte hain aur verified map location le sakte hain: <br><br>
+      <a href="https://wa.me/923219404812?text=${encodeURIComponent('Assalam-o-Alaikum, website chat assistant se direct deal connect kar raha hoon.')}" target="_blank" class="inline-block mt-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition">
+        WhatsApp par direct options dekhein
       </a>`;
     }
 
-    // LDA Avenue 1 Specific
-    if (query.includes('lda') || query.includes('ایل ڈی اے')) {
-      return `<strong>LDA Avenue 1 مارکیٹ اپ ڈیٹ:</strong><br>
-      • 10 مرلہ آن گراؤنڈ پلاٹس: <strong>1.45 کروڑ سے 1.85 کروڑ</strong><br>
-      • 1 کنال بہترین لوکیشن: <strong>2.80 کروڑ سے 3.50 کروڑ</strong><br><br>
-      ہمارے پاس بلاک C، D اور B میں بالکل کلیئر اور ٹرانسفر ریڈی لسٹنگز موجود ہیں۔ کیا آپ وزٹ کرنا چاہتے ہیں؟`;
-    }
-
-    // Jubilee Town Specific
-    if (query.includes('jubilee') || query.includes('جوبلی')) {
-      return `<strong>Jubilee Town تازہ ترین ریٹس:</strong><br>
-      • 5 مرلہ رہائشی پلاٹ: <strong>85 لاکھ سے 1.15 کروڑ</strong><br>
-      • 10 مرلہ جدید لگژری ہاؤس: <strong>3.20 کروڑ سے 4 کروڑ</strong><br><br>
-      کینال روڈ کے بالکل قریب بہترین آبادی والا علاقہ ہے۔ بتائیے آپ کس کیٹیگری میں دلچسپی رکھتے ہیں؟`;
-    }
-
-    // DHA Schemes
-    if (query.includes('dha') || query.includes('ڈی ایچ اے') || query.includes('rahbar')) {
-      return `<strong>DHA لاہور انویسٹمنٹ پورٹ فولیو:</strong><br>
-      • DHA Rahbar فیز 11 (5 مرلہ): <strong>1.10 کروڑ سے 1.35 کروڑ</strong><br>
-      • DHA فیز 9 Prism (1 کنال): <strong>2.60 کروڑ سے 3.40 کروڑ</strong><br><br>
-      سرمایہ کاری کے لحاظ سے یہ دونوں اس وقت سب سے محفوظ آپشنز ہیں۔`;
-    }
-
-    // Budget Filter
-    const budgetMatch = query.match(/\d+/);
-    if (budgetMatch && (query.includes('بجٹ') || query.includes('budget') || query.includes('lakh') || query.includes('crore') || query.includes('لاکھ') || query.includes('کروڑ'))) {
-      return `آپ کے بتائے گئے بجٹ کے مطابق بن طاہا ایسوسی ایٹس کے پاس تصدیق شدہ فائلز اور قبضہ پلاٹس موجود ہیں۔ ہماری ٹیم آپ کے لیے انفرادی طور پر بہترین آپشن شارٹ لسٹ کر سکتی ہے۔<br><br>
-      <a href="https://wa.me/923219404812?text=${encodeURIComponent('میرا بجٹ ' + q + ' ہے، مجھے اس بجٹ میں آپشنز بھیجیں۔')}" target="_blank" class="inline-block bg-amber-500 text-black font-bold px-3 py-1.5 rounded-lg text-[11px]">
-        اس بجٹ کی لسٹ واٹس ایپ پر منگوائیں
-      </a>`;
-    }
-
-    // Default Friendly Real-Estate Peer Reply
-    return `آپ کا سوال نوٹ کر لیا گیا ہے۔ Bin Taha Associates لاہور کی تمام بڑی سوسائٹیز (LDA Avenue 1، Jubilee Town، DHA، Bahria Town وغیرہ) میں آن گراؤنڈ پلاٹس، فائلوں کی فوری تصدیق اور کنسٹرکشن سروسز فراہم کرتا ہے۔<br><br>
-    مزید تفصیلی رہنمائی کے لیے آپ <strong>0321 9404812</strong> پر کال کر سکتے ہیں یا اپنا مطلوبہ رقبہ (5 مرلہ، 10 مرلہ یا 1 کنال) بتائیں۔`; 
+    // Natural Fallback
+    return `Main aap ki baat samajh raha hoon. Real estate mein step lene se pehle har pehlu dekhna zaroori hota hai. <br><br>Aap be-jhijhak batayein, aap ko kis cheez ke mutalliq guide karoon? Market rates, transfer fees, ya specific location visit?`;
   }
 </script>
 </body>
