@@ -11,7 +11,6 @@
     .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
     .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
 
-    /* 3D Dynamic Moving Logo Animation */
     @keyframes eagle3DRotate {
         0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.4)); }
         50% { transform: perspective(1000px) rotateY(180deg) scale(1.08); filter: drop-shadow(0 0 25px rgba(252, 211, 77, 0.9)); }
@@ -23,66 +22,59 @@
     }
   </style>
 
-<style id="luxury-gold-theme">
-  /* 1. Royal Metallic Golden Header & Navigation */
-  header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
-    background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
-    border-bottom: 2px solid #ffd700 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-  }
-  
-  /* Header Links, Headings & Text */
-  header a, header button, header span, header p, header h1, header h2, header div,
-  nav a, nav button, nav span {
-    color: #111111 !important;
-    font-weight: 800 !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-  }
+  <style id="luxury-gold-theme">
+    header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
+      background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
+      border-bottom: 2px solid #ffd700 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    header a, header button, header span, header p, header h1, header h2, header div,
+    nav a, nav button, nav span {
+      color: #111111 !important;
+      font-weight: 800 !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    }
 
-  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
-  header [class*="bg-black"], header [class*="bg-slate-950"], 
-  header [class*="rounded-full"], header [class*="rounded-pill"],
-  header select, header input {
-    background: #0b0f19 !important;
-    border: 1px solid #d4af37 !important;
-    color: #ffffff !important;
-  }
-  header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
-    color: #f8fafc !important;
-    font-weight: 700 !important;
-    text-shadow: none !important;
-  }
-  /* Currency inputs & text */
-  header input, header select {
-    color: #ffd700 !important;
-    font-weight: bold !important;
-  }
+    header [class*="bg-black"], header [class*="bg-slate-950"], 
+    header [class*="rounded-full"], header [class*="rounded-pill"],
+    header select, header input {
+      background: #0b0f19 !important;
+      border: 1px solid #d4af37 !important;
+      color: #ffffff !important;
+    }
+    header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
+      color: #f8fafc !important;
+      font-weight: 700 !important;
+      text-shadow: none !important;
+    }
+    header input, header select {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
 
-  /* 3. 3D Embossed Luxury Golden Buttons */
-  button, .btn, a.gold-bg, button.gold-bg,
-  [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
-  header a[href], header button,
-  main button, main .btn {
-    background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
-    color: #0a0a0a !important;
-    border: 1px solid #ffe57f !important;
-    border-bottom: 2px solid #7d5707 !important;
-    border-radius: 8px !important;
-    font-weight: 800 !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-    transition: all 0.2s ease-in-out !important;
-  }
+    button, .btn, a.gold-bg, button.gold-bg,
+    [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
+    header a[href], header button,
+    main button, main .btn {
+      background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
+      color: #0a0a0a !important;
+      border: 1px solid #ffe57f !important;
+      border-bottom: 2px solid #7d5707 !important;
+      border-radius: 8px !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+      transition: all 0.2s ease-in-out !important;
+    }
 
-  /* Hover State */
-  button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
-  header a[href]:hover, header button:hover {
-    filter: brightness(1.12) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-  }
-</style>
-
+    button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
+    header a[href]:hover, header button:hover {
+      filter: brightness(1.12) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
+  </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -246,10 +238,11 @@
   </footer>
 
   <script>
-    let localEncodedImg = '';
     const SUPABASE_URL = 'https://ajrvlrvnxpatbculnwil.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi';
     const _sb = (typeof supabase !== 'undefined') ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+    let localEncodedImg = '';
 
     function encodeImageFile(e) {
       const file = e.target.files[0];
@@ -266,98 +259,95 @@
 
     async function handlePostSubmit(e) {
       e.preventDefault();
-      const role = document.querySelector('input[name="posterRole"]:checked').value;
-      const img = localEncodedImg || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
-      const title = document.getElementById('postTitle').value.trim();
-      const category = document.getElementById('postCategory').value;
-      const listingType = document.getElementById('postType').value;
-      const area = document.getElementById('postArea').value.trim();
-      const priceRaw = document.getElementById('postPrice').value.trim();
-      const location = document.getElementById('postLocation').value.trim();
-      const desc = document.getElementById('postDesc').value.trim();
-
-      const categoryToType = { home: 'House', plot: 'Plot', shop: 'Commercial', building: 'Commercial' };
-      const priceNum = parseFloat(String(priceRaw).replace(/[^0-9.]/g, '')) || 0;
-
-      // Shape expected by Google Apps Script action `sync_new_property` (+ properties hub)
-      const newProperty = {
-        id: Date.now(),
-        title: title,
-        type: categoryToType[category] || listingType,
-        society: location,
-        price: priceNum || priceRaw,
-        phone: '03219404812',
-        views: 1,
-        img: img,
-        map: 'https://maps.google.com/?q=' + encodeURIComponent(location + ' Lahore'),
-        desc: desc || 'Client listed property.',
-        category: category,
-        listingType: listingType,
-        area: area,
-        role: role,
-        location: location,
-        image: img
-      };
-
+      
       const submitBtn = document.getElementById('submitBtn');
       const originalBtnHtml = submitBtn.innerHTML;
-      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Syncing with CRM & Sheets...`;
+      submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving to CRM & Cloud...`;
       submitBtn.disabled = true;
 
       try {
-        // Persist locally (CRM inventory + properties page hub)
-        const currentList = JSON.parse(localStorage.getItem('bintaha_full_inventory') || '[]');
-        currentList.unshift(newProperty);
-        localStorage.setItem('bintaha_full_inventory', JSON.stringify(currentList));
+        const role = document.querySelector('input[name="posterRole"]:checked') ? document.querySelector('input[name="posterRole"]:checked').value : 'Client';
+        const img = localEncodedImg || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80';
+        const title = document.getElementById('postTitle').value.trim();
+        const category = document.getElementById('postCategory').value;
+        const listingType = document.getElementById('postType').value;
+        const area = document.getElementById('postArea').value.trim();
+        const priceRaw = document.getElementById('postPrice').value.trim();
+        const location = document.getElementById('postLocation').value.trim();
+        const desc = document.getElementById('postDesc').value.trim();
+
+        const categoryToType = { home: 'House', plot: 'Plot', shop: 'Commercial', building: 'Commercial' };
+        const finalType = categoryToType[category] || listingType;
+
+        // 1. Save to Supabase Cloud Database (Matches exact text columns)
+        if (_sb) {
+          try {
+            await _sb.from('properties').insert([{
+              Title: String(title),
+              Type: String(finalType),
+              Society: String(location),
+              Price: String(priceRaw),
+              Phone: '3219404812',
+              Description: String(desc),
+              Image: String(img.length > 500 ? 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80' : img)
+            }]);
+          } catch (sbErr) {
+            console.warn("Supabase notice:", sbErr);
+          }
+        }
+
+        // 2. Save locally for properties hub & CRM inventory
+        const newProperty = {
+          id: Date.now(),
+          title: title,
+          type: finalType,
+          society: location,
+          price: priceRaw,
+          phone: '03219404812',
+          views: 1,
+          img: img,
+          map: 'https://maps.google.com/?q=' + encodeURIComponent(location + ' Lahore'),
+          desc: desc,
+          category: category,
+          listingType: listingType,
+          area: area,
+          role: role,
+          location: location,
+          image: img
+        };
 
         const hubList = JSON.parse(localStorage.getItem('bintaha_properties_hub') || '[]');
         hubList.unshift(newProperty);
         localStorage.setItem('bintaha_properties_hub', JSON.stringify(hubList));
-        // Save to Supabase Cloud Database
-    // Save to Supabase Cloud Database
-        if (_sb) {
-          try {
-            const { error: sbErr } = await _sb.from('properties').insert([{
-              Title: String(newProperty.title || ''),
-              Type: String(newProperty.type || 'Plot'),
-              Society: String(newProperty.society || newProperty.location || ''),
-              Price: String(newProperty.price || '0'),
-              Phone: String(newProperty.phone || '3219404812'),
-              Description: String(newProperty.desc || ''),
-              Image: String(newProperty.image || '')
-            }]);
-            if (sbErr) console.error("Supabase Error:", sbErr.message);
-          } catch (err) {
-            console.error("Supabase insert error:", err);
-          }
-        }
-    }
-        
-        // CRM GOOGLE SHEET WEBHOOK — text/plain avoids CORS preflight drop under no-cors
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
-        const payload = {
-          action: 'sync_new_property',
-          property: newProperty,
-          time: new Date().toISOString()
-        };
 
-        await fetch(googleScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-      } catch (err) {
-        console.log('Google Sheet / storage sync notice:', err);
-      } finally {
-        alert('Property registered in Bin Taha CRM database with Base64 image and live inventory updated!');
+        const currentList = JSON.parse(localStorage.getItem('bintaha_full_inventory') || '[]');
+        currentList.unshift(newProperty);
+        localStorage.setItem('bintaha_full_inventory', JSON.stringify(currentList));
+
+        // 3. Background Sync to Google Sheet Webhook
+        try {
+          const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
+          fetch(googleScriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'sync_new_property', property: newProperty, time: new Date().toISOString() })
+          });
+        } catch (gErr) {
+          console.warn("Sheet sync notice:", gErr);
+        }
+
+        alert('پراپرٹی کامیابی کے ساتھ سی آر ایم اور کلاؤڈ ڈیٹا بیس میں شامل کر دی گئی ہے!');
         window.location.href = 'properties.html';
-        // Safety if navigation is blocked
+
+      } catch (err) {
+        console.error("Form error:", err);
+        alert("مسئلہ آیا: " + err.message);
         submitBtn.innerHTML = originalBtnHtml;
         submitBtn.disabled = false;
       }
     }
   </script>
-<script src="ai-engine.js"></script>
+  <script src="ai-engine.js"></script>
 </body>
 </html>
