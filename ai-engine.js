@@ -263,11 +263,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // BIN TAHA ASSOCIATES - SUPABASE INTEGRATION
 // ==========================================
 
-const SUPABASE_CONFIG = {
+window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
   url: "https://ajrvlrvnxpatbculnwil.supabase.co",
   key: "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi"
 };
-
 async function sendServiceInquiryToSupabase(payload) {
   try {
     const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/Services`, {
