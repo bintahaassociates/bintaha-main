@@ -130,101 +130,130 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // B. Luxury Floating AI Assistant Widget
-  if (!document.getElementById("floatingGeminiBtn")) {
-    const chatUI = `
-      <!-- Floating Gemini AI Assistant Button -->
-      <button id="floatingGeminiBtn" onclick="toggleGeminiChat()" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 text-slate-950 text-2xl shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-amber-300 cursor-pointer shadow-amber-500/40" style="position:fixed; bottom:24px; right:24px; z-index:99999;" title="Ask Gemini AI Assistant">
-        🦅
-      </button>
-
-      <!-- Complete Interactive AI Assistant Window -->
-      <div id="geminiChatModal" style="display:none; position:fixed; bottom:96px; right:24px; z-index:99999; width:360px; height:500px; background:#0f172a; border:2px solid #d4af37; border-radius:20px; box-shadow:0 15px 35px rgba(0,0,0,0.8); flex-direction:column; overflow:hidden;">
-        <!-- Header -->
-        <div style="background:linear-gradient(135deg, #d4af37, #aa771c); padding:12px 16px; color:#0f172a; font-weight:900; font-size:13px; display:flex; justify-content:space-between; align-items:center;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span style="font-size:16px;">🦅</span>
-            <span>Bin Taha Virtual Consultant</span>
-          </div>
-          <button onclick="toggleGeminiChat()" style="border:none; background:transparent; font-size:16px; cursor:pointer; font-weight:bold; color:#0f172a;">✕</button>
-        </div>
-
-        <!-- Messages Flow Area -->
-        <div id="chatMessages" style="flex:1; padding:14px; overflow-y:auto; font-size:12px; color:#e2e8f0; display:flex; flex-direction:column; gap:10px; background:#020617;">
-          <div style="background:#1e293b; padding:10px 12px; border-radius:12px; border:1px solid #334155; line-height:1.5;">
-            السلام علیکم! میں **Bin Taha Associates** کا سمارٹ پراپرٹی اسسٹنٹ ہوں۔ 🏡<br><br>
-            LDA Avenue 1، Jubilee Town، کنسٹرکشن یا کسی بھی سروس کے متعلق سیدھا سوال پوچھیں۔
-          </div>
-        </div>
-
-        <!-- Quick Action Chips -->
-        <div style="padding:8px 10px; background:#0f172a; border-top:1px solid #1e293b; display:flex; gap:6px; overflow-x:auto;">
-          <button onclick="quickReply('LDA Avenue 1 ریٹس')" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">LDA Avenue 1</button>
-          <button onclick="quickReply('Jubilee Town ریٹس')" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Jubilee Town</button>
-          <button onclick="quickReply('طاہا بھائی سے رابطہ نمبر')" style="white-space:nowrap; background:#1e293b; color:#34d399; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Contact Taha</button>
-        </div>
-
-        <!-- Input Form -->
-        <form onsubmit="handleSendGemini(event)" style="padding:10px; background:#0f172a; border-top:1px solid #334155; display:flex; gap:6px;">
-          <input type="text" id="chatInput" placeholder="Apna sawal likhein..." style="flex:1; background:#020617; border:1px solid #d4af37; border-radius:8px; padding:8px 10px; font-size:12px; color:#fff; outline:none;" autocomplete="off" />
-          <button type="submit" style="background:#d4af37; color:#020617; border:none; padding:8px 14px; border-radius:8px; font-weight:900; cursor:pointer;">Send</button>
-        </form>
-      </div>
+// B. Pure CSS Floating AI Assistant Widget (Har page par 100% chalega)
+  if (!document.getElementById("tahaAiFloatingBtn")) {
+    const floatBtn = document.createElement("button");
+    floatBtn.id = "tahaAiFloatingBtn";
+    floatBtn.innerHTML = "🦅";
+    floatBtn.setAttribute("title", "Ask AI Assistant");
+    floatBtn.style.cssText = `
+      position: fixed !important;
+      bottom: 25px !important;
+      right: 25px !important;
+      width: 60px !important;
+      height: 60px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #d4af37, #aa771c) !important;
+      border: 2px solid #ffd700 !important;
+      color: #0f172a !important;
+      font-size: 28px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6) !important;
+      cursor: pointer !important;
+      z-index: 2147483647 !important;
     `;
-    document.body.insertAdjacentHTML("beforeend", chatUI);
+
+    const chatBox = document.createElement("div");
+    chatBox.id = "tahaAiChatModal";
+    chatBox.style.cssText = `
+      display: none;
+      position: fixed !important;
+      bottom: 95px !important;
+      right: 25px !important;
+      width: 340px !important;
+      height: 480px !important;
+      background: #0f172a !important;
+      border: 2px solid #d4af37 !important;
+      border-radius: 18px !important;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8) !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+      z-index: 2147483647 !important;
+      font-family: sans-serif !important;
+    `;
+
+    chatBox.innerHTML = `
+      <div style="background:linear-gradient(135deg, #d4af37, #aa771c); padding:12px 16px; color:#0f172a; font-weight:900; font-size:13px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>🦅</span>
+          <span>Bin Taha Virtual Consultant</span>
+        </div>
+        <button id="closeAiModalBtn" style="border:none; background:transparent; font-size:16px; cursor:pointer; font-weight:bold; color:#0f172a;">✕</button>
+      </div>
+
+      <div id="aiChatMsgArea" style="flex:1; padding:14px; overflow-y:auto; font-size:12px; color:#e2e8f0; display:flex; flex-direction:column; gap:10px; background:#020617;">
+        <div style="background:#1e293b; padding:10px 12px; border-radius:12px; border:1px solid #334155; line-height:1.5;">
+          Assalam-o-Alaikum! Main **Bin Taha Associates** ka AI property consultant hoon. 🏡<br><br>
+          LDA Avenue 1, Jubilee Town, plots ya construction k baray me jo poochna chahein, likhein.
+        </div>
+      </div>
+
+      <div style="padding:8px 10px; background:#0f172a; border-top:1px solid #1e293b; display:flex; gap:6px; overflow-x:auto;">
+        <button type="button" class="quick-chip" data-txt="LDA Avenue 1 rates" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">LDA Avenue 1</button>
+        <button type="button" class="quick-chip" data-txt="Jubilee Town rates" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Jubilee Town</button>
+        <button type="button" class="quick-chip" data-txt="Taha Bhai WhatsApp contact" style="white-space:nowrap; background:#1e293b; color:#34d399; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Contact Taha</button>
+      </div>
+
+      <form id="aiChatSubmitForm" style="padding:10px; background:#0f172a; border-top:1px solid #334155; display:flex; gap:6px; margin:0;">
+        <input type="text" id="aiInputText" placeholder="Apna sawal likhein..." style="flex:1; background:#020617; border:1px solid #d4af37; border-radius:8px; padding:8px 10px; font-size:12px; color:#fff; outline:none;" autocomplete="off" />
+        <button type="submit" style="background:#d4af37; color:#020617; border:none; padding:8px 14px; border-radius:8px; font-weight:900; cursor:pointer;">Send</button>
+      </form>
+    `;
+
+    document.body.appendChild(floatBtn);
+    document.body.appendChild(chatBox);
+
+    floatBtn.onclick = () => {
+      const isHidden = chatBox.style.display === "none" || chatBox.style.display === "";
+      chatBox.style.display = isHidden ? "flex" : "none";
+      if (isHidden) document.getElementById("aiInputText")?.focus();
+    };
+
+    document.getElementById("closeAiModalBtn").onclick = () => {
+      chatBox.style.display = "none";
+    };
+
+    chatBox.querySelectorAll(".quick-chip").forEach(btn => {
+      btn.onclick = () => {
+        const inp = document.getElementById("aiInputText");
+        inp.value = btn.getAttribute("data-txt");
+        document.getElementById("aiChatSubmitForm").dispatchEvent(new Event("submit"));
+      };
+    });
+
+    document.getElementById("aiChatSubmitForm").onsubmit = async (e) => {
+      e.preventDefault();
+      const input = document.getElementById("aiInputText");
+      const msgBox = document.getElementById("aiChatMsgArea");
+      const query = input.value.trim();
+      if (!query) return;
+
+      msgBox.innerHTML += `
+        <div style="align-self:flex-end; background:#d4af37; color:#020617; padding:8px 12px; border-radius:12px; font-weight:bold; max-width:85%;">
+          ${query}
+        </div>
+      `;
+      input.value = "";
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      const loadId = "load_" + Date.now();
+      msgBox.innerHTML += `
+        <div id="${loadId}" style="align-self:flex-start; background:#1e293b; padding:8px 12px; border-radius:12px; color:#fbbf24; font-size:11px;">
+          ✨ Soch raha hai...
+        </div>
+      `;
+      msgBox.scrollTop = msgBox.scrollHeight;
+
+      const botReply = await handleUserChatQuery(query);
+      document.getElementById(loadId)?.remove();
+
+      msgBox.innerHTML += `
+        <div style="align-self:flex-start; background:#1e293b; padding:10px 12px; border-radius:12px; border:1px solid #d4af37; max-width:88%; line-height:1.4;">
+          ${botReply}
+        </div>
+      `;
+      msgBox.scrollTop = msgBox.scrollHeight;
+    };
   }
-});
-
-// UI Event Handlers
-function toggleGeminiChat() {
-  const modal = document.getElementById("geminiChatModal");
-  if (modal) {
-    const isHidden = modal.style.display === "none" || modal.style.display === "";
-    modal.style.display = isHidden ? "flex" : "none";
-    if (isHidden) {
-      document.getElementById("chatInput")?.focus();
-    }
-  }
-}
-
-function quickReply(text) {
-  const input = document.getElementById("chatInput");
-  if (input) {
-    input.value = text;
-    handleSendGemini(new Event("submit"));
-  }
-}
-
-async function handleSendGemini(e) {
-  if (e) e.preventDefault();
-  const input = document.getElementById("chatInput");
-  const msgBox = document.getElementById("chatMessages");
-  const userText = input.value.trim();
-  if (!userText) return;
-
-  msgBox.innerHTML += `
-    <div style="align-self:flex-end; background:#d4af37; color:#020617; padding:8px 12px; border-radius:12px; font-weight:bold; max-width:85%;">
-      ${userText}
-    </div>
-  `;
-  input.value = "";
-  msgBox.scrollTop = msgBox.scrollHeight;
-
-  const typingId = "typing_" + Date.now();
-  msgBox.innerHTML += `
-    <div id="${typingId}" style="align-self:flex-start; background:#1e293b; padding:8px 12px; border-radius:12px; color:#fbbf24; font-size:11px;">
-      ✨ Soch raha hai...
-    </div>
-  `;
-  msgBox.scrollTop = msgBox.scrollHeight;
-
-  const botResponse = await handleUserChatQuery(userText);
-  document.getElementById(typingId)?.remove();
-
-  msgBox.innerHTML += `
-    <div style="align-self:flex-start; background:#1e293b; padding:10px 12px; border-radius:12px; border:1px solid #d4af37; max-width:88%; line-height:1.4;">
-      ${botResponse}
-    </div>
-  `;
-  msgBox.scrollTop = msgBox.scrollHeight;
-}
