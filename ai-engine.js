@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-// B. Pure CSS Floating AI Assistant Widget (Har page par 100% chalega)
+  // B. Pure CSS Floating AI Assistant Widget
   if (!document.getElementById("tahaAiFloatingBtn")) {
     const floatBtn = document.createElement("button");
     floatBtn.id = "tahaAiFloatingBtn";
@@ -257,3 +257,4 @@ document.addEventListener("DOMContentLoaded", () => {
       msgBox.scrollTop = msgBox.scrollHeight;
     };
   }
+});
