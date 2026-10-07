@@ -2,7 +2,7 @@
 // BIN TAHA ASSOCIATES - CENTRAL GEMINI AI ENGINE
 // ==========================================
 
-const GEMINI_CONFIG = {
+window.GEMINI_CONFIG = window.GEMINI_CONFIG || {
   apiKey: "AQ.Ab8RN6IKJwst0GZ_kMBTDRZoAmkf_0Ipq2Z2UQreP4Ubfk4kXg",
   model: "gemini-1.5-flash",
   endpoint: "https://generativelanguage.googleapis.com/v1beta/models/"
@@ -10,7 +10,8 @@ const GEMINI_CONFIG = {
 
 // Generic Call Function
 async function callGemini(promptText, systemInstruction = "") {
-  const url = `${GEMINI_CONFIG.endpoint}${GEMINI_CONFIG.model}:generateContent?key=${GEMINI_CONFIG.apiKey}`;
+  const cfg = window.GEMINI_CONFIG;
+  const url = `${cfg.endpoint}${cfg.model}:generateContent?key=${cfg.apiKey}`;
 
   const payload = {
     contents: [
@@ -111,7 +112,7 @@ Client jis zaban (Urdu, Roman Urdu ya English) mein pooche, usi zaban mein seedh
 
 document.addEventListener("DOMContentLoaded", () => {
   // A. Material Estimator Button Hook
-  const estBtn = document.querySelector('button[onclick*="calculateEstimate"], button:has-text("Estimate"), #btnEstimate');
+  const estBtn = document.querySelector('button[onclick*="calculateEstimate"], #btnEstimate');
   if (estBtn) {
     estBtn.addEventListener("click", async () => {
       const area = document.querySelector('input[name*="area"], input[placeholder*="Marla"], #plotArea')?.value || "5";
