@@ -268,17 +268,17 @@ window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
   key: "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi"
 };
 async function sendServiceInquiryToSupabase(payload) {
+  const cfg = window.SUPABASE_CONFIG;
   try {
-    const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/Services`, {
+    const res = await fetch(`${cfg.url}/rest/v1/Services`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "apikey": SUPABASE_CONFIG.key,
-        "Authorization": `Bearer ${SUPABASE_CONFIG.key}`,
+        "apikey": cfg.key,
+        "Authorization": `Bearer ${cfg.key}`,
         "Prefer": "return=minimal"
       },
-      body: JSON.stringify(payload)
-    });
+      body: JSON.stringify(payload)    });
 
     if (!res.ok) {
       const errData = await res.json();
