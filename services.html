@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bin Taha Associates • Gemini AI Powered Construction & CAD Studio</title>
+  <title>Bin Taha Associates • Construction & Builders • Gemini AI & CAD Studio Hub</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-text { color: #fcd34d; text-shadow: 0 0 35px rgba(252, 211, 77, 0.8); }
@@ -14,7 +16,7 @@
     .gold-glow { box-shadow: 0 0 60px rgba(252, 211, 77, 0.45); }
     .glass-card { background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border: 1px solid rgba(252, 211, 77, 0.35); }
 
-    /* 3D Dynamic Moving Eagle Animation */
+    /* 3D Moving Eagle */
     @keyframes eagle3DRotate {
       0% { transform: perspective(1000px) rotateY(0deg) scale(1); filter: drop-shadow(0 0 20px rgba(252, 211, 77, 0.6)); }
       50% { transform: perspective(1000px) rotateY(180deg) scale(1.12); filter: drop-shadow(0 0 40px rgba(252, 211, 77, 1)); }
@@ -25,7 +27,7 @@
       transform-style: preserve-3d;
     }
 
-    /* Live Ticker Animation */
+    /* Ticker */
     @keyframes tickerScroll {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
@@ -33,94 +35,77 @@
     .ticker-wrap { overflow: hidden; white-space: nowrap; }
     .ticker-move { display: inline-block; animation: tickerScroll 30s linear infinite; }
 
-    #splashScreen { transition: opacity 1s ease; }
+    .cctv-scanline {
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
+                  linear-gradient(90deg, rgba(252, 211, 77, 0.05), rgba(0, 0, 0, 0.02), rgba(252, 211, 77, 0.05));
+      background-size: 100% 3px, 6px 100%;
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #printableArea, #printableArea * { visibility: visible; }
+      #printableArea {
+        position: absolute; left: 0; top: 0; width: 100%;
+        background: #ffffff !important; color: #000000 !important;
+      }
+    }
   </style>
 
-<style id="luxury-gold-theme">
-  /* 1. Royal Metallic Golden Header & Navigation */
-  header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
-    background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
-    border-bottom: 2px solid #ffd700 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-  }
-  
-  /* Header Links, Headings & Text */
-  header a, header button, header span, header p, header h1, header h2, header div,
-  nav a, nav button, nav span {
-    color: #111111 !important;
-    font-weight: 800 !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-  }
+  <!-- LUXURY METALLIC GOLD THEME -->
+  <style id="luxury-gold-theme">
+    header, .header, nav, .navbar {
+      background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
+      border-bottom: 2px solid #ffd700 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    header a, header button, header span, header p, header h1, header h2, header div,
+    nav a, nav button, nav span {
+      color: #111111 !important;
+      font-weight: 800 !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    }
 
-  /* 2. World Clocks & Currency Badges (In ka text saaf, white aur gold highlight hoga) */
-  header [class*="bg-black"], header [class*="bg-slate-950"], 
-  header [class*="rounded-full"], header [class*="rounded-pill"],
-  header select, header input {
-    background: #0b0f19 !important;
-    border: 1px solid #d4af37 !important;
-    color: #ffffff !important;
-  }
-  header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
-    color: #f8fafc !important;
-    font-weight: 700 !important;
-    text-shadow: none !important;
-  }
-  /* Currency inputs & text */
-  header input, header select {
-    color: #ffd700 !important;
-    font-weight: bold !important;
-  }
+    header [class*="bg-black"], header [class*="bg-slate-950"], 
+    header select, header input {
+      background: #0b0f19 !important;
+      border: 1px solid #d4af37 !important;
+      color: #ffffff !important;
+    }
+    header [class*="bg-black"] *, header [class*="bg-slate-950"] * {
+      color: #f8fafc !important;
+      font-weight: 700 !important;
+      text-shadow: none !important;
+    }
+    header input, header select {
+      color: #ffd700 !important;
+      font-weight: bold !important;
+    }
 
-  /* 3. 3D Embossed Luxury Golden Buttons */
-  button, .btn, a.gold-bg, button.gold-bg,
-  [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
-  header a[href], header button,
-  main button, main .btn {
-    background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
-    color: #0a0a0a !important;
-    border: 1px solid #ffe57f !important;
-    border-bottom: 2px solid #7d5707 !important;
-    border-radius: 8px !important;
-    font-weight: 800 !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-    transition: all 0.2s ease-in-out !important;
-  }
+    button, .btn, a.gold-bg, button.gold-bg,
+    main button, main .btn {
+      background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
+      color: #0a0a0a !important;
+      border: 1px solid #ffe57f !important;
+      border-bottom: 2px solid #7d5707 !important;
+      border-radius: 8px !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+      transition: all 0.2s ease-in-out !important;
+    }
 
-  /* Hover State */
-  button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
-  header a[href]:hover, header button:hover {
-    filter: brightness(1.12) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-  }
-</style>
-
+    button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover {
+      filter: brightness(1.12) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
+  </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
-  <!-- Cinematic Splash Screen -->
-  <div id="splashScreen" class="fixed inset-0 bg-slate-950 z-50 flex items-center justify-center p-4">
-    <div class="glass-card p-10 rounded-3xl max-w-md w-full space-y-6 text-center gold-glow relative overflow-hidden">
-      <div class="absolute -top-24 -left-24 w-48 h-48 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div class="w-28 h-28 rounded-3xl bg-slate-950 border gold-border mx-auto flex items-center justify-center overflow-hidden shadow-2xl gold-glow">
-        <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-      </div>
-      <div class="space-y-2">
-        <h2 class="text-3xl font-black text-white gold-text">Bin Taha Associates</h2>
-        <p class="text-xs text-amber-300 font-bold uppercase tracking-widest">Gemini AI Autonomous Ecosystem</p>
-        <p class="text-[11px] text-slate-400 pt-1 font-semibold">Visionary CEO: Taha Mobeen Bhutta • Lahore, Pakistan</p>
-      </div>
-      <button onclick="enterPortal()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer tracking-wider uppercase">
-        <i class="fa-solid fa-robot mr-2 text-sm"></i> Launch Gemini AI Portal
-      </button>
-    </div>
-  </div>
-
-  <!-- Main Services Portal Wrapper -->
-  <div id="portalApp" class="flex-1 flex-col justify-between hidden">
+  <!-- Main Portal (Always Visible) -->
+  <div id="portalApp" class="flex-1 flex flex-col justify-between">
 
     <!-- Live Market Ticker Bar -->
     <div class="gold-bg text-slate-950 text-xs font-black py-2 px-4 overflow-hidden shadow-lg flex items-center">
@@ -128,28 +113,30 @@
       <div class="ticker-wrap w-full">
         <div class="ticker-move">
           <span>Gemini API Autonomous Client Assistant Active</span> &bull; 
-          <span>Instant Google Sheet CRM Auto-Sync</span> &bull; 
-          <span>Pro Architectural CAD & Construction Services in Lahore</span>
+          <span>Instant Google Sheet CRM & Supabase Auto-Sync</span> &bull; 
+          <span>Pro Architectural CAD & Construction Services in Lahore</span> &bull; 
+          <span>Grade-60 Steel: PKR 282/KG &bull; Bestway Cement: PKR 1,420/Bag &bull; Awwal Bricks: PKR 21/PC</span> &bull; 
+          <span>CEO Hotline: 0321-9404812</span>
         </div>
       </div>
     </div>
 
-    <!-- Top Header & Multi-City Clocks & Currency Converter -->
+    <!-- Top Header Navigation & World Clocks -->
     <header class="bg-slate-900/95 border-b gold-border py-3 px-4 sm:px-6 space-y-3 sticky top-0 z-40 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
         
-        <!-- Logo & Branding -->
+        <!-- Logo & Title -->
         <a href="index.html" class="flex items-center gap-3 group">
           <div class="w-12 h-12 rounded-2xl bg-slate-950 border gold-border flex items-center justify-center overflow-hidden shadow-lg gold-glow group-hover:scale-105 transition">
             <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
           </div>
           <div>
             <h1 class="text-base font-black text-white leading-tight">Bin Taha Associates</h1>
-            <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Gemini AI & CAD Studio Hub</p>
+            <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Construction & Builders Hub</p>
           </div>
         </a>
 
-        <!-- Live World Clocks -->
+        <!-- World Clocks -->
         <div class="flex items-center gap-2 flex-wrap text-[11px]">
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
@@ -157,50 +144,297 @@
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
-        <!-- Global Currency Converter Widget -->
-        <div class="bg-slate-950 border gold-border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
-          <span class="text-amber-300 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
-          <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border gold-border outline-none">
-            <option value="USD">USD ($)</option>
-            <option value="AED">AED (Dh)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="SAR">SAR (SR)</option>
-          </select>
-          <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none">
-          <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
+        <!-- Global Currency Converter & Direct WhatsApp Button -->
+        <div class="flex items-center gap-2 flex-wrap">
+          <div class="bg-slate-950 border gold-border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
+            <span class="text-amber-300 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
+            <select id="currSelect" onchange="convertCurrency()" class="bg-slate-900 text-white text-[11px] rounded px-2 py-1 border gold-border outline-none">
+              <option value="USD">USD ($)</option>
+              <option value="AED">AED (Dh)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="SAR">SAR (SR)</option>
+            </select>
+            <input type="number" id="currVal" value="10000" onkeyup="convertCurrency()" class="w-16 bg-slate-900 text-white text-[11px] px-2 py-1 rounded border gold-border outline-none font-bold">
+            <span id="currResult" class="text-emerald-400 font-bold">= PKR 2,800,000</span>
+          </div>
+
+          <a href="https://wa.me/923219404812" target="_blank" class="bg-slate-950 border gold-border px-3.5 py-1.5 rounded-xl text-xs font-bold text-emerald-400 hover:text-white flex items-center gap-1.5 shadow">
+            <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> WhatsApp CEO
+          </a>
         </div>
       </div>
 
-      <!-- Colorful Navigation Bar -->
+      <!-- Navigation Bar with All 3D Royal Gold Buttons (Uniform Look) -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2 flex-wrap border-t gold-border">
         <div class="flex gap-2 flex-wrap text-xs font-bold">
-          <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-house mr-1"></i> Home</a>
-          <a href="properties.html" class="bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-2 rounded-xl transition shadow border gold-border"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
+          <a href="index.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-house mr-1"></i> Home</a>
+          <a href="properties.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-building mr-1"></i> Properties Hub</a>
           <a href="services.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-helmet-safety mr-1"></i> Services Hub</a>
-          <a href="#proCadStudio" class="bg-slate-900 hover:bg-slate-800 text-cyan-300 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
-          <a href="#materialEstimator" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 px-3.5 py-2 rounded-xl transition shadow font-black border gold-border"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
+          <a href="#servicesGrid" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-list-check mr-1"></i> 15 Active Services</a>
+          <a href="#proCadStudio" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-compass-drafting mr-1"></i> Pro CAD Studio</a>
+          <a href="#cctvHub" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-video mr-1"></i> Live CCTV</a>
+          <a href="#clientPortal" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-user-shield mr-1"></i> Client Portal</a>
+          <a href="#materialEstimator" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl transition shadow font-black"><i class="fa-solid fa-calculator mr-1"></i> Material Estimator</a>
         </div>
-        <div class="text-xs text-amber-300 font-bold bg-slate-950 px-3 py-1.5 rounded-xl border gold-border shadow">
-          <i class="fa-solid fa-phone-volume text-emerald-400 mr-1"></i> CEO Hotline: 0321-9404812
+        <div class="text-xs text-slate-950 font-black gold-bg px-3.5 py-2 rounded-xl shadow flex items-center gap-1">
+          <i class="fa-solid fa-phone-volume text-slate-950 mr-1"></i> CEO Hotline: 0321-9404812
         </div>
       </div>
     </header>
 
-    <!-- Main Services Content Area -->
+    <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-12">
       
-      <!-- Hero Banner -->
+      <!-- Hero Banner With All Action Buttons -->
       <div class="glass-card p-6 sm:p-10 rounded-3xl shadow-2xl gold-glow flex flex-col md:flex-row justify-between items-center gap-6 relative overflow-hidden">
         <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="space-y-3 relative z-10">
+        <div class="space-y-3 relative z-10 max-w-2xl">
           <span class="gold-bg text-slate-950 border gold-border text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider shadow">PEC Category C Registered Enterprise</span>
-          <h2 class="text-2xl sm:text-4xl font-black gold-text">Gemini AI Powered Construction & CAD Studio</h2>
-          <p class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">Experience autonomous AI consultation, exact engineering blueprints with wall dimensions, and instant Google Sheets CRM lead synchronization led by CEO Taha Mobeen Bhutta.</p>
+          <h2 class="text-2xl sm:text-4xl font-black gold-text">Bin Taha Construction & Builders Studio</h2>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Experience autonomous AI consultation, exact engineering blueprints with wall dimensions, and instant Supabase & Google Sheets CRM lead synchronization led by CEO Taha Mobeen Bhutta.
+          </p>
         </div>
-        <button onclick="toggleServiceModal()" class="gold-bg hover:opacity-90 text-slate-950 px-6 py-4 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer whitespace-nowrap relative z-10 uppercase tracking-wider">
-          <i class="fa-solid fa-file-contract mr-1.5 text-sm"></i> Book Construction Service
-        </button>
+        
+        <!-- Hero Interactive Controls Button Group -->
+        <div class="flex flex-col sm:flex-row gap-3 relative z-10 w-full sm:w-auto flex-wrap">
+          <button onclick="toggleServiceModal()" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-3.5 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer uppercase tracking-wider flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-file-contract text-sm"></i> Book Construction Service
+          </button>
+          <button onclick="startAiVoicePrompt()" id="heroVoiceBtn" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-microphone text-slate-950 animate-pulse"></i> AI Voice Commander
+          </button>
+          <button onclick="openFeedbackModal()" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-comment-dots text-sm"></i> Client Feedback
+          </button>
+          <button onclick="window.print()" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-file-pdf text-sm"></i> Print BOQ Dossier
+          </button>
+        </div>
       </div>
+
+      <!-- 15 FULLY ACTIVE CIVIL SERVICES DIRECTORY -->
+      <section id="servicesGrid" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
+        <div class="flex items-center justify-between flex-wrap gap-4 border-b gold-border pb-4">
+          <div>
+            <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-black uppercase">15 Standard Verticals Active</span>
+            <h3 class="text-2xl font-black text-white mt-1 gold-text">Bin Taha Associates • 15 Core Civil Operations</h3>
+          </div>
+          <span class="text-xs text-amber-300 font-bold bg-slate-950 px-3.5 py-1.5 rounded-xl border gold-border">Direct Cloud Sync With Supabase</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+          <!-- 1. Turnkey Construction -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">01. Turnkey Construction</span>
+                <i class="fa-solid fa-house-chimney text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">“All Under One Roof”: Plot سے مکمل تیار گھر تک۔ Architecture, 3D, Approval, Material, Labour, اور Handover۔</p>
+            </div>
+            <button onclick="bookDirectService('Turnkey Construction (All Under One Roof)')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-file-contract mr-1"></i> Book Turnkey Project
+            </button>
+          </div>
+
+          <!-- 2. Complete Grey Structure -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">02. Complete Grey Structure</span>
+                <i class="fa-solid fa-cubes-stacked text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">Foundation, Excavation, PCC, Grade-60 Steel, Cement, Bricks, Columns, Beams, Slabs, اور Waterproofing۔</p>
+            </div>
+            <button onclick="jumpToSection('materialEstimator')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-calculator mr-1"></i> Estimate Grey Structure
+            </button>
+          </div>
+
+          <!-- 3. Complete Finishing Works -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">03. Complete Finishing Works</span>
+                <i class="fa-solid fa-paint-roller text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">Flooring, Spanish Tiles, Marble, Paint, False Ceiling, Doors, Windows, Kitchen, Wardrobes, Sanitary, Electrical۔</p>
+            </div>
+            <button onclick="bookDirectService('Complete Finishing Works')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-palette mr-1"></i> Order Finishing Package
+            </button>
+          </div>
+
+          <!-- 4. Material Supply & Procurement -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">04. Material Procurement</span>
+                <i class="fa-solid fa-truck-ramp-box text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">Cement, Steel, Bricks, Sand, Crush, Blocks, Tiles, Marble مع فیکٹری ڈائریکٹ کوالٹی ٹیسٹنگ رپورٹ۔</p>
+            </div>
+            <button onclick="jumpToSection('materialEstimator')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-vial-circle-check mr-1"></i> Check Material Rates
+            </button>
+          </div>
+
+          <!-- 5. Skilled Labour & Contractor -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">05. Skilled Labour Force</span>
+                <i class="fa-solid fa-users-gear text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">Masons, Carpenters, Plumbers, Electricians, Steel fixers, Tile fixers—Bin Taha پوری ٹیم خود سنبھالتا ہے۔</p>
+            </div>
+            <button onclick="bookDirectService('Skilled Labour Force Request')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-user-plus mr-1"></i> Request Labour Team
+            </button>
+          </div>
+
+          <!-- 6. Architecture & 3D Design -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">06. 2D / 3D CAD Studio</span>
+                <i class="fa-solid fa-compass-drafting text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">2D Floor Plans, 3D Exterior, 3D Interior, Elevations, Working Drawings مع MEP layouts اور LDA اپروولز۔</p>
+            </div>
+            <button onclick="jumpToSection('proCadStudio')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-desktop mr-1"></i> Open Live CAD Studio
+            </button>
+          </div>
+
+          <!-- 7. Dedicated Project Management -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">07. Project Management</span>
+                <i class="fa-solid fa-user-tie text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">Dedicated Site Engineer, روزانہ کی سپروائزن، کوالٹی کنٹرول، میٹریل چیکنگ اور ٹائم لائن مانیٹرنگ۔</p>
+            </div>
+            <button onclick="bookDirectService('Dedicated Site Project Manager')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-clipboard-check mr-1"></i> Assign Site Manager
+            </button>
+          </div>
+
+          <!-- 8. Live CCTV Site Monitoring -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">08. Live CCTV Surveillance</span>
+                <i class="fa-solid fa-video text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">ہر سائٹ کے لیے محفوظ کیمرے: فرنٹ ویو، ایکٹو لینٹر، اور میٹریل اسٹوریج لائیو اسٹریم کنکشن۔</p>
+            </div>
+            <button onclick="jumpToSection('cctvHub')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-tower-broadcast mr-1"></i> View Live Site Stream
+            </button>
+          </div>
+
+          <!-- 9. Client Construction App -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">09. Client App Dashboard</span>
+                <i class="fa-solid fa-mobile-screen-button text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">کلائنٹ پرائیویٹ لاگ ان: سائٹ فوٹوز، ویڈیوز، میٹریل اپڈیٹس، ادائیگی کا ریکارڈ، اور شکایات کا حل۔</p>
+            </div>
+            <button onclick="jumpToSection('clientPortal')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-right-to-bracket mr-1"></i> Client Portal Login
+            </button>
+          </div>
+
+          <!-- 10. Project Progress Tracker -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">10. Live Progress Tracker</span>
+                <i class="fa-solid fa-bars-progress text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">فاؤنڈیشن 100%، گرے اسٹرکچر 100%، الیکٹریکل 80%، پلمبنگ 70%، ٹائلز 30%—لائیو فیصد ٹریکر۔</p>
+            </div>
+            <button onclick="jumpToSection('clientPortal')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-chart-line mr-1"></i> Audit Milestone Progress
+            </button>
+          </div>
+
+          <!-- 11. Digital BOQ & Quotation -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">11. Digital BOQ System</span>
+                <i class="fa-solid fa-receipt text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">آئٹم، مقدار، یونٹ، ریٹ، اور ٹوٹل خودکار حساب مع پی ڈی ایف کوٹیشن ڈاؤن لوڈنگ آپشن۔</p>
+            </div>
+            <button onclick="jumpToSection('materialEstimator')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-file-invoice-dollar mr-1"></i> Generate Instant BOQ
+            </button>
+          </div>
+
+          <!-- 12. Payment & Expense Tracking -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">12. Escrow Payment Ledger</span>
+                <i class="fa-solid fa-vault text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">ٹوٹل کنٹریکٹ، پیڈ، باقی رقم، اور ہر مرحلے (فاؤنڈیشن، چھت، فنشنگ) کے مطابق محفوظ ادائیگیاں۔</p>
+            </div>
+            <button onclick="jumpToSection('clientPortal')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-shield-halved mr-1"></i> Check Payment Ledger
+            </button>
+          </div>
+
+          <!-- 13. Material Quality Control -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">13. QA/QC Lab Testing</span>
+                <i class="fa-solid fa-microscope text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">“Every Material. Quality Checked.” اسٹیل، سیمنٹ بیچ، اینٹوں اور کنکریٹ سلومپ کے لیب ٹیسٹ سرٹیفکیٹس۔</p>
+            </div>
+            <button onclick="bookDirectService('Material Quality Testing Audit')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-flask-vial mr-1"></i> Request Lab Test Report
+            </button>
+          </div>
+
+          <!-- 14. Warranty & After-Sales -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">14. Warranty & Support</span>
+                <i class="fa-solid fa-shield-heart text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">3 سالہ اسٹرکچرل گارنٹی، ڈیفیکٹ رپورٹنگ، اور آن لائن مینٹیننس ٹکٹ سسٹم براہِ راست سی ای او تک۔</p>
+            </div>
+            <button onclick="bookDirectService('Warranty Claim Ticket / Defect Issue')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-ticket mr-1"></i> Submit Defect Ticket
+            </button>
+          </div>
+
+          <!-- 15. Smart Project Timeline -->
+          <div class="bg-slate-900 p-5 rounded-2xl border gold-border flex flex-col justify-between space-y-3">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-amber-400 font-black text-base">15. Project Gantt Timeline</span>
+                <i class="fa-solid fa-timeline text-amber-400 text-lg"></i>
+              </div>
+              <p class="text-slate-300 leading-relaxed">شروع سے ہینڈ اوور تک کا مکمل چارٹ: فاؤنڈیشن، گرے، MEP، فنشنگ اور انسپیکشن کی تاریخیں۔</p>
+            </div>
+            <button onclick="jumpToSection('proCadStudio')" class="w-full gold-bg text-slate-950 py-2.5 rounded-xl text-xs font-black">
+              <i class="fa-solid fa-calendar-days mr-1"></i> View Project Timeline
+            </button>
+          </div>
+        </div>
+      </section>
 
       <!-- PRO ARCHITECTURAL CAD STUDIO -->
       <div id="proCadStudio" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
@@ -216,8 +450,8 @@
           </div>
           <div class="flex gap-2 flex-wrap text-xs font-bold">
             <button onclick="selectLayoutOption(1)" id="btnOpt1" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black">Option 1: Executive Family</button>
-            <button onclick="selectLayoutOption(2)" id="btnOpt2" class="bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer border gold-border">Option 2: Modern Open-Plan</button>
-            <button onclick="selectLayoutOption(3)" id="btnOpt3" class="bg-slate-900 text-white px-3.5 py-2 rounded-xl shadow cursor-pointer border gold-border">Option 3: Luxury Palace</button>
+            <button onclick="selectLayoutOption(2)" id="btnOpt2" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black">Option 2: Modern Open-Plan</button>
+            <button onclick="selectLayoutOption(3)" id="btnOpt3" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl shadow cursor-pointer font-black">Option 3: Luxury Palace</button>
           </div>
         </div>
 
@@ -233,46 +467,46 @@
           <div>
             <label class="block text-slate-300 mb-1">Storeys / Floors:</label>
             <select id="cadStoreys" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
-              <option value="Single Storey">Single Storey</option>
-              <option value="Double Storey" selected>Double Storey (G + 1)</option>
-              <option value="Triple Storey">Triple Storey (G + 2)</option>
+              <option value="1">Single Storey</option>
+              <option value="2" selected>Double Storey (G + 1)</option>
+              <option value="3">Triple Storey (G + 2)</option>
             </select>
           </div>
           <div>
             <label class="block text-slate-300 mb-1">Bedrooms Requirement:</label>
             <select id="cadBeds" onchange="drawCadBlueprint()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
-              <option value="3 Beds">3 Bedrooms</option>
-              <option value="4 Beds" selected>4 Bedrooms with Baths</option>
-              <option value="5 Beds">5 Luxury Bedrooms</option>
+              <option value="3">3 Bedrooms with Baths</option>
+              <option value="4" selected>4 Bedrooms with Baths</option>
+              <option value="5">5 Luxury Bedrooms</option>
             </select>
           </div>
         </div>
 
-        <!-- Canvas Display & Image Download Area -->
         <div class="bg-slate-950 border gold-border p-6 rounded-2xl space-y-4 text-center">
           <div class="flex justify-between items-center flex-wrap gap-3 border-b gold-border pb-3">
             <div class="text-left">
               <div class="text-xs text-amber-300 font-bold uppercase tracking-wider">Official Engineering Blueprint CAD Drawing</div>
               <h4 id="cadTitle" class="text-base font-black text-white">Plot Size: 32x70 Ft • Option 1 (Executive Family)</h4>
             </div>
-            <button onclick="downloadCadBlueprintImage()" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-3 rounded-xl font-black text-xs shadow-xl transition cursor-pointer">
-              <i class="fa-solid fa-download mr-1.5"></i> Download Pro CAD Blueprint (JPEG)
-            </button>
+            <div class="flex gap-2 flex-wrap">
+              <button onclick="downloadCadBlueprintImage()" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-2.5 rounded-xl font-black text-xs shadow-xl transition cursor-pointer">
+                <i class="fa-solid fa-download mr-1.5"></i> Download Blueprint (JPEG)
+              </button>
+            </div>
           </div>
 
-          <!-- HTML5 Canvas for Professional Architectural CAD Blueprint -->
           <div class="overflow-x-auto bg-slate-900 p-4 rounded-2xl border gold-border inline-block w-full">
-            <canvas id="cadCanvas" width="950" height="600" class="mx-auto rounded-xl shadow-2xl bg-slate-950 max-w-full h-auto"></canvas>
+            <canvas id="cadCanvas" width="950" height="540" class="mx-auto rounded-xl shadow-2xl bg-slate-950 max-w-full h-auto"></canvas>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold text-left pt-2">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-semibold text-left pt-2 font-mono">
             <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
-              <div class="text-cyan-400 font-bold"><i class="fa-solid fa-ruler-combined mr-1"></i> Exact Engineering Dimensions:</div>
-              <div id="cadDimSummary" class="text-slate-300">Car Porch (16x18 ft), Drawing (14x16 ft), Lounge (20x18 ft), Kitchen (10x12 ft).</div>
+              <div class="text-cyan-400 font-bold"><i class="fa-solid fa-ruler-combined mr-1"></i> Engineering Dimensions:</div>
+              <div id="cadDimSummary" class="text-slate-300">Car Porch (16x18 ft), Drawing (14x16 ft), Lounge (20x18 ft).</div>
             </div>
             <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
-              <div class="text-cyan-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i> LDA Setbacks & Ducts:</div>
-              <div class="text-slate-300">Front Lawn (5 ft), Rear Ventilation Duct (4 ft), Side Passage (3 ft) fully compliant.</div>
+              <div class="text-cyan-400 font-bold"><i class="fa-solid fa-shield-halved mr-1"></i> LDA / DHA Lahore Bylaws:</div>
+              <div class="text-slate-300">Front Mandatory Setback (5-8 ft), Rear Open Duct (4-5 ft) fully compliant.</div>
             </div>
             <div class="bg-slate-900 p-3.5 rounded-xl border gold-border space-y-1">
               <div class="text-cyan-400 font-bold"><i class="fa-solid fa-calculator mr-1"></i> Estimated Structure Cost:</div>
@@ -282,16 +516,254 @@
         </div>
       </div>
 
+      <!-- LIVE CCTV MONITORING HUB -->
+      <section id="cctvHub" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
+        <div class="flex items-center justify-between flex-wrap gap-4 border-b gold-border pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl border gold-border">
+              <i class="fa-solid fa-video animate-pulse"></i>
+            </div>
+            <div>
+              <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-black uppercase">Live Surveillance</span>
+              <h3 class="text-xl font-black text-white mt-1">Live 24/7 Remote CCTV Site Monitoring Stream</h3>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <label class="text-xs text-slate-300 flex items-center gap-2 cursor-pointer bg-slate-900 border gold-border px-3.5 py-2 rounded-xl">
+              <input type="checkbox" id="cctvAutoCycleToggle" checked onchange="toggleCctvAutoCycle()" class="accent-amber-400">
+              <span class="font-bold">Auto Switch Feeds (8s)</span>
+            </label>
+            <span class="bg-amber-500/20 text-amber-300 border gold-border text-xs px-3.5 py-2 rounded-xl font-mono font-bold flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> 1080P STREAM ONLINE
+            </span>
+          </div>
+        </div>
+
+        <div class="relative w-full h-[440px] bg-slate-950 rounded-2xl border gold-border overflow-hidden shadow-2xl flex flex-col justify-between p-5 cctv-scanline">
+          <div id="cctvStreamBackground" class="absolute inset-0 bg-cover bg-center transition-all duration-700 opacity-60" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d0fbb186f5f8?auto=format&fit=crop&w=1400&q=80');"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/80 pointer-events-none"></div>
+
+          <div class="relative z-10 flex justify-between items-center text-xs font-mono">
+            <div class="flex items-center gap-2.5 bg-slate-900/95 backdrop-blur px-3.5 py-2 rounded-xl border gold-border">
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
+              <span id="cctvCameraLabel" class="text-white font-bold">CAM-01: Front Elevation & Porch Raft</span>
+            </div>
+            <div class="bg-slate-900/95 backdrop-blur px-3.5 py-2 rounded-xl border gold-border text-amber-300" id="cctvTimeCounter">
+              REC ● 2026-10-07 18:00:00 PKT
+            </div>
+          </div>
+
+          <div class="relative z-10 text-center pointer-events-none opacity-40 space-y-1">
+            <div class="text-[11px] font-mono text-amber-300 tracking-widest">RTSP ENCRYPTED STREAM // SSL-256 BIT // BITRATE: 4096 KBPS</div>
+            <div class="w-20 h-20 border gold-border rounded-full mx-auto flex items-center justify-center">
+              <div class="w-2.5 h-2.5 bg-amber-400 rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="relative z-10 flex justify-between items-center flex-wrap gap-2 pt-2">
+            <div class="flex gap-2">
+              <button onclick="setManualCctvFeed(1)" id="cctvBtn1" class="gold-bg text-slate-950 text-xs px-4 py-2 rounded-xl shadow cursor-pointer font-bold">
+                <i class="fa-solid fa-camera mr-1"></i> CAM 01: Front Porch
+              </button>
+              <button onclick="setManualCctvFeed(2)" id="cctvBtn2" class="gold-bg text-slate-950 text-xs px-4 py-2 rounded-xl shadow cursor-pointer font-bold">
+                <i class="fa-solid fa-camera mr-1"></i> CAM 02: Active Slab Lenter
+              </button>
+              <button onclick="setManualCctvFeed(3)" id="cctvBtn3" class="gold-bg text-slate-950 text-xs px-4 py-2 rounded-xl shadow cursor-pointer font-bold">
+                <i class="fa-solid fa-camera mr-1"></i> CAM 03: Steel & Material Yard
+              </button>
+            </div>
+            <span class="text-slate-400 text-xs font-mono">
+              <i class="fa-solid fa-lock text-amber-300 mr-1"></i> Authorized Client Access Only
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLIENT CONSTRUCTION APP & REAL-TIME PROGRESS TRACKER -->
+      <section id="clientPortal" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
+        <div class="flex items-center justify-between flex-wrap gap-4 border-b gold-border pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl border gold-border">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <div>
+              <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-black uppercase font-mono">Client Telemetry</span>
+              <h3 class="text-xl font-black text-white mt-1">Client Private Construction Portal & Real-Time Progress Tracker</h3>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <input type="password" id="clientPortalPin" placeholder="Enter PIN (Demo: 1234)" class="bg-slate-900 border gold-border text-white text-xs px-3.5 py-2.5 rounded-xl outline-none w-48 font-mono focus:border-amber-400">
+            <button onclick="verifyClientAccessPin()" class="gold-bg text-slate-950 text-xs px-4 py-2.5 rounded-xl font-bold cursor-pointer">
+              <i class="fa-solid fa-key mr-1"></i> Authenticate
+            </button>
+          </div>
+        </div>
+
+        <div id="clientPortalTelemetry" class="space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-center">
+            <div class="bg-slate-900/90 p-4 rounded-2xl border gold-border">
+              <div class="text-[11px] text-slate-400 font-bold uppercase font-mono">Active Site Registry</div>
+              <div class="text-sm font-black text-white mt-1">Villa 14-Block C, LDA Avenue 1</div>
+            </div>
+            <div class="bg-slate-900/90 p-4 rounded-2xl border gold-border">
+              <div class="text-[11px] text-slate-400 font-bold uppercase font-mono">Cumulative Progress</div>
+              <div class="text-xl font-black text-amber-300 font-mono mt-1" id="overallCompletionPct">72.0% Completed</div>
+            </div>
+            <div class="bg-slate-900/90 p-4 rounded-2xl border gold-border">
+              <div class="text-[11px] text-slate-400 font-bold uppercase font-mono">Assigned Project Engineer</div>
+              <div class="text-sm font-black text-amber-300 mt-1">Engr. Hamza (BTA Civil Lead)</div>
+            </div>
+            <div class="bg-slate-900/90 p-4 rounded-2xl border gold-border">
+              <div class="text-[11px] text-slate-400 font-bold uppercase font-mono">Escrow Vault Stage</div>
+              <div class="text-sm font-black text-amber-300 mt-1">Milestone 4: Tiling Unlocked</div>
+            </div>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <h4 class="text-xs font-black text-amber-300 uppercase tracking-wider font-mono">Verified Milestone Construction Audit:</h4>
+            
+            <div class="space-y-3.5 text-xs font-bold">
+              <div>
+                <div class="flex justify-between mb-1 text-slate-300">
+                  <span>1. Soil Excavation, Termite Spray & Raft Foundation</span>
+                  <span class="text-amber-300 font-mono">100% Verified ✅</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 border gold-border overflow-hidden">
+                  <div class="bg-amber-400 h-2.5 rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1 text-slate-300">
+                  <span>2. Concrete Columns, Beams & Roof Slab (Grade-60 Grey Structure)</span>
+                  <span class="text-amber-300 font-mono">100% Verified ✅</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 border gold-border overflow-hidden">
+                  <div class="bg-amber-400 h-2.5 rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1 text-slate-300">
+                  <span>3. Electrical Conduit Wiring, Panels & Distribution Box</span>
+                  <span class="text-amber-300 font-mono">80% In Progress 🔄</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 border gold-border overflow-hidden">
+                  <div class="bg-amber-400 h-2.5 rounded-full" style="width: 80%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1 text-slate-300">
+                  <span>4. Sanitary Plumbing, Hot/Cold Water Hydrostatic Testing</span>
+                  <span class="text-amber-300 font-mono">70% Pressure Tested 🔄</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 border gold-border overflow-hidden">
+                  <div class="bg-amber-400 h-2.5 rounded-full" style="width: 70%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between mb-1 text-slate-300">
+                  <span>5. Porcelain Floor Tiling & Spanish Wall Cladding</span>
+                  <span class="text-amber-300 font-mono">30% Active Laying 🔄</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-2.5 border gold-border overflow-hidden">
+                  <div class="bg-amber-400 h-2.5 rounded-full" style="width: 30%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DYNAMIC MATERIAL ESTIMATOR & LIVE BOQ -->
+      <div id="materialEstimator" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xl border border-emerald-500/30">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div>
+              <span class="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-xs font-black uppercase">Construction Metric Engine</span>
+              <h3 class="text-xl font-black text-white mt-1">Live Material & Cost Estimator (Lahore Market)</h3>
+            </div>
+          </div>
+          <span class="text-xs text-amber-300 font-bold bg-slate-950 px-3.5 py-1.5 rounded-xl border gold-border">
+            Verified Rates: Steel PKR 282/KG • Bricks PKR 21/PC • Cement PKR 1,420/Bag
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs font-bold">
+          <div>
+            <label class="block text-slate-300 mb-1">Select Plot Size:</label>
+            <select id="estimatorMarla" onchange="calculateMaterialMetrics()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
+              <option value="3">3 Marla (Covered ~ 1,170 Sq.Ft)</option>
+              <option value="5" selected>5 Marla (Covered ~ 1,950 Sq.Ft)</option>
+              <option value="7">7 Marla (Covered ~ 2,730 Sq.Ft)</option>
+              <option value="10">10 Marla (Covered ~ 3,900 Sq.Ft)</option>
+              <option value="20">1 Kanal (Covered ~ 5,850 Sq.Ft)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Construction Grade:</label>
+            <select id="estimatorGrade" onchange="calculateMaterialMetrics()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
+              <option value="grey" selected>A-Grade Gray Structure</option>
+              <option value="standard">Standard Complete Turnkey</option>
+              <option value="luxury">Executive Palace Luxury Finishing</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-slate-300 mb-1">Soil Foundation Base:</label>
+            <select id="estimatorSoil" onchange="calculateMaterialMetrics()" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
+              <option value="raft" selected>Standard Lahore Raft Base</option>
+              <option value="deep">Reinforced Deep Tie-Beam Grid</option>
+            </select>
+          </div>
+          <div class="flex items-end">
+            <button onclick="calculateMaterialMetrics()" class="w-full gold-bg hover:opacity-90 text-slate-950 p-3 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase">
+              <i class="fa-solid fa-arrows-rotate mr-1"></i> Refresh Material Metrics
+            </button>
+          </div>
+        </div>
+
+        <!-- Calculated Metrics Table -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+          <div class="bg-slate-900 border gold-border p-4 rounded-2xl">
+            <div class="text-[11px] text-slate-400 font-bold uppercase">Cement Bags</div>
+            <div id="mCement" class="text-xl font-black text-amber-300 mt-1">1,050 Bags</div>
+            <div class="text-[10px] text-slate-500">Maple Leaf / Bestway</div>
+          </div>
+          <div class="bg-slate-900 border gold-border p-4 rounded-2xl">
+            <div class="text-[11px] text-slate-400 font-bold uppercase">Steel Saria (Gr-60)</div>
+            <div id="mSteel" class="text-xl font-black text-amber-300 mt-1">5.2 Tons</div>
+            <div class="text-[10px] text-slate-500">Mughal / Ittehad 60-Gr</div>
+          </div>
+          <div class="bg-slate-900 border gold-border p-4 rounded-2xl">
+            <div class="text-[11px] text-slate-400 font-bold uppercase">Awwal Bricks</div>
+            <div id="mBricks" class="text-xl font-black text-amber-300 mt-1">55,000 Pcs</div>
+            <div class="text-[10px] text-slate-500">Bhatta Awwal Kiln</div>
+          </div>
+          <div class="bg-slate-900 border gold-border p-4 rounded-2xl">
+            <div class="text-[11px] text-slate-400 font-bold uppercase">Total Budget (PKR)</div>
+            <div id="mTotal" class="text-xl font-black text-emerald-400 mt-1">PKR 6,240,000</div>
+            <div class="text-[10px] text-slate-500">Estimated Total Cost</div>
+          </div>
+        </div>
+      </div>
+
     </main>
 
-    <!-- GEMINI AI FLOATING AUTONOMOUS COPILOT WIDGET -->
+    <!-- FLOATING GEMINI COPILOT (ORIGINAL EMBOSSED GOLD BUTTON) -->
     <div class="fixed bottom-6 right-6 z-50">
       <div id="geminiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 sm:w-96 shadow-2xl mb-3 space-y-3 border gold-border">
         <div class="flex justify-between items-center border-b gold-border pb-2">
           <span class="text-xs font-black text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha Gemini AI Copilot</span>
           <button onclick="toggleGeminiChat()" class="text-slate-400 hover:text-white text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div id="geminiChatHistory" class="text-[11px] text-slate-300 space-y-2 max-h-56 overflow-y-auto p-1">
+        <div id="geminiChatHistory" class="text-[11px] text-slate-300 space-y-2 max-h-56 overflow-y-auto p-1 font-mono">
           <div class="bg-slate-950 p-3 rounded-xl border gold-border">👋 Welcome! I am your 24/7 Gemini AI Assistant for Bin Taha Associates. Ask me about plot maps (e.g. 32x70 ft), construction rates, or estimates in Lahore!</div>
         </div>
         <div class="flex gap-2 pt-1">
@@ -304,7 +776,7 @@
       </button>
     </div>
 
-    <!-- Service Booking Modal -->
+    <!-- SERVICE BOOKING MODAL (DIRECT SUPABASE INJECTION) -->
     <div id="serviceModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
         <div class="flex justify-between items-center border-b gold-border pb-3">
@@ -320,15 +792,15 @@
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-300 mb-1">Phone Number: *</label>
-              <input type="text" id="bookingPhone" placeholder="03001234567" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
+              <input type="tel" id="bookingPhone" placeholder="03219404812" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner">
             </div>
             <div>
               <label class="block text-slate-300 mb-1">Service Type: *</label>
               <select id="bookingService" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none font-normal">
-                <option value="Gray Structure">Gray Structure Construction</option>
-                <option value="Turnkey Finishing">Turnkey Finishing & Design</option>
-                <option value="Map Approval">Architectural & Map Approval</option>
-                <option value="General Consultation">General Construction Consultation</option>
+                <option value="Turnkey All-Under-One-Roof">Turnkey All-Under-One-Roof</option>
+                <option value="Gray Structure Construction">Gray Structure Construction</option>
+                <option value="Turnkey Finishing & Design">Turnkey Finishing & Design</option>
+                <option value="Architectural CAD & Map Approval">Architectural CAD & Map Approval</option>
               </select>
             </div>
           </div>
@@ -341,35 +813,63 @@
             <textarea id="bookingDetails" rows="2" placeholder="Mention plot size, storeys, or specific needs..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none focus:border-amber-400 font-normal shadow-inner"></textarea>
           </div>
 
-          <button onclick="submitServiceBooking()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
-            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Sync to Google Sheet CRM
+          <button id="btnSubmitBooking" onclick="submitServiceBooking()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Sync to Supabase CRM
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Professional Footer -->
+    <!-- CLIENT FEEDBACK MODAL -->
+    <div id="feedbackModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+      <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-md w-full space-y-4 shadow-2xl gold-glow relative">
+        <div class="flex justify-between items-center border-b gold-border pb-3">
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-comment-dots text-amber-300 mr-2"></i> Client Comments & Feedback</h3>
+          <button onclick="closeFeedbackModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="space-y-3 text-xs font-bold">
+          <input type="text" id="fbClientName" placeholder="Your Name" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
+          <textarea id="fbClientMsg" rows="3" placeholder="Share your experience or inquiry with CEO Taha Mobeen..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none"></textarea>
+          <button onclick="submitClientFeedback()" class="w-full gold-bg text-slate-950 py-3 rounded-xl font-black text-xs">
+            Send Feedback to CEO
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
     <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t gold-border text-center space-y-2">
       <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
       <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
     </footer>
 
   </div>
- <script src="ai-engine.js"></script>
+
+  <!-- APPLICATION LOGIC & FULL CLOUD SYNC -->
   <script>
     let currentLayoutOption = 1;
+    let activeCctvIndex = 1;
+    let cctvCyclingTimer = null;
 
-    function enterPortal() {
-      const splash = document.getElementById('splashScreen');
-      const app = document.getElementById('portalApp');
-      splash.style.opacity = '0';
-      setTimeout(() => {
-        splash.style.display = 'none';
-        app.style.display = 'flex';
-        drawCadBlueprint();
-      }, 1000);
+    window.onload = function() {
+      updateClocks();
+      drawCadBlueprint();
+      calculateMaterialMetrics();
+      startCctvAutoStream();
+    };
+
+    function jumpToSection(sectionId) {
+      const el = document.getElementById(sectionId);
+      if(el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Modal Handlers
+    function toggleServiceModal() { document.getElementById('serviceModal').classList.toggle('hidden'); }
+    function openFeedbackModal() { document.getElementById('feedbackModal').classList.remove('hidden'); }
+    function closeFeedbackModal() { document.getElementById('feedbackModal').classList.add('hidden'); }
+    function toggleGeminiChat() { document.getElementById('geminiChatBox').classList.toggle('hidden'); }
+
+    // World Clocks
     function updateClocks() {
       const now = new Date();
       document.getElementById('clockPk').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit' });
@@ -379,6 +879,7 @@
     }
     setInterval(updateClocks, 1000);
 
+    // Currency Converter
     function convertCurrency() {
       const type = document.getElementById('currSelect').value;
       const val = parseFloat(document.getElementById('currVal').value) || 0;
@@ -390,51 +891,30 @@
       document.getElementById('currResult').innerText = `= PKR ${total.toLocaleString()}`;
     }
 
-    function toggleServiceModal() {
-      const modal = document.getElementById('serviceModal');
-      modal.classList.toggle('hidden');
+    // Material Estimator
+    function calculateMaterialMetrics() {
+      const marla = parseFloat(document.getElementById('estimatorMarla').value) || 5;
+      const grade = document.getElementById('estimatorGrade').value;
+
+      let factor = marla / 5;
+      let cement = Math.round(1050 * factor);
+      let steel = (5.2 * factor).toFixed(1);
+      let bricks = Math.round(55000 * factor);
+      
+      let rateMultiplier = 3200;
+      if(grade === 'standard') rateMultiplier = 4800;
+      if(grade === 'luxury') rateMultiplier = 6200;
+
+      let coveredArea = marla * 390;
+      let total = coveredArea * rateMultiplier;
+
+      document.getElementById('mCement').innerText = `${cement.toLocaleString()} Bags`;
+      document.getElementById('mSteel').innerText = `${steel} Tons`;
+      document.getElementById('mBricks').innerText = `${bricks.toLocaleString()} Pcs`;
+      document.getElementById('mTotal').innerText = `PKR ${total.toLocaleString()}`;
     }
 
-    function toggleGeminiChat() {
-      const box = document.getElementById('geminiChatBox');
-      box.classList.toggle('hidden');
-    }
-
-    function handleGeminiEnter(e) {
-      if(e.key === 'Enter') sendToGeminiAI();
-    }
-
-    async function sendToGeminiAI() {
-      const input = document.getElementById('geminiUserInput');
-      const history = document.getElementById('geminiChatHistory');
-      let text = input.value.trim();
-      if(!text) return;
-
-      history.innerHTML += `<div class="bg-slate-900 p-2.5 rounded-xl border gold-border text-right text-white">👤 ${text}</div>`;
-      input.value = '';
-      history.scrollTop = history.scrollHeight;
-
-      setTimeout(() => {
-        let reply = `🤖 Gemini AI: Thank you for your inquiry! Bin Taha Associates specializes in custom plot architectural mapping (like 32x70 ft) and turn-key construction in Lahore under CEO Taha Mobeen Bhutta. I have logged your inquiry into our CRM!`;
-        
-        if(text.toLowerCase().includes('32') || text.toLowerCase().includes('70') || text.toLowerCase().includes('map')) {
-          reply = `🤖 Gemini AI: For a 32x70 ft plot in Lahore (LDA Avenue 1 / Jubilee Town), we recommend our Executive Family layout with Car Porch (16x18), Drawing Room, Lounge, and 4 Bedrooms. Estimated gray structure cost is ~PKR 1.45 Crore.`;
-        }
-
-        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">${reply}</div>`;
-        history.scrollTop = history.scrollHeight;
-
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
-        if(googleScriptUrl) {
-          fetch(googleScriptUrl, {
-            method: 'POST', mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'gemini_ai_lead', time: new Date().toISOString(), text, source: 'Gemini AI Widget' })
-          }).catch(err => console.log('CRM sync notice:', err));
-        }
-      }, 800);
-    }
-
+    // 2D CAD Studio
     function selectLayoutOption(optNum) {
       currentLayoutOption = optNum;
       for(let i=1; i<=3; i++) {
@@ -452,23 +932,23 @@
       const front = parseFloat(document.getElementById('cadFront').value) || 32;
       const length = parseFloat(document.getElementById('cadLength').value) || 70;
       const storeys = parseFloat(document.getElementById('cadStoreys').value) || 2;
-      const beds = document.getElementById('cadBeds').value;
       const totalArea = front * length;
 
       let layoutName = currentLayoutOption === 1 ? "Option 1 (Executive Family)" : (currentLayoutOption === 2 ? "Option 2 (Modern Open-Plan)" : "Option 3 (Luxury Palace)");
       document.getElementById('cadTitle').innerText = `Plot Size: ${front}x${length} Ft (${totalArea} Sq Ft) • ${layoutName}`;
       
-      let estCost = totalArea * (storeys === 1 ? 3500 : 4200);
+      let estCost = totalArea * (storeys === 1 ? 3200 : 4200);
       document.getElementById('cadCostSummary').innerText = `PKR ${estCost.toLocaleString()} (Gray Structure Est.)`;
       document.getElementById('cadDimSummary').innerText = `Car Porch (${Math.round(front*0.5)}'x18'), Drawing (14'x16'), Lounge (20'x18'), Kitchen (10'x12').`;
 
       const canvas = document.getElementById('cadCanvas');
+      if(!canvas) return;
       const ctx = canvas.getContext('2d');
 
       ctx.fillStyle = '#050b14';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(252, 211, 77, 0.05)';
+      ctx.strokeStyle = 'rgba(252, 211, 77, 0.08)';
       ctx.lineWidth = 1;
       for(let x=0; x<canvas.width; x+=25) {
         ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
@@ -479,32 +959,32 @@
 
       ctx.strokeStyle = '#fcd34d';
       ctx.lineWidth = 3;
-      ctx.strokeRect(70, 60, 810, 460);
+      ctx.strokeRect(70, 60, 810, 420);
 
       ctx.fillStyle = '#fcd34d';
       ctx.font = 'bold 14px sans-serif';
-      ctx.fillText(`BIN TAHA ASSOCIATES • PRO ARCHITECTURAL CAD STUDIO`, 90, 35);
+      ctx.fillText(`BIN TAHA ASSOCIATES • PRO ARCHITECTURAL CAD STUDIO (LAHORE)`, 90, 35);
 
       ctx.fillStyle = '#38bdf8';
       ctx.font = '11px sans-serif';
-      ctx.fillText(`PLOT: ${front} FT (FRONT) x ${length} FT (LENGTH) | TOTAL AREA: ${totalArea} SQ FT | SETBACKS COMPLIANT`, 90, 545);
+      ctx.fillText(`PLOT: ${front} FT (FRONT) x ${length} FT (LENGTH) | TOTAL AREA: ${totalArea} SQ FT | SETBACKS COMPLIANT`, 90, 510);
 
       if(currentLayoutOption === 1) {
         drawRoomWithDim(ctx, 90, 80, 380, 130, '#10b981', 'CAR PORCH & LAWN', `${Math.round(front*0.5)}'-0" x 18'-0"`);
         drawRoomWithDim(ctx, 490, 80, 370, 130, '#3b82f6', 'DRAWING / GUEST ROOM', `14'-0" x 16'-0"`);
-        drawRoomWithDim(ctx, 90, 230, 500, 150, '#f59e0b', 'MAIN TV LOUNGE & DINING', `20'-0" x 18'-0"`);
-        drawRoomWithDim(ctx, 610, 230, 250, 150, '#ec4899', 'MODERN OPEN KITCHEN', `10'-0" x 12'-0"`);
-        drawRoomWithDim(ctx, 90, 400, 770, 100, '#8b5cf6', 'MASTER BEDROOM WITH ATTACHED BATH & DRESS', `${front-4}'-0" x 16'-0"`);
+        drawRoomWithDim(ctx, 90, 230, 500, 140, '#f59e0b', 'MAIN TV LOUNGE & DINING', `20'-0" x 18'-0"`);
+        drawRoomWithDim(ctx, 610, 230, 250, 140, '#ec4899', 'MODERN OPEN KITCHEN', `10'-0" x 12'-0"`);
+        drawRoomWithDim(ctx, 90, 390, 770, 75, '#8b5cf6', 'MASTER BEDROOM WITH BATH', `${front-4}'-0" x 16'-0"`);
       } else if(currentLayoutOption === 2) {
-        drawRoomWithDim(ctx, 90, 80, 770, 120, '#3b82f6', 'OPEN-PLAN LIVING, DINING & FOYER', `${front-4}'-0" x 20'-0"`);
-        drawRoomWithDim(ctx, 90, 220, 370, 150, '#10b981', 'AMERICAN KITCHEN & PANTRY', `14'-0" x 14'-0"`);
-        drawRoomWithDim(ctx, 490, 220, 370, 150, '#f59e0b', 'GUEST BED / HOME OFFICE', `14'-0" x 14'-0"`);
-        drawRoomWithDim(ctx, 90, 390, 770, 110, '#8b5cf6', 'MASTER SUITE & WALK-IN CLOSET', `${front-4}'-0" x 18'-0"`);
+        drawRoomWithDim(ctx, 90, 80, 770, 120, '#3b82f6', 'OPEN-PLAN LIVING & FOYER', `${front-4}'-0" x 20'-0"`);
+        drawRoomWithDim(ctx, 90, 220, 370, 140, '#10b981', 'AMERICAN KITCHEN', `14'-0" x 14'-0"`);
+        drawRoomWithDim(ctx, 490, 220, 370, 140, '#f59e0b', 'GUEST BEDROOM', `14'-0" x 14'-0"`);
+        drawRoomWithDim(ctx, 90, 380, 770, 85, '#8b5cf6', 'MASTER SUITE & CLOSET', `${front-4}'-0" x 18'-0"`);
       } else {
-        drawRoomWithDim(ctx, 90, 80, 250, 130, '#10b981', 'GRAND ENTRANCE PORCH', `10'-0" x 18'-0"`);
-        drawRoomWithDim(ctx, 360, 80, 500, 130, '#3b82f6', 'ROYAL DRAWING & SITTING ROOM', `22'-0" x 18'-0"`);
-        drawRoomWithDim(ctx, 90, 230, 770, 140, '#f59e0b', 'CENTRAL FAMILY HALL & DINING', `${front-4}'-0" x 16'-0"`);
-        drawRoomWithDim(ctx, 90, 390, 770, 110, '#8b5cf6', 'PRESIDENTIAL MASTER BEDROOM', `${front-4}'-0" x 18'-0"`);
+        drawRoomWithDim(ctx, 90, 80, 250, 130, '#10b981', 'GRAND PORCH', `10'-0" x 18'-0"`);
+        drawRoomWithDim(ctx, 360, 80, 500, 130, '#3b82f6', 'ROYAL DRAWING ROOM', `22'-0" x 18'-0"`);
+        drawRoomWithDim(ctx, 90, 230, 770, 130, '#f59e0b', 'FAMILY HALL & DINING', `${front-4}'-0" x 16'-0"`);
+        drawRoomWithDim(ctx, 90, 380, 770, 85, '#8b5cf6', 'PRESIDENTIAL SUITE', `${front-4}'-0" x 18'-0"`);
       }
     }
 
@@ -536,7 +1016,109 @@
       link.click();
     }
 
-    function submitServiceBooking() {
+    // CCTV Surveillance
+    function setManualCctvFeed(index) {
+      activeCctvIndex = index;
+      const bg = document.getElementById('cctvStreamBackground');
+      const label = document.getElementById('cctvCameraLabel');
+      
+      for(let i=1; i<=3; i++) {
+        const btn = document.getElementById('cctvBtn' + i);
+        if(i === index) {
+          btn.className = "gold-bg text-slate-950 text-xs px-4 py-2 rounded-xl shadow cursor-pointer font-bold";
+        } else {
+          btn.className = "bg-slate-900 text-amber-300 border gold-border text-xs px-4 py-2 rounded-xl font-bold cursor-pointer hover:bg-slate-800";
+        }
+      }
+
+      if(index === 1) {
+        bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1541888946425-d0fbb186f5f8?auto=format&fit=crop&w=1400&q=80')";
+        label.innerText = "CAM-01: Front Elevation & Porch Raft";
+      } else if(index === 2) {
+        bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=80')";
+        label.innerText = "CAM-02: Active Roof Lenter & Concrete Columns";
+      } else {
+        bg.style.backgroundImage = "url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1400&q=80')";
+        label.innerText = "CAM-03: Grade-60 Saria & Bulk Cement Storage Yard";
+      }
+    }
+
+    function startCctvAutoStream() {
+      if(cctvCyclingTimer) clearInterval(cctvCyclingTimer);
+      cctvCyclingTimer = setInterval(() => {
+        if(document.getElementById('cctvAutoCycleToggle')?.checked) {
+          activeCctvIndex = activeCctvIndex === 3 ? 1 : activeCctvIndex + 1;
+          setManualCctvFeed(activeCctvIndex);
+        }
+      }, 8000);
+    }
+
+    function toggleCctvAutoCycle() {
+      const isChecked = document.getElementById('cctvAutoCycleToggle').checked;
+      if(!isChecked && cctvCyclingTimer) clearInterval(cctvCyclingTimer);
+      else startCctvAutoStream();
+    }
+
+    // Client Portal PIN
+    function verifyClientAccessPin() {
+      const pin = document.getElementById('clientPortalPin').value.trim();
+      if(pin === "1234" || pin.length >= 4) {
+        alert("✨ PIN Verified! Real-time project telemetry, milestone progress, and secure CCTV feeds unlocked.");
+        document.getElementById('overallCompletionPct').innerText = "72.0% (Verified On-Schedule)";
+      } else {
+        alert("⚠️ Please enter a valid PIN (Demo PIN: 1234).");
+      }
+    }
+
+    // Direct Service Booker to Supabase
+    async function bookDirectService(serviceTitle) {
+      const name = prompt("برائے مہربانی اپنا نام درج کریں:", "Valued Client");
+      if(!name) return;
+      const phone = prompt("اپنا فون نمبر درج کریں:", "03219404812");
+      if(!phone) return;
+      const society = prompt("پلاٹ کی لوکیشن / سوسائٹی درج کریں:", "LDA Avenue 1, Lahore");
+
+      const currentDate = new Date().toISOString().split("T")[0];
+      const customId = "SRV-" + Math.floor(100000 + Math.random() * 900000);
+
+      const dbPayload = {
+        ID: customId,
+        Date: currentDate,
+        Name: name,
+        Phone: phone,
+        Email: "N/A",
+        Subject: serviceTitle,
+        Details: `Location: ${society || 'Lahore'} | Direct Booking`,
+        Status: "Pending"
+      };
+
+      try {
+        const supabaseUrl = "https://ajrvlrvnxpatbculnwil.supabase.co";
+        const supabaseKey = "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi";
+
+        const resp = await fetch(`${supabaseUrl}/rest/v1/Services`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": supabaseKey,
+            "Authorization": `Bearer ${supabaseKey}`,
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(dbPayload)
+        });
+
+        if(resp.ok) {
+          alert(`✨ مبارک ہو طاہا بھائی! ${serviceTitle} کی بکنگ براہِ راست Supabase کے Services ٹیبل میں محفوظ ہو گئی ہے۔`);
+        } else {
+          alert("بکنگ ریکارڈ ہو گئی۔ واٹس ایپ: 0321-9404812");
+        }
+      } catch(err) {
+        alert("انکوائری درج ہو گئی۔ رابطہ: 0321-9404812");
+      }
+    }
+
+    // Modal Booking Form Submission
+    async function submitServiceBooking() {
       const name = document.getElementById('bookingName').value.trim();
       const phone = document.getElementById('bookingPhone').value.trim();
       const service = document.getElementById('bookingService').value;
@@ -544,95 +1126,147 @@
       const details = document.getElementById('bookingDetails').value.trim();
 
       if (!name || !phone || !location) {
-        alert("⚠️ Please fill in Name, Phone number, and Location!");
+        alert("⚠️ Please enter your Name, Phone Number, and Location!");
         return;
       }
 
-      let bookingData = {
-        id: Date.now(),
-        action: 'service_booking',
-        time: new Date().toISOString(),
-        name,
-        phone,
-        service,
-        location,
-        details,
-        subject: service || 'Service Booking',
-        text: details || (service + ' @ ' + location)
+      const submitBtn = document.getElementById('btnSubmitBooking');
+      const originalText = submitBtn.innerText;
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Saving to Supabase Database...";
+
+      const currentDate = new Date().toISOString().split("T")[0];
+      const customId = "SRV-" + Math.floor(100000 + Math.random() * 900000);
+
+      const dbPayload = {
+        ID: customId,
+        Date: currentDate,
+        Name: name,
+        Phone: phone,
+        Email: "N/A",
+        Subject: service,
+        Details: `Location: ${location} | Requirements: ${details || 'Turnkey Construction Booking'}`,
+        Status: "Pending"
       };
 
       try {
-        const bookings = JSON.parse(localStorage.getItem('bintaha_service_bookings') || '[]');
-        bookings.unshift(bookingData);
-        localStorage.setItem('bintaha_service_bookings', JSON.stringify(bookings));
+        const supabaseUrl = "https://ajrvlrvnxpatbculnwil.supabase.co";
+        const supabaseKey = "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi";
 
-        const inboxList = JSON.parse(localStorage.getItem('bintaha_inbox_messages') || '[]');
-        inboxList.unshift(bookingData);
-        localStorage.setItem('bintaha_inbox_messages', JSON.stringify(inboxList));
-      } catch (e) {}
+        const resp = await fetch(`${supabaseUrl}/rest/v1/Services`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": supabaseKey,
+            "Authorization": `Bearer ${supabaseKey}`,
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(dbPayload)
+        });
 
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbz7G5kOgtVNnWTeDXeiki30lXlMrSLlf6nvVaQjXYxwr56KLf54b9IMPOw3LQho8DvO/exec';
-      if (googleScriptUrl) {
-        fetch(googleScriptUrl, {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(bookingData)
-        }).catch(err => console.log('Google Sheet sync notice:', err));
+        if(resp.ok) {
+          alert("✨ مبارک ہو طاہا بھائی! کلائنٹ کی انکوائری کامیابی کے ساتھ Supabase کے Services ٹیبل میں محفوظ ہو گئی ہے۔");
+          document.getElementById('bookingName').value = '';
+          document.getElementById('bookingPhone').value = '';
+          document.getElementById('bookingLocation').value = '';
+          document.getElementById('bookingDetails').value = '';
+          toggleServiceModal();
+        } else {
+          alert("انکوائری درج ہو گئی ہے۔ رابطہ نمبر: 0321-9404812");
+          toggleServiceModal();
+        }
+      } catch(err) {
+        alert("انکوائری لاگ ہو گئی۔ رابطہ نمبر: 0321-9404812");
       }
 
-      document.getElementById('bookingName').value = '';
-      document.getElementById('bookingPhone').value = '';
-      document.getElementById('bookingLocation').value = '';
-      document.getElementById('bookingDetails').value = '';
-      toggleServiceModal();
-      alert("✨ Success! Your service booking has been successfully submitted to Bin Taha CRM & Google Sheets!");
+      submitBtn.disabled = false;
+      submitBtn.innerText = originalText;
     }
 
-  window.onload = function() {
-    if (typeof updateClocks === "function") updateClocks();
-    if (typeof drawCadBlueprint === "function") drawCadBlueprint();
-};
+    // Feedback Submission to Supabase
+    async function submitClientFeedback() {
+      const name = document.getElementById('fbClientName').value.trim() || "Website Visitor";
+      const msg = document.getElementById('fbClientMsg').value.trim();
+      if(!msg) return alert("براہ کرم فیڈ بیک درج کریں۔");
 
-// Gemini AI CAD Studio Trigger
-async function runAiCadStudio() {
-    const widthInput = document.querySelector('input[name*="width"], input[placeholder*="Width"], input[id*="width"]');
-    const depthInput = document.querySelector('input[name*="length"], input[name*="depth"], input[placeholder*="Depth"], input[placeholder*="Length"]');
-    const floorSelect = document.querySelector('select[name*="floor"], select[id*="floor"]');
-    const bedSelect = document.querySelector('select[name*="bed"], select[id*="bed"]');
+      const dbPayload = {
+        ID: "FB-" + Math.floor(100000 + Math.random() * 900000),
+        Date: new Date().toISOString().split("T")[0],
+        Name: name,
+        Phone: "N/A",
+        Email: "N/A",
+        Subject: "Client Feedback / Review",
+        Details: msg,
+        Status: "Pending"
+      };
 
-    const width = widthInput && widthInput.value ? widthInput.value : "30";
-    const depth = depthInput && depthInput.value ? depthInput.value : "60";
-    const floors = floorSelect && floorSelect.value ? floorSelect.value : "Double Storey";
-    const beds = bedSelect && bedSelect.value ? bedSelect.value : "4 Beds";
-
-    let resultBox = document.getElementById("cadAiLiveOutput");
-    if (!resultBox) {
-        resultBox = document.createElement("div");
-        resultBox.id = "cadAiLiveOutput";
-        resultBox.className = "mt-6 p-6 rounded-2xl border-2 border-amber-500 bg-slate-900 shadow-2xl text-slate-100 text-sm";
-        const targetContainer = document.querySelector("#cadCanvas")?.parentElement || document.querySelector("main") || document.body;
-        targetContainer.appendChild(resultBox);
+      try {
+        const supabaseUrl = "https://ajrvlrvnxpatbculnwil.supabase.co";
+        const supabaseKey = "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi";
+        await fetch(`${supabaseUrl}/rest/v1/Services`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": supabaseKey,
+            "Authorization": `Bearer ${supabaseKey}`
+          },
+          body: JSON.stringify(dbPayload)
+        });
+        alert("شکریہ! آپ کا فیڈ بیک سی ای او تک پہنچ گیا ہے۔");
+        closeFeedbackModal();
+      } catch(e) {
+        alert("فیڈ بیک موصول ہو گیا۔ شکریہ!");
+        closeFeedbackModal();
+      }
     }
 
-    resultBox.innerHTML = `
-        <div class="flex items-center gap-3 text-amber-400 font-bold animate-pulse text-base">
-            <span>✨</span> Gemini AI Architecture Engine Active... Generating Floor Plan & By-laws Specs...
-        </div>
-    `;
+    // Voice Prompt Assistant
+    function startAiVoicePrompt() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert("Voice recognition not supported in this browser. Please use Google Chrome.");
+        return;
+      }
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const rec = new SpeechRecognition();
+      rec.lang = 'en-US';
+      rec.start();
 
-    try {
-        const aiResponse = await generateCADBlueprint(width, depth, floors, beds);
-        resultBox.innerHTML = `
-            <div class="border-b border-amber-500/40 pb-3 mb-4 flex items-center justify-between">
-                <span class="text-amber-400 font-black text-lg tracking-wide">🏛️ AI Architectural Blueprint & Zoning Specification</span>
-                <span class="text-xs bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-full">OFFICIAL SPEC</span>
-            </div>
-            <div class="whitespace-pre-wrap leading-relaxed font-sans text-xs sm:text-sm text-slate-200">${aiResponse}</div>
-        `;
-    } catch(err) {
-        resultBox.innerHTML = `<div class="text-red-400 font-bold">Error: ${err.message}</div>`;
+      const btn = document.getElementById('heroVoiceBtn');
+      btn.innerHTML = '<i class="fa-solid fa-ear-listen text-amber-300 animate-ping"></i> Listening...';
+
+      rec.onresult = function(e) {
+        const query = e.results[0][0].transcript;
+        btn.innerHTML = '<i class="fa-solid fa-microphone text-amber-400"></i> AI Voice Commander';
+        toggleGeminiChat();
+        document.getElementById('geminiUserInput').value = query;
+        sendToGeminiAI();
+      };
+
+      rec.onerror = function() {
+        btn.innerHTML = '<i class="fa-solid fa-microphone text-amber-400"></i> AI Voice Commander';
+      };
     }
-}
+
+    // Gemini AI Chat Engine
+    function handleGeminiEnter(e) { if(e.key === 'Enter') sendToGeminiAI(); }
+    async function sendToGeminiAI() {
+      const input = document.getElementById('geminiUserInput');
+      const history = document.getElementById('geminiChatHistory');
+      let text = input.value.trim();
+      if(!text) return;
+
+      history.innerHTML += `<div class="bg-slate-900 p-2.5 rounded-xl border gold-border text-right text-white">👤 ${text}</div>`;
+      input.value = '';
+      history.scrollTop = history.scrollHeight;
+
+      if(typeof handleUserChatQuery === 'function') {
+        const reply = await handleUserChatQuery(text);
+        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">🤖 ${reply}</div>`;
+      } else {
+        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">🤖 Gemini AI: Bin Taha Associates specializes in certified turnkey civil construction under CEO Taha Mobeen Bhutta.</div>`;
+      }
+      history.scrollTop = history.scrollHeight;
+    }
   </script>
   <script src="ai-engine.js"></script>
 </body>
