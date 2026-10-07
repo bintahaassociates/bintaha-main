@@ -259,3 +259,90 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 });
+// ==========================================
+// BIN TAHA ASSOCIATES - SUPABASE INTEGRATION
+// ==========================================
+
+const SUPABASE_CONFIG = {
+  url: "https://ajrvlrvnxpatbculnwil.supabase.co",
+  key: "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi"
+};
+
+async function sendServiceInquiryToSupabase(payload) {
+  try {
+    const res = await fetch(`${SUPABASE_CONFIG.url}/rest/v1/Services`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_CONFIG.key,
+        "Authorization": `Bearer ${SUPABASE_CONFIG.key}`,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      const errData = await res.json();
+      console.error("Supabase Error:", errData);
+      throw new Error(errData.message || "Failed to submit inquiry");
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Supabase Error:", error);
+    return { success: false, error: error.message };
+  }
+}
+
+// Auto Form Hook for Services and Client Form
+document.addEventListener("DOMContentLoaded", () => {
+  const allForms = document.querySelectorAll("form");
+
+  allForms.forEach(form => {
+    if (form.id === "aiChatSubmitForm") return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const btn = form.querySelector('button[type="submit"]') || form.querySelector("button");
+      const origText = btn ? btn.innerText : "Submit";
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = "Saving in Database...";
+      }
+
+      const nameVal = form.querySelector('input[name*="name"], input[placeholder*="Name"], #name, #clientName')?.value || "Website Client";
+      const phoneVal = form.querySelector('input[type="tel"], input[name*="phone"], input[placeholder*="Phone"], #phone, #clientPhone')?.value || "";
+      const emailVal = form.querySelector('input[type="email"], input[name*="email"], input[placeholder*="Email"], #email')?.value || "N/A";
+      const subjectVal = form.querySelector('select[name*="service"], select, input[name*="subject"], #serviceType')?.value || "General Service Request";
+      const detailsVal = form.querySelector('textarea, input[name*="message"], #details, #message')?.value || "Submitted from website";
+
+      const currentDate = new Date().toISOString().split("T")[0];
+      const customId = "SRV-" + Math.floor(100000 + Math.random() * 900000);
+
+      const dbPayload = {
+        ID: customId,
+        Date: currentDate,
+        Name: nameVal,
+        Phone: phoneVal,
+        Email: emailVal,
+        Subject: subjectVal,
+        Details: detailsVal,
+        Status: "Pending"
+      };
+
+      const result = await sendServiceInquiryToSupabase(dbPayload);
+
+      if (result.success) {
+        alert("Shukriya! Aapki request Bin Taha Associates ke Supabase database me successfully save ho gayi hai.");
+        form.reset();
+      } else {
+        alert("Request send ho gayi hai. Directly WhatsApp par contact karein: 0321 9404812");
+      }
+
+      if (btn) {
+        btn.disabled = false;
+        btn.innerText = origText;
+      }
+    });
+  });
