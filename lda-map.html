@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LDA Avenue 1 Master Map Navigator | Bin Taha Associates</title>
+  <title>LDA Avenue 1 Smart Map Navigator | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Leaflet GIS Engine (No Google Maps API Required) -->
+  <!-- Leaflet GIS Engine (No Google API Required) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -15,44 +15,26 @@
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-bg { background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%); }
     .gold-border { border-color: rgba(212, 175, 55, 0.5); }
-    #mapContainer { height: calc(100vh - 145px); width: 100%; background: #050b14; }
-    
-    /* نقشے پر اشتہارات کو چھپانے کے لیے بین طاہا کے ڈیجیٹل ماسک */
-    .bta-mask-badge {
-      position: absolute;
-      z-index: 1000;
-      pointer-events: auto;
-      background: linear-gradient(135deg, #0b0f19 0%, #030712 100%);
-      border: 2px solid #ffd700;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.85);
-      border-radius: 14px;
-      padding: 10px 14px;
-      color: #ffffff;
-    }
-    
-    /* سرچ بار ڈیزائن */
-    .search-box-glow {
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-    }
+    #mapContainer { height: calc(100vh - 130px); width: 100%; background: #0b0f19; }
+    .search-box-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased flex flex-col h-screen overflow-hidden">
 
   <!-- Header -->
-  <header class="gold-bg text-slate-950 py-2 px-4 shadow-lg shrink-0 border-b-2 border-amber-400">
+  <header class="gold-bg text-slate-950 py-2.5 px-4 shadow-lg shrink-0 border-b-2 border-amber-400">
     <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
       <a href="index.html" class="flex items-center gap-2">
         <img src="logo.png" alt="Logo" class="h-9 w-9 object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=100&q=80'">
         <div>
-          <h1 class="text-sm font-black text-slate-950 leading-tight">Bin Taha Associates</h1>
-          <p class="text-[9px] font-extrabold text-amber-950 uppercase tracking-wider">LDA Avenue 1 Smart GIS Navigator</p>
+          <h1 class="text-sm sm:text-base font-black text-slate-950 leading-tight">Bin Taha Associates</h1>
+          <p class="text-[9px] font-extrabold text-amber-950 uppercase tracking-wider">LDA Avenue 1 Custom Map Engine</p>
         </div>
       </a>
 
-      <!-- Quick Search & Actions -->
       <div class="flex items-center gap-2">
         <a href="properties.html" class="bg-slate-950 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-black border border-amber-400 flex items-center gap-1 shadow">
-          <i class="fa-solid fa-building"></i> <span class="hidden sm:inline">Properties</span>
+          <i class="fa-solid fa-arrow-left"></i> <span>Properties</span>
         </a>
         <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1 shadow">
           <i class="fa-brands fa-whatsapp"></i> CEO: 0321-9404812
@@ -61,11 +43,11 @@
     </div>
   </header>
 
-  <!-- Interactive Controls Bar -->
+  <!-- Controls Bar -->
   <div class="bg-slate-900 border-b gold-border p-2.5 shrink-0 z-30">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-2.5 justify-between">
       
-      <!-- Smart Plot & Block Search Engine -->
+      <!-- Plot & Block Search Box -->
       <div class="relative w-full sm:w-96 search-box-glow rounded-xl">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-amber-400 text-xs"></i>
         <input type="text" id="plotSearchInput" placeholder="پلاٹ یا بلاک لکھیں (e.g. Block C, Plot 760, 481-A)..." 
@@ -89,47 +71,34 @@
         <button onclick="flyToBlock('J')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">J</button>
         <button onclick="flyToBlock('K')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">K</button>
         <button onclick="flyToBlock('M')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">M</button>
-        <button onclick="resetMapView()" class="gold-bg text-slate-950 px-2.5 py-1 rounded-lg font-black"><i class="fa-solid fa-arrows-rotate"></i> پورا نقشہ</button>
+        <button onclick="resetMapView()" class="gold-bg text-slate-950 px-2.5 py-1 rounded-lg font-black"><i class="fa-solid fa-arrows-rotate"></i> ری سیٹ</button>
       </div>
 
     </div>
   </div>
 
-  <!-- Map Display Area -->
+  <!-- Interactive Map Viewport -->
   <div class="relative flex-1 w-full overflow-hidden">
-    
-    <!-- یہ ڈبہ اوپر بائیں کونے کے اشتہار پر مستقل ماسک لگا دیتا ہے -->
-    <div class="bta-mask-badge top-3 left-3 hidden md:flex items-center gap-3">
-      <img src="logo.png" class="w-10 h-10 object-contain" onerror="this.style.display='none'">
-      <div>
-        <h2 class="text-sm font-black gold-bg bg-clip-text text-transparent">BIN TAHA ASSOCIATES</h2>
-        <p class="text-[10px] text-emerald-400 font-bold">LDA Avenue-1 Official Verified Map</p>
-        <p class="text-[9px] text-slate-300 font-semibold">Direct CEO Desk: 0321-9404812</p>
-      </div>
-    </div>
-
     <div id="mapContainer"></div>
   </div>
 
   <script>
-    // 1. میپ انجن انیشیلائزیشن (بغیر گوگل API کے خالص فاسٹ کسٹم امیج GIS)
     const map = L.map('mapContainer', {
       crs: L.CRS.Simple,
       minZoom: -1.5,
-      maxZoom: 2,
+      maxZoom: 2.5,
       zoomSnap: 0.25
     });
 
-    // نقشے کی ڈائمینشنز
     const w = 2400;
     const h = 1600;
     const bounds = [[0, 0], [h, w]];
 
-    // آپ کے نقشے کی تصویر
-    const mapImage = L.imageOverlay('lda-map.jpg', bounds).addTo(map);
+    // آپ کی اپلوڈ کردہ lda-map.png یہاں منسلک ہے
+    const mapImage = L.imageOverlay('lda-map.png', bounds).addTo(map);
     map.fitBounds(bounds);
 
-    // بلاکس کے کوآرڈینیٹس کی رجسٹری
+    // بلاکس کے کوآرڈینیٹس
     const blockRegistry = {
       'A': { y: 1100, x: 750, name: 'Block A (LDA Avenue 1)' },
       'B': { y: 1350, x: 1550, name: 'Block B (LDA Avenue 1)' },
@@ -143,7 +112,7 @@
       'M': { y: 550, x: 950, name: 'Block M (LDA Avenue 1)' }
     };
 
-    // مشہور پلاٹس کا ڈیٹا بیس
+    // اہم پلاٹس کا ڈیٹا بیس
     const verifiedPlots = {
       '760-C': { y: 670, x: 1660, block: 'C', size: '1 Kanal', desc: 'Prime 1 Kanal General Plot in Block C' },
       '481-A': { y: 1120, x: 760, block: 'A', size: '10 Marla', desc: 'Hot Corner 10 Marla in Block A' },
@@ -167,13 +136,13 @@
 
       activeMarker = L.marker([target.y, target.x]).addTo(map)
         .bindPopup(`
-          <div style="font-family: sans-serif; text-align: center; padding: 4px;">
+          <div style="font-family: sans-serif; text-align: center; padding: 5px;">
             <b style="color: #d4af37; font-size: 14px;">${target.name}</b><br>
-            <span style="font-size: 11px; color: #333;">تصدیق شدہ بلاک نقشہ</span><br>
-            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20I%20am%20interested%20in%20plots%20in%20Block%20${blockLetter}" 
+            <span style="font-size: 11px; color: #333;">تصدیق شدہ سیکٹر</span><br>
+            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20I%20am%20interested%20in%20Block%20${blockLetter}%20LDA%20Avenue%201" 
                target="_blank" 
                style="display: inline-block; margin-top: 6px; background: #059669; color: white; padding: 4px 10px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               واٹس ایپ پر ریٹ معلوم کریں
+               واٹس ایپ پر رابطہ کریں
             </a>
           </div>
         `).openPopup();
@@ -189,20 +158,19 @@
       const q = document.getElementById('plotSearchInput').value.trim().toUpperCase();
       if(!q) return;
 
-      // پلاٹ نمبر سے سرچ
       for(let plotKey in verifiedPlots) {
         if(q.includes(plotKey) || plotKey.includes(q)) {
           const p = verifiedPlots[plotKey];
           if(activeMarker) map.removeLayer(activeMarker);
           activeMarker = L.marker([p.y, p.x]).addTo(map)
             .bindPopup(`
-              <div style="font-family: sans-serif; text-align: center; padding: 4px;">
+              <div style="font-family: sans-serif; text-align: center; padding: 5px;">
                 <b style="color: #b45309; font-size: 14px;">پلاٹ نمبر: ${plotKey}</b><br>
                 <span style="font-size: 11px; color: #111;">سائز: ${p.size} (${p.desc})</span><br>
-                <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20I%20want%20to%20verify%20Plot%20${plotKey}%20LDA%20Avenue%201" 
+                <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Verify%20Plot%20${plotKey}%20LDA%20Avenue%201" 
                    target="_blank" 
                    style="display: inline-block; margin-top: 6px; background: #059669; color: white; padding: 4px 10px; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: bold;">
-                   سی ای او طاہا مبین سے فوری ڈیل کریں
+                   سی ای او طاہا سے براہ راست ڈیل کریں
                 </a>
               </div>
             `).openPopup();
@@ -211,7 +179,6 @@
         }
       }
 
-      // بلاک سے سرچ
       for(let blk in blockRegistry) {
         if(q.includes(blk) || q === blk) {
           flyToBlock(blk);
