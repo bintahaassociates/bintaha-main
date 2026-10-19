@@ -15,7 +15,7 @@
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-bg { background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%); }
     .gold-border { border-color: rgba(212, 175, 55, 0.5); }
-    #mapContainer { height: calc(100vh - 130px); width: 100%; background: #080d1a; }
+    #mapContainer { height: calc(100vh - 130px); width: 100%; background: #080d1a; cursor: crosshair; }
     .search-box-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
     .leaflet-popup-content-wrapper { background: #0f172a; color: #fff; border: 1px solid #d4af37; border-radius: 12px; }
     .leaflet-popup-tip { background: #0f172a; }
@@ -45,14 +45,14 @@
     </div>
   </header>
 
-  <!-- Navigation & Search Bar -->
+  <!-- Navigation Bar -->
   <div class="bg-slate-900 border-b gold-border p-2.5 shrink-0 z-30">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-2.5 justify-between">
       
-      <!-- Smart Plot Search -->
+      <!-- Search Input -->
       <div class="relative w-full sm:w-[420px] search-box-glow rounded-xl">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-amber-400 text-xs"></i>
-        <input type="text" id="plotSearchInput" placeholder="پلاٹ یا بلاک لکھیں (مثال: 243-A, Block D, 760-C)..." 
+        <input type="text" id="plotSearchInput" placeholder="پلاٹ یا بلاک لکھیں (مثال: 263-A, Block C, 760-C)..." 
                onkeyup="handlePlotSearch(event)"
                class="w-full bg-slate-950 border gold-border text-white text-xs pl-9 pr-24 py-2.5 rounded-xl outline-none focus:border-amber-300">
         <button onclick="executePlotSearch()" class="absolute right-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
@@ -60,9 +60,9 @@
         </button>
       </div>
 
-      <!-- Quick Block Jump Selector (Strictly LDA Avenue 1) -->
+      <!-- Quick Blocks -->
       <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto py-1 text-xs">
-        <span class="text-amber-300 text-[11px] font-bold shrink-0">LDA بلاکس:</span>
+        <span class="text-amber-300 text-[11px] font-bold shrink-0">LDA Avenue-1:</span>
         <button onclick="flyToBlock('A')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">A</button>
         <button onclick="flyToBlock('B')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">B</button>
         <button onclick="flyToBlock('C')" class="bg-slate-950 text-white border border-amber-400/40 px-2 py-1 rounded-lg font-bold hover:bg-amber-400 hover:text-black">C</button>
@@ -82,13 +82,18 @@
   <!-- Map Canvas -->
   <div class="relative flex-1 w-full overflow-hidden">
     <div id="mapContainer"></div>
+    
+    <!-- کوآرڈینیٹ کیلیبریٹر بار -->
+    <div id="coordBox" class="absolute bottom-2 left-2 z-[1000] bg-slate-900/90 border border-amber-400/60 text-amber-300 text-[11px] px-3 py-1.5 rounded-lg font-mono">
+      نقشے پر کہیں بھی کلک کریں تو اصل کوآرڈینیٹس یہاں آئیں گے
+    </div>
   </div>
 
   <script>
     const map = L.map('mapContainer', {
       crs: L.CRS.Simple,
       minZoom: -1.5,
-      maxZoom: 2.5,
+      maxZoom: 3,
       zoomSnap: 0.25
     });
 
@@ -99,39 +104,34 @@
     const mapImage = L.imageOverlay('lda-map.png', bounds).addTo(map);
     map.fitBounds(bounds);
 
-    // LDA Avenue-1 کے حقیقی سیکٹر کوآرڈینیٹس (EME اور ملحقہ سوسائٹیز کو چھوڑ کر اندرونی حدود)
+    // کلک کرنے پر کوآرڈینیٹ بتانے والا ٹول
+    map.on('click', function(e) {
+      const y = Math.round(e.latlng.lat);
+      const x = Math.round(e.latlng.lng);
+      document.getElementById('coordBox').innerHTML = `منتخب پوائنٹ کوآرڈینیٹس: <b>y: ${y}, x: ${x}</b> (یہ کاپی کر کے ہمیں بتائیں)`;
+    });
+
+    // درست شدہ کوآرڈینیٹس (اقبال ایونیو چھوڑ کر خالص LDA Avenue-1 کے اندر)
     const blockRegistry = {
-      'A': { y: 1180, x: 550, name: 'LDA Avenue 1 - Block A', info: 'Main Boulevard Entry Sector' },
+      'A': { y: 1140, x: 880, name: 'LDA Avenue 1 - Block A (اصل سیکٹر)', info: '150 Ft Main Boulevard & Green Fort Link' },
       'B': { y: 1020, x: 1950, name: 'LDA Avenue 1 - Block B', info: 'Raiwind Road Side Sector' },
-      'C': { y: 680, x: 1550, name: 'LDA Avenue 1 - Block C', info: 'Central Commercial & Residential Hub' },
-      'D': { y: 1020, x: 1250, name: 'LDA Avenue 1 - Block D (Main Park Area)', info: 'Central Avenue Sector' },
-      'F': { y: 920, x: 1370, name: 'LDA Avenue 1 - Block F', info: 'Near 150 Ft Main Boulevard' },
-      'G': { y: 780, x: 880, name: 'LDA Avenue 1 - Block G', info: 'Near Jubilee Town & Canal Link' },
-      'H': { y: 620, x: 1100, name: 'LDA Avenue 1 - Block H', info: 'Quiet Residential Sector' },
-      'J': { y: 460, x: 1470, name: 'LDA Avenue 1 - Block J', info: 'Defence Road Link Sector' },
-      'K': { y: 560, x: 1720, name: 'LDA Avenue 1 - Block K', info: 'Near COMSATS / Defence Road' },
-      'M': { y: 430, x: 1050, name: 'LDA Avenue 1 - Block M', info: 'Defence Road Boundary Sector' }
+      'C': { y: 680, x: 1550, name: 'LDA Avenue 1 - Block C', info: 'Central Commercial Hub' },
+      'D': { y: 1020, x: 1250, name: 'LDA Avenue 1 - Block D', info: 'Central Park Sector' },
+      'F': { y: 920, x: 1370, name: 'LDA Avenue 1 - Block F', info: 'Main Boulevard Sector' },
+      'G': { y: 780, x: 880, name: 'LDA Avenue 1 - Block G', info: 'Sector G' },
+      'H': { y: 620, x: 1100, name: 'LDA Avenue 1 - Block H', info: 'Residential Sector H' },
+      'J': { y: 460, x: 1470, name: 'LDA Avenue 1 - Block J', info: 'Sector J' },
+      'K': { y: 560, x: 1720, name: 'LDA Avenue 1 - Block K', info: 'Sector K' },
+      'M': { y: 430, x: 1050, name: 'LDA Avenue 1 - Block M', info: 'Defence Road Sector' }
     };
 
-    // باقاعدہ تصدیق شدہ پلاٹس کا ماسٹر انڈیکس
+    // باقاعدہ تصدیق شدہ پلاٹس
     const verifiedPlots = {
-      '243-A': { y: 1195, x: 570, block: 'A', size: '1 Kanal', desc: 'Confirm Plot in Sector A' },
-      '481-A': { y: 1160, x: 540, block: 'A', size: '10 Marla', desc: '60x60 Hot Corner' },
-      '760-C': { y: 690, x: 1565, block: 'C', size: '1 Kanal', desc: 'General 1 Kanal in Sector C' },
-      '448-C': { y: 660, x: 1530, block: 'C', size: '10 Marla', desc: 'Solid Location Sector C' },
-      '1782-C': { y: 710, x: 1590, block: 'C', size: '10 Marla', desc: 'Budget 10 Marla in Sector C' },
-      '177-F': { y: 935, x: 1385, block: 'F', size: '1 Kanal', desc: '120 Ft Main Road Facing' },
-      '85A-F': { y: 910, x: 1360, block: 'F', size: '1 Kanal', desc: 'Corner 1 Kanal Sector F' },
-      '55-H': { y: 630, x: 1120, block: 'H', size: '1 Kanal', desc: 'Established H Block Location' },
-      '387-H': { y: 615, x: 1090, block: 'H', size: '21 Marla', desc: 'Extra 1 Marla Corner' },
-      '500-J': { y: 470, x: 1485, block: 'J', size: '11 Marla', desc: '11M Paid Sector J' },
-      '498-K': { y: 570, x: 1730, block: 'K', size: '10 Marla', desc: 'Prime 10 Marla Sector K' },
-      '601-K': { y: 550, x: 1710, block: 'K', size: '10 Marla', desc: 'Sector K Hot Deal' },
-      '85-K': { y: 585, x: 1745, block: 'K', size: '10 Marla', desc: 'Sector K Standard' },
-      '925-G': { y: 795, x: 895, block: 'G', size: '10 Marla', desc: 'Sector G Prime' },
-      '545-G': { y: 770, x: 865, block: 'G', size: '10 Marla', desc: 'Corner Value Sector G' },
-      '713-D': { y: 1035, x: 1265, block: 'D', size: '1 Kanal', desc: 'Prime 1K in Sector D' },
-      '278-D': { y: 1005, x: 1235, block: 'D', size: '1 Kanal', desc: 'Solid Plot in Sector D' }
+      '263-A': { y: 1155, x: 890, block: 'A', size: '1 Kanal', desc: 'LDA Avenue 1 - Block A (150 Ft Road Side)' },
+      '243-A': { y: 1140, x: 875, block: 'A', size: '1 Kanal', desc: 'LDA Avenue 1 - Block A General Confirm' },
+      '481-A': { y: 1120, x: 860, block: 'A', size: '10 Marla', desc: 'LDA Avenue 1 - Block A 60x60 Corner' },
+      '760-C': { y: 690, x: 1565, block: 'C', size: '1 Kanal', desc: 'Sector C Prime' },
+      '177-F': { y: 935, x: 1385, block: 'F', size: '1 Kanal', desc: '120 Ft Road Facing' }
     };
 
     let activeMarker = null;
@@ -141,7 +141,7 @@
       if(activeMarker) map.removeLayer(activeMarker);
     }
 
-    function showMarker(y, x, title, subtitle, size, linkText) {
+    function showMarker(y, x, title, subtitle, size, btnText) {
       if(activeMarker) map.removeLayer(activeMarker);
 
       activeMarker = L.marker([y, x]).addTo(map)
@@ -153,19 +153,19 @@
             <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20${encodeURIComponent(title)}%20LDA%20Avenue%201" 
                target="_blank" 
                style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               ${linkText || 'سی ای او طاہا سے ریٹ معلوم کریں'}
+               ${btnText || 'سی ای او طاہا سے ریٹ معلوم کریں'}
             </a>
           </div>
         `).openPopup();
 
-      map.flyTo([y, x], 1, { duration: 1.2 });
+      map.flyTo([y, x], 1.25, { duration: 1.2 });
     }
 
     function flyToBlock(blockLetter) {
       const b = blockLetter.toUpperCase();
       const target = blockRegistry[b];
       if(!target) return;
-      showMarker(target.y, target.x, target.name, target.info, '', `Block ${b} کے پلاٹس کی لسٹ لیں`);
+      showMarker(target.y, target.x, target.name, target.info, '', `Block ${b} کے ریٹس لیں`);
     }
 
     function handlePlotSearch(e) {
@@ -176,10 +176,9 @@
       let raw = document.getElementById('plotSearchInput').value.trim().toUpperCase();
       if(!raw) return;
 
-      // کلین اپ: غیر ضروری الفاظ ختم کریں
-      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').trim();
+      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').replace(/\s+/g, '-').trim();
 
-      // 1. ڈائریکٹ پلاٹ میچ (e.g. 243-A یا 760-C)
+      // پلاٹ تلاش کریں
       for(let key in verifiedPlots) {
         if(key === clean || key.replace('-', '') === clean.replace('-', '') || clean.includes(key)) {
           const p = verifiedPlots[key];
@@ -188,22 +187,7 @@
         }
       }
 
-      // 2. اگر صرف نمبر لکھا ہے جیسے "243"
-      if(/^\d+$/.test(clean)) {
-        // پہلے دیکھیں کیا یہ نمبر کسی بلاک میں لسٹڈ ہے
-        for(let key in verifiedPlots) {
-          if(key.startsWith(clean + '-')) {
-            const p = verifiedPlots[key];
-            showMarker(p.y, p.x, `پلاٹ نمبر: ${key}`, p.desc, p.size, `پلاٹ ${key} تصدیق کریں`);
-            return;
-          }
-        }
-        // اگر مخصوص نہیں تو بلاک A میں ڈیفالٹ اندازے سے تلاش کریں
-        alert(`پلاٹ نمبر ${clean} کا بلاک بھی لکھیں (مثال: ${clean}-A یا ${clean}-C)۔`);
-        return;
-      }
-
-      // 3. اگر بلاک لیٹر لکھا ہے (e.g. A, C, D)
+      // اگر بلاک نام ہے
       for(let blk in blockRegistry) {
         if(clean === blk || clean.includes(blk)) {
           flyToBlock(blk);
@@ -211,7 +195,7 @@
         }
       }
 
-      alert("براہ کرم درست پلاٹ (مثلاً 243-A یا 760-C) یا بلاک (مثلاً Block D) درج کریں۔");
+      alert("یہ پلاٹ نمبر فی الحال رجسٹرڈ لسٹ میں نہیں ہے۔ براہ کرم مخصوص پلاٹ جیسے 263-A یا بلاک منتخب کریں۔");
     }
   </script>
 </body>
