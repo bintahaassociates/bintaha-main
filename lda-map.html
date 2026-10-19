@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ایل ڈی اے ایونیو 1 اسمارٹ نیویگیٹر | بن طاہا ایسوسی ایٹس</title>
+  <title>LDA Avenue 1 Smart Map Navigator | Bin Taha Associates</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -15,7 +15,7 @@
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-bg { background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%); }
     .gold-border { border-color: rgba(212, 175, 55, 0.5); }
-    #mapContainer { height: calc(100vh - 125px); width: 100%; background: #080d1a; }
+    #mapContainer { height: calc(100vh - 125px); width: 100%; background: #080d1a; cursor: crosshair; }
     .search-box-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
     .leaflet-popup-content-wrapper { background: #0f172a; color: #fff; border: 1px solid #d4af37; border-radius: 12px; }
     .leaflet-popup-tip { background: #0f172a; }
@@ -29,17 +29,17 @@
       <a href="index.html" class="flex items-center gap-2">
         <img src="logo.png" alt="Logo" class="h-9 w-9 object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=100&q=80'">
         <div>
-          <h1 class="text-sm sm:text-base font-black text-slate-950 leading-tight">بن طاہا ایسوسی ایٹس</h1>
+          <h1 class="text-sm sm:text-base font-black text-slate-950 leading-tight">Bin Taha Associates</h1>
           <p class="text-[10px] font-extrabold text-amber-950 uppercase tracking-wider">LDA Avenue 1 Exclusive Navigator</p>
         </div>
       </a>
 
       <div class="flex items-center gap-2">
         <a href="properties.html" class="bg-slate-950 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-black border border-amber-400 flex items-center gap-1 shadow">
-          <i class="fa-solid fa-arrow-right"></i> <span>پراپرٹیز</span>
+          <i class="fa-solid fa-arrow-right"></i> <span>Properties</span>
         </a>
         <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1 shadow">
-          <i class="fa-brands fa-whatsapp"></i> طاہا مبین بھٹہ: 0321-9404812
+          <i class="fa-brands fa-whatsapp"></i> CEO: 0321-9404812
         </a>
       </div>
     </div>
@@ -49,83 +49,92 @@
   <div class="bg-slate-900 border-b gold-border p-2.5 shrink-0 z-30">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-2.5 justify-between">
       
-      <!-- Smart Selector -->
+      <!-- Smart Search -->
       <div class="flex items-center gap-2 w-full sm:w-auto">
         <select id="blockSelector" onchange="onBlockSelect()" class="bg-slate-950 border gold-border text-amber-300 text-xs px-3 py-2.5 rounded-xl outline-none font-bold">
-          <option value="A" selected>بلاک A (رائے ونڈ روڈ / اشارہ سائیڈ)</option>
-          <option value="B">بلاک B (رائے ونڈ روڈ سائیڈ)</option>
-          <option value="C">بلاک C (سینٹرل کمرشل)</option>
-          <option value="D">بلاک D (مرکزی پارک)</option>
-          <option value="F">بلاک F</option>
-          <option value="G">بلاک G</option>
-          <option value="H">بلاک H</option>
-          <option value="J">بلاک J</option>
-          <option value="K">بلاک K (ڈیفنس روڈ / کامسیٹس)</option>
-          <option value="M">بلاک M</option>
+          <option value="A" selected>Block A (Raiwind Road / Signal Side)</option>
+          <option value="B">Block B (Raiwind Road Side)</option>
+          <option value="C">Block C (Central Commercial)</option>
+          <option value="D">Block D (Main Park Area)</option>
+          <option value="F">Block F</option>
+          <option value="G">Block G</option>
+          <option value="H">Block H</option>
+          <option value="J">Block J</option>
+          <option value="K">Block K (Defence Road Link)</option>
+          <option value="M">Block M</option>
         </select>
 
-        <div class="relative flex-1 sm:w-64 search-box-glow rounded-xl">
-          <input type="text" id="plotInput" placeholder="پلاٹ نمبر لکھیں (مثلاً 243, 436, 463)..." 
-                 onkeyup="if(event.key === 'Enter') searchPlotInSelectedBlock()"
+        <div class="relative flex-1 sm:w-72 search-box-glow rounded-xl">
+          <input type="text" id="plotInput" placeholder="Plot number likhein (maslan: 243-A, 436-A, 463-A)..." 
+                 onkeyup="if(event.key === 'Enter') searchPlot()"
                  class="w-full bg-slate-950 border gold-border text-white text-xs pr-4 pl-16 py-2.5 rounded-xl outline-none focus:border-amber-300 text-right">
-          <button onclick="searchPlotInSelectedBlock()" class="absolute left-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
-            تلاش
+          <button onclick="searchPlot()" class="absolute left-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
+            Search
           </button>
         </div>
       </div>
 
-      <!-- کوئیک ری سیٹ -->
+      <!-- Quick Reset -->
       <div class="flex items-center gap-2 text-xs">
-        <button onclick="resetToFullMap()" class="gold-bg text-slate-950 px-3 py-2 rounded-xl font-black flex items-center gap-1 shadow">
-          <i class="fa-solid fa-expand"></i> پورا نقشہ دیکھیں
+        <button onclick="resetMap()" class="gold-bg text-slate-950 px-3 py-2 rounded-xl font-black flex items-center gap-1 shadow">
+          <i class="fa-solid fa-expand"></i> Pura Naksha Dekhein
         </button>
       </div>
 
     </div>
   </div>
 
-  <!-- Map Viewport -->
+  <!-- Map Canvas -->
   <div class="relative flex-1 w-full overflow-hidden">
     <div id="mapContainer"></div>
+    <div id="coordBox" class="absolute bottom-2 left-2 z-[1000] bg-slate-900/90 border border-amber-400/60 text-amber-300 text-[11px] px-3 py-1.5 rounded-lg font-mono">
+      Nakshe par click karein: coordinates yahan show honge
+    </div>
   </div>
 
   <script>
+    // Asli image resolution
+    const w = 3513;
+    const h = 2457;
+    const bounds = [[0, 0], [h, w]];
+
     const map = L.map('mapContainer', {
       crs: L.CRS.Simple,
-      minZoom: -1.5,
-      maxZoom: 3.5,
+      minZoom: -2,
+      maxZoom: 3,
       zoomSnap: 0.2
     });
 
-    const w = 2400;
-    const h = 1600;
-    const bounds = [[0, 0], [h, w]];
-
-    const mapImage = L.imageOverlay('lda-map.png', bounds).addTo(map);
+    const mapImage = L.imageOverlay('lda-map.png', bounds, { interactive: true }).addTo(map);
     map.fitBounds(bounds);
 
     let activeMarker = null;
+    let masterData = null;
 
-    // بلاکس کے مین سیکٹرز
-    const ldaBlocks = {
-      'A': { y: 1120, x: 1980, name: 'ایل ڈی اے ایونیو 1 - بلاک A' },
-      'B': { y: 1260, x: 2150, name: 'ایل ڈی اے ایونیو 1 - بلاک B' },
-      'C': { y: 680, x: 1550, name: 'ایل ڈی اے ایونیو 1 - بلاک C' },
-      'D': { y: 1020, x: 1250, name: 'ایل ڈی اے ایونیو 1 - بلاک D' },
-      'F': { y: 920, x: 1370, name: 'ایل ڈی اے ایونیو 1 - بلاک F' },
-      'G': { y: 780, x: 880, name: 'ایل ڈی اے ایونیو 1 - بلاک G' },
-      'H': { y: 620, x: 1100, name: 'ایل ڈی اے ایونیو 1 - بلاک H' },
-      'J': { y: 460, x: 1470, name: 'ایل ڈی اے ایونیو 1 - بلاک J' },
-      'K': { y: 560, x: 1720, name: 'ایل ڈی اے ایونیو 1 - بلاک K' },
-      'M': { y: 430, x: 1050, name: 'ایل ڈی اے ایونیو 1 - بلاک M' }
-    };
+    // Coordinate helper
+    map.on('click', function(e) {
+      const y = Math.round(e.latlng.lat);
+      const x = Math.round(e.latlng.lng);
+      document.getElementById('coordBox').innerHTML = `Selected Point: <b>y: ${y}, x: ${x}</b>`;
+    });
 
-    function resetToFullMap() {
+    // JSON file load karna
+    fetch('lda_plots_data.json')
+      .then(res => res.json())
+      .then(data => {
+        masterData = data;
+        console.log("Plot data loaded successfully:", masterData);
+      })
+      .catch(err => {
+        console.log("JSON direct fetch error, fallback ready:", err);
+      });
+
+    function resetMap() {
       map.flyToBounds(bounds, { duration: 1.2 });
       if(activeMarker) map.removeLayer(activeMarker);
     }
 
-    function showPin(y, x, title, subtitle, size) {
+    function showMarker(y, x, title, subtitle, size) {
       if(activeMarker) map.removeLayer(activeMarker);
 
       activeMarker = L.marker([y, x]).addTo(map)
@@ -133,86 +142,54 @@
           <div style="text-align: center; font-family: sans-serif; padding: 6px;">
             <b style="color: #d4af37; font-size: 14px;">${title}</b><br>
             <span style="font-size: 11px; color: #cbd5e1;">${subtitle}</span><br>
-            ${size ? `<span style="font-size: 12px; color: #38bdf8; font-weight: bold;">سائز: ${size}</span><br>` : ''}
+            ${size ? `<span style="font-size: 12px; color: #38bdf8; font-weight: bold;">Size: ${size}</span><br>` : ''}
             <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20${encodeURIComponent(title)}%20LDA%20Avenue%201" 
                target="_blank" 
                style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               سی ای او سے ریٹ اور پوزیشن کنفرم کریں
+               CEO se Rate Maloom Karein
             </a>
           </div>
         `).openPopup();
 
-      map.flyTo([y, x], 1.8, { duration: 1.2 });
+      map.flyTo([y, x], 1.5, { duration: 1.2 });
     }
 
     function onBlockSelect() {
       const b = document.getElementById('blockSelector').value;
-      if(!b || !ldaBlocks[b]) return;
-      const blk = ldaBlocks[b];
-      showPin(blk.y, blk.x, blk.name, 'سیکٹر ویو', '');
+      if (masterData && masterData.blocks && masterData.blocks[b]) {
+        const blk = masterData.blocks[b];
+        showMarker(blk.y, blk.x, blk.name, 'Block Sector View', '');
+      }
     }
 
-    // درست سٹریٹ اور پلاٹ نیویگیشن
-    function searchPlotInSelectedBlock() {
-      const selectedBlock = document.getElementById('blockSelector').value || 'A';
+    function searchPlot() {
       let raw = document.getElementById('plotInput').value.trim().toUpperCase();
+      if(!raw) return;
 
-      if(!raw) {
-        onBlockSelect();
-        return;
-      }
-
-      // ان پٹ سے بلاک لیٹر اور نمبر نکالنا
       let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').trim();
-      let parts = clean.split(/[- ]+/);
+      let selectedBlock = document.getElementById('blockSelector').value || 'A';
 
-      let plotNum = null;
-      let targetBlock = selectedBlock;
-
-      for (let p of parts) {
-        if (/^\d+$/.test(p)) {
-          plotNum = parseInt(p);
-        } else if (ldaBlocks[p]) {
-          targetBlock = p;
-          document.getElementById('blockSelector').value = p;
-        }
+      // Agar user ne sirf number likha hai to block sath jod dein
+      let queryKey = clean;
+      if (/^\d+$/.test(clean)) {
+        queryKey = clean + '-' + selectedBlock;
       }
 
-      if(!plotNum) {
-        onBlockSelect();
+      // JSON database se search
+      if (masterData && masterData.plots && masterData.plots[queryKey]) {
+        const p = masterData.plots[queryKey];
+        showMarker(p.y, p.x, `Plot No: ${queryKey}`, `LDA Avenue 1 - Sector ${p.block || selectedBlock}`, p.size || '');
         return;
       }
 
-      // بلاک A کے تصدیق شدہ زونز
-      if (targetBlock === 'A') {
-        // 1. باؤنڈری والی 1 کنال لائن (پلاٹ 230 تا 275 بشمول 243)
-        if (plotNum >= 230 && plotNum <= 275) {
-          showPin(1185, 765, `پلاٹ نمبر: ${plotNum}-A`, '1 کنال باؤنڈری پٹی (گیٹ و باؤنڈری کے پاس)', '1 Kanal');
-          return;
-        }
-
-        // 2. 60 فٹ روڈ کے اوپر والی پٹی (430 تا 440 بشمول 436)
-        if (plotNum >= 430 && plotNum <= 440) {
-          showPin(1145, 1985, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ پٹی (436، 437 پارک کے متوازی)', '10 Marla');
-          return;
-        }
-
-        // 3. 60 فٹ روڈ فیسنگ پٹی (460 تا 470 بشمول 463)
-        if (plotNum >= 460 && plotNum <= 470) {
-          showPin(1120, 1980, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ پٹی (60 فٹ روڈ فیسنگ 462، 463)', '10 Marla');
-          return;
-        }
-
-        // 4. سڑک کے نیچے والی پٹی (405 تا 425)
-        if (plotNum >= 405 && plotNum <= 425) {
-          showPin(1090, 1960, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ سٹریٹ (407 تا 412 لائن)', '10 Marla');
-          return;
-        }
+      // Block fallback
+      if (masterData && masterData.blocks && masterData.blocks[selectedBlock]) {
+        const blk = masterData.blocks[selectedBlock];
+        showMarker(blk.y, blk.x, `Plot No: ${queryKey}`, blk.name, '');
+        return;
       }
 
-      // عام کیس
-      const blk = ldaBlocks[targetBlock];
-      showPin(blk.y, blk.x, `پلاٹ نمبر: ${plotNum}-${targetBlock}`, `${blk.name}`, '');
+      alert("Plot number search mein nahi mila, block select karke dubara check karein.");
     }
   </script>
 </body>
