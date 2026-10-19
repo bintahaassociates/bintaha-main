@@ -14,7 +14,7 @@
     * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
     .gold-bg { background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%); }
     .gold-border { border-color: rgba(212, 175, 55, 0.5); }
-    #mapContainer { height: calc(100vh - 130px); width: 100%; background: #080d1a; cursor: crosshair; }
+    #mapContainer { height: calc(100vh - 130px); width: 100%; background: #080d1a; }
     .search-box-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.35); }
     .leaflet-popup-content-wrapper { background: #0f172a; color: #fff; border: 1px solid #d4af37; border-radius: 12px; }
     .leaflet-popup-tip { background: #0f172a; }
@@ -49,7 +49,7 @@
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-2.5 justify-between">
       <div class="relative w-full sm:w-[420px] search-box-glow rounded-xl">
         <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-amber-400 text-xs"></i>
-        <input type="text" id="plotSearchInput" placeholder="پلاٹ یا بلاک لکھیں (مثال: 263-A, Block C)..." 
+        <input type="text" id="plotSearchInput" placeholder="پلاٹ لکھیں (مثال: 243-A, 432-A, 1516-A, Block C)..." 
                onkeyup="handlePlotSearch(event)"
                class="w-full bg-slate-950 border gold-border text-white text-xs pl-9 pr-24 py-2.5 rounded-xl outline-none focus:border-amber-300">
         <button onclick="executePlotSearch()" class="absolute right-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
@@ -74,7 +74,6 @@
     </div>
   </div>
 
-  <!-- Map Canvas -->
   <div class="relative flex-1 w-full overflow-hidden">
     <div id="mapContainer"></div>
   </div>
@@ -91,57 +90,18 @@
     const h = 1600;
     const bounds = [[0, 0], [h, w]];
 
-    const mapImage = L.imageOverlay('lda-map.png', bounds, { interactive: true }).addTo(map);
+    const mapImage = L.imageOverlay('lda-map.png', bounds).addTo(map);
     map.fitBounds(bounds);
-
-    let clickMarker = null;
-
-    // نقشے پر کلک کرتے ہی پن اور کوآرڈینیٹس پاپ اپ
-    map.on('click', function(e) {
-      const y = Math.round(e.latlng.lat);
-      const x = Math.round(e.latlng.lng);
-
-      if (clickMarker) map.removeLayer(clickMarker);
-
-      clickMarker = L.marker([y, x]).addTo(map)
-        .bindPopup(`
-          <div style="text-align: center; font-family: sans-serif; padding: 4px;">
-            <b style="color: #38bdf8; font-size: 13px;">منتخب پوائنٹ</b><br>
-            <span style="font-size: 12px; color: #fbbf24; font-weight: bold;">y: ${y}, x: ${x}</span><br>
-            <small style="color: #cbd5e1;">یہ نمبر کاپی کر کے بتا دیں</small>
-          </div>
-        `).openPopup();
-    });
-
-    const blockRegistry = {
-      'A': { y: 1140, x: 880, name: 'LDA Avenue 1 - Block A', info: '150 Ft Main Boulevard Link' },
-      'B': { y: 1020, x: 1950, name: 'LDA Avenue 1 - Block B', info: 'Raiwind Road Sector' },
-      'C': { y: 680, x: 1550, name: 'LDA Avenue 1 - Block C', info: 'Central Commercial Hub' },
-      'D': { y: 1020, x: 1250, name: 'LDA Avenue 1 - Block D', info: 'Central Park Sector' },
-      'F': { y: 920, x: 1370, name: 'LDA Avenue 1 - Block F', info: 'Main Boulevard Sector' },
-      'G': { y: 780, x: 880, name: 'LDA Avenue 1 - Block G', info: 'Sector G' },
-      'H': { y: 620, x: 1100, name: 'LDA Avenue 1 - Block H', info: 'Residential Sector H' },
-      'J': { y: 460, x: 1470, name: 'LDA Avenue 1 - Block J', info: 'Sector J' },
-      'K': { y: 560, x: 1720, name: 'LDA Avenue 1 - Block K', info: 'Sector K' },
-      'M': { y: 430, x: 1050, name: 'LDA Avenue 1 - Block M', info: 'Defence Road Sector' }
-    };
-
-    const verifiedPlots = {
-      '263-A': { y: 1155, x: 890, block: 'A', size: '1 Kanal', desc: 'LDA Avenue 1 - Block A' },
-      '760-C': { y: 690, x: 1565, block: 'C', size: '1 Kanal', desc: 'Sector C Prime' }
-    };
 
     let activeMarker = null;
 
     function resetMapView() {
       map.flyToBounds(bounds, { duration: 1.2 });
       if(activeMarker) map.removeLayer(activeMarker);
-      if(clickMarker) map.removeLayer(clickMarker);
     }
 
     function showMarker(y, x, title, subtitle, size) {
       if(activeMarker) map.removeLayer(activeMarker);
-      if(clickMarker) map.removeLayer(clickMarker);
 
       activeMarker = L.marker([y, x]).addTo(map)
         .bindPopup(`
@@ -149,49 +109,109 @@
             <b style="color: #d4af37; font-size: 14px;">${title}</b><br>
             <span style="font-size: 11px; color: #94a3b8;">${subtitle}</span><br>
             ${size ? `<span style="font-size: 12px; color: #38bdf8; font-weight: bold;">سائز: ${size}</span><br>` : ''}
-            <a href="https://wa.me/923219404812?text=Inquiry%20regarding%20${encodeURIComponent(title)}" target="_blank" 
+            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20${encodeURIComponent(title)}%20LDA%20Avenue%201" 
+               target="_blank" 
                style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               سی ای او سے رابطہ کریں
+               سی ای او سے ریٹ لیں
             </a>
           </div>
         `).openPopup();
 
-      map.flyTo([y, x], 1.25, { duration: 1.2 });
+      map.flyTo([y, x], 1.6, { duration: 1.2 });
     }
+
+    // بلاکس کے مین پوائنٹس
+    const blockRegistry = {
+      'A': { y: 1160, x: 820, name: 'LDA Avenue 1 - Block A' },
+      'B': { y: 1020, x: 1950, name: 'LDA Avenue 1 - Block B' },
+      'C': { y: 680, x: 1550, name: 'LDA Avenue 1 - Block C' },
+      'D': { y: 1020, x: 1250, name: 'LDA Avenue 1 - Block D' },
+      'F': { y: 920, x: 1370, name: 'LDA Avenue 1 - Block F' },
+      'G': { y: 780, x: 880, name: 'LDA Avenue 1 - Block G' },
+      'H': { y: 620, x: 1100, name: 'LDA Avenue 1 - Block H' },
+      'J': { y: 460, x: 1470, name: 'LDA Avenue 1 - Block J' },
+      'K': { y: 560, x: 1720, name: 'LDA Avenue 1 - Block K' },
+      'M': { y: 430, x: 1050, name: 'LDA Avenue 1 - Block M' }
+    };
 
     function flyToBlock(blockLetter) {
       const b = blockLetter.toUpperCase();
       const target = blockRegistry[b];
       if(!target) return;
-      showMarker(target.y, target.x, target.name, target.info, '');
+      showMarker(target.y, target.x, target.name, 'سیکٹر سینٹرل ویو', '');
     }
 
     function handlePlotSearch(e) {
       if(e.key === 'Enter') executePlotSearch();
     }
 
+    // اسمارٹ پلاٹ گرڈ لوکیٹر
     function executePlotSearch() {
       let raw = document.getElementById('plotSearchInput').value.trim().toUpperCase();
       if(!raw) return;
 
-      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').replace(/\s+/g, '-').trim();
+      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').trim();
+      let parts = clean.split(/[- ]+/);
 
-      for(let key in verifiedPlots) {
-        if(key === clean || key.replace('-', '') === clean.replace('-', '') || clean.includes(key)) {
-          const p = verifiedPlots[key];
-          showMarker(p.y, p.x, `پلاٹ نمبر: ${key}`, p.desc, p.size);
+      let plotNum = null;
+      let block = 'A'; // ڈیفالٹ
+
+      if (parts.length === 1) {
+        if (/^\d+$/.test(parts[0])) plotNum = parseInt(parts[0]);
+        else block = parts[0];
+      } else {
+        if (/^\d+$/.test(parts[0])) {
+          plotNum = parseInt(parts[0]);
+          block = parts[1];
+        } else {
+          plotNum = parseInt(parts[1]);
+          block = parts[0];
+        }
+      }
+
+      // اگر بلاک A کے پلاٹس تلاش کیے جا رہے ہوں
+      if (block === 'A' && plotNum) {
+        // 1. باؤنڈری والے 1 کنال پلاٹس (230 تا 270)
+        if (plotNum >= 230 && plotNum <= 280) {
+          let offsetY = (plotNum - 235) * 3.5;
+          let y = 1130 + offsetY;
+          let x = 790 - (offsetY * 0.4);
+          showMarker(y, x, `پلاٹ نمبر: ${plotNum}-A`, '1 کنال سیکٹر باؤنڈری زون', '1 Kanal');
+          return;
+        }
+
+        // 2. سنٹرل 10 مرلہ سٹریٹس (1500 تا 1700 سیریز)
+        if (plotNum >= 1500 && plotNum <= 1700) {
+          let y = 1170;
+          let x = 860;
+          showMarker(y, x, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ سینٹرل سٹریٹ زون', '10 Marla');
+          return;
+        }
+
+        // 3. 400 سیریز کے پلاٹس (مثلاً 432-A, 481-A)
+        if (plotNum >= 400 && plotNum <= 500) {
+          let y = 1080;
+          let x = 810;
+          showMarker(y, x, `پلاٹ نمبر: ${plotNum}-A`, 'سیکٹر A لوکیشن', '10 Marla');
+          return;
+        }
+
+        // 4. 100 تا 200 سیریز (کمرشل روڈ لنک)
+        if (plotNum >= 100 && plotNum <= 229) {
+          let y = 1110;
+          let x = 835;
+          showMarker(y, x, `پلاٹ نمبر: ${plotNum}-A`, 'سیکٹر A مین روڈ ایریا', '1 Kanal');
           return;
         }
       }
 
-      for(let blk in blockRegistry) {
-        if(clean === blk || clean.includes(blk)) {
-          flyToBlock(blk);
-          return;
-        }
+      // اگر صرف بلاک تلاش کیا جائے
+      if (blockRegistry[block]) {
+        flyToBlock(block);
+        return;
       }
 
-      alert("مطلوبہ پلاٹ فی الحال لسٹ میں شامل نہیں ہے۔ براہ کرم Block یا مخصوص پلاٹ درج کریں۔");
+      alert("پلاٹ نمبر اور بلاک درست درج کریں (مثال: 243-A یا 432-A)۔");
     }
   </script>
 </body>
