@@ -93,6 +93,27 @@
         0% { transform: translateX(100%); }
         100% { transform: translateX(-100%); }
     }
+    /* صرف موبائل پر ہیڈر اور بٹنز کو سیدھا رکھنے کا کوڈ */
+    @media screen and (max-width: 768px) {
+      header .w-full {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+      header nav {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100% !important;
+        gap: 6px !important;
+      }
+      header nav a {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        padding: 8px 4px !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
@@ -147,26 +168,26 @@
   </div>
 
   <!-- ROYAL NAVIGATION HEADER (SLIM & ALIGNED) -->
-  <header class="royal-gold-bar sticky top-0 z-40 py-1.5 px-4 sm:px-6 shadow-md">
-    <div class="w-full flex items-center justify-between gap-4">
+ <header class="royal-gold-bar sticky top-0 z-40 py-2.5 px-4 sm:px-6 shadow-md">
+    <div class="w-full flex flex-col md:flex-row items-center justify-between gap-3">
       
-      <!-- Left Side: Logo & Name (بالکل بائیں نکرے پر) -->
+      <!-- Left Side: Logo & Name -->
       <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
         <img src="logo.png" alt="Bin Taha Logo" class="h-10 w-10 sm:h-11 sm:w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div class="leading-none">
-          <h1 class="text-xl sm:text-2xl font-black text-slate-950 tracking-tight">Bin Taha Associates</h1>
-          <p class="text-[9px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">Property & Builder Hub • PEC Cat C Certified</p>
+        <div class="leading-tight text-center md:text-left">
+          <h1 class="text-lg sm:text-2xl font-black text-slate-950 tracking-tight">Bin Taha Associates</h1>
+          <p class="text-[9px] sm:text-[10px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">Property & Builder Hub • PEC Cat C Certified</p>
         </div>
       </a>
       
-      <!-- Right Side: 3D Buttons (بالکل دائیں نکرے پر سیدھی لائن میں) -->
-      <nav class="flex items-center justify-end gap-1.5 sm:gap-2 flex-wrap text-xs font-black">
-        <a href="index.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1"><i class="fa-solid fa-house text-[11px]"></i> Home</a>
-        <a href="properties.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1 !bg-amber-600 !text-white !border-amber-400"><i class="fa-solid fa-city text-[11px]"></i> Properties Hub</a>
-        <a href="about.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1"><i class="fa-solid fa-user-group text-[11px]"></i> About Us</a>
-        <a href="dream.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1"><i class="fa-solid fa-star text-amber-900 text-[11px]"></i> Our Dream</a>
-        <a href="add-property.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1"><i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property</a>
-        <a href="contact.html" class="gold-btn-3d px-3 py-1.5 flex items-center gap-1"><i class="fa-solid fa-envelope text-[11px]"></i> Contact</a>
+      <!-- Right Side: 3D Buttons (موبائل پر 2 کالم گرڈ، کمپیوٹر پر سیدھی لائن) -->
+      <nav class="flex items-center justify-center md:justify-end gap-1.5 sm:gap-2 flex-wrap text-xs font-black w-full md:w-auto">
+        <a href="index.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1"><i class="fa-solid fa-house text-[11px]"></i> Home</a>
+        <a href="properties.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1 !bg-amber-600 !text-white !border-amber-400"><i class="fa-solid fa-city text-[11px]"></i> Properties Hub</a>
+        <a href="about.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1"><i class="fa-solid fa-user-group text-[11px]"></i> About Us</a>
+        <a href="dream.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1"><i class="fa-solid fa-star text-amber-900 text-[11px]"></i> Our Dream</a>
+        <a href="add-property.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1"><i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property</a>
+        <a href="contact.html" class="gold-btn-3d px-3 py-2 flex items-center justify-center gap-1"><i class="fa-solid fa-envelope text-[11px]"></i> Contact</a>
       </nav>
 
     </div>
