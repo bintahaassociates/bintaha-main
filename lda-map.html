@@ -49,11 +49,10 @@
   <div class="bg-slate-900 border-b gold-border p-2.5 shrink-0 z-30">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-2.5 justify-between">
       
-      <!-- Smart Selector: بلاک اور پلاٹ سرچ -->
+      <!-- Smart Selector -->
       <div class="flex items-center gap-2 w-full sm:w-auto">
         <select id="blockSelector" onchange="onBlockSelect()" class="bg-slate-950 border gold-border text-amber-300 text-xs px-3 py-2.5 rounded-xl outline-none font-bold">
-          <option value="">بلاک منتخب کریں</option>
-          <option value="A">بلاک A (رائے ونڈ روڈ / اشارہ سائیڈ)</option>
+          <option value="A" selected>بلاک A (رائے ونڈ روڈ / اشارہ سائیڈ)</option>
           <option value="B">بلاک B (رائے ونڈ روڈ سائیڈ)</option>
           <option value="C">بلاک C (سینٹرل کمرشل)</option>
           <option value="D">بلاک D (مرکزی پارک)</option>
@@ -66,7 +65,7 @@
         </select>
 
         <div class="relative flex-1 sm:w-64 search-box-glow rounded-xl">
-          <input type="text" id="plotInput" placeholder="پلاٹ نمبر لکھیں (مثلاً 243, 432)..." 
+          <input type="text" id="plotInput" placeholder="پلاٹ نمبر لکھیں (مثلاً 243, 436, 463)..." 
                  onkeyup="if(event.key === 'Enter') searchPlotInSelectedBlock()"
                  class="w-full bg-slate-950 border gold-border text-white text-xs pr-4 pl-16 py-2.5 rounded-xl outline-none focus:border-amber-300 text-right">
           <button onclick="searchPlotInSelectedBlock()" class="absolute left-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
@@ -75,7 +74,7 @@
         </div>
       </div>
 
-      <!-- کوئیک ری سیٹ اور فل ویو -->
+      <!-- کوئیک ری سیٹ -->
       <div class="flex items-center gap-2 text-xs">
         <button onclick="resetToFullMap()" class="gold-bg text-slate-950 px-3 py-2 rounded-xl font-black flex items-center gap-1 shadow">
           <i class="fa-solid fa-expand"></i> پورا نقشہ دیکھیں
@@ -107,18 +106,18 @@
 
     let activeMarker = null;
 
-    // رائے ونڈ روڈ اور ایل ڈی اے اشارے کے مطابق بلاکس کے حقیقی کوآرڈینیٹس
+    // بلاکس کے مین سیکٹرز
     const ldaBlocks = {
-      'A': { y: 1120, x: 1980, name: 'ایل ڈی اے ایونیو 1 - بلاک A', desc: 'رائے ونڈ روڈ اور ایل ڈی اے اشارے کے قریب ترین' },
-      'B': { y: 1260, x: 2150, name: 'ایل ڈی اے ایونیو 1 - بلاک B', desc: 'رائے ونڈ روڈ فیسنگ سیکٹر B' },
-      'C': { y: 680, x: 1550, name: 'ایل ڈی اے ایونیو 1 - بلاک C', desc: 'مرکزی کمرشل و رہائشی مرکز' },
-      'D': { y: 1020, x: 1250, name: 'ایل ڈی اے ایونیو 1 - بلاک D', desc: 'سینٹرل پارک سیکٹر' },
-      'F': { y: 920, x: 1370, name: 'ایل ڈی اے ایونیو 1 - بلاک F', desc: 'مین بلیوارڈ سیکٹر' },
-      'G': { y: 780, x: 880, name: 'ایل ڈی اے ایونیو 1 - بلاک G', desc: 'سیکٹر G' },
-      'H': { y: 620, x: 1100, name: 'ایل ڈی اے ایونیو 1 - بلاک H', desc: 'سیکٹر H' },
-      'J': { y: 460, x: 1470, name: 'ایل ڈی اے ایونیو 1 - بلاک J', desc: 'سیکٹر J' },
-      'K': { y: 560, x: 1720, name: 'ایل ڈی اے ایونیو 1 - بلاک K', desc: 'ڈیفنس روڈ و کامسیٹس سائیڈ' },
-      'M': { y: 430, x: 1050, name: 'ایل ڈی اے ایونیو 1 - بلاک M', desc: 'سیکٹر M' }
+      'A': { y: 1120, x: 1980, name: 'ایل ڈی اے ایونیو 1 - بلاک A' },
+      'B': { y: 1260, x: 2150, name: 'ایل ڈی اے ایونیو 1 - بلاک B' },
+      'C': { y: 680, x: 1550, name: 'ایل ڈی اے ایونیو 1 - بلاک C' },
+      'D': { y: 1020, x: 1250, name: 'ایل ڈی اے ایونیو 1 - بلاک D' },
+      'F': { y: 920, x: 1370, name: 'ایل ڈی اے ایونیو 1 - بلاک F' },
+      'G': { y: 780, x: 880, name: 'ایل ڈی اے ایونیو 1 - بلاک G' },
+      'H': { y: 620, x: 1100, name: 'ایل ڈی اے ایونیو 1 - بلاک H' },
+      'J': { y: 460, x: 1470, name: 'ایل ڈی اے ایونیو 1 - بلاک J' },
+      'K': { y: 560, x: 1720, name: 'ایل ڈی اے ایونیو 1 - بلاک K' },
+      'M': { y: 430, x: 1050, name: 'ایل ڈی اے ایونیو 1 - بلاک M' }
     };
 
     function resetToFullMap() {
@@ -126,60 +125,94 @@
       if(activeMarker) map.removeLayer(activeMarker);
     }
 
-    function onBlockSelect() {
-      const b = document.getElementById('blockSelector').value;
-      if(!b || !ldaBlocks[b]) return;
-
-      const blk = ldaBlocks[b];
+    function showPin(y, x, title, subtitle, size) {
       if(activeMarker) map.removeLayer(activeMarker);
 
-      activeMarker = L.marker([blk.y, blk.x]).addTo(map)
+      activeMarker = L.marker([y, x]).addTo(map)
         .bindPopup(`
           <div style="text-align: center; font-family: sans-serif; padding: 6px;">
-            <b style="color: #d4af37; font-size: 14px;">${blk.name}</b><br>
-            <span style="font-size: 11px; color: #cbd5e1;">${blk.desc}</span><br>
-            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Block%20${b}%20LDA%20Avenue%201%20Rates" 
+            <b style="color: #d4af37; font-size: 14px;">${title}</b><br>
+            <span style="font-size: 11px; color: #cbd5e1;">${subtitle}</span><br>
+            ${size ? `<span style="font-size: 12px; color: #38bdf8; font-weight: bold;">سائز: ${size}</span><br>` : ''}
+            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20${encodeURIComponent(title)}%20LDA%20Avenue%201" 
                target="_blank" 
                style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               سی ای او طاہا سے ریٹ معلوم کریں
+               سی ای او سے ریٹ اور پوزیشن کنفرم کریں
             </a>
           </div>
         `).openPopup();
 
-      // بلاک پر گہرا زوم تاکہ ایک ایک گلی صاف دکھے
-      map.flyTo([blk.y, blk.x], 1.4, { duration: 1.2 });
+      map.flyTo([y, x], 1.8, { duration: 1.2 });
     }
 
-    function searchPlotInSelectedBlock() {
+    function onBlockSelect() {
       const b = document.getElementById('blockSelector').value;
-      const plot = document.getElementById('plotInput').value.trim();
+      if(!b || !ldaBlocks[b]) return;
+      const blk = ldaBlocks[b];
+      showPin(blk.y, blk.x, blk.name, 'سیکٹر ویو', '');
+    }
 
-      if(!b) {
-        alert("پہلے بلاک منتخب کریں (مثلاً بلاک A یا B)۔");
-        return;
-      }
-      if(!plot) {
+    // درست سٹریٹ اور پلاٹ نیویگیشن
+    function searchPlotInSelectedBlock() {
+      const selectedBlock = document.getElementById('blockSelector').value || 'A';
+      let raw = document.getElementById('plotInput').value.trim().toUpperCase();
+
+      if(!raw) {
         onBlockSelect();
         return;
       }
 
-      const blk = ldaBlocks[b];
-      if(activeMarker) map.removeLayer(activeMarker);
+      // ان پٹ سے بلاک لیٹر اور نمبر نکالنا
+      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').trim();
+      let parts = clean.split(/[- ]+/);
 
-      activeMarker = L.marker([blk.y, blk.x]).addTo(map)
-        .bindPopup(`
-          <div style="text-align: center; font-family: sans-serif; padding: 6px;">
-            <b style="color: #d4af37; font-size: 14px;">پلاٹ نمبر: ${plot}-${b}</b><br>
-            <span style="font-size: 11px; color: #cbd5e1;">${blk.name}</span><br>
-            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20Plot%20${plot}-${b}%20LDA%20Avenue%201" 
-               target="_blank" 
-               style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               پلاٹ ${plot}-${b} کی تصدیق اور ریٹ لیں
-            </a>
-          </div>
-        `).openPopup();
+      let plotNum = null;
+      let targetBlock = selectedBlock;
 
-      map.flyTo([blk.y, blk.x], 1.8, { duration: 1.2 });
+      for (let p of parts) {
+        if (/^\d+$/.test(p)) {
+          plotNum = parseInt(p);
+        } else if (ldaBlocks[p]) {
+          targetBlock = p;
+          document.getElementById('blockSelector').value = p;
+        }
+      }
+
+      if(!plotNum) {
+        onBlockSelect();
+        return;
+      }
+
+      // بلاک A کے تصدیق شدہ زونز
+      if (targetBlock === 'A') {
+        // 1. باؤنڈری والی 1 کنال لائن (پلاٹ 230 تا 275 بشمول 243)
+        if (plotNum >= 230 && plotNum <= 275) {
+          showPin(1185, 765, `پلاٹ نمبر: ${plotNum}-A`, '1 کنال باؤنڈری پٹی (گیٹ و باؤنڈری کے پاس)', '1 Kanal');
+          return;
+        }
+
+        // 2. 60 فٹ روڈ کے اوپر والی پٹی (430 تا 440 بشمول 436)
+        if (plotNum >= 430 && plotNum <= 440) {
+          showPin(1145, 1985, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ پٹی (436، 437 پارک کے متوازی)', '10 Marla');
+          return;
+        }
+
+        // 3. 60 فٹ روڈ فیسنگ پٹی (460 تا 470 بشمول 463)
+        if (plotNum >= 460 && plotNum <= 470) {
+          showPin(1120, 1980, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ پٹی (60 فٹ روڈ فیسنگ 462، 463)', '10 Marla');
+          return;
+        }
+
+        // 4. سڑک کے نیچے والی پٹی (405 تا 425)
+        if (plotNum >= 405 && plotNum <= 425) {
+          showPin(1090, 1960, `پلاٹ نمبر: ${plotNum}-A`, '10 مرلہ سٹریٹ (407 تا 412 لائن)', '10 Marla');
+          return;
+        }
+      }
+
+      // عام کیس
+      const blk = ldaBlocks[targetBlock];
+      showPin(blk.y, blk.x, `پلاٹ نمبر: ${plotNum}-${targetBlock}`, `${blk.name}`, '');
     }
   </script>
 </body>
