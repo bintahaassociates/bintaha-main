@@ -5,80 +5,74 @@
   },
   "blocks": {
     "A": {
-      "y": 1120,
-      "x": 1980,
+      "y": 1719,
+      "x": 2898,
       "name": "LDA Avenue 1 - Block A (Raiwind Road Side)"
     },
     "B": {
-      "y": 1260,
-      "x": 2150,
+      "y": 1934,
+      "x": 3147,
       "name": "LDA Avenue 1 - Block B (Raiwind Road Side)"
     },
     "C": {
-      "y": 680,
-      "x": 1550,
-      "name": "LDA Avenue 1 - Block C (Central Commercial)"
+      "y": 1044,
+      "x": 2268,
+      "name": "LDA Avenue 1 - Block C"
     },
     "D": {
-      "y": 1020,
-      "x": 1250,
-      "name": "LDA Avenue 1 - Block D (Main Park Area)"
+      "y": 1566,
+      "x": 1829,
+      "name": "LDA Avenue 1 - Block D"
     },
     "F": {
-      "y": 920,
-      "x": 1370,
+      "y": 1412,
+      "x": 2005,
       "name": "LDA Avenue 1 - Block F"
     },
     "G": {
-      "y": 780,
-      "x": 880,
+      "y": 1197,
+      "x": 1288,
       "name": "LDA Avenue 1 - Block G"
     },
     "H": {
-      "y": 620,
-      "x": 1100,
+      "y": 952,
+      "x": 1610,
       "name": "LDA Avenue 1 - Block H"
     },
     "J": {
-      "y": 460,
-      "x": 1470,
+      "y": 706,
+      "x": 2151,
       "name": "LDA Avenue 1 - Block J"
     },
     "K": {
-      "y": 560,
-      "x": 1720,
-      "name": "LDA Avenue 1 - Block K (Defence Road Link)"
+      "y": 859,
+      "x": 2517,
+      "name": "LDA Avenue 1 - Block K"
     },
     "M": {
-      "y": 430,
-      "x": 1050,
+      "y": 660,
+      "x": 1536,
       "name": "LDA Avenue 1 - Block M"
     }
   },
   "plots": {
     "243-A": {
-      "y": 1135,
-      "x": 1970,
+      "y": 1742,
+      "x": 2883,
       "block": "A",
       "size": "1 Kanal"
     },
     "436-A": {
-      "y": 1150,
-      "x": 1985,
+      "y": 1765,
+      "x": 2905,
       "block": "A",
       "size": "10 Marla"
     },
     "463-A": {
-      "y": 1120,
-      "x": 1980,
+      "y": 1719,
+      "x": 2898,
       "block": "A",
       "size": "10 Marla"
-    },
-    "760-C": {
-      "y": 680,
-      "x": 1550,
-      "block": "C",
-      "size": "1 Kanal"
     }
   }
 }
