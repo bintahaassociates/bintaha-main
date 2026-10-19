@@ -71,13 +71,40 @@
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
     transition: all 0.2s ease-in-out !important;
   }
-
-  /* Hover State */
+/* Hover State */
   button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
   header a[href]:hover, header button:hover {
     filter: brightness(1.12) !important;
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  }
+
+  /* صرف موبائل پر About Us ہیڈر اور مینیو کی درستگی */
+  @media screen and (max-width: 768px) {
+    .about-top-hide {
+      display: none !important;
+    }
+    .about-nav-grid {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 6px !important;
+      width: 100% !important;
+      margin-top: 6px !important;
+    }
+    .about-nav-grid a {
+      width: 100% !important;
+      text-align: center !important;
+      justify-content: center !important;
+      padding: 8px 4px !important;
+      font-size: 11px !important;
+    }
+    .about-urdu-title {
+      direction: rtl !important;
+      display: block !important;
+      font-size: 0.85rem !important;
+      color: #111111 !important;
+      margin-top: 2px !important;
+    }
   }
 </style>
 
@@ -101,29 +128,34 @@
       </div>
     </div>
   </div>
-
-  <!-- Header -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
-          <p class="text-[11px] gold-text font-bold uppercase tracking-wider">Official Corporate Biography & CEO Vision</p>
+<!-- Header (Clean Mobile Layout & 2-Column Balanced Grid) -->
+  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border py-2.5 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+      
+      <!-- Logo & Title -->
+      <a href="index.html" class="flex items-center gap-3 group text-center md:text-left">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-11 w-11 sm:h-12 sm:w-12 object-contain moving-eagle-3d shrink-0" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div class="leading-tight">
+          <h1 class="text-base sm:text-lg font-black text-slate-950">
+            Bin Taha Associates
+            <span class="about-urdu-title font-bold text-slate-900">بن طاہا ایسوسی ایٹس</span>
+          </h1>
+          <p class="text-[9px] sm:text-[10px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">Official Corporate Biography & CEO Vision</p>
         </div>
       </a>
-      <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
-        <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Home</a>
-        <a href="about.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">About Us</a>
-        <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Services</a>
-        <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Properties</a>
-        <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
-      </nav>
-      <div class="flex items-center gap-2">
-        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white font-black text-xs px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp CEO
+
+      <!-- Menu Links (موبائل پر 2 برابر منظم کالم، لیپ ٹاپ پر سیدھی لائن) -->
+      <nav class="about-nav-grid flex flex-wrap items-center justify-center md:justify-end gap-1.5 text-xs font-bold w-full md:w-auto">
+        <a href="index.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">Home</a>
+        <a href="about.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl font-black shadow flex items-center justify-center">About Us</a>
+        <a href="services.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">Services</a>
+        <a href="properties.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">Properties</a>
+        <a href="contact.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">Contact</a>
+        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white font-black px-3 py-2 rounded-xl shadow transition flex items-center justify-center gap-1">
+          <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp CEO
         </a>
-      </div>
+      </nav>
+
     </div>
   </header>
 
