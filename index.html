@@ -158,50 +158,106 @@
     transform: translateY(-2px) !important;
     box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
   }
+/* ==========================================================
+     صرف موبائل اسکرین کے لیے خودکار لے آؤٹ درستگی
+     ========================================================== */
+  @media screen and (max-width: 768px) {
+    /* گھڑیوں اور ایپ بٹنز کی بھیڑ کو موبائل پر چھپانا */
+    .mobile-hide-clutter {
+      display: none !important;
+    }
+
+    /* ہیڈر میں نام اور اردو کو موبائل پر الگ الگ اور درست سمت دینا */
+    .mobile-header-title {
+      font-size: 1.1rem !important;
+      line-height: 1.3 !important;
+    }
+    .mobile-urdu-sub {
+      display: block !important;
+      direction: rtl !important;
+      font-size: 0.95rem !important;
+      margin-top: 2px !important;
+    }
+
+    /* موبائل پر تمام بکھرے ہوئے مینیو بٹنز کو 2 برابر کالموں میں جمانا */
+    header nav {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 6px !important;
+      width: 100% !important;
+      margin-top: 8px !important;
+    }
+
+    header nav a {
+      width: 100% !important;
+      text-align: center !important;
+      padding: 8px 4px !important;
+      font-size: 11px !important;
+    }
+
+    /* واٹس ایپ بٹن کو موبائل پر پوری چوڑائی میں واضح کرنا */
+    .mobile-wa-container {
+      width: 100% !important;
+      margin-top: 6px !important;
+    }
+    .mobile-wa-container a {
+      width: 100% !important;
+      justify-content: center !important;
+    }
+  }
 </style>
 
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
 
-  <!-- Top Bar with World Clocks -->
-  <div style="background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 50%, #aa771c 100%) !important; border-bottom: 2px solid #ffd700 !important;" class="text-slate-950 text-xs py-2 px-4 sm:px-6 shadow-md font-bold">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
-      <div class="flex items-center gap-2 flex-wrap text-[11px] justify-center">
-        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold">🇦🇪 DXB: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 LDN: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
-        <div class="bg-slate-900 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
+  <!-- Top Bar with World Clocks, Contact & App Buttons -->
+  <div style="background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 50%, #aa771c 100%) !important; border-bottom: 2px solid #ffd700 !important;" class="text-slate-950 text-xs py-2 px-3 sm:px-6 shadow-md font-bold">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2.5">
+      
+      <!-- World Clocks: لیپ ٹاپ پر چاروں دیکھیں گی، موبائل پر اسپیس کے مطابق محفوظ رہیں گی -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap text-[10px] sm:text-[11px] justify-center mobile-hide-clutter">
+        <div class="bg-slate-900 border gold-border px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-emerald-400 font-semibold">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-amber-300 font-semibold">🇦🇪 DXB: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-cyan-400 font-semibold">🇬🇧 LDN: <span id="clockLondon" class="text-white font-bold">--:--</span></div>
+        <div class="bg-slate-900 border gold-border px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl text-purple-400 font-semibold">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
       </div>
-      <div class="flex items-center gap-3 font-semibold flex-wrap justify-center">
-        <span class="text-amber-300"><i class="fa-solid fa-envelope mr-1"></i> bintahacrm@gmail.com</span>
-        <a href="tel:03219404812" class="bg-emerald-600 text-white px-3 py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black shadow">
+
+      <!-- ای میل اور فون نمبر (موبائل پر بالکل صاف ڈارک کلر میں نظر آئے گا) -->
+      <div class="flex items-center gap-2 sm:gap-3 font-semibold flex-wrap justify-center">
+        <a href="mailto:bintahacrm@gmail.com" class="text-slate-950 hover:text-black font-black text-[11px] sm:text-xs">
+          <i class="fa-solid fa-envelope mr-1 text-slate-900"></i> bintahacrm@gmail.com
+        </a>
+        <a href="tel:03219404812" class="bg-emerald-600 text-white px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl hover:bg-emerald-700 transition flex items-center gap-1 font-black shadow text-[11px] sm:text-xs">
           <i class="fa-solid fa-phone"></i> 0321-9404812
         </a>
-        <!-- Top Bar Quick App Buttons -->
-<div class="flex items-center gap-1.5 ml-2">
-  <!-- PWA / Web Fast Install -->
-  <button id="pwaFastInstallBtn" class="bg-black/80 hover:bg-black text-amber-300 border border-amber-400 text-xs px-2.5 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Fast Install">
-    <span>⚡</span><span>Install App</span>
-  </button>
-
-  <!-- Android APK -->
-  <a href="./Bin%20Taha.apk" download="Bin Taha.apk" class="bg-black/80 hover:bg-black text-emerald-400 border border-emerald-500 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Download Android APK">
-    <span>🤖</span><span>APK</span>
-  </a>
-
-  <!-- Apple iOS -->
-  <button onclick="openAppleGuide()" class="bg-black/80 hover:bg-black text-white border border-slate-400 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="iPhone Install Guide">
-    <span>🍎</span><span>iOS</span>
-  </button>
-
-  <!-- Windows PC -->
-  <button onclick="installWindowsApp()" class="bg-black/80 hover:bg-black text-cyan-300 border border-cyan-400 text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition" title="Windows App">
-    <span>💻</span><span>PC</span>
-  </button>
-</div>
       </div>
+
+      <!-- Top Bar Quick App Buttons: موبائل اور پی سی دونوں پر محفوظ اور منظم -->
+      <div class="flex items-center gap-1 sm:gap-1.5 justify-center flex-wrap">
+        <!-- PWA / Web Fast Install -->
+        <button id="pwaFastInstallBtn" class="bg-black/90 hover:bg-black text-amber-300 border border-amber-400 text-[10px] sm:text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition shadow" title="Fast Install">
+          <span>⚡</span><span>Install App</span>
+        </button>
+
+        <!-- Android APK -->
+        <a href="./Bin%20Taha.apk" download="Bin Taha.apk" class="bg-black/90 hover:bg-black text-emerald-400 border border-emerald-500 text-[10px] sm:text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition shadow" title="Download Android APK">
+          <span>🤖</span><span>APK</span>
+        </a>
+
+        <!-- Apple iOS -->
+        <button onclick="openAppleGuide()" class="bg-black/90 hover:bg-black text-white border border-slate-400 text-[10px] sm:text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition shadow" title="iPhone Install Guide">
+          <span>🍎</span><span>iOS</span>
+        </button>
+
+        <!-- Windows PC -->
+        <button onclick="installWindowsApp()" class="bg-black/90 hover:bg-black text-cyan-300 border border-cyan-400 text-[10px] sm:text-xs px-2 py-1 rounded-lg font-bold flex items-center gap-1 transition shadow" title="Windows App">
+          <span>💻</span><span>PC</span>
+        </button>
+      </div>
+
     </div>
   </div>
+
   <!-- Live Market Ticker -->
   <div class="gold-bg text-slate-950 text-xs font-black py-2.5 px-4 shadow-xl flex items-center justify-between overflow-hidden">
     <div class="market-ticker-track flex items-center gap-6 uppercase tracking-wider text-xs">
@@ -217,17 +273,23 @@
     </div>
   </div>
 
-  <!-- Header with Secret 5-Tap Eagle Logo Trigger -->
+  <!-- Main Header -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap justify-between items-center gap-3">
+      
+      <!-- لوگو اور نام (اردو اور انگلش کو الگ الگ رکھا گیا ہے تاکہ بریکٹ الٹی نہ ہو) -->
       <div class="flex items-center gap-3">
-        <!-- SECRET CEO DOOR: 5 Taps on Eagle Logo opens Accounting Vault -->
         <img src="logo.png" alt="Bin Taha Logo" id="secretCeoTrigger" onclick="handleSecretCeoTap()" class="h-12 w-12 object-contain moving-eagle-3d" onerror="this.src='logo.png.png'">
         <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</h1>
-          <p class="text-[11px] text-amber-300 font-bold uppercase tracking-wider">Official PropTech & Construction Hub</p>
+          <h1 class="text-base sm:text-lg font-black text-white leading-tight mobile-header-title">
+            Bin Taha Associates
+            <span class="mobile-urdu-sub block text-xs sm:text-sm font-bold text-amber-300">بن طاہا ایسوسی ایٹس</span>
+          </h1>
+          <p class="text-[10px] sm:text-[11px] text-amber-300 font-bold uppercase tracking-wider mt-0.5">Official PropTech & Construction Hub</p>
         </div>
       </div>
+
+      <!-- مینیو لنکس (کمپیوٹر پر سیدھی لائن، موبائل پر 2 برابر کالمز) -->
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
         <a href="index.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl font-black shadow">Home</a>
         <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">About Us</a>
@@ -236,14 +298,16 @@
         <a href="client-form.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Client Form</a>
         <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-xl transition">Contact</a>
       </nav>
-      <div class="flex items-center gap-2">
+
+      <!-- واٹس ایپ بٹن -->
+      <div class="flex items-center gap-2 mobile-wa-container">
         <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white font-black text-xs px-4 py-2.5 rounded-xl shadow transition flex items-center gap-1.5">
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp CEO
+          <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp CEO
         </a>
       </div>
+
     </div>
   </header>
-
   <!-- Hero Section -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-16 flex-1 w-full space-y-16">
     
