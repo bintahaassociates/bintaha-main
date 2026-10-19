@@ -1,0 +1,84 @@
+{
+  "map_dimensions": {
+    "width": 3513,
+    "height": 2457
+  },
+  "blocks": {
+    "A": {
+      "y": 1120,
+      "x": 1980,
+      "name": "LDA Avenue 1 - Block A (Raiwind Road Side)"
+    },
+    "B": {
+      "y": 1260,
+      "x": 2150,
+      "name": "LDA Avenue 1 - Block B (Raiwind Road Side)"
+    },
+    "C": {
+      "y": 680,
+      "x": 1550,
+      "name": "LDA Avenue 1 - Block C (Central Commercial)"
+    },
+    "D": {
+      "y": 1020,
+      "x": 1250,
+      "name": "LDA Avenue 1 - Block D (Main Park Area)"
+    },
+    "F": {
+      "y": 920,
+      "x": 1370,
+      "name": "LDA Avenue 1 - Block F"
+    },
+    "G": {
+      "y": 780,
+      "x": 880,
+      "name": "LDA Avenue 1 - Block G"
+    },
+    "H": {
+      "y": 620,
+      "x": 1100,
+      "name": "LDA Avenue 1 - Block H"
+    },
+    "J": {
+      "y": 460,
+      "x": 1470,
+      "name": "LDA Avenue 1 - Block J"
+    },
+    "K": {
+      "y": 560,
+      "x": 1720,
+      "name": "LDA Avenue 1 - Block K (Defence Road Link)"
+    },
+    "M": {
+      "y": 430,
+      "x": 1050,
+      "name": "LDA Avenue 1 - Block M"
+    }
+  },
+  "plots": {
+    "243-A": {
+      "y": 1135,
+      "x": 1970,
+      "block": "A",
+      "size": "1 Kanal"
+    },
+    "436-A": {
+      "y": 1150,
+      "x": 1985,
+      "block": "A",
+      "size": "10 Marla"
+    },
+    "463-A": {
+      "y": 1120,
+      "x": 1980,
+      "block": "A",
+      "size": "10 Marla"
+    },
+    "760-C": {
+      "y": 680,
+      "x": 1550,
+      "block": "C",
+      "size": "1 Kanal"
+    }
+  }
+}
