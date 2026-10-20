@@ -61,11 +61,12 @@
           <option value="H">Block H</option>
           <option value="J">Block J</option>
           <option value="K">Block K (ڈیفنس روڈ)</option>
-          <option value="M">Block M</option>
+          <option value="L">Block L</option>
+          <option value="M">Block M (مین پارک M)</option>
         </select>
 
         <div class="relative flex-1 sm:w-72 search-box-glow rounded-xl">
-          <input type="text" id="plotInput" placeholder="پلاٹ لکھیں (مثلاً 323, 243, 436)..." 
+          <input type="text" id="plotInput" placeholder="پلاٹ لکھیں (مثلاً 545 M یا 243 A)..." 
                  onkeyup="if(event.key === 'Enter') searchPlot()"
                  class="w-full bg-slate-950 border gold-border text-white text-xs pr-4 pl-16 py-2.5 rounded-xl outline-none focus:border-amber-300 text-right">
           <button onclick="searchPlot()" class="absolute left-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
@@ -88,12 +89,12 @@
   <div class="relative flex-1 w-full overflow-hidden">
     <div id="mapContainer"></div>
     <div id="coordBox" class="absolute bottom-2 left-2 z-[1000] bg-slate-900/90 border border-amber-400/60 text-amber-300 text-[11px] px-3 py-1.5 rounded-lg font-mono">
-      Selected Point: y: 1621, x: 3145
+      Selected Point: y: 466, x: 1445
     </div>
   </div>
 
   <script>
-// ویب سائٹ پر موجود چھوٹے نقشے کا اصل سائز
+    // ویب سائٹ پر موجود ہلکے نقشے کا اصل سائز
     const w = 3513;
     const h = 2457;
     const bounds = [[0, 0], [h, w]];
@@ -105,18 +106,47 @@
       zoomSnap: 0.2
     });
 
-    // وہی پرانی فائل جو گٹ ہب پر پہلے سے موجود ہے
     const mapImage = L.imageOverlay('lda-map.png', bounds, { interactive: true }).addTo(map);
     map.fitBounds(bounds);
 
     let activeMarker = null;
     let plotsDatabase = [];
 
-    // بڑی فائل کے مقابلے میں اسکیلنگ فیکٹر
+    // بڑی فائل (14400x12600) کے مقابلے میں اسکیلنگ فیکٹر
     const scaleX = 3513 / 14400;
     const scaleY = 2457 / 12600;
 
-    // کولیب سے بنی ہوئی 10,352 پلاٹس والی فائل لوڈ کرنا
+    // بلاکس کے مستند مراکز (Centers)
+    const blockCenters = {
+      'A': [1900, 2950],
+      'B': [1150, 3100],
+      'C': [1450, 2200],
+      'D': [2050, 2250],
+      'F': [1650, 1950],
+      'G': [1550, 1450],
+      'H': [950, 1350],
+      'J': [1900, 550],
+      'K': [900, 2500],
+      'L': [650, 2650],
+      'M': [550, 1500]
+    };
+
+    // ہر بلاک کی محفوظ باؤنڈری تاکہ دوسرے بلاک کا ایک جیسے نمبر والا پلاٹ اوورلیپ نہ ہو
+    const BLOCK_LIMITS = {
+      'A': { minX: 2500, maxX: 3500, minY: 1500, maxY: 2450 },
+      'B': { minX: 2600, maxX: 3500, minY: 800,  maxY: 1600 },
+      'C': { minX: 1700, maxX: 2600, minY: 1100, maxY: 1800 },
+      'D': { minX: 1800, maxX: 2600, minY: 1700, maxY: 2400 },
+      'F': { minX: 1600, maxX: 2200, minY: 1300, maxY: 2000 },
+      'G': { minX: 1000, maxX: 1700, minY: 1100, maxY: 1900 },
+      'H': { minX: 950,  maxX: 1650, minY: 650,  maxY: 1300 },
+      'J': { minX: 150,  maxX: 950,  minY: 1400, maxY: 2350 },
+      'K': { minX: 2150, maxX: 2750, minY: 550,  maxY: 1200 },
+      'L': { minX: 2400, maxX: 3000, minY: 350,  maxY: 850 },
+      'M': { minX: 1100, maxX: 1800, minY: 300,  maxY: 950 }
+    };
+
+    // JSON فائل لوڈ کریں
     fetch('lda_plots_data.json')
       .then(res => res.json())
       .then(data => {
@@ -135,54 +165,96 @@
       }
     });
 
-    // پلاٹ سرچ کا اصل فنکشن
+    // ڈراپ ڈاؤن سے بلاک سلیکٹ کرنے پر کیمرہ لے جانا
+    function onBlockSelect() {
+      const selectedBlock = document.getElementById('blockSelector').value;
+      if (blockCenters[selectedBlock]) {
+        map.setView(blockCenters[selectedBlock], 0.8);
+      }
+    }
+
+    // پورا نقشہ ری سیٹ کرنا
+    function resetMap() {
+      map.fitBounds(bounds);
+      if (activeMarker) {
+        map.removeLayer(activeMarker);
+        activeMarker = null;
+      }
+    }
+
+    // سرچ کا حتمی فنکشن
     function searchPlot() {
-      const inputEl = document.getElementById('plotSearchInput') || document.querySelector('input[type="text"]');
+      const inputEl = document.getElementById('plotInput');
       if (!inputEl) return;
 
-      const rawVal = inputEl.value.trim().toUpperCase();
+      let rawVal = inputEl.value.trim().toUpperCase();
       if (!rawVal) {
-        alert("براہ کرم پلاٹ نمبر درج کریں");
+        alert("براہ کرم پلاٹ نمبر اور بلاک درج کریں (مثلاً: 545 M یا 243 A)");
         return;
       }
 
-      // ان پٹ سے صرف ہندسے نکالیں
-      const match = rawVal.match(/\d+/);
-      if (!match) {
-        alert("براہ کرم درست نمبر لکھیں");
+      // بلاک اور پلاٹ نمبر الگ کرنا
+      let blockMatch = rawVal.match(/[A-M]/);
+      let numMatch = rawVal.match(/\d+/);
+
+      // اگر سرچ بار میں بلاک لکھا ہے تو وہ لیں، ورنہ ڈراپ ڈاؤن والا بلاک لیں
+      let targetBlock = blockMatch ? blockMatch[0] : document.getElementById('blockSelector').value;
+      
+      // ڈراپ ڈاؤن کو بھی خود بخود اس بلاک پر سیٹ کر دیں
+      if (document.getElementById('blockSelector')) {
+        document.getElementById('blockSelector').value = targetBlock;
+      }
+
+      if (!numMatch) {
+        alert("براہ کرم پلاٹ کا درست نمبر لکھیں");
         return;
       }
-      const plotNum = match[0];
+      let plotNum = numMatch[0];
 
-      // ڈیٹا بیس میں تلاش
-      const found = plotsDatabase.find(item => item.plot === plotNum);
+      let limits = BLOCK_LIMITS[targetBlock];
+
+      // تمام میچنگ پلاٹس تلاش کریں
+      let candidates = plotsDatabase.filter(item => item.plot === plotNum);
+
+      let found = null;
+      if (candidates.length > 0) {
+        if (limits) {
+          // صرف وہی پلاٹ منتخب کریں جو مطلوبہ بلاک کی حدود کے اندر واقع ہو
+          found = candidates.find(item => {
+            let adjX = Math.round(item.x * scaleX);
+            let adjY = Math.round(item.y * scaleY);
+            return adjX >= limits.minX && adjX <= limits.maxX && adjY >= limits.minY && adjY <= limits.maxY;
+          });
+        }
+        // اگر حدود میں نہ ملے تو قریب ترین پہلا امیدوار لیں
+        if (!found) found = candidates[0];
+      }
 
       if (found) {
         if (activeMarker) {
           map.removeLayer(activeMarker);
         }
 
-        // بڑی فائل کے پوائنٹس کو خود بخود چھوٹی فائل کے مطابق ایڈجسٹ کرنا
         const adjustedY = Math.round(found.y * scaleY);
         const adjustedX = Math.round(found.x * scaleX);
 
-        // کیمرہ زوم کریں اور مارکر لگائیں
-        map.setView([adjustedY, adjustedX], 1);
+        // سیدھا پلاٹ پر زوم کریں اور مارکر لگائیں
+        map.setView([adjustedY, adjustedX], 2);
 
         activeMarker = L.marker([adjustedY, adjustedX]).addTo(map);
         activeMarker.bindPopup(`
-          <div style="direction:rtl; text-align:center; font-family:sans-serif; min-width:140px;">
-            <b style="font-size:16px; color:#c9302c;">پلاٹ نمبر: ${rawVal}</b><br>
-            <span style="font-size:12px; color:#555;">ایل ڈی اے ایونیو 1</span><br><br>
-            <a href="https://wa.me/923210000000?text=مجھے پلاٹ ${rawVal} کے ریٹ درکار ہیں" 
+          <div style="direction:rtl; text-align:center; font-family:sans-serif; min-width:150px; padding:4px;">
+            <b style="font-size:16px; color:#d4af37;">پلاٹ نمبر: ${plotNum} (بلاک ${targetBlock})</b><br>
+            <span style="font-size:12px; color:#cbd5e1;">ایل ڈی اے ایونیو 1</span><br><br>
+            <a href="https://wa.me/923219404812?text=مجھے ایل ڈی اے ایونیو 1 کے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ اور معلومات درکار ہیں" 
                target="_blank" 
-               style="background:#25D366; color:white; padding:6px 12px; text-decoration:none; border-radius:4px; display:inline-block; font-size:12px; font-weight:bold;">
+               style="background:#25D366; color:white; padding:6px 14px; text-decoration:none; border-radius:6px; display:inline-block; font-size:12px; font-weight:bold;">
                واٹس ایپ پر رابطہ کریں
             </a>
           </div>
         `).openPopup();
       } else {
-        alert(`معذرت! پلاٹ نمبر ${rawVal} ڈیٹا میں نہیں ملا۔`);
+        alert(`معذرت! بلاک ${targetBlock} میں پلاٹ نمبر ${plotNum} نہیں مل سکا۔ براہ کرم نمبر چیک کر کے دوبارہ کوشش کریں۔`);
       }
     }
   </script>
