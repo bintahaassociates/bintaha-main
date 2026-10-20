@@ -93,7 +93,7 @@
   </div>
 
   <script>
-    // اصلی اسکیل 3513x2457
+// ویب سائٹ پر موجود چھوٹے نقشے کا اصل سائز
     const w = 3513;
     const h = 2457;
     const bounds = [[0, 0], [h, w]];
@@ -105,132 +105,85 @@
       zoomSnap: 0.2
     });
 
+    // وہی پرانی فائل جو گٹ ہب پر پہلے سے موجود ہے
     const mapImage = L.imageOverlay('lda-map.png', bounds, { interactive: true }).addTo(map);
     map.fitBounds(bounds);
 
     let activeMarker = null;
+    let plotsDatabase = [];
 
-    // لائیو کلک کوآرڈینیٹ ڈیٹیکٹر
+    // بڑی فائل کے مقابلے میں اسکیلنگ فیکٹر
+    const scaleX = 3513 / 14400;
+    const scaleY = 2457 / 12600;
+
+    // کولیب سے بنی ہوئی 10,352 پلاٹس والی فائل لوڈ کرنا
+    fetch('lda_plots_data.json')
+      .then(res => res.json())
+      .then(data => {
+        plotsDatabase = data;
+        console.log("ڈیٹا لوڈ ہو گیا، کل پلاٹس:", plotsDatabase.length);
+      })
+      .catch(err => console.error("ڈیٹا لوڈ نہیں ہو سکا:", err));
+
+    // لائیو کلک کوآرڈینیٹ چیکر
     map.on('click', function(e) {
       const y = Math.round(e.latlng.lat);
       const x = Math.round(e.latlng.lng);
-      document.getElementById('coordBox').innerHTML = `Selected Point: <b>y: ${y}, x: ${x}</b>`;
+      const coordBox = document.getElementById('coordBox');
+      if (coordBox) {
+        coordBox.innerHTML = `Selected Point: <b>y: ${y}, x: ${x}</b>`;
+      }
     });
 
-    // لائیو اسکرین سے کیلیبریٹ شدہ ماسٹر ڈیٹا
-    const verifiedBlocks = {
-      'A': { y: 1660, x: 2580, name: 'ایل ڈی اے ایونیو 1 - بلاک A', desc: 'خیابانِ جناح 150 فٹ و رائے ونڈ روڈ زون' },
-      'B': { y: 1440, x: 2680, name: 'ایل ڈی اے ایونیو 1 - بلاک B', desc: '150 فٹ روڈ فیسنگ ساؤتھ' },
-      'C': { y: 1045, x: 2270, name: 'ایل ڈی اے ایونیو 1 - بلاک C', desc: 'مرکزی کمرشل زون' },
-      'D': { y: 1565, x: 1830, name: 'ایل ڈی اے ایونیو 1 - بلاک D', desc: 'مین پارک ایریا' },
-      'F': { y: 1410, x: 2000, name: 'ایل ڈی اے ایونیو 1 - بلاک F', desc: 'سیکٹر F' },
-      'G': { y: 1195, x: 1290, name: 'ایل ڈی اے ایونیو 1 - بلاک G', desc: 'سیکٹر G' },
-      'H': { y: 950, x: 1610, name: 'ایل ڈی اے ایونیو 1 - بلاک H', desc: 'سیکٹر H' },
-      'J': { y: 705, x: 2150, name: 'ایل ڈی اے ایونیو 1 - بلاک J', desc: 'سیکٹر J' },
-      'K': { y: 860, x: 2520, name: 'ایل ڈی اے ایونیو 1 - بلاک K', desc: 'ڈیفنس روڈ سیکٹر' },
-      'M': { y: 660, x: 1540, name: 'ایل ڈی اے ایونیو 1 - بلاک M', desc: 'سیکٹر M' }
-    };
+    // پلاٹ سرچ کا اصل فنکشن
+    function searchPlot() {
+      const inputEl = document.getElementById('plotSearchInput') || document.querySelector('input[type="text"]');
+      if (!inputEl) return;
 
-    function resetMap() {
-      map.flyToBounds(bounds, { duration: 1.2 });
-      if(activeMarker) map.removeLayer(activeMarker);
-    }
+      const rawVal = inputEl.value.trim().toUpperCase();
+      if (!rawVal) {
+        alert("براہ کرم پلاٹ نمبر درج کریں");
+        return;
+      }
 
-    function showMarker(y, x, title, subtitle, size) {
-      if(activeMarker) map.removeLayer(activeMarker);
+      // ان پٹ سے صرف ہندسے نکالیں
+      const match = rawVal.match(/\d+/);
+      if (!match) {
+        alert("براہ کرم درست نمبر لکھیں");
+        return;
+      }
+      const plotNum = match[0];
 
-      activeMarker = L.marker([y, x]).addTo(map)
-        .bindPopup(`
-          <div style="text-align: center; font-family: sans-serif; padding: 6px;">
-            <b style="color: #d4af37; font-size: 14px;">${title}</b><br>
-            <span style="font-size: 11px; color: #cbd5e1;">${subtitle}</span><br>
-            ${size ? `<span style="font-size: 12px; color: #38bdf8; font-weight: bold;">سائز: ${size}</span><br>` : ''}
-            <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%20Taha%20Bhai,%20Inquiry%20regarding%20${encodeURIComponent(title)}%20LDA%20Avenue%201" 
+      // ڈیٹا بیس میں تلاش
+      const found = plotsDatabase.find(item => item.plot === plotNum);
+
+      if (found) {
+        if (activeMarker) {
+          map.removeLayer(activeMarker);
+        }
+
+        // بڑی فائل کے پوائنٹس کو خود بخود چھوٹی فائل کے مطابق ایڈجسٹ کرنا
+        const adjustedY = Math.round(found.y * scaleY);
+        const adjustedX = Math.round(found.x * scaleX);
+
+        // کیمرہ زوم کریں اور مارکر لگائیں
+        map.setView([adjustedY, adjustedX], 1);
+
+        activeMarker = L.marker([adjustedY, adjustedX]).addTo(map);
+        activeMarker.bindPopup(`
+          <div style="direction:rtl; text-align:center; font-family:sans-serif; min-width:140px;">
+            <b style="font-size:16px; color:#c9302c;">پلاٹ نمبر: ${rawVal}</b><br>
+            <span style="font-size:12px; color:#555;">ایل ڈی اے ایونیو 1</span><br><br>
+            <a href="https://wa.me/923210000000?text=مجھے پلاٹ ${rawVal} کے ریٹ درکار ہیں" 
                target="_blank" 
-               style="display: inline-block; margin-top: 8px; background: #059669; color: white; padding: 5px 12px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: bold;">
-               سی ای او سے ریٹ معلوم کریں
+               style="background:#25D366; color:white; padding:6px 12px; text-decoration:none; border-radius:4px; display:inline-block; font-size:12px; font-weight:bold;">
+               واٹس ایپ پر رابطہ کریں
             </a>
           </div>
         `).openPopup();
-
-      map.flyTo([y, x], 1.8, { duration: 1.2 });
-    }
-
-    function onBlockSelect() {
-      const b = document.getElementById('blockSelector').value;
-      if (verifiedBlocks[b]) {
-        const blk = verifiedBlocks[b];
-        showMarker(blk.y, blk.x, blk.name, blk.desc, '');
+      } else {
+        alert(`معذرت! پلاٹ نمبر ${rawVal} ڈیٹا میں نہیں ملا۔`);
       }
-    }
-
-    function searchPlot() {
-      let raw = document.getElementById('plotInput').value.trim().toUpperCase();
-      if(!raw) {
-        onBlockSelect();
-        return;
-      }
-
-      let clean = raw.replace('PLOT', '').replace('BLOCK', '').replace('SECTOR', '').trim();
-      let parts = clean.split(/[- ]+/);
-
-      let plotNum = null;
-      let targetBlock = document.getElementById('blockSelector').value || 'A';
-
-      for (let p of parts) {
-        if (/^\d+$/.test(p)) {
-          plotNum = parseInt(p);
-        } else if (verifiedBlocks[p]) {
-          targetBlock = p;
-          document.getElementById('blockSelector').value = p;
-        }
-      }
-
-      if(!plotNum) {
-        onBlockSelect();
-        return;
-      }
-
-      // بلاک A کے تصدیق شدہ زونز
-      if (targetBlock === 'A') {
-        // 300 تا 340 سیریز (خیابانِ جناح 150 فٹ کے بالکل اوپر پارک والی لائن، بشمول 323)
-        if (plotNum >= 290 && plotNum <= 345) {
-          showMarker(1615, 2580, `پلاٹ نمبر: ${plotNum}-A`, '150 فٹ روڈ و پارک فیسنگ پٹی', '10 Marla / 1 Kanal');
-          return;
-        }
-
-        // 235 تا 255 سیریز (رائے ونڈ روڈ مین گیٹ کے پاس والی 1 کنال لائن، بشمول 243)
-        if (plotNum >= 235 && plotNum <= 255) {
-          showMarker(1720, 2740, `پلاٹ نمبر: ${plotNum}-A`, 'رائے ونڈ روڈ گیٹ کے پاس 1 کنال پٹی', '1 Kanal');
-          return;
-        }
-
-        // 430 تا 470 سیریز (60 فٹ روڈ و لینڈ بریز سائیڈ، بشمول 436، 463)
-        if (plotNum >= 420 && plotNum <= 480) {
-          showMarker(1740, 2500, `پلاٹ نمبر: ${plotNum}-A`, '60 فٹ روڈ و لینڈ بریز سائیڈ', '10 Marla');
-          return;
-        }
-
-        // 1 تا 70 سیریز (لینڈ بریز فارم کے ساتھ 1 کنال پٹی)
-        if (plotNum >= 1 && plotNum <= 70) {
-          showMarker(1680, 2690, `پلاٹ نمبر: ${plotNum}-A`, 'سیکٹر A پرائم پٹی', '1 Kanal');
-          return;
-        }
-
-        // بلاک A ڈیفالٹ
-        showMarker(1660, 2580, `پلاٹ نمبر: ${plotNum}-A`, 'ایل ڈی اے ایونیو 1 - بلاک A', '');
-        return;
-      }
-
-      // بلاک B کے پلاٹس
-      if (targetBlock === 'B') {
-        showMarker(1440, 2680, `پلاٹ نمبر: ${plotNum}-B`, 'ایل ڈی اے ایونیو 1 - بلاک B (خیابانِ جناح ساؤتھ)', '');
-        return;
-      }
-
-      // باقی بلاکس
-      const blk = verifiedBlocks[targetBlock];
-      showMarker(blk.y, blk.x, `پلاٹ نمبر: ${plotNum}-${targetBlock}`, blk.name, '');
     }
   </script>
 </body>
