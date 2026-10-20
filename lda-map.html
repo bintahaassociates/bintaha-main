@@ -28,11 +28,10 @@
       background: #090d16;
     }
 
-    /* جدید ریڈار ٹارگٹ کرسر اینیمیشن */
     .radar-pin {
       position: relative;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
     }
     .radar-pin .center-dot {
       width: 14px;
@@ -41,23 +40,23 @@
       border: 2px solid #ffffff;
       border-radius: 50%;
       position: absolute;
-      top: 8px;
-      left: 8px;
-      box-shadow: 0 0 10px #ef4444;
+      top: 9px;
+      left: 9px;
+      box-shadow: 0 0 12px #ef4444;
       z-index: 2;
     }
     .radar-pin .pulse {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background: rgba(239, 68, 68, 0.4);
+      width: 32px;
+      height: 32px;
+      background: rgba(239, 68, 68, 0.45);
       border-radius: 50%;
-      animation: radar-pulse 1.4s infinite ease-out;
+      animation: radar-pulse 1.3s infinite ease-out;
       z-index: 1;
     }
     @keyframes radar-pulse {
-      0% { transform: scale(0.4); opacity: 1; }
-      100% { transform: scale(2.2); opacity: 0; }
+      0% { transform: scale(0.3); opacity: 1; }
+      100% { transform: scale(2.4); opacity: 0; }
     }
 
     .gold-gradient {
@@ -83,7 +82,7 @@
       <img src="logo.png" alt="Logo" class="h-9 w-9 object-contain" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=100&q=80'">
       <div>
         <h1 class="text-base font-black leading-tight">بن طاہا ایسوسی ایٹس</h1>
-        <p class="text-[10px] font-extrabold uppercase tracking-wider text-amber-950">LDA AVENUE 1 PRECISION GPS ENGINE</p>
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-amber-950">LDA AVENUE 1 PRECISION GPS NAVIGATOR</p>
       </div>
     </div>
     <div class="flex items-center gap-2">
@@ -98,25 +97,25 @@
     <div class="flex items-center gap-2 flex-1 max-w-lg">
       <select id="blockSelector" class="bg-slate-950 border border-amber-500/50 text-amber-300 text-xs px-3 py-2 rounded-xl outline-none font-bold">
         <option value="AUTO">تمام بلاکس (Auto)</option>
-        <option value="M" selected>بلاک M (مین پارک سائیڈ)</option>
         <option value="A">بلاک A (رائے ونڈ روڈ)</option>
         <option value="B">بلاک B (خیابانِ جناح)</option>
-        <option value="C">بلاک C (کمرشل)</option>
-        <option value="D">بلاک D</option>
+        <option value="C">بلاک C (کمرشل زون)</option>
+        <option value="D">بلاک D (مین پارک)</option>
         <option value="F">بلاک F</option>
         <option value="G">بلاک G</option>
         <option value="H">بلاک H</option>
         <option value="J">بلاک J</option>
-        <option value="K">بلاک K</option>
+        <option value="K">بلاک K (ڈیفنس روڈ)</option>
         <option value="L">بلاک L</option>
+        <option value="M">بلاک M (مین پارک ایریا)</option>
       </select>
 
       <div class="relative flex-1">
-        <input type="text" id="searchInput" placeholder="مثلاً: 543 M یا صرف 543 لکھیں..." 
+        <input type="text" id="searchInput" placeholder="پلاٹ لکھیں (مثلاً: 543 M، 243 A یا 323)..." 
                class="w-full bg-slate-950 border border-amber-500/50 text-white text-xs px-4 py-2 rounded-xl outline-none focus:border-amber-400 text-right">
       </div>
       <button id="btnSearch" class="gold-gradient text-slate-950 font-black text-xs px-4 py-2 rounded-xl hover:opacity-90">
-        گاڑی کی طرح ٹریک کریں
+        تلاش کریں
       </button>
     </div>
 
@@ -130,40 +129,33 @@
 
   <!-- JavaScript Programmatic Engine -->
   <script>
-    // ==========================================
-    // 1. ENGINE CONFIGURATION & MATHEMATICAL GRID
-    // ==========================================
     const ENGINE = {
       canvasWidth: 3513,
       canvasHeight: 2457,
       sourceWidth: 14400,
       sourceHeight: 12600,
       
-      // بلاکس کے مستند مراکز اور محفوظ باؤنڈریز
+      // تمام بلاکس کے تصدیق شدہ مراکز اور حدود
       blocks: {
-        'M': { center: [466, 1445], minX: 1100, maxX: 1700, minY: 250, maxY: 750 },
-        'A': { center: [1900, 2950], minX: 2500, maxX: 3500, minY: 1500, maxY: 2450 },
-        'B': { center: [1150, 3100], minX: 2600, maxX: 3500, minY: 800, maxY: 1600 },
-        'C': { center: [1450, 2200], minX: 1700, maxX: 2600, minY: 1100, maxY: 1800 },
-        'D': { center: [2050, 2250], minX: 1800, maxX: 2600, minY: 1700, maxY: 2400 },
-        'F': { center: [1650, 1950], minX: 1600, maxX: 2200, minY: 1300, maxY: 2000 },
-        'G': { center: [1550, 1450], minX: 1000, maxX: 1700, minY: 1100, maxY: 1900 },
-        'H': { center: [950, 1350], minX: 950, maxX: 1650, minY: 650, maxY: 1300 },
-        'J': { center: [1900, 550], minX: 150, maxX: 950, minY: 1400, maxY: 2350 },
-        'K': { center: [900, 2500], minX: 2150, maxX: 2750, minY: 550, maxY: 1200 },
-        'L': { center: [650, 2650], minX: 2400, maxX: 3000, minY: 350, maxY: 850 }
+        'A': { center: [1950, 3100], minX: 2700, maxX: 3450, minY: 1600, maxY: 2350 },
+        'B': { center: [1200, 3150], minX: 2750, maxX: 3450, minY: 850,  maxY: 1550 },
+        'C': { center: [1550, 2250], minX: 1850, maxX: 2650, minY: 1200, maxY: 1850 },
+        'D': { center: [2050, 2250], minX: 1850, maxX: 2650, minY: 1750, maxY: 2350 },
+        'F': { center: [1650, 1850], minX: 1550, maxX: 2150, minY: 1300, maxY: 2000 },
+        'G': { center: [1550, 1350], minX: 1050, maxX: 1650, minY: 1100, maxY: 1900 },
+        'H': { center: [1000, 1350], minX: 950,  maxX: 1600, minY: 650,  maxY: 1250 },
+        'J': { center: [1800, 500],  minX: 150,  maxX: 900,  minY: 1300, maxY: 2300 },
+        'K': { center: [850,  2500], minX: 2100, maxX: 2750, minY: 550,  maxY: 1150 },
+        'L': { center: [650,  2750], minX: 2400, maxX: 3100, minY: 350,  maxY: 850 },
+        'M': { center: [466,  1445], minX: 1100, maxX: 1750, minY: 250,  maxY: 750 }
       }
     };
 
-    // اسکیلنگ فیکٹر
     const SCALE = {
       x: ENGINE.canvasWidth / ENGINE.sourceWidth,
       y: ENGINE.canvasHeight / ENGINE.sourceHeight
     };
 
-    // ==========================================
-    // 2. LEAFLET MAP INITIALIZATION
-    // ==========================================
     const bounds = [[0, 0], [ENGINE.canvasHeight, ENGINE.canvasWidth]];
 
     const map = L.map('mapContainer', {
@@ -181,44 +173,39 @@
     let activeMarker = null;
     let database = [];
 
-    // کسٹم ریڈار کرسر آئیکون
     const radarIcon = L.divIcon({
       className: 'custom-radar-icon',
       html: '<div class="radar-pin"><div class="pulse"></div><div class="center-dot"></div></div>',
-      iconSize: [30, 30],
-      iconAnchor: [15, 15]
+      iconSize: [32, 32],
+      iconAnchor: [16, 16]
     });
 
-    // ==========================================
-    // 3. ASYNC DATA LOADER
-    // ==========================================
+    // ڈیٹا بیس لوڈ کرنا
     async function initDatabase() {
       try {
         const response = await fetch('lda_plots_data.json');
         database = await response.json();
-        console.log(`جاوا اسکرپٹ انجن لوڈڈ: کل ${database.length} پلاٹس آن لائن ہیں۔`);
+        console.log(`ڈیٹا بیس تیار: ${database.length} پلاٹس آن لائن ہیں۔`);
       } catch (err) {
         console.error("ڈیٹا لوڈنگ میں خرابی:", err);
       }
     }
     initDatabase();
 
-    // ==========================================
-    // 4. SMART SEARCH & VEHICLE-LIKE CAMERA GLIDE
-    // ==========================================
     function executeTrack() {
       const input = document.getElementById('searchInput').value.trim().toUpperCase();
       if (!input) {
-        alert("براہ کرم پلاٹ نمبر درج کریں (مثلاً 543 M)");
+        alert("براہ کرم پلاٹ نمبر درج کریں (مثلاً: 543 M)");
         return;
       }
 
-      // جاوا اسکرپٹ پارسنگ: ہندسے اور بلاک الگ الگ کرنا
       const plotMatch = input.match(/\d+/);
       const blockMatch = input.match(/[A-M]/);
 
       let targetBlock = blockMatch ? blockMatch[0] : document.getElementById('blockSelector').value;
-      if (targetBlock === 'AUTO') targetBlock = 'M'; // ڈیفالٹ بلاک
+      if (targetBlock === 'AUTO') {
+        targetBlock = 'M';
+      }
 
       if (!plotMatch) {
         alert("پلاٹ کا ہندسہ درست نہیں ہے۔");
@@ -226,14 +213,16 @@
       }
       const plotNum = plotMatch[0];
 
-      // بلاک کے مطابق سرچ فلٹر
+      if (document.getElementById('blockSelector')) {
+        document.getElementById('blockSelector').value = targetBlock;
+      }
+
       const blockRule = ENGINE.blocks[targetBlock];
       const matches = database.filter(item => item.plot === plotNum);
 
       let targetCoords = null;
 
       if (matches.length > 0 && blockRule) {
-        // صرف اسی بلاک کے دائرے میں آنے والا پلاٹ چنیں
         const blockMatchItem = matches.find(item => {
           const adjX = Math.round(item.x * SCALE.x);
           const adjY = Math.round(item.y * SCALE.y);
@@ -246,7 +235,7 @@
         }
       }
 
-      // اگر مخصوص پلاٹ کا پوائنٹ باؤنڈری سے مس ہوا ہو تو بلاک کے سینٹر کو استعمال کریں
+      // اگر او سی آر میں پلاٹ نہ ملے تو کیمرہ سیدھا اس بلاک کے سینٹر پر جائے گا
       if (!targetCoords && blockRule) {
         targetCoords = blockRule.center;
       }
@@ -254,14 +243,13 @@
       if (targetCoords) {
         if (activeMarker) map.removeLayer(activeMarker);
 
-        // گاڑی کی طرح ہموار کیمرہ موومنٹ (FlyTo Animation)
+        // گاڑی کی طرح ہموار کیمرہ موومنٹ
         map.flyTo(targetCoords, 1.8, {
           animate: true,
-          duration: 1.5, // ڈیڑھ سیکنڈ میں بالکل مکھن کی طرح کیمرہ گلائیڈ کرے گا
+          duration: 1.4,
           easeLinearity: 0.25
         });
 
-        // ریڈار مارکر لگائیں
         activeMarker = L.marker(targetCoords, { icon: radarIcon }).addTo(map);
 
         setTimeout(() => {
@@ -269,17 +257,17 @@
             <div style="direction:rtl; text-align:center; padding:5px;">
               <h3 style="color:#eab308; margin:0; font-size:16px; font-weight:bold;">پلاٹ نمبر: ${plotNum}</h3>
               <p style="color:#94a3b8; margin:3px 0 10px; font-size:12px;">بلاک ${targetBlock} | ایل ڈی اے ایونیو 1</p>
-              <a href="https://wa.me/923219404812?text=مجھے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ درکار ہیں" 
+              <a href="https://wa.me/923219404812?text=مجھے ایل ڈی اے ایونیو 1 کے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ درکار ہیں" 
                  target="_blank" 
                  style="background:#16a34a; color:#fff; padding:6px 14px; text-decoration:none; border-radius:6px; font-weight:bold; font-size:12px; display:inline-block;">
                 واٹس ایپ پر رابطہ کریں
               </a>
             </div>
           `).openPopup();
-        }, 1500);
+        }, 1400);
 
       } else {
-        alert(`معذرت! بلاک ${targetBlock} میں پلاٹ نمبر ${plotNum} نہیں مل سکا۔`);
+        alert(`بلاک ${targetBlock} نہیں ملا۔`);
       }
     }
 
@@ -300,7 +288,7 @@
     document.getElementById('blockSelector').addEventListener('change', (e) => {
       const val = e.target.value;
       if (val !== 'AUTO' && ENGINE.blocks[val]) {
-        map.flyTo(ENGINE.blocks[val].center, 0.8, { duration: 1.2 });
+        map.flyTo(ENGINE.blocks[val].center, 0.9, { duration: 1.2 });
       }
     });
   </script>
