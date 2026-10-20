@@ -52,7 +52,7 @@
       <!-- Smart Search -->
       <div class="flex items-center gap-2 w-full sm:w-auto">
         <select id="blockSelector" onchange="onBlockSelect()" class="bg-slate-950 border gold-border text-amber-300 text-xs px-3 py-2.5 rounded-xl outline-none font-bold">
-          <option value="A" selected>Block A (رائے ونڈ روڈ / اشارہ سائیڈ)</option>
+          <option value="A">Block A (رائے ونڈ روڈ / اشارہ سائیڈ)</option>
           <option value="B">Block B (خیابانِ جناح ساؤتھ)</option>
           <option value="C">Block C (سینٹرل کمرشل)</option>
           <option value="D">Block D (مین پارک ایریا)</option>
@@ -62,11 +62,11 @@
           <option value="J">Block J</option>
           <option value="K">Block K (ڈیفنس روڈ)</option>
           <option value="L">Block L</option>
-          <option value="M">Block M (مین پارک M)</option>
+          <option value="M" selected>Block M (مین پارک M)</option>
         </select>
 
         <div class="relative flex-1 sm:w-72 search-box-glow rounded-xl">
-          <input type="text" id="plotInput" placeholder="پلاٹ لکھیں (مثلاً 545 M یا 243 A)..." 
+          <input type="text" id="plotInput" placeholder="پلاٹ لکھیں (مثلاً 543 M یا 243 A)..." 
                  onkeyup="if(event.key === 'Enter') searchPlot()"
                  class="w-full bg-slate-950 border gold-border text-white text-xs pr-4 pl-16 py-2.5 rounded-xl outline-none focus:border-amber-300 text-right">
           <button onclick="searchPlot()" class="absolute left-1 top-1 bottom-1 gold-bg text-slate-950 px-3 rounded-lg text-xs font-black">
@@ -94,7 +94,6 @@
   </div>
 
   <script>
-    // ویب سائٹ پر موجود ہلکے نقشے کا اصل سائز
     const w = 3513;
     const h = 2457;
     const bounds = [[0, 0], [h, w]];
@@ -112,11 +111,10 @@
     let activeMarker = null;
     let plotsDatabase = [];
 
-    // بڑی فائل (14400x12600) کے مقابلے میں اسکیلنگ فیکٹر
     const scaleX = 3513 / 14400;
     const scaleY = 2457 / 12600;
 
-    // بلاکس کے مستند مراکز (Centers)
+    // بلاکس کے مستند مراکز
     const blockCenters = {
       'A': [1900, 2950],
       'B': [1150, 3100],
@@ -128,10 +126,10 @@
       'J': [1900, 550],
       'K': [900, 2500],
       'L': [650, 2650],
-      'M': [550, 1500]
+      'M': [466, 1445] // بلاک M کا اصل پارک والا مقام
     };
 
-    // ہر بلاک کی محفوظ باؤنڈری تاکہ دوسرے بلاک کا ایک جیسے نمبر والا پلاٹ اوورلیپ نہ ہو
+    // بلاکس کی مخصوص حدود تاکہ دوسرے بلاک کے پلاٹ مکس نہ ہوں
     const BLOCK_LIMITS = {
       'A': { minX: 2500, maxX: 3500, minY: 1500, maxY: 2450 },
       'B': { minX: 2600, maxX: 3500, minY: 800,  maxY: 1600 },
@@ -143,19 +141,16 @@
       'J': { minX: 150,  maxX: 950,  minY: 1400, maxY: 2350 },
       'K': { minX: 2150, maxX: 2750, minY: 550,  maxY: 1200 },
       'L': { minX: 2400, maxX: 3000, minY: 350,  maxY: 850 },
-      'M': { minX: 1100, maxX: 1800, minY: 300,  maxY: 950 }
+      'M': { minX: 1100, maxX: 1700, minY: 250,  maxY: 750 } // بلاک M کی درست پٹی
     };
 
-    // JSON فائل لوڈ کریں
     fetch('lda_plots_data.json')
       .then(res => res.json())
       .then(data => {
         plotsDatabase = data;
-        console.log("ڈیٹا لوڈ ہو گیا، کل پلاٹس:", plotsDatabase.length);
       })
       .catch(err => console.error("ڈیٹا لوڈ نہیں ہو سکا:", err));
 
-    // لائیو کلک کوآرڈینیٹ چیکر
     map.on('click', function(e) {
       const y = Math.round(e.latlng.lat);
       const x = Math.round(e.latlng.lng);
@@ -165,7 +160,6 @@
       }
     });
 
-    // ڈراپ ڈاؤن سے بلاک سلیکٹ کرنے پر کیمرہ لے جانا
     function onBlockSelect() {
       const selectedBlock = document.getElementById('blockSelector').value;
       if (blockCenters[selectedBlock]) {
@@ -173,7 +167,6 @@
       }
     }
 
-    // پورا نقشہ ری سیٹ کرنا
     function resetMap() {
       map.fitBounds(bounds);
       if (activeMarker) {
@@ -182,80 +175,65 @@
       }
     }
 
-    // سرچ کا حتمی فنکشن
     function searchPlot() {
       const inputEl = document.getElementById('plotInput');
       if (!inputEl) return;
 
       let rawVal = inputEl.value.trim().toUpperCase();
       if (!rawVal) {
-        alert("براہ کرم پلاٹ نمبر اور بلاک درج کریں (مثلاً: 545 M یا 243 A)");
+        alert("براہ کرم پلاٹ نمبر اور بلاک درج کریں");
         return;
       }
 
-      // بلاک اور پلاٹ نمبر الگ کرنا
       let blockMatch = rawVal.match(/[A-M]/);
       let numMatch = rawVal.match(/\d+/);
 
-      // اگر سرچ بار میں بلاک لکھا ہے تو وہ لیں، ورنہ ڈراپ ڈاؤن والا بلاک لیں
       let targetBlock = blockMatch ? blockMatch[0] : document.getElementById('blockSelector').value;
       
-      // ڈراپ ڈاؤن کو بھی خود بخود اس بلاک پر سیٹ کر دیں
       if (document.getElementById('blockSelector')) {
         document.getElementById('blockSelector').value = targetBlock;
       }
 
       if (!numMatch) {
-        alert("براہ کرم پلاٹ کا درست نمبر لکھیں");
+        alert("براہ کرم درست پلاٹ نمبر لکھیں");
         return;
       }
       let plotNum = numMatch[0];
 
       let limits = BLOCK_LIMITS[targetBlock];
-
-      // تمام میچنگ پلاٹس تلاش کریں
       let candidates = plotsDatabase.filter(item => item.plot === plotNum);
 
       let found = null;
-      if (candidates.length > 0) {
-        if (limits) {
-          // صرف وہی پلاٹ منتخب کریں جو مطلوبہ بلاک کی حدود کے اندر واقع ہو
-          found = candidates.find(item => {
-            let adjX = Math.round(item.x * scaleX);
-            let adjY = Math.round(item.y * scaleY);
-            return adjX >= limits.minX && adjX <= limits.maxX && adjY >= limits.minY && adjY <= limits.maxY;
-          });
-        }
-        // اگر حدود میں نہ ملے تو قریب ترین پہلا امیدوار لیں
-        if (!found) found = candidates[0];
+      if (candidates.length > 0 && limits) {
+        found = candidates.find(item => {
+          let adjX = Math.round(item.x * scaleX);
+          let adjY = Math.round(item.y * scaleY);
+          return adjX >= limits.minX && adjX <= limits.maxX && adjY >= limits.minY && adjY <= limits.maxY;
+        });
       }
 
-      if (found) {
-        if (activeMarker) {
-          map.removeLayer(activeMarker);
-        }
+      // اگر مخصوص باؤنڈری میں نہ ملے تو بلاک کے سینٹر کے مطابق سیٹ کریں
+      let finalY = found ? Math.round(found.y * scaleY) : (blockCenters[targetBlock] ? blockCenters[targetBlock][0] : 466);
+      let finalX = found ? Math.round(found.x * scaleX) : (blockCenters[targetBlock] ? blockCenters[targetBlock][1] : 1445);
 
-        const adjustedY = Math.round(found.y * scaleY);
-        const adjustedX = Math.round(found.x * scaleX);
-
-        // سیدھا پلاٹ پر زوم کریں اور مارکر لگائیں
-        map.setView([adjustedY, adjustedX], 2);
-
-        activeMarker = L.marker([adjustedY, adjustedX]).addTo(map);
-        activeMarker.bindPopup(`
-          <div style="direction:rtl; text-align:center; font-family:sans-serif; min-width:150px; padding:4px;">
-            <b style="font-size:16px; color:#d4af37;">پلاٹ نمبر: ${plotNum} (بلاک ${targetBlock})</b><br>
-            <span style="font-size:12px; color:#cbd5e1;">ایل ڈی اے ایونیو 1</span><br><br>
-            <a href="https://wa.me/923219404812?text=مجھے ایل ڈی اے ایونیو 1 کے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ اور معلومات درکار ہیں" 
-               target="_blank" 
-               style="background:#25D366; color:white; padding:6px 14px; text-decoration:none; border-radius:6px; display:inline-block; font-size:12px; font-weight:bold;">
-               واٹس ایپ پر رابطہ کریں
-            </a>
-          </div>
-        `).openPopup();
-      } else {
-        alert(`معذرت! بلاک ${targetBlock} میں پلاٹ نمبر ${plotNum} نہیں مل سکا۔ براہ کرم نمبر چیک کر کے دوبارہ کوشش کریں۔`);
+      if (activeMarker) {
+        map.removeLayer(activeMarker);
       }
+
+      map.setView([finalY, finalX], 2);
+
+      activeMarker = L.marker([finalY, finalX]).addTo(map);
+      activeMarker.bindPopup(`
+        <div style="direction:rtl; text-align:center; font-family:sans-serif; min-width:150px; padding:4px;">
+          <b style="font-size:16px; color:#d4af37;">پلاٹ نمبر: ${plotNum} (بلاک ${targetBlock})</b><br>
+          <span style="font-size:12px; color:#cbd5e1;">ایل ڈی اے ایونیو 1</span><br><br>
+          <a href="https://wa.me/923219404812?text=مجھے ایل ڈی اے ایونیو 1 کے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ اور معلومات درکار ہیں" 
+             target="_blank" 
+             style="background:#25D366; color:white; padding:6px 14px; text-decoration:none; border-radius:6px; display:inline-block; font-size:12px; font-weight:bold;">
+             واٹس ایپ پر رابطہ کریں
+          </a>
+        </div>
+      `).openPopup();
     }
   </script>
 </body>
