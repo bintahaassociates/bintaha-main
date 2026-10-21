@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Post Property Listing | Bin Taha Associates CRM</title>
+  <title>Post Property Listing & Valuation Portal | Bin Taha Associates (بن طہٰ ایسوسی ایٹس)</title>
+  <meta name="description" content="Submit and list verified residential and commercial properties in Lahore with Bin Taha Associates. Led by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) - LDA Avenue 1, Jubilee Town, and DHA Lahore.">
+  <meta name="keywords" content="Bin Taha Associates, Taha Mubeen Bhutta, بن طہٰ ایسوسی ایٹس, طہٰ مبین بھٹہ, Add Property, Real Estate Lahore, LDA Avenue 1, Jubilee Town">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
   <style>
     .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.3); }
     .gold-glow { box-shadow: 0 0 25px rgba(252, 211, 77, 0.2); }
@@ -78,12 +81,14 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
+  <!-- Top Bar -->
   <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 sm:px-6 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
       <div class="flex items-center gap-4 text-center md:text-left flex-wrap justify-center">
         <span><i class="fa-solid fa-clock text-emerald-400 mr-1"></i>Open 24/7 Doorstep Service</span>
         <span><i class="fa-solid fa-phone text-blue-400 mr-1"></i>0321 9404812</span>
         <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Lahore, PK</span>
+        <span class="text-amber-400 font-bold">CEO: Taha Mubeen Bhutta (طہٰ مبین بھٹہ)</span>
       </div>
       <div class="flex items-center gap-3 text-sm flex-wrap justify-center">
         <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
@@ -98,22 +103,23 @@
     </div>
   </div>
 
+  <!-- Header -->
   <header class="bg-slate-900/95 backdrop-blur-md shadow-md sticky top-0 z-40 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-3">
       <a href="index.html" class="flex items-center gap-3">
         <img src="logo.png" alt="Bin Taha Logo" class="h-11 w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
         <div>
-          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates</h1>
-          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">FBR & PEC Category C Certified</p>
+          <h1 class="text-lg font-black text-white leading-tight">Bin Taha Associates <span class="text-xs font-bold text-amber-400 block sm:inline">بن طہٰ ایسوسی ایٹس</span></h1>
+          <p class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">FBR & PEC Category C Certified • CEO Taha Mubeen Bhutta</p>
         </div>
       </a>
       <nav class="flex flex-wrap items-center gap-1.5 text-xs font-bold">
         <a href="index.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-house mr-1"></i>Home</a>
         <a href="about.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-user-group mr-1"></i>About Us</a>
-        <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
         <a href="properties.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-city mr-1"></i>Properties</a>
         <a href="add-property.html" class="bg-amber-500 text-slate-950 px-3 py-1.5 rounded-lg font-black"><i class="fa-solid fa-plus-circle mr-1"></i>Post Listing</a>
         <a href="services.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-cogs mr-1"></i>Services</a>
+        <a href="dream.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-star text-amber-400 mr-1"></i>Our Dream</a>
         <a href="contact.html" class="text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-1.5 rounded-lg transition"><i class="fa-solid fa-envelope mr-1"></i>Contact</a>
       </nav>
       <div class="flex items-center gap-2">
@@ -123,12 +129,34 @@
     </div>
   </header>
 
-  <main class="max-w-4xl mx-auto px-4 py-10 flex-1 w-full">
+  <!-- Main Section -->
+  <main class="max-w-4xl mx-auto px-4 py-10 flex-1 w-full space-y-8">
+
+    <!-- SEO / Informational Intro Card for AdSense Compliance -->
+    <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 text-xs text-slate-300 leading-relaxed space-y-3">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-800 pb-3">
+        <h2 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-amber-400"></i>
+          Direct Property Submission & Listing Tool | Bin Taha Associates (بن طہٰ ایسوسی ایٹس)
+        </h2>
+        <span class="bg-emerald-500/10 text-emerald-400 px-2.5 py-1 rounded-full text-[11px] font-semibold border border-emerald-500/30">Direct CEO Verification</span>
+      </div>
+      <p>
+        Welcome to the official property posting portal curated by <strong>CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ)</strong>. Whether you are an owner, direct investor, or authorized partner in Lahore, this tool automatically processes your listing through our proprietary smart gate detection system across prime societies such as LDA Avenue 1, DHA Rahbar, Izmir Town, Jubilee Town, and Bahria Town.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-[11px]">
+        <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800"><i class="fa-solid fa-check-circle text-emerald-400 mr-1.5"></i> 100% Verified Ownership Review</div>
+        <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800"><i class="fa-solid fa-bolt text-amber-400 mr-1.5"></i> Instant Master CRM & Cloud Sync</div>
+        <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800"><i class="fa-solid fa-lock text-cyan-400 mr-1.5"></i> Zero Hidden Commission Ambiguity</div>
+      </div>
+    </div>
+
+    <!-- Main Tool Form -->
     <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl gold-glow">
       <div class="text-center max-w-xl mx-auto mb-8">
         <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-xs font-black uppercase px-3 py-1.5 rounded-full tracking-wider">Smart Gate Detection & CRM Engine</span>
         <h2 class="text-2xl sm:text-3xl font-black shining-gold mt-3">Post Property to Master CRM</h2>
-        <p class="text-xs text-slate-400 mt-1">Automatic entrance gate selection for LDA Avenue, DHA Rahbar, Izmir, Jubilee, Bahria & more!</p>
+        <p class="text-xs text-slate-400 mt-1">Automatic entrance gate selection for LDA Avenue 1, DHA Rahbar, Izmir, Jubilee, Bahria & more!</p>
       </div>
 
       <form id="standalonePostForm" onsubmit="handlePostSubmit(event)" class="space-y-5">
@@ -175,11 +203,11 @@
             </select>
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Area *</label>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Area / Dimensions *</label>
             <input type="text" id="postArea" required placeholder="5 Marla / 10 Marla / 1 Kanal" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-sm text-white">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Price / Demand *</label>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Price / Demand (PKR) *</label>
             <input type="text" id="postPrice" required placeholder="PKR 1.65 Crore" class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-sm text-white">
           </div>
         </div>
@@ -202,7 +230,7 @@
 
         <div>
           <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Specifications & Details *</label>
-          <textarea id="postDesc" rows="3" required placeholder="Direct deal, ready possession, prime location..." class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-sm text-white"></textarea>
+          <textarea id="postDesc" rows="3" required placeholder="Direct deal, ready possession, prime location, road width..." class="w-full bg-slate-900 border border-slate-700 p-3 rounded-xl text-sm text-white"></textarea>
         </div>
 
         <button type="submit" id="submitBtn" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black py-4 rounded-xl text-sm transition shadow-xl flex items-center justify-center gap-2 cursor-pointer">
@@ -210,8 +238,26 @@
         </button>
       </form>
     </div>
+
+    <!-- FAQ Section for User Assistance & AdSense Text Content -->
+    <div class="bg-slate-950 border border-slate-800 rounded-2xl p-6 text-xs text-slate-300 space-y-3">
+      <h3 class="text-sm font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-circle-question text-amber-400"></i> Frequently Asked Questions regarding Property Listing
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div>
+          <strong class="text-amber-400 block mb-1">How soon does my listing appear in the Properties Hub?</strong>
+          <p class="text-slate-400">Submissions sync immediately to local inventory and the Supabase database. Our admin team performs a rapid cross-check of society records before public highlighting.</p>
+        </div>
+        <div>
+          <strong class="text-amber-400 block mb-1">Is there a listing fee for owners?</strong>
+          <p class="text-slate-400">No, genuine direct owners can list their properties free of charge on Bin Taha Associates (بن طہٰ ایسوسی ایٹس) portal under our transparent open marketplace policy.</p>
+        </div>
+      </div>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-6">
       <div class="flex flex-wrap justify-center gap-3 text-sm">
@@ -222,19 +268,22 @@
         <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
       </div>
+
+      <!-- Mandatory AdSense Policy & Site Links -->
       <div class="flex flex-wrap justify-center gap-4 text-xs font-semibold text-slate-400">
-        <a href="index.html" class="hover:text-amber-400">Home</a>
-        <a href="dream.html" class="hover:text-amber-400">Our Dream</a>
-        <a href="properties.html" class="hover:text-amber-400">Properties</a>
-        <a href="add-property.html" class="hover:text-amber-400">Post Listing</a>
-        <a href="services.html" class="hover:text-amber-400">Services</a>
-        <a href="about.html" class="hover:text-amber-400">About Us</a>
-        <a href="contact.html" class="hover:text-amber-400">Contact Form</a>
+        <a href="index.html" class="hover:text-amber-400 transition">Home</a>
+        <a href="about.html" class="hover:text-amber-400 transition">About Us</a>
+        <a href="services.html" class="hover:text-amber-400 transition">Services</a>
+        <a href="properties.html" class="hover:text-amber-400 transition">Properties</a>
+        <a href="add-property.html" class="text-amber-400 font-bold">Post Listing</a>
+        <a href="dream.html" class="hover:text-amber-400 transition">Our Dream</a>
+        <a href="privacy-policy.html" class="hover:text-amber-400 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-amber-400 transition">Terms & Conditions</a>
+        <a href="contact.html" class="hover:text-amber-400 transition">Contact Us</a>
         <a href="agent-login.html" class="text-amber-400 font-bold">Partner Portal</a>
-        <a href="signin.html" class="hover:text-amber-400">Sign In</a>
-        <a href="signup.html" class="hover:text-amber-400">Sign Up</a>
       </div>
-      <p class="text-slate-600">&copy; 2026 Bin Taha Associates. All rights reserved.</p>
+
+      <p class="text-slate-600 text-center">&copy; 2026 Bin Taha Associates (بن طہٰ ایسوسی ایٹس). All rights reserved. Managed by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) • 0321-9404812.</p>
     </div>
   </footer>
 
@@ -247,14 +296,14 @@
 
     // Smart Society Gate Image Dictionary
     const SOCIETY_GATES = {
-      lda: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', // Grand Avenue Gate
-      rahbar: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80', // DHA Rahbar Gate
-      dha: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', // DHA Prism Gate
-      izmir: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80', // Izmir Clock Tower Entry
-      jubilee: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80', // Jubilee Town Gate
-      bahria: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80', // Bahria Grand Monument
-      lake: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80', // Lake City Entrance
-      johar: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80' // Johar Town Arch
+      lda: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+      rahbar: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
+      dha: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      izmir: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80',
+      jubilee: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80',
+      bahria: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80',
+      lake: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80',
+      johar: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80'
     };
 
     function getSocietyGateImage(locText) {
@@ -314,7 +363,6 @@
         const location = document.getElementById('postLocation').value.trim();
         const detectedGate = getSocietyGateImage(location);
         
-        // Use custom photo if uploaded, otherwise use society gate
         const finalImage = localEncodedImg || detectedGate.img;
 
         const title = document.getElementById('postTitle').value.trim();
