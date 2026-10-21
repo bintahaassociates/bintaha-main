@@ -98,48 +98,51 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- ROYAL NAVIGATION HEADER (NO BLACK STRIP) -->
-  <header class="royal-gold-bar sticky top-0 z-40 py-2.5 px-4 sm:px-6 shadow-md">
-    <div class="w-full flex flex-col md:flex-row items-center justify-between gap-3">
+<!-- COMPACT & ALIGNED ROYAL NAVIGATION HEADER -->
+  <header class="royal-gold-bar sticky top-0 z-40 py-2 px-3 sm:px-6 shadow-md">
+    <div class="max-w-[1700px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2.5">
       
-      <!-- Left Side: Logo & Name -->
+      <!-- Left Side: Logo & Brand Name -->
       <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-10 w-10 sm:h-11 sm:w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div class="leading-tight text-center md:text-left">
-          <h1 class="text-lg sm:text-2xl font-black text-slate-950 tracking-tight">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-9 w-9 sm:h-10 sm:w-10 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div class="leading-tight text-center xl:text-left">
+          <h1 class="text-base sm:text-xl font-black text-slate-950 tracking-tight">
             Bin Taha Associates
-            <span class="text-xs sm:text-sm font-bold block text-slate-900">بن طہٰ ایسوسی ایٹس</span>
+            <span class="text-xs font-bold text-slate-900 ml-1">بن طہٰ ایسوسی ایٹس</span>
           </h1>
-          <p class="text-[9px] sm:text-[10px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">LDA Forms & Regulatory Guidance • CEO Taha Mubeen Bhutta</p>
+          <p class="text-[9px] text-amber-950 font-extrabold uppercase tracking-wider">LDA Forms & Regulatory Guidance • CEO Taha Mubeen Bhutta</p>
         </div>
       </a>
       
-      <!-- Right Side: 3D Buttons with Clean Dark Text -->
-      <nav class="flex items-center justify-center md:justify-end gap-1.5 sm:gap-2 flex-wrap text-xs font-black w-full md:w-auto">
-        <a href="index.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-house text-[11px]"></i> Home</a>
-        <a href="properties.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-city text-[11px]"></i> Properties Hub</a>
-        <a href="lda-map.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-map-location-dot text-[11px]"></i> LDA Map</a>
-        <a href="lda-forms.html" class="gold-btn-3d px-3 py-2 gap-1 !bg-amber-400 !text-slate-950"><i class="fa-solid fa-file-pdf text-[11px]"></i> LDA Forms</a>
-        <a href="add-property.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property</a>
-        <a href="client-form.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-id-card text-[11px]"></i> Client Form</a>
-        <a href="services.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-cogs text-[11px]"></i> Services</a>
-        <a href="dream.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-star text-[11px]"></i> Our Dream</a>
-        <a href="contact.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-envelope text-[11px]"></i> Contact</a>
-      </nav>
+      <!-- Right Side: Slim 3D Luxury Navigation Buttons in Perfect Alignment -->
+      <div class="flex items-center justify-center xl:justify-end gap-1.5 flex-wrap text-xs font-black">
+        <nav class="flex items-center justify-center gap-1 sm:gap-1.5 flex-wrap">
+          <a href="index.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-house text-[10px]"></i> Home</a>
+          <a href="properties.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-city text-[10px]"></i> Properties</a>
+          <a href="lda-map.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-map-location-dot text-[10px]"></i> LDA Map</a>
+          <a href="lda-forms.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1 !bg-amber-400 !text-slate-950 shadow-md"><i class="fa-solid fa-file-pdf text-[10px]"></i> LDA Forms</a>
+          <a href="add-property.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-plus-circle text-[10px]"></i> Add Property</a>
+          <a href="client-form.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-id-card text-[10px]"></i> Client Form</a>
+          <a href="services.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-cogs text-[10px]"></i> Services</a>
+          <a href="dream.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-star text-[10px]"></i> Our Dream</a>
+          <a href="contact.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1"><i class="fa-solid fa-envelope text-[10px]"></i> Contact</a>
+        </nav>
 
-      <!-- Member Sign In / Sign Up 3D Buttons with Dark Text -->
-      <div class="flex items-center gap-2 shrink-0">
-        <a href="signin.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1">
-          <i class="fa-solid fa-right-to-bracket text-[11px]"></i> Sign In
-        </a>
-        <a href="signup.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1">
-          <i class="fa-solid fa-user-plus text-[11px]"></i> Sign Up
-        </a>
+        <span class="text-amber-800 hidden sm:inline opacity-60">|</span>
+
+        <!-- Member Buttons -->
+        <div class="flex items-center gap-1.5 shrink-0">
+          <a href="signin.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1 !bg-slate-950 !text-amber-300 !border-amber-400 shadow">
+            <i class="fa-solid fa-right-to-bracket text-[10px]"></i> Sign In
+          </a>
+          <a href="signup.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1 !bg-emerald-600 !text-white !border-emerald-400 shadow">
+            <i class="fa-solid fa-user-plus text-[10px]"></i> Sign Up
+          </a>
+        </div>
       </div>
 
     </div>
   </header>
-
   <!-- MAIN SHOWCASE CONTENT -->
   <main class="max-w-[1700px] mx-auto px-4 sm:px-8 py-8 flex-1 w-full space-y-10">
     
