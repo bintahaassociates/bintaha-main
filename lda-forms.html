@@ -36,61 +36,19 @@
   </style>
 
   <style id="luxury-gold-theme">
-    header, .header, nav, .navbar {
+    header {
       background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
       border-bottom: 2px solid #ffd700 !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-    }
-    
-    header a, header button, header span, header p, header h1, header h2, header div,
-    nav a, nav button, nav span {
-      color: #111111 !important;
-      font-weight: 800 !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-    }
-
-    button, .btn, a.gold-bg, button.gold-bg {
-      background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
-      color: #0a0a0a !important;
-      border: 1px solid #ffe57f !important;
-      border-bottom: 2px solid #7d5707 !important;
-      border-radius: 8px !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-      transition: all 0.2s ease-in-out !important;
-    }
-
-    button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover {
-      filter: brightness(1.12) !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
-    }
-
-    @media screen and (max-width: 900px) {
-      .header-nav-wrap {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 6px !important;
-        width: 100% !important;
-        margin-top: 6px !important;
-      }
-      .header-nav-wrap a {
-        width: 100% !important;
-        text-align: center !important;
-        justify-content: center !important;
-        padding: 6px 4px !important;
-        font-size: 11px !important;
-      }
     }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
 
   <!-- Top Bar -->
-  <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b gold-border">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2.5">
-      <div class="flex items-center gap-3 font-semibold flex-wrap justify-center">
+  <div class="bg-slate-950 text-slate-300 text-xs py-2 px-4 sm:px-6 border-b gold-border">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-3 font-semibold flex-wrap justify-center text-[11px] sm:text-xs">
         <span class="gold-text"><i class="fa-solid fa-file-pdf mr-1"></i> Official LDA 20 PDF Forms & Building Regulations Portal</span>
         <span class="text-slate-500">|</span>
         <span class="text-amber-400 font-bold">Supervised by CEO Taha Mubeen Bhutta (0321-9404812)</span>
@@ -105,9 +63,9 @@
     </div>
   </div>
 
-  <!-- Header -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border py-2.5 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-3">
+  <!-- Header matching index & properties -->
+  <header class="sticky top-0 z-40 py-2.5 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
       
       <!-- Logo & Title -->
       <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
@@ -121,27 +79,27 @@
         </div>
       </a>
 
-      <!-- Clean Single-Line Navigation Menu -->
-      <nav class="header-nav-wrap flex flex-wrap items-center justify-center gap-1.5 text-xs font-black w-full lg:w-auto">
-        <a href="index.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Home</a>
-        <a href="lda-map.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">LDA Map</a>
-        <a href="lda-forms.html" class="gold-bg text-slate-950 px-2.5 py-1.5 rounded-lg font-black shadow">LDA Forms</a>
-        <a href="properties.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Properties</a>
-        <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-2.5 py-1.5 rounded-lg font-black shadow flex items-center gap-1">
+      <!-- Clean Inline Menu (No Box Container) -->
+      <nav class="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 text-xs font-bold text-slate-950">
+        <a href="index.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Home</a>
+        <a href="lda-map.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">LDA Map</a>
+        <a href="lda-forms.html" class="bg-slate-950 text-amber-300 px-2.5 py-1.5 rounded-lg font-black shadow">LDA Forms</a>
+        <a href="properties.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Properties</a>
+        <a href="add-property.html" class="bg-amber-600 hover:bg-amber-700 text-white px-2.5 py-1.5 rounded-lg font-black shadow flex items-center gap-1">
           <i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property
         </a>
-        <a href="client-form.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Client Form</a>
-        <a href="services.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Services</a>
-        <a href="dream.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Our Dream</a>
-        <a href="contact.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-2.5 py-1.5 rounded-lg transition">Contact</a>
+        <a href="client-form.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Client Form</a>
+        <a href="services.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Services</a>
+        <a href="dream.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Our Dream</a>
+        <a href="contact.html" class="hover:text-black hover:bg-black/10 px-2 py-1.5 rounded-lg transition">Contact</a>
       </nav>
 
-      <!-- Balanced 3D Member Action Buttons -->
+      <!-- Balanced High-Contrast Member Buttons -->
       <div class="flex items-center gap-2 shrink-0">
-        <a href="signin.html" class="bg-slate-950 text-amber-300 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold border border-amber-400 transition flex items-center gap-1">
+        <a href="signin.html" class="bg-slate-900 hover:bg-black text-amber-300 px-3 py-1.5 rounded-lg text-xs font-bold border border-amber-400 shadow transition flex items-center gap-1">
           <i class="fa-solid fa-right-to-bracket text-[11px]"></i> Sign In
         </a>
-        <a href="signup.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-lg text-xs font-black transition shadow flex items-center gap-1">
+        <a href="signup.html" class="bg-slate-900 hover:bg-black text-emerald-400 px-3 py-1.5 rounded-lg text-xs font-bold border border-emerald-400 shadow transition flex items-center gap-1">
           <i class="fa-solid fa-user-plus text-[11px]"></i> Sign Up
         </a>
       </div>
