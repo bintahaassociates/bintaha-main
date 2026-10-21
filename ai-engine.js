@@ -50,7 +50,7 @@ async function callGemini(promptText, systemInstruction = "") {
 // 1. Architectural Blueprint Generator (CAD Studio)
 // ------------------------------------------
 async function generateCADBlueprint(plotWidth, plotDepth, floors, bedrooms, stylePreference = "Executive Family") {
-  const systemPrompt = `You are the Lead Structural Architect and CAD Engineer for Bin Taha Associates in Lahore, Pakistan. 
+  const systemPrompt = `You are the Lead Structural Architect and CAD Engineer for Bin Taha Associates (بن طہٰ ایسوسی ایٹس) in Lahore, Pakistan under CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ). 
 Produce precise, highly structured architectural layout advice conforming to local LDA/DHA bylaws. 
 Format your output with clear headings, room zoning dimensions in feet (e.g. Master Bed: 14x16), ventilation duct placement, staircase zoning, and front/rear mandatory setbacks.`;
 
@@ -73,7 +73,7 @@ Provide:
 // 2. Dynamic Construction & Material Estimator
 // ------------------------------------------
 async function generateMaterialEstimate(areaMarla, constructionType = "Grey Structure") {
-  const systemPrompt = `You are the Chief Quantity Surveyor and Cost Estimator at Bin Taha Associates. 
+  const systemPrompt = `You are the Chief Quantity Surveyor and Cost Estimator at Bin Taha Associates (بن طہٰ ایسوسی ایٹس). 
 Use current Lahore construction material metrics (Cement, Grade-60 Steel Saria, Awwal Bricks, Margalla Crush, Sand). 
 Return an itemized cost table and total estimated budget breakdown in PKR.`;
 
@@ -96,10 +96,11 @@ Provide total estimated expenditure.`;
 // 3. Autonomous Real Estate Lead & Sales Assistant
 // ------------------------------------------
 async function handleUserChatQuery(userMessage) {
-  const systemPrompt = `Aap Bin Taha Associates Lahore ke live intelligent property consultant hain. 
+  const systemPrompt = `Aap Bin Taha Associates (بن طہٰ ایسوسی ایٹس) Lahore ke live intelligent property consultant hain. 
 Aapko client ke sawal ka seedha, to-the-point aur mukhtasar jawab dena hai. 
-Aapko Lahore real estate (LDA Avenue 1, Jubilee Town, DHA Lahore wagera) ke baare mein maloomat hain. 
-Bin Taha Associates ke CEO Taha Mobeen Bhutta hain aur official phone number 0321 9404812 hai. 
+Aapko Lahore real estate (LDA Avenue 1, Jubilee Town, DHA Lahore wagera) ke baare mein mukammal maloomat hain. 
+Bin Taha Associates ke CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) hain aur official phone number 0321 9404812 hai. 
+Agar koi property bechna ya list karna chahe to use 'Add Property' page (add-property.html) par jane ka mashwara dein. 
 Client jis zaban (Urdu, Roman Urdu ya English) mein pooche, usi zaban mein seedha jawab dein bina kisi faltu bahes ke.`;
 
   const reply = await callGemini(userMessage, systemPrompt);
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // B. Pure CSS Floating AI Assistant Widget
+  // B. Floating AI Assistant Widget
   if (!document.getElementById("tahaAiFloatingBtn")) {
     const floatBtn = document.createElement("button");
     floatBtn.id = "tahaAiFloatingBtn";
@@ -186,19 +187,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div id="aiChatMsgArea" style="flex:1; padding:14px; overflow-y:auto; font-size:12px; color:#e2e8f0; display:flex; flex-direction:column; gap:10px; background:#020617;">
         <div style="background:#1e293b; padding:10px 12px; border-radius:12px; border:1px solid #334155; line-height:1.5;">
-          Assalam-o-Alaikum! Main **Bin Taha Associates** ka AI property consultant hoon. 🏡<br><br>
-          LDA Avenue 1, Jubilee Town, plots ya construction k baray me jo poochna chahein, likhein.
+          Assalam-o-Alaikum! Main **Bin Taha Associates (بن طہٰ ایسوسی ایٹس)** ka AI property consultant hoon. 🏡<br><br>
+          CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) ki janib se khush-amdeed. LDA Avenue 1, Jubilee Town ya property listing k baray me jo poochna chahein, likhein.
         </div>
       </div>
 
       <div style="padding:8px 10px; background:#0f172a; border-top:1px solid #1e293b; display:flex; gap:6px; overflow-x:auto;">
+        <a href="add-property.html" style="text-decoration:none; white-space:nowrap; background:#d4af37; color:#020617; font-weight:bold; padding:4px 8px; border-radius:6px; font-size:10px; display:inline-flex; align-items:center; gap:4px;">➕ Add Property</a>
         <button type="button" class="quick-chip" data-txt="LDA Avenue 1 rates" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">LDA Avenue 1</button>
         <button type="button" class="quick-chip" data-txt="Jubilee Town rates" style="white-space:nowrap; background:#1e293b; color:#fbbf24; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Jubilee Town</button>
         <button type="button" class="quick-chip" data-txt="Taha Bhai WhatsApp contact" style="white-space:nowrap; background:#1e293b; color:#34d399; border:1px solid #334155; padding:4px 8px; border-radius:6px; font-size:10px; cursor:pointer;">Contact Taha</button>
       </div>
 
       <form id="aiChatSubmitForm" style="padding:10px; background:#0f172a; border-top:1px solid #334155; display:flex; gap:6px; margin:0;">
-        <input type="text" id="aiInputText" placeholder="Apna sawal likhein..." style="flex:1; background:#020617; border:1px solid #d4af37; border-radius:8px; padding:8px 10px; font-size:12px; color:#fff; outline:none;" autocomplete="off" />
+        <input type="text" id="aiInputText" placeholder="Apna sawal likhein ya property rates..." style="flex:1; background:#020617; border:1px solid #d4af37; border-radius:8px; padding:8px 10px; font-size:12px; color:#fff; outline:none;" autocomplete="off" />
         <button type="submit" style="background:#d4af37; color:#020617; border:none; padding:8px 14px; border-radius:8px; font-weight:900; cursor:pointer;">Send</button>
       </form>
     `;
@@ -259,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 });
+
 // ==========================================
 // BIN TAHA ASSOCIATES - SUPABASE INTEGRATION
 // ==========================================
@@ -267,6 +270,7 @@ window.SUPABASE_CONFIG = window.SUPABASE_CONFIG || {
   url: "https://ajrvlrvnxpatbculnwil.supabase.co",
   key: "sb_publishable_ndHx-NyVhYxvDwfvBnK2iA_woPQhjJi"
 };
+
 async function sendServiceInquiryToSupabase(payload) {
   const cfg = window.SUPABASE_CONFIG;
   try {
@@ -278,7 +282,8 @@ async function sendServiceInquiryToSupabase(payload) {
         "Authorization": `Bearer ${cfg.key}`,
         "Prefer": "return=minimal"
       },
-      body: JSON.stringify(payload)    });
+      body: JSON.stringify(payload)
+    });
 
     if (!res.ok) {
       const errData = await res.json();
@@ -293,12 +298,12 @@ async function sendServiceInquiryToSupabase(payload) {
   }
 }
 
-// Auto Form Hook for Services and Client Form
+// Auto Form Hook for Services and Client Form (Excluding Property Post Form & AI Chat)
 document.addEventListener("DOMContentLoaded", () => {
   const allForms = document.querySelectorAll("form");
 
   allForms.forEach(form => {
-    if (form.id === "aiChatSubmitForm") return;
+    if (form.id === "aiChatSubmitForm" || form.id === "standalonePostForm") return;
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -333,16 +338,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await sendServiceInquiryToSupabase(dbPayload);
 
       if (result.success) {
-        alert("Shukriya! Aapki request Bin Taha Associates ke Supabase database me successfully save ho gayi hai.");
+        alert("Shukriya! Aapki request Bin Taha Associates (بن طہٰ ایسوسی ایٹس) ke Supabase database me successfully save ho gayi hai.");
         form.reset();
       } else {
-        alert("Request send ho gayi hai. Directly WhatsApp par contact karein: 0321 9404812");
+        alert("Request send ho gayi hai. Directly CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) se WhatsApp par contact karein: 0321 9404812");
       }
 
       if (btn) {
         btn.disabled = false;
         btn.innerText = origText;
       }
-   });
+    });
   });
 });
