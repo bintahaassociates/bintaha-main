@@ -2,29 +2,27 @@
 <html lang="en" class="scroll-smooth select-none">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQQK1K5TY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQQK1K5TY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TTQQK1K5TY');
+  </script>
 
-  gtag('config', 'G-TTQQK1K5TY');
-</script>
-
-<!-- Services Page SEO & Social Meta Tags -->
-<title>Construction & Real Estate Services | Bin Taha Associates Lahore</title>
-<meta name="description" content="Professional construction, property valuation, documentation, and real estate consultancy services in LDA Avenue 1 and Jubilee Town Lahore by Bin Taha Associates.">
-<meta name="keywords" content="Construction services Lahore, Building contractors LDA Avenue 1, Real estate consultant Jubilee Town, Property valuation, Grey structure construction, Bin Taha Associates">
-<meta name="author" content="Taha Mobeen Bhutta">
-<link rel="canonical" href="https://bintahaassociates.github.io/bintaha-main/services.html">
-
-<meta property="og:title" content="Construction & Consultancy Services | Bin Taha Associates">
-<meta property="og:description" content="Expert construction and property management services in LDA Avenue 1 & Jubilee Town Lahore by Bin Taha Associates.">
-<meta property="og:image" content="https://bintahaassociates.github.io/bintaha-main/logo.png">
-<meta property="og:url" content="https://bintahaassociates.github.io/bintaha-main/services.html">
+  <!-- Services Page SEO & Social Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bin Taha Associates • Construction & Builders • Gemini AI & CAD Studio Hub</title>
+  <title>Construction & Real Estate Services | Bin Taha Associates (بن طہٰ ایسوسی ایٹس) Lahore</title>
+  <meta name="description" content="Professional turnkey construction, architectural CAD planning, material supply, and real estate services in LDA Avenue 1 and Jubilee Town Lahore by Bin Taha Associates. Led by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ).">
+  <meta name="keywords" content="Construction services Lahore, Building contractors LDA Avenue 1, Real estate consultant Jubilee Town, Bin Taha Associates, بن طہٰ ایسوسی ایٹس, Taha Mubeen Bhutta, طہٰ مبین بھٹہ, Add Property, LDA Map, Turnkey Construction Lahore">
+  <meta name="author" content="Taha Mubeen Bhutta">
+  <link rel="canonical" href="https://bintahaassociates.github.io/bintaha-main/services.html">
+
+  <meta property="og:title" content="Construction & Consultancy Services | Bin Taha Associates (بن طہٰ ایسوسی ایٹس)">
+  <meta property="og:description" content="Expert turnkey construction, 2D/3D CAD blueprints, and property management services in LDA Avenue 1 & Lahore by Bin Taha Associates.">
+  <meta property="og:image" content="https://bintahaassociates.github.io/bintaha-main/logo.png">
+  <meta property="og:url" content="https://bintahaassociates.github.io/bintaha-main/services.html">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -68,6 +66,25 @@
       #printableArea {
         position: absolute; left: 0; top: 0; width: 100%;
         background: #ffffff !important; color: #000000 !important;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .mobile-hide-on-phone {
+        display: none !important;
+      }
+      .services-nav-mobile {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100% !important;
+        gap: 6px !important;
+      }
+      .services-nav-mobile a {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        font-size: 11px !important;
+        padding: 8px 4px !important;
       }
     }
   </style>
@@ -121,30 +138,11 @@
       transform: translateY(-2px) !important;
       box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     }
-    /* موبائل اسکرین کے لیے ہیڈر کی صفائی اور رسپانسیو سیٹنگ */
-    @media screen and (max-width: 768px) {
-      .mobile-hide-on-phone {
-        display: none !important;
-      }
-      .services-nav-mobile {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        width: 100% !important;
-        gap: 6px !important;
-      }
-      .services-nav-mobile a {
-        width: 100% !important;
-        text-align: center !important;
-        justify-content: center !important;
-        font-size: 11px !important;
-        padding: 8px 4px !important;
-      }
-    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-400 selection:text-slate-950">
 
-  <!-- Main Portal (Always Visible) -->
+  <!-- Main Portal -->
   <div id="portalApp" class="flex-1 flex flex-col justify-between">
 
     <!-- Live Market Ticker Bar -->
@@ -152,17 +150,16 @@
       <span class="bg-slate-950 text-amber-300 px-2.5 py-1 rounded-lg text-[10px] uppercase mr-3 tracking-wider shrink-0 shadow border gold-border">🤖 Gemini AI Live Copilot</span>
       <div class="ticker-wrap w-full">
         <div class="ticker-move">
-          <span>Gemini API Autonomous Client Assistant Active</span> &bull; 
-          <span>Instant Google Sheet CRM & Supabase Auto-Sync</span> &bull; 
-          <span>Pro Architectural CAD & Construction Services in Lahore</span> &bull; 
+          <span>Bin Taha Associates (بن طہٰ ایسوسی ایٹس) Construction Portal Active</span> &bull; 
+          <span>Instant Inquiry & Supabase Auto-Sync</span> &bull; 
+          <span>Pro Architectural CAD & Civil Engineering Services in Lahore</span> &bull; 
           <span>Grade-60 Steel: PKR 282/KG &bull; Bestway Cement: PKR 1,420/Bag &bull; Awwal Bricks: PKR 21/PC</span> &bull; 
-          <span>CEO Hotline: 0321-9404812</span>
+          <span>CEO Hotline: 0321-9404812 (Taha Mubeen Bhutta • طہٰ مبین بھٹہ)</span>
         </div>
       </div>
     </div>
 
     <!-- Top Header Navigation & World Clocks -->
-    <!-- Top Header Navigation & World Clocks (Clean Mobile Layout) -->
     <header class="bg-slate-900/95 border-b gold-border py-2.5 px-4 sm:px-6 sticky top-0 z-40 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
         
@@ -173,18 +170,21 @@
               <img src="logo.png" alt="Bin Taha Logo" class="w-full h-full object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
             </div>
             <div>
-              <h1 class="text-sm sm:text-base font-black text-white leading-tight">Bin Taha Associates</h1>
-              <p class="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">Construction & Builders Hub</p>
+              <h1 class="text-sm sm:text-base font-black text-white leading-tight">
+                Bin Taha Associates
+                <span class="text-xs font-bold block text-slate-900">بن طہٰ ایسوسی ایٹس</span>
+              </h1>
+              <p class="text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">Construction & Builders Hub • CEO Taha Mubeen Bhutta</p>
             </div>
           </a>
 
-          <!-- واٹس ایپ بٹن (صرف موبائل پر فوری رابطے کے لیے دائیں طرف) -->
+          <!-- واٹس ایپ بٹن (صرف موبائل پر فوری رابطے کے لیے) -->
           <a href="https://wa.me/923219404812" target="_blank" class="md:hidden bg-emerald-600 text-white px-3 py-1.5 rounded-xl text-xs font-black flex items-center gap-1 shadow">
             <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
           </a>
         </div>
 
-        <!-- World Clocks (کمپیوٹر پر پورا دکھے گا، موبائل پر خودکار طور پر چھپ جائے گا) -->
+        <!-- World Clocks -->
         <div class="flex items-center gap-2 flex-wrap text-[11px] justify-center mobile-hide-on-phone">
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-emerald-400 font-semibold shadow">🇵🇰 PK: <span id="clockPk" class="text-white font-bold">--:--</span></div>
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-amber-300 font-semibold shadow">🇦🇪 Dubai: <span id="clockDubai" class="text-white font-bold">--:--</span></div>
@@ -192,7 +192,7 @@
           <div class="bg-slate-950 border gold-border px-2.5 py-1 rounded-xl text-purple-400 font-semibold shadow">🇺🇸 NY: <span id="clockNy" class="text-white font-bold">--:--</span></div>
         </div>
 
-        <!-- Global Currency Converter (کمپیوٹر پر ایکٹیو رہے گا، موبائل پر اسکرین بچانے کے لیے ہائیڈ رہے گا) -->
+        <!-- Global Currency Converter -->
         <div class="flex items-center gap-2 flex-wrap mobile-hide-on-phone">
           <div class="bg-slate-950 border gold-border px-3 py-1.5 rounded-xl flex items-center gap-2 text-xs shadow">
             <span class="text-amber-300 font-bold"><i class="fa-solid fa-coins mr-1"></i> Currency:</span>
@@ -212,21 +212,24 @@
         </div>
       </div>
 
-      <!-- Navigation Bar (موبائل پر 2 برابر منظم کالم، لیپ ٹاپ پر تمام لنکس سیدھی لائن میں) -->
+      <!-- Navigation Bar -->
       <div class="max-w-7xl mx-auto flex justify-between items-center gap-2 pt-2.5 mt-2 border-t gold-border">
-        <div class="services-nav-mobile flex gap-1.5 sm:gap-2 flex-wrap text-xs font-bold w-full md:w-auto">
+        <nav class="services-nav-mobile flex gap-1.5 sm:gap-2 flex-wrap text-xs font-bold w-full md:w-auto">
           <a href="index.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-house"></i> Home</a>
           <a href="properties.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-building"></i> Properties</a>
-          <a href="#servicesGrid" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-list-check"></i> 15 Services</a>
-          <a href="#proCadStudio" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-compass-drafting"></i> CAD Studio</a>
-          <a href="#cctvHub" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-video"></i> Live CCTV</a>
-          <a href="#materialEstimator" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-calculator"></i> Estimator</a>
-        </div>
+          <a href="lda-map.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-map-location-dot"></i> LDA Map</a>
+          <a href="add-property.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1 !bg-amber-500"><i class="fa-solid fa-plus-circle"></i> Add Property</a>
+          <a href="client-form.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-id-card"></i> Client Form</a>
+          <a href="dream.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-star"></i> Our Dream</a>
+          <a href="about.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-user-group"></i> About Us</a>
+          <a href="contact.html" class="gold-bg text-slate-950 px-3 py-1.5 rounded-xl transition shadow font-black flex items-center justify-center gap-1"><i class="fa-solid fa-envelope"></i> Contact</a>
+        </nav>
         <div class="hidden lg:flex text-xs text-slate-950 font-black gold-bg px-3.5 py-1.5 rounded-xl shadow items-center gap-1">
           <i class="fa-solid fa-phone-volume text-slate-950 mr-1"></i> CEO: 0321-9404812
         </div>
       </div>
     </header>
+
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full space-y-12">
       
@@ -237,7 +240,7 @@
           <span class="gold-bg text-slate-950 border gold-border text-xs font-black uppercase px-3.5 py-1 rounded-full tracking-wider shadow">PEC Category C Registered Enterprise</span>
           <h2 class="text-2xl sm:text-4xl font-black gold-text">Bin Taha Construction & Builders Studio</h2>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Experience autonomous AI consultation, exact engineering blueprints with wall dimensions, and instant Supabase & Google Sheets CRM lead synchronization led by CEO Taha Mobeen Bhutta.
+            Experience autonomous AI consultation, exact engineering blueprints with wall dimensions, verified materials, and instant Supabase lead synchronization led by <strong>CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ)</strong>.
           </p>
         </div>
         
@@ -246,9 +249,9 @@
           <button onclick="toggleServiceModal()" class="gold-bg hover:opacity-90 text-slate-950 px-5 py-3.5 rounded-2xl font-black text-xs transition shadow-2xl cursor-pointer uppercase tracking-wider flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-file-contract text-sm"></i> Book Construction Service
           </button>
-          <button onclick="startAiVoicePrompt()" id="heroVoiceBtn" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
-            <i class="fa-solid fa-microphone text-slate-950 animate-pulse"></i> AI Voice Commander
-          </button>
+          <a href="add-property.html" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus-circle text-slate-950"></i> Post Property Listing
+          </a>
           <button onclick="openFeedbackModal()" class="gold-bg text-slate-950 px-4 py-3.5 rounded-2xl font-black text-xs transition shadow cursor-pointer flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-comment-dots text-sm"></i> Client Feedback
           </button>
@@ -258,12 +261,40 @@
         </div>
       </div>
 
+      <!-- Quick Action Portals Hub -->
+      <div class="glass-card p-6 rounded-3xl shadow-xl border gold-border space-y-4">
+        <div class="flex items-center justify-between border-b gold-border pb-3">
+          <h3 class="text-base font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-layer-group text-amber-400"></i> Central Verified Portals & Navigation
+          </h3>
+          <span class="text-xs text-amber-300 font-bold">100% Direct Verification</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-bold">
+          <a href="lda-map.html" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex items-center justify-between text-white">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-map-location-dot text-amber-400 text-lg"></i> LDA Avenue 1 Map</span>
+            <i class="fa-solid fa-arrow-right text-amber-400"></i>
+          </a>
+          <a href="add-property.html" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex items-center justify-between text-white">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-plus-circle text-emerald-400 text-lg"></i> Add Property Listing</span>
+            <i class="fa-solid fa-arrow-right text-amber-400"></i>
+          </a>
+          <a href="client-form.html" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex items-center justify-between text-white">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-id-card text-cyan-400 text-lg"></i> Client Registration</span>
+            <i class="fa-solid fa-arrow-right text-amber-400"></i>
+          </a>
+          <a href="agent-login.html" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex items-center justify-between text-white">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-user-shield text-purple-400 text-lg"></i> Partner Portal</span>
+            <i class="fa-solid fa-arrow-right text-amber-400"></i>
+          </a>
+        </div>
+      </div>
+
       <!-- 15 FULLY ACTIVE CIVIL SERVICES DIRECTORY -->
       <section id="servicesGrid" class="glass-card p-6 sm:p-8 rounded-3xl shadow-xl space-y-6 border gold-border">
         <div class="flex items-center justify-between flex-wrap gap-4 border-b gold-border pb-4">
           <div>
             <span class="bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full text-xs font-black uppercase">15 Standard Verticals Active</span>
-            <h3 class="text-2xl font-black text-white mt-1 gold-text">Bin Taha Associates • 15 Core Civil Operations</h3>
+            <h3 class="text-2xl font-black text-white mt-1 gold-text">Bin Taha Associates (بن طہٰ ایسوسی ایٹس) • 15 Core Civil Operations</h3>
           </div>
           <span class="text-xs text-amber-300 font-bold bg-slate-950 px-3.5 py-1.5 rounded-xl border gold-border">Direct Cloud Sync With Supabase</span>
         </div>
@@ -595,7 +626,7 @@
               <span id="cctvCameraLabel" class="text-white font-bold">CAM-01: Front Elevation & Porch Raft</span>
             </div>
             <div class="bg-slate-900/95 backdrop-blur px-3.5 py-2 rounded-xl border gold-border text-amber-300" id="cctvTimeCounter">
-              REC ● 2026-10-07 18:00:00 PKT
+              REC ● LIVE TELEMETRY PKT
             </div>
           </div>
 
@@ -801,31 +832,11 @@
 
     </main>
 
-    <!-- FLOATING GEMINI COPILOT (ORIGINAL EMBOSSED GOLD BUTTON) -->
-    <div class="fixed bottom-6 right-6 z-50">
-      <div id="geminiChatBox" class="hidden glass-card p-4 rounded-3xl w-80 sm:w-96 shadow-2xl mb-3 space-y-3 border gold-border">
-        <div class="flex justify-between items-center border-b gold-border pb-2">
-          <span class="text-xs font-black text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-robot"></i> Bin Taha Gemini AI Copilot</span>
-          <button onclick="toggleGeminiChat()" class="text-slate-400 hover:text-white text-xs cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div id="geminiChatHistory" class="text-[11px] text-slate-300 space-y-2 max-h-56 overflow-y-auto p-1 font-mono">
-          <div class="bg-slate-950 p-3 rounded-xl border gold-border">👋 Welcome! I am your 24/7 Gemini AI Assistant for Bin Taha Associates. Ask me about plot maps (e.g. 32x70 ft), construction rates, or estimates in Lahore!</div>
-        </div>
-        <div class="flex gap-2 pt-1">
-          <input type="text" id="geminiUserInput" placeholder="Ask AI anything (e.g. 32x70 cost)..." onkeypress="handleGeminiEnter(event)" class="flex-1 bg-slate-950 border gold-border px-3 py-2.5 rounded-xl text-xs text-white outline-none focus:border-amber-400">
-          <button onclick="sendToGeminiAI()" class="gold-bg text-slate-950 px-3.5 py-2.5 rounded-xl font-black text-xs cursor-pointer"><i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-      </div>
-      <button onclick="toggleGeminiChat()" class="w-14 h-14 rounded-full gold-bg text-slate-950 font-black text-lg shadow-2xl flex items-center justify-center gold-glow cursor-pointer hover:scale-110 transition">
-        <i class="fa-solid fa-robot"></i>
-      </button>
-    </div>
-
     <!-- SERVICE BOOKING MODAL (DIRECT SUPABASE INJECTION) -->
     <div id="serviceModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
       <div class="glass-card p-6 sm:p-8 rounded-3xl max-w-lg w-full space-y-6 shadow-2xl gold-glow relative">
         <div class="flex justify-between items-center border-b gold-border pb-3">
-          <h3 class="text-base font-black text-white"><i class="fa-solid fa-helmet-safety text-amber-300 mr-2"></i> Book Construction Service & Sync to CRM</h3>
+          <h3 class="text-base font-black text-white"><i class="fa-solid fa-helmet-safety text-amber-300 mr-2"></i> Book Construction Service</h3>
           <button onclick="toggleServiceModal()" class="text-slate-400 hover:text-white text-sm font-bold cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
@@ -859,7 +870,7 @@
           </div>
 
           <button id="btnSubmitBooking" onclick="submitServiceBooking()" class="w-full gold-bg hover:opacity-90 text-slate-950 py-3.5 rounded-xl font-black text-xs transition shadow-lg cursor-pointer uppercase tracking-wider">
-            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Sync to Supabase CRM
+            <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Confirm & Book Consultation
           </button>
         </div>
       </div>
@@ -874,7 +885,7 @@
         </div>
         <div class="space-y-3 text-xs font-bold">
           <input type="text" id="fbClientName" placeholder="Your Name" class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none">
-          <textarea id="fbClientMsg" rows="3" placeholder="Share your experience or inquiry with CEO Taha Mobeen..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none"></textarea>
+          <textarea id="fbClientMsg" rows="3" placeholder="Share your experience or inquiry with CEO Taha Mubeen Bhutta..." class="w-full bg-slate-950 border gold-border p-3 rounded-xl text-white outline-none"></textarea>
           <button onclick="submitClientFeedback()" class="w-full gold-bg text-slate-950 py-3 rounded-xl font-black text-xs">
             Send Feedback to CEO
           </button>
@@ -882,10 +893,40 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t gold-border text-center space-y-2">
-      <p>&copy; 2026 Bin Taha Associates. All Rights Reserved. Managed by CEO Taha Mobeen Bhutta.</p>
-      <p class="text-slate-600">Offices across LDA Avenue 1, Jubilee Town, and Bugtia Chowk Raiwind Road, Lahore.</p>
+    <!-- Footer with Mandatory AdSense Links -->
+    <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t gold-border text-center space-y-4">
+      <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold">
+        <i class="fa-solid fa-shield-halved"></i> 100% Secure Paperwork & Escrow Milestone Protection - Verified by Bin Taha Legal Team
+      </div>
+
+      <!-- AdSense & Navigation Quick Links -->
+      <div class="flex items-center justify-center gap-3.5 flex-wrap text-xs text-slate-400 font-semibold pt-1">
+        <a href="index.html" class="hover:text-amber-400 transition">Home</a>
+        <span>•</span>
+        <a href="about.html" class="hover:text-amber-400 transition">About Us</a>
+        <span>•</span>
+        <a href="lda-map.html" class="hover:text-amber-400 transition">LDA Avenue 1 Map</a>
+        <span>•</span>
+        <a href="properties.html" class="hover:text-amber-400 transition">Properties</a>
+        <span>•</span>
+        <a href="add-property.html" class="hover:text-amber-400 transition">Add Property</a>
+        <span>•</span>
+        <a href="client-form.html" class="hover:text-amber-400 transition">Client Form</a>
+        <span>•</span>
+        <a href="agent-login.html" class="hover:text-amber-400 transition">Partner Portal</a>
+        <span>•</span>
+        <a href="services.html" class="text-amber-400 font-bold">Services</a>
+        <span>•</span>
+        <a href="dream.html" class="hover:text-amber-400 transition">Our Dream</a>
+        <span>•</span>
+        <a href="privacy-policy.html" class="hover:text-amber-400 transition">Privacy Policy</a>
+        <span>•</span>
+        <a href="terms.html" class="hover:text-amber-400 transition">Terms & Conditions</a>
+        <span>•</span>
+        <a href="contact.html" class="hover:text-amber-400 transition">Contact Us</a>
+      </div>
+
+      <p class="text-slate-600">&copy; 2026 Bin Taha Associates (بن طہٰ ایسوسی ایٹس). Managed by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) • 0321-9404812.</p>
     </footer>
 
   </div>
@@ -912,7 +953,6 @@
     function toggleServiceModal() { document.getElementById('serviceModal').classList.toggle('hidden'); }
     function openFeedbackModal() { document.getElementById('feedbackModal').classList.remove('hidden'); }
     function closeFeedbackModal() { document.getElementById('feedbackModal').classList.add('hidden'); }
-    function toggleGeminiChat() { document.getElementById('geminiChatBox').classList.toggle('hidden'); }
 
     // World Clocks
     function updateClocks() {
@@ -1153,7 +1193,7 @@
         });
 
         if(resp.ok) {
-          alert(`✨ مبارک ہو طاہا بھائی! ${serviceTitle} کی بکنگ براہِ راست Supabase کے Services ٹیبل میں محفوظ ہو گئی ہے۔`);
+          alert(`✨ مبارک ہو طاہا بھائی! ${serviceTitle} کی بکنگ کامیابی کے ساتھ رجسٹر ہو گئی ہے۔`);
         } else {
           alert("بکنگ ریکارڈ ہو گئی۔ واٹس ایپ: 0321-9404812");
         }
@@ -1178,7 +1218,7 @@
       const submitBtn = document.getElementById('btnSubmitBooking');
       const originalText = submitBtn.innerText;
       submitBtn.disabled = true;
-      submitBtn.innerText = "Saving to Supabase Database...";
+      submitBtn.innerText = "Saving to Database...";
 
       const currentDate = new Date().toISOString().split("T")[0];
       const customId = "SRV-" + Math.floor(100000 + Math.random() * 900000);
@@ -1210,7 +1250,7 @@
         });
 
         if(resp.ok) {
-          alert("✨ مبارک ہو طاہا بھائی! کلائنٹ کی انکوائری کامیابی کے ساتھ Supabase کے Services ٹیبل میں محفوظ ہو گئی ہے۔");
+          alert("✨ مبارک ہو طاہا بھائی! کلائنٹ کی انکوائری کامیابی کے ساتھ محفوظ ہو گئی ہے۔");
           document.getElementById('bookingName').value = '';
           document.getElementById('bookingPhone').value = '';
           document.getElementById('bookingLocation').value = '';
@@ -1228,7 +1268,7 @@
       submitBtn.innerText = originalText;
     }
 
-    // Feedback Submission to Supabase
+    // Feedback Submission
     async function submitClientFeedback() {
       const name = document.getElementById('fbClientName').value.trim() || "Website Visitor";
       const msg = document.getElementById('fbClientMsg').value.trim();
@@ -1263,54 +1303,6 @@
         alert("فیڈ بیک موصول ہو گیا۔ شکریہ!");
         closeFeedbackModal();
       }
-    }
-
-    // Voice Prompt Assistant
-    function startAiVoicePrompt() {
-      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-        alert("Voice recognition not supported in this browser. Please use Google Chrome.");
-        return;
-      }
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const rec = new SpeechRecognition();
-      rec.lang = 'en-US';
-      rec.start();
-
-      const btn = document.getElementById('heroVoiceBtn');
-      btn.innerHTML = '<i class="fa-solid fa-ear-listen text-amber-300 animate-ping"></i> Listening...';
-
-      rec.onresult = function(e) {
-        const query = e.results[0][0].transcript;
-        btn.innerHTML = '<i class="fa-solid fa-microphone text-amber-400"></i> AI Voice Commander';
-        toggleGeminiChat();
-        document.getElementById('geminiUserInput').value = query;
-        sendToGeminiAI();
-      };
-
-      rec.onerror = function() {
-        btn.innerHTML = '<i class="fa-solid fa-microphone text-amber-400"></i> AI Voice Commander';
-      };
-    }
-
-    // Gemini AI Chat Engine
-    function handleGeminiEnter(e) { if(e.key === 'Enter') sendToGeminiAI(); }
-    async function sendToGeminiAI() {
-      const input = document.getElementById('geminiUserInput');
-      const history = document.getElementById('geminiChatHistory');
-      let text = input.value.trim();
-      if(!text) return;
-
-      history.innerHTML += `<div class="bg-slate-900 p-2.5 rounded-xl border gold-border text-right text-white">👤 ${text}</div>`;
-      input.value = '';
-      history.scrollTop = history.scrollHeight;
-
-      if(typeof handleUserChatQuery === 'function') {
-        const reply = await handleUserChatQuery(text);
-        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">🤖 ${reply}</div>`;
-      } else {
-        history.innerHTML += `<div class="bg-slate-950 p-2.5 rounded-xl border gold-border text-amber-300">🤖 Gemini AI: Bin Taha Associates specializes in certified turnkey civil construction under CEO Taha Mobeen Bhutta.</div>`;
-      }
-      history.scrollTop = history.scrollHeight;
     }
   </script>
   <script src="ai-engine.js"></script>
