@@ -1,20 +1,47 @@
 {
-  "name": "Bin Taha Associates",
+  "name": "Bin Taha Associates (بن طہٰ ایسوسی ایٹس)",
   "short_name": "Bin Taha",
+  "description": "Official Real Estate, Turnkey Civil Construction & LDA Avenue 1 Master Map Portal by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ)",
   "start_url": "index.html",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#020617",
-  "theme_color": "#020617",
+  "theme_color": "#d4af37",
   "icons": [
     {
       "src": "logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "logo.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ایڈ پراپرٹی (Add Property)",
+      "short_name": "Add Property",
+      "description": "پراپرٹی لسٹ کریں",
+      "url": "add-property.html",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "LDA ایونیو 1 میپ",
+      "short_name": "LDA Map",
+      "description": "ایل ڈی اے ایونیو 1 ماسٹر میپ",
+      "url": "lda-map.html",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "کلائنٹ رجسٹریشن فارم",
+      "short_name": "Client Form",
+      "description": "رجسٹریشن فارم",
+      "url": "client-form.html",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
     }
   ]
 }
