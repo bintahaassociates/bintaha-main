@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTQQK1K5TY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TTQQK1K5TY');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ایل ڈی اے ایونیو 1 اسمارٹ ماسٹر میپ و جی پی ایس نیویگیٹر | بن طہٰ ایسوسی ایٹس</title>
-  <meta name="description" content="ایل ڈی اے ایونیو 1 لاہور کا آفیشل اور تصدیق شدہ اسمارٹ ماسٹر میپ اور پلاٹ لوکیٹر۔ بن طہٰ ایسوسی ایٹس اور سی ای او طہٰ مبین بھٹہ کی زیر نگرانی تمام بلاکس کے ریٹس اور پلاٹ لوکیشنز۔">
-  <meta name="keywords" content="ایل ڈی اے ایونیو 1, LDA Avenue 1 Map, بن طہٰ ایسوسی ایٹس, طہٰ مبین بھٹہ, Taha Mubeen Bhutta, LDA Map Lahore, Plot Locator">
+  <title>LDA Avenue 1 Smart Master Map & GPS Navigator | Bin Taha Associates</title>
+  <meta name="description" content="Official and verified smart master map and plot locator for LDA Avenue 1 Lahore. Supervised by CEO Taha Mubeen Bhutta, Bin Taha Associates.">
+  <meta name="keywords" content="LDA Avenue 1, LDA Avenue 1 Map, Bin Taha Associates, Taha Mubeen Bhutta, LDA Map Lahore, Plot Locator">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,6 +29,34 @@
     .gold-border { border-color: rgba(252, 211, 77, 0.4); }
     .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%); }
     .gold-glow { box-shadow: 0 0 50px rgba(252, 211, 77, 0.25); }
+
+    .royal-gold-bar {
+      background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 35%, #e6be44 70%, #b8860b 100%) !important;
+      border-bottom: 2px solid #ffd700 !important;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5) !important;
+    }
+
+    .gold-btn-3d {
+      background: linear-gradient(145deg, #fff3b0 0%, #d4af37 45%, #996515 100%) !important;
+      color: #0d0d0d !important;
+      border: 1px solid #ffe57f !important;
+      border-bottom: 3px solid #684503 !important;
+      border-radius: 8px !important;
+      font-weight: 800 !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -2px 0 rgba(0, 0, 0, 0.2) !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+      transition: all 0.2s ease-in-out !important;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none !important;
+    }
+    .gold-btn-3d:hover {
+      filter: brightness(1.12) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+    }
 
     #mapContainer {
       width: 100%;
@@ -76,119 +113,88 @@
       border: 2px solid #ffd700 !important;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      direction: rtl;
+      direction: ltr;
     }
     .leaflet-popup-tip {
       background: #0f172a !important;
       border: 1px solid #ffd700 !important;
     }
 
-    @media screen and (max-width: 768px) {
-      .map-nav-grid {
+    @media screen and (max-width: 900px) {
+      .header-nav-wrap {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 6px !important;
         width: 100% !important;
-        margin-top: 8px !important;
+        margin-top: 6px !important;
       }
-      .map-nav-grid a {
+      .header-nav-wrap a {
         width: 100% !important;
         text-align: center !important;
-        padding: 8px 4px !important;
+        justify-content: center !important;
+        padding: 6px 4px !important;
         font-size: 11px !important;
       }
-    }
-  </style>
-
-  <style id="luxury-gold-theme">
-    header, .header, nav, .navbar, [class*="bg-slate-900/95"] {
-      background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 45%, #e6be44 70%, #b8860b 100%) !important;
-      border-bottom: 2px solid #ffd700 !important;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-    }
-    header a, header button, header span, header p, header h1, header h2, header div,
-    nav a, nav button, nav span {
-      color: #111111 !important;
-      font-weight: 800 !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) !important;
-    }
-    button, .btn, a.gold-bg, button.gold-bg,
-    [onclick*="Modal"], [onclick*="Filter"], [onclick*="prop"],
-    header a[href], header button,
-    main button, main .btn {
-      background: linear-gradient(145deg, #ffe57f 0%, #d4af37 50%, #aa771c 100%) !important;
-      color: #0a0a0a !important;
-      border: 1px solid #ffe57f !important;
-      border-bottom: 2px solid #7d5707 !important;
-      border-radius: 8px !important;
-      font-weight: 800 !important;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -2px 0 rgba(0, 0, 0, 0.25) !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
-      transition: all 0.2s ease-in-out !important;
-    }
-    button:hover, .btn:hover, a.gold-bg:hover, button.gold-bg:hover,
-    header a[href]:hover, header button:hover {
-      filter: brightness(1.12) !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 6px 15px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between text-base">
 
-  <!-- Top Bar with Direct Contact -->
+  <!-- Top Bar -->
   <div class="bg-slate-950 text-slate-300 text-xs py-2.5 px-4 sm:px-6 border-b gold-border">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2.5">
       <div class="flex items-center gap-3 font-semibold flex-wrap justify-center">
-        <span class="gold-text"><i class="fa-solid fa-map-location-dot mr-1"></i> ایل ڈی اے ایونیو 1 لاہور کا تصدیق شدہ آفیشل ماسٹر میپ پورٹل</span>
+        <span class="gold-text"><i class="fa-solid fa-map-location-dot mr-1"></i> Official Verified LDA Avenue 1 Master Map Portal</span>
         <span class="text-slate-500">|</span>
-        <span class="text-amber-400 font-bold">زیرِ نگرانی: سی ای او طہٰ مبین بھٹہ (0321-9404812)</span>
+        <span class="text-amber-400 font-bold">Supervised by CEO Taha Mubeen Bhutta (0321-9404812)</span>
       </div>
       <div class="flex items-center gap-3 text-xs">
         <a href="mailto:bintahacrm@gmail.com" class="text-slate-300 hover:text-amber-300 transition"><i class="fa-solid fa-envelope mr-1"></i> bintahacrm@gmail.com</a>
-        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 text-white px-3 py-1 rounded-xl font-bold flex items-center gap-1">
-          <i class="fa-brands fa-whatsapp"></i> واٹس ایپ رابطہ
+        <span class="text-slate-600">|</span>
+        <a href="https://wa.me/923219404812" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-xl font-bold flex items-center gap-1">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp CEO
         </a>
       </div>
     </div>
   </div>
 
   <!-- Header -->
-  <header class="bg-slate-900/95 backdrop-blur-md shadow-2xl sticky top-0 z-40 border-b gold-border py-2.5 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
+  <header class="royal-gold-bar sticky top-0 z-40 py-2.5 px-4 sm:px-6 shadow-md">
+    <div class="max-w-[1700px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-3">
       
       <!-- Logo & Title -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-11 w-11 sm:h-12 sm:w-12 object-contain moving-eagle-3d shrink-0" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div class="leading-tight text-right">
-          <h1 class="text-base sm:text-lg font-black text-slate-950">
-            بن طہٰ ایسوسی ایٹس
-            <span class="text-xs block text-slate-900 font-extrabold">Bin Taha Associates</span>
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-10 w-10 sm:h-11 sm:w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div class="leading-tight text-left">
+          <h1 class="text-base sm:text-xl font-black text-slate-950 tracking-tight">
+            Bin Taha Associates
+            <span class="text-xs font-bold text-slate-900 ml-1">بن طہٰ ایسوسی ایٹس</span>
           </h1>
-          <p class="text-[9px] sm:text-[10px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">LDA Avenue 1 Master GPS Navigator</p>
+          <p class="text-[9px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">LDA Avenue 1 Master GPS Navigator</p>
         </div>
       </a>
 
-      <!-- Menu Links -->
-      <nav class="map-nav-grid flex flex-wrap items-center justify-center md:justify-end gap-1.5 text-xs font-bold w-full md:w-auto">
-        <a href="index.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">ہوم</a>
-        <a href="about.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">ہمارے متعلق</a>
-        <a href="lda-map.html" class="gold-bg text-slate-950 px-3.5 py-2 rounded-xl font-black shadow flex items-center justify-center">LDA میپ</a>
-        <a href="properties.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">پراپرٹیز</a>
-        <a href="lda-forms.html" class="gold-btn-3d px-2.5 py-1.5 text-[11px] gap-1 !text-slate-950 font-black shadow"><i class="fa-solid fa-file-pdf text-[10px]"></i> LDA Forms</a>
-        <a href="add-property.html" class="bg-amber-500 hover:bg-amber-600 text-slate-950 px-3.5 py-2 rounded-xl font-black shadow flex items-center justify-center gap-1">
-          <i class="fa-solid fa-plus-circle"></i> ایڈ پراپرٹی
-        </a>
-        <a href="client-form.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">کلائنٹ فارم</a>
-        <a href="services.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">سروسز</a>
-        <a href="dream.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">ہمارا ویژن</a>
-        <a href="contact.html" class="text-slate-950 hover:text-black hover:bg-amber-300 px-3 py-2 rounded-xl transition flex items-center justify-center">رابطہ</a>
+      <!-- Navigation Links -->
+      <nav class="header-nav-wrap flex flex-wrap items-center justify-center gap-1.5 text-xs font-black text-slate-950">
+        <a href="index.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-house text-[11px]"></i> Home</a>
+        <a href="about.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-user-group text-[11px]"></i> About Us</a>
+        <a href="lda-map.html" class="gold-btn-3d px-3 py-2 gap-1 !bg-amber-400 !text-slate-950"><i class="fa-solid fa-map-location-dot text-[11px]"></i> LDA Map</a>
+        <a href="lda-forms.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-file-pdf text-[11px]"></i> LDA Forms</a>
+        <a href="properties.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-city text-[11px]"></i> Properties</a>
+        <a href="add-property.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property</a>
+        <a href="client-form.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-id-card text-[11px]"></i> Client Form</a>
+        <a href="services.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-cogs text-[11px]"></i> Services</a>
+        <a href="dream.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-star text-[11px]"></i> Our Dream</a>
+        <a href="contact.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-envelope text-[11px]"></i> Contact</a>
       </nav>
 
-      <!-- Agent Portal Button -->
-      <div class="flex items-center gap-2">
-        <a href="agent-login.html" class="bg-slate-950 text-amber-300 border border-amber-400 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-slate-900 transition">
-          پارٹنر پورٹل
+      <!-- Member Actions -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="signin.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1 !text-slate-950 font-black shadow">
+          <i class="fa-solid fa-right-to-bracket text-[11px]"></i> Sign In
+        </a>
+        <a href="signup.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1 !text-slate-950 font-black shadow">
+          <i class="fa-solid fa-user-plus text-[11px]"></i> Sign Up
         </a>
       </div>
 
@@ -200,45 +206,45 @@
     
     <!-- Title & Status -->
     <div class="text-center max-w-4xl mx-auto space-y-2">
-      <span class="gold-bg text-slate-950 text-xs font-black uppercase px-4 py-1.5 rounded-full tracking-wider shadow">ہائی پریسیشن ڈیجیٹل نقشہ</span>
-      <h2 class="text-2xl sm:text-4xl font-black gold-text">ایل ڈی اے ایونیو 1 اسمارٹ نیویگیٹر و پلاٹ فائنڈر</h2>
-      <p class="text-xs sm:text-sm text-slate-300">اپنا پلاٹ نمبر یا بلاک منتخب کریں، کیمرہ خودکار طور پر اس پلاٹ کی اصل جگہ کو ریڈار پن سے تلاش کرے گا۔</p>
+      <span class="gold-bg text-slate-950 text-xs font-black uppercase px-4 py-1.5 rounded-full tracking-wider shadow">High-Precision Digital Map</span>
+      <h2 class="text-2xl sm:text-4xl font-black gold-text">LDA Avenue 1 Smart Navigator & Plot Finder</h2>
+      <p class="text-xs sm:text-sm text-slate-300">Select your block or enter a plot number; the radar pin will automatically navigate to its exact verified location.</p>
     </div>
 
-    <!-- Interactive Navigation Control Bar -->
+    <!-- Navigation Control Bar -->
     <div class="bg-slate-900 border-2 gold-border p-4 rounded-2xl shadow-xl flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-2 flex-1 max-w-2xl flex-wrap sm:flex-nowrap">
         <select id="blockSelector" class="bg-slate-950 border border-amber-500/50 text-amber-300 text-xs px-3 py-2.5 rounded-xl outline-none font-bold">
-          <option value="AUTO">تمام بلاکس (Auto Scan)</option>
-          <option value="A">بلاک A (رائے ونڈ روڈ)</option>
-          <option value="B">بلاک B (خیابانِ جناح)</option>
-          <option value="C">بلاک C (کمرشل زون)</option>
-          <option value="D">بلاک D (مین پارک)</option>
-          <option value="F">بلاک F</option>
-          <option value="G">بلاک G</option>
-          <option value="H">بلاک H</option>
-          <option value="J">بلاک J (ہیڈکوارٹر ایریا)</option>
-          <option value="K">بلاک K (ڈیفنس روڈ)</option>
-          <option value="L">بلاک L</option>
-          <option value="M">بلاک M (مین سینٹرل)</option>
+          <option value="AUTO">All Blocks (Auto Scan)</option>
+          <option value="A">Block A (Raiwind Road)</option>
+          <option value="B">Block B (Khayaban-e-Jinnah)</option>
+          <option value="C">Block C (Commercial Hub)</option>
+          <option value="D">Block D (Central Park)</option>
+          <option value="F">Block F</option>
+          <option value="G">Block G</option>
+          <option value="H">Block H</option>
+          <option value="J">Block J (Headquarters Area)</option>
+          <option value="K">Block K (Defence Road)</option>
+          <option value="L">Block L</option>
+          <option value="M">Block M (Central)</option>
         </select>
 
         <div class="relative flex-1 w-full">
-          <input type="text" id="searchInput" placeholder="پلاٹ نمبر لکھیں (مثلاً: 543 M یا 240 C)..." 
+          <input type="text" id="searchInput" placeholder="Enter plot code (e.g. 543 M, 240 C)..." 
                  class="w-full bg-slate-950 border border-amber-500/50 text-white text-xs px-4 py-2.5 rounded-xl outline-none focus:border-amber-400">
         </div>
 
         <button id="btnSearch" class="gold-bg text-slate-950 font-black text-xs px-5 py-2.5 rounded-xl hover:opacity-90 flex items-center gap-1.5 shrink-0 cursor-pointer">
-          <i class="fa-solid fa-crosshairs"></i> تلاش کریں
+          <i class="fa-solid fa-crosshairs"></i> Locate Plot
         </button>
       </div>
 
       <div class="flex items-center gap-2">
         <button id="btnReset" class="bg-slate-800 text-amber-300 border border-amber-500/40 text-xs px-4 py-2.5 rounded-xl font-bold flex items-center gap-1 hover:bg-slate-700 transition">
-          <i class="fa-solid fa-compress"></i> مکمل نقشہ
+          <i class="fa-solid fa-compress"></i> Reset View
         </button>
         <a href="add-property.html" class="gold-bg text-slate-950 text-xs font-black px-4 py-2.5 rounded-xl shadow flex items-center gap-1">
-          <i class="fa-solid fa-plus-circle"></i> پراپرٹی لسٹ کریں
+          <i class="fa-solid fa-plus-circle"></i> Post Listing
         </a>
       </div>
     </div>
@@ -246,38 +252,38 @@
     <!-- Map Display Area -->
     <div id="mapContainer"></div>
 
-    <!-- Quick Forms & Useful Links Hub -->
+    <!-- Direct Links Hub -->
     <div class="bg-slate-900 border gold-border p-6 rounded-3xl shadow-2xl space-y-4">
       <div class="border-b border-slate-800 pb-3 flex justify-between items-center">
         <h3 class="text-sm font-black text-white flex items-center gap-2">
-          <i class="fa-solid fa-bolt text-amber-400"></i> براہِ راست سروسز و پورٹل لنکس
+          <i class="fa-solid fa-bolt text-amber-400"></i> Direct Utilities & Portal Shortcuts
         </h3>
-        <span class="text-[11px] text-emerald-400 font-bold">100% تصدیق شدہ پلیٹ فارم</span>
+        <span class="text-[11px] text-emerald-400 font-bold">100% Verified Records</span>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         <a href="add-property.html" class="p-3.5 bg-slate-950 border border-slate-800 hover:border-amber-400 rounded-xl flex items-center justify-between group transition">
-          <span class="text-slate-200 group-hover:text-amber-300 font-bold">➕ ایڈ پراپرٹی (نیا پلاٹ درج کریں)</span>
-          <i class="fa-solid fa-arrow-left text-amber-400"></i>
+          <span class="text-slate-200 group-hover:text-amber-300 font-bold">➕ Post Property (Add Verified Listing)</span>
+          <i class="fa-solid fa-arrow-right text-amber-400"></i>
         </a>
         <a href="client-form.html" class="p-3.5 bg-slate-950 border border-slate-800 hover:border-amber-400 rounded-xl flex items-center justify-between group transition">
-          <span class="text-slate-200 group-hover:text-amber-300 font-bold">📝 کلائنٹ رجسٹریشن اور اسکرو تحفظ</span>
-          <i class="fa-solid fa-arrow-left text-amber-400"></i>
+          <span class="text-slate-200 group-hover:text-amber-300 font-bold">📝 Client Registration & Escrow Desk</span>
+          <i class="fa-solid fa-arrow-right text-amber-400"></i>
         </a>
         <a href="agent-login.html" class="p-3.5 bg-slate-950 border border-slate-800 hover:border-amber-400 rounded-xl flex items-center justify-between group transition">
-          <span class="text-slate-200 group-hover:text-amber-300 font-bold">🤝 تصدیق شدہ پارٹنر و ڈیلر لاگ اِن</span>
-          <i class="fa-solid fa-arrow-left text-amber-400"></i>
+          <span class="text-slate-200 group-hover:text-amber-300 font-bold">🤝 Authorized Partner / Agent Login</span>
+          <i class="fa-solid fa-arrow-right text-amber-400"></i>
         </a>
       </div>
     </div>
 
-    <!-- AdSense & SEO Informative Guide Section -->
+    <!-- Informative Guide Section -->
     <div class="bg-slate-900 border gold-border p-6 rounded-3xl shadow-xl space-y-3 text-xs text-slate-300 leading-relaxed">
       <h3 class="text-sm font-black text-white flex items-center gap-2">
-        <i class="fa-solid fa-shield-halved text-amber-400"></i> ایل ڈی اے ایونیو 1 میں محفوظ سرمایہ کاری کی رہنما گائیڈ
+        <i class="fa-solid fa-shield-halved text-amber-400"></i> Guidelines for Secure Investment in LDA Avenue 1
       </h3>
       <p>
-        بن طہٰ ایسوسی ایٹس کے چیف ایگزیکٹو <strong>طہٰ مبین بھٹہ</strong> کی زیر نگرانی تیار کردہ یہ ڈیجیٹل نقشہ خریداروں اور اوورسیز پاکستانیوں کو بغیر کسی ایجنٹ کمیشن اور ابہام کے اپنے پلاٹ کی اصل جغرافیائی پوزیشن جانچنے کی سہولت فراہم کرتا ہے۔ ایل ڈی اے ایونیو 1 رائے ونڈ روڈ لاہور پر واقع ایک جدید ہاؤسنگ اسکیم ہے جس کے تمام بلاکس (A تا M) کی مکمل تفصیلات اس پلیٹ فارم پر لائیو تصدیق کے ساتھ دیکھی جا سکتی ہیں۔
+        Supervised by CEO <strong>Taha Mubeen Bhutta</strong>, this digital navigation system enables buyers and overseas Pakistanis to inspect the exact geographic location and physical status of their plots without third-party commission overheads. All residential and commercial sectors (Block A to Block M) on Raiwind Road Lahore can be verified live on this portal.
       </p>
     </div>
 
@@ -286,37 +292,37 @@
   <!-- Footer with AdSense Policy Links -->
   <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t gold-border text-center space-y-4">
     <div class="flex items-center justify-center gap-2 text-emerald-400 font-bold">
-      <i class="fa-solid fa-shield-halved"></i> 100% تصدیق شدہ ریکارڈ و قانونی تحفظ - زیرِ انتظام بن طہٰ لیگل ٹیم
+      <i class="fa-solid fa-shield-halved"></i> 100% Verified Records & Legal Protection • Managed by Bin Taha Legal Team
     </div>
 
-    <!-- AdSense Mandatory Quick Links -->
+    <!-- Mandatory Quick Links -->
     <div class="flex items-center justify-center gap-3.5 flex-wrap text-xs text-slate-400 font-semibold pt-1">
-      <a href="index.html" class="hover:text-amber-400 transition">ہوم</a>
+      <a href="index.html" class="hover:text-amber-400 transition">Home</a>
       <span>•</span>
-      <a href="about.html" class="hover:text-amber-400 transition">ہمارے متعلق</a>
+      <a href="about.html" class="hover:text-amber-400 transition">About Us</a>
       <span>•</span>
-      <a href="lda-map.html" class="text-amber-400 font-bold">LDA میپ</a>
-      <span>•</span>
-      <a href="properties.html" class="hover:text-amber-400 transition">پراپرٹیز</a>
-      <span>•</span>
-      <a href="add-property.html" class="hover:text-amber-400 transition">ایڈ پراپرٹی</a>
-      <span>•</span>
-      <a href="client-form.html" class="hover:text-amber-400 transition">کلائنٹ فارم</a>
-      <span>•</span>
-      <a href="services.html" class="hover:text-amber-400 transition">سروسز</a>
-      <span>•</span>
-      <a href="dream.html" class="hover:text-amber-400 transition">ہمارا ویژن</a>
-      <span>•</span>
-      <a href="privacy-policy.html" class="hover:text-amber-400 transition">پرائیویسی پالیسی</a>
-      <span>•</span>
-      <a href="terms.html" class="hover:text-amber-400 transition">شرائط و ضوابط</a>
+      <a href="lda-map.html" class="text-amber-400 font-bold">LDA Map</a>
       <span>•</span>
       <a href="lda-forms.html" class="hover:text-amber-400 transition">LDA Forms</a>
-<span>•</span>
-      <a href="contact.html" class="hover:text-amber-400 transition">رابطہ</a>
+      <span>•</span>
+      <a href="properties.html" class="hover:text-amber-400 transition">Properties</a>
+      <span>•</span>
+      <a href="add-property.html" class="hover:text-amber-400 transition">Add Property</a>
+      <span>•</span>
+      <a href="client-form.html" class="hover:text-amber-400 transition">Client Form</a>
+      <span>•</span>
+      <a href="services.html" class="hover:text-amber-400 transition">Services</a>
+      <span>•</span>
+      <a href="dream.html" class="hover:text-amber-400 transition">Our Dream</a>
+      <span>•</span>
+      <a href="privacy-policy.html" class="hover:text-amber-400 transition">Privacy Policy</a>
+      <span>•</span>
+      <a href="terms.html" class="hover:text-amber-400 transition">Terms & Conditions</a>
+      <span>•</span>
+      <a href="contact.html" class="hover:text-amber-400 transition">Contact Us</a>
     </div>
 
-    <p class="text-slate-600">&copy; 2026 بن طہٰ ایسوسی ایٹس (Bin Taha Associates). جملہ حقوق محفوظ ہیں۔ زیرِ نگرانی سی ای او طہٰ مبین بھٹہ (0321-9404812).</p>
+    <p class="text-slate-600">&copy; 2026 Bin Taha Associates (بن طہٰ ایسوسی ایٹس). All rights reserved. Managed by CEO Taha Mubeen Bhutta (0321-9404812).</p>
   </footer>
 
   <!-- Map JavaScript Engine -->
@@ -376,7 +382,7 @@
         const response = await fetch('lda_plots_data.json');
         database = await response.json();
       } catch (err) {
-        console.warn("نوٹس: ڈیٹا بیس کی فائل دستیاب نہیں ہے، سمارٹ گرڈ موڈ متحرک ہے۔", err);
+        console.warn("Notice: Plot database file not found, defaulting to smart block grid positioning.", err);
       }
     }
     initDatabase();
@@ -384,7 +390,7 @@
     function executeTrack() {
       const input = document.getElementById('searchInput').value.trim().toUpperCase();
       if (!input) {
-        alert("براہ کرم پلاٹ نمبر درج کریں (مثلاً: 543 M یا 240 C)");
+        alert("Please enter a plot number (e.g. 543 M or 240 C)");
         return;
       }
 
@@ -397,7 +403,7 @@
       }
 
       if (!plotMatch) {
-        alert("پلاٹ کا ہندسہ درست نہیں ہے۔");
+        alert("Invalid plot number format.");
         return;
       }
       const plotNum = plotMatch[0];
@@ -441,20 +447,20 @@
 
         setTimeout(() => {
           activeMarker.bindPopup(`
-            <div style="direction:rtl; text-align:center; padding:5px;">
-              <h3 style="color:#eab308; margin:0; font-size:15px; font-weight:bold;">پلاٹ نمبر: ${plotNum}</h3>
-              <p style="color:#94a3b8; margin:3px 0 10px; font-size:12px;">بلاک ${targetBlock} | ایل ڈی اے ایونیو 1</p>
-              <a href="https://wa.me/923219404812?text=مجھے ایل ڈی اے ایونیو 1 کے پلاٹ نمبر ${plotNum}-${targetBlock} کے ریٹ درکار ہیں" 
+            <div style="direction:ltr; text-align:center; padding:6px;">
+              <h3 style="color:#eab308; margin:0; font-size:15px; font-weight:bold;">Plot No: ${plotNum}</h3>
+              <p style="color:#94a3b8; margin:3px 0 10px; font-size:12px;">Block ${targetBlock} | LDA Avenue 1</p>
+              <a href="https://wa.me/923219404812?text=Inquiry%20regarding%20Plot%20${plotNum}-${targetBlock}%20LDA%20Avenue%201" 
                  target="_blank" 
                  style="background:#16a34a; color:#fff; padding:6px 14px; text-decoration:none; border-radius:6px; font-weight:bold; font-size:12px; display:inline-block;">
-                واٹس ایپ پر ریٹ معلوم کریں
+                Inquire on WhatsApp
               </a>
             </div>
           `).openPopup();
         }, 1400);
 
       } else {
-        alert(`بلاک ${targetBlock} تلاش نہیں ہو سکا۔`);
+        alert(`Block ${targetBlock} not found.`);
       }
     }
 
