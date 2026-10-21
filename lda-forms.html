@@ -23,40 +23,35 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-    .gold-text { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.4); }
+    .shining-gold { color: #fcd34d; text-shadow: 0 0 15px rgba(252, 211, 77, 0.4); }
     .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.25); }
 
-    /* Royal Metallic Gold Navigation & Header Styling */
     .royal-gold-bar {
       background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 35%, #e6be44 70%, #b8860b 100%) !important;
       border-bottom: 2px solid #ffd700 !important;
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5) !important;
     }
 
-    /* Smart Slim 3D Buttons to fit in one line */
     .gold-btn-3d {
       background: linear-gradient(145deg, #fff3b0 0%, #d4af37 45%, #996515 100%) !important;
       color: #0d0d0d !important;
       border: 1px solid #ffe57f !important;
-      border-bottom: 2px solid #684503 !important;
-      border-radius: 8px !important;
+      border-bottom: 3px solid #684503 !important;
+      border-radius: 10px !important;
       font-weight: 800 !important;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -2px 0 rgba(0, 0, 0, 0.2) !important;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) !important;
       transition: all 0.2s ease-in-out !important;
       cursor: pointer;
-      padding: 6px 9px !important;
-      font-size: 11px !important;
-      white-space: nowrap !important;
+      text-decoration: none !important;
       display: inline-flex !important;
       align-items: center !important;
-      gap: 3px !important;
+      justify-content: center !important;
     }
     .gold-btn-3d:hover {
       filter: brightness(1.12) !important;
-      transform: translateY(-1px) !important;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
     }
 
     .time-pill {
@@ -64,9 +59,9 @@
       border: 1px solid #d4af37 !important;
       color: #f8fafc !important;
       border-radius: 9999px !important;
-      padding: 2px 10px !important;
+      padding: 3px 12px !important;
       font-weight: 700 !important;
-      font-size: 10px !important;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.6) !important;
     }
 
     @keyframes eagle3DRotate {
@@ -79,61 +74,58 @@
       transform-style: preserve-3d;
     }
 
-    .marquee-container {
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-    }
-    .marquee-content {
-      display: inline-block;
-      animation: marquee 28s linear infinite;
-    }
-    .marquee-container:hover .marquee-content {
-      animation-play-state: paused;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    @media screen and (max-width: 1024px) {
-      .responsive-nav-row {
-        flex-wrap: wrap !important;
+    @media screen and (max-width: 900px) {
+      header .w-full {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+      header nav {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        width: 100% !important;
+        gap: 6px !important;
+      }
+      header nav a {
+        width: 100% !important;
         justify-content: center !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        padding: 8px 4px !important;
       }
     }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- TOP ROYAL GOLD BAR -->
-  <div class="royal-gold-bar text-slate-950 text-xs py-2 px-3 sm:px-6">
-    <div class="max-w-[1700px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+  <!-- TOP ROYAL GOLD BAR: WORLD CLOCKS & CONTACT -->
+  <div class="royal-gold-bar text-slate-950 text-xs py-2.5 px-4 sm:px-8">
+    <div class="max-w-[1700px] mx-auto flex flex-col md:flex-row justify-between items-center gap-3">
       
-      <!-- Brand Tagline in Top Bar -->
+      <!-- Brand Tagline -->
       <div class="flex items-center gap-2 font-black text-slate-950 tracking-wide text-xs">
         <i class="fa-solid fa-certificate text-amber-900"></i>
         <span>Bin Taha Associates (بن طہٰ ایسوسی ایٹس) • Official LDA 20 PDF Forms & Regulatory Portal</span>
       </div>
 
       <!-- Live World Time Clocks -->
-      <div class="flex items-center gap-2 flex-wrap justify-center text-xs">
-        <div class="time-pill flex items-center gap-1">
+      <div class="flex items-center gap-2.5 flex-wrap justify-center text-xs">
+        <div class="time-pill flex items-center gap-1.5">
           <i class="fa-regular fa-clock text-amber-400"></i> PKT: <span id="livePktTime" class="text-amber-300">--:--:--</span>
         </div>
-        <div class="time-pill flex items-center gap-1">
+        <div class="time-pill flex items-center gap-1.5">
           <i class="fa-solid fa-earth-americas text-blue-400"></i> UK: <span id="liveUkTime">--:--</span>
         </div>
-        <div class="time-pill flex items-center gap-1">
+        <div class="time-pill flex items-center gap-1.5">
           <i class="fa-solid fa-earth-americas text-purple-400"></i> USA: <span id="liveUsaTime">--:--</span>
         </div>
-        <div class="time-pill flex items-center gap-1">
+        <div class="time-pill flex items-center gap-1.5">
           <i class="fa-solid fa-dollar-sign text-emerald-400"></i> USD: <span>278.50</span>
         </div>
       </div>
 
       <!-- Contact Info -->
-      <div class="flex items-center gap-2.5 font-bold text-slate-900 text-xs">
+      <div class="flex items-center gap-3 font-bold text-slate-900">
         <a href="tel:03219404812" class="hover:text-black flex items-center gap-1"><i class="fa-solid fa-phone"></i> 0321 9404812</a>
         <span class="text-amber-800">|</span>
         <a href="https://wa.me/923219404812" target="_blank" class="hover:text-black flex items-center gap-1"><i class="fa-brands fa-whatsapp text-emerald-800"></i> WhatsApp CEO</a>
@@ -141,52 +133,42 @@
     </div>
   </div>
 
-  <!-- LIVE MARKET RATES MARQUEE TICKER -->
-  <div class="bg-slate-950 border-b border-amber-500/30 py-1.5 px-4 text-xs marquee-container text-amber-400 font-bold">
-    <div class="marquee-content flex items-center gap-10">
-      <span><i class="fa-solid fa-bullhorn text-amber-400 mr-1.5"></i><strong>Official LDA Compliance Advisory:</strong></span>
-      <span>• All 20 Official Forms Available in PDF Format</span>
-      <span>• LDA Avenue 1 Building Period Extension Forms Online</span>
-      <span>• Approved Bylaws 2026: Mandatory Rainwater Harvesting for 5 Marla & Above</span>
-      <span>• Standard Height Limit: 38 Ft (3 Storeys) & 45 Ft (4 Storeys on 10 Marla/1 Kanal)</span>
-      <span>• Direct Supervision by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) • 0321-9404812</span>
-    </div>
-  </div>
-
-  <!-- ROYAL NAVIGATION HEADER (PERFECT SINGLE-ROW ALIGNMENT) -->
-  <header class="royal-gold-bar sticky top-0 z-40 py-2 px-3 sm:px-6 shadow-md">
-    <div class="max-w-[1700px] mx-auto flex flex-col xl:flex-row items-center justify-between gap-2.5">
+  <!-- ROYAL NAVIGATION HEADER (NO BLACK STRIP) -->
+  <header class="royal-gold-bar sticky top-0 z-40 py-2.5 px-4 sm:px-6 shadow-md">
+    <div class="w-full flex flex-col md:flex-row items-center justify-between gap-3">
       
       <!-- Left Side: Logo & Name -->
-      <a href="index.html" class="flex items-center gap-2 shrink-0 group">
-        <img src="logo.png" alt="Bin Taha Logo" class="h-9 w-9 sm:h-10 sm:w-10 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
-        <div class="leading-tight text-left">
-          <h1 class="text-sm sm:text-base font-black text-slate-950 tracking-tight">
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0 group">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-10 w-10 sm:h-11 sm:w-11 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div class="leading-tight text-center md:text-left">
+          <h1 class="text-lg sm:text-2xl font-black text-slate-950 tracking-tight">
             Bin Taha Associates
-            <span class="text-[11px] font-bold block text-slate-900">بن طہٰ ایسوسی ایٹس</span>
+            <span class="text-xs sm:text-sm font-bold block text-slate-900">بن طہٰ ایسوسی ایٹس</span>
           </h1>
-          <p class="text-[8px] sm:text-[9px] text-amber-950 font-extrabold uppercase tracking-wider">LDA Forms & Regulatory Guidance Hub</p>
+          <p class="text-[9px] sm:text-[10px] text-amber-950 font-extrabold uppercase tracking-wider mt-0.5">LDA Forms & Regulatory Guidance • CEO Taha Mubeen Bhutta</p>
         </div>
       </a>
       
-      <!-- Center & Right: Compact Single-Row Navigation Menu -->
-      <div class="flex items-center gap-1.5 flex-wrap justify-center responsive-nav-row w-full xl:w-auto">
-        <a href="index.html" class="gold-btn-3d"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="properties.html" class="gold-btn-3d"><i class="fa-solid fa-city"></i> Properties</a>
-        <a href="lda-map.html" class="gold-btn-3d"><i class="fa-solid fa-map-location-dot text-amber-900"></i> LDA Map</a>
-        <a href="lda-forms.html" class="gold-btn-3d !bg-amber-600 !text-white !border-amber-400"><i class="fa-solid fa-file-pdf"></i> LDA Forms</a>
-        <a href="add-property.html" class="gold-btn-3d !bg-amber-500 !text-slate-950"><i class="fa-solid fa-plus-circle"></i> Add Property</a>
-        <a href="client-form.html" class="gold-btn-3d"><i class="fa-solid fa-id-card text-emerald-800"></i> Client Form</a>
-        <a href="services.html" class="gold-btn-3d"><i class="fa-solid fa-cogs"></i> Services</a>
-        <a href="dream.html" class="gold-btn-3d"><i class="fa-solid fa-star text-amber-900"></i> Our Dream</a>
-        <a href="contact.html" class="gold-btn-3d"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <!-- Right Side: 3D Buttons with Clean Dark Text -->
+      <nav class="flex items-center justify-center md:justify-end gap-1.5 sm:gap-2 flex-wrap text-xs font-black w-full md:w-auto">
+        <a href="index.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-house text-[11px]"></i> Home</a>
+        <a href="properties.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-city text-[11px]"></i> Properties Hub</a>
+        <a href="lda-map.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-map-location-dot text-[11px]"></i> LDA Map</a>
+        <a href="lda-forms.html" class="gold-btn-3d px-3 py-2 gap-1 !bg-amber-400 !text-slate-950"><i class="fa-solid fa-file-pdf text-[11px]"></i> LDA Forms</a>
+        <a href="add-property.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-plus-circle text-[11px]"></i> Add Property</a>
+        <a href="client-form.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-id-card text-[11px]"></i> Client Form</a>
+        <a href="services.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-cogs text-[11px]"></i> Services</a>
+        <a href="dream.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-star text-[11px]"></i> Our Dream</a>
+        <a href="contact.html" class="gold-btn-3d px-3 py-2 gap-1"><i class="fa-solid fa-envelope text-[11px]"></i> Contact</a>
+      </nav>
 
-        <!-- Member Sign In / Sign Up High Contrast Buttons -->
-        <a href="signin.html" class="gold-btn-3d !bg-slate-950 !text-amber-300 !border-amber-400 ml-1">
-          <i class="fa-solid fa-right-to-bracket text-amber-400"></i> Sign In
+      <!-- Member Sign In / Sign Up 3D Buttons with Dark Text -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="signin.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1">
+          <i class="fa-solid fa-right-to-bracket text-[11px]"></i> Sign In
         </a>
-        <a href="signup.html" class="gold-btn-3d !bg-emerald-600 !text-white !border-emerald-400">
-          <i class="fa-solid fa-user-plus"></i> Sign Up
+        <a href="signup.html" class="gold-btn-3d px-3.5 py-2 text-xs gap-1">
+          <i class="fa-solid fa-user-plus text-[11px]"></i> Sign Up
         </a>
       </div>
 
@@ -211,7 +193,7 @@
 
         <!-- Download Complete Zip CTA Button -->
         <div class="w-full lg:w-auto shrink-0">
-          <a href="lda-forms.zip" download="lda-forms.zip" class="gold-btn-3d px-6 py-3.5 text-xs font-black inline-flex items-center justify-center gap-2 w-full lg:w-auto shadow-2xl">
+          <a href="lda-forms.zip" download="lda-forms.zip" class="gold-btn-3d px-6 py-4 text-xs font-black gap-2 w-full lg:w-auto shadow-2xl">
             <i class="fa-solid fa-file-zipper text-base"></i> Download All 20 Forms (ZIP Pack - 2.5 MB)
           </a>
         </div>
@@ -243,4 +225,323 @@
         <!-- 2. Setbacks -->
         <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 space-y-2">
           <h4 class="font-bold text-cyan-400 text-sm flex items-center gap-2">
-            <i class="fa-solid fa-border-all"></i> Mandatory Open Spaces & Set
+            <i class="fa-solid fa-border-all"></i> Mandatory Open Spaces & Setbacks
+          </h4>
+          <p>For plots below 10 Marla, a mandatory 5-ft rear open space is strictly enforced[cite: 8]. For 1 Kanal properties, a 7-ft rear space and 5-ft side passage on both sides are legally required for ventilation and natural lighting[cite: 8].</p>
+        </div>
+
+        <!-- 3. Water Tanks -->
+        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+          <h4 class="font-bold text-blue-400 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-faucet-drip"></i> Underground Water Tank Capacities
+          </h4>
+          <p>Underground tanks are legally mandatory: 5 Marla homes require a minimum of 18 cu.ft (135 Gal)[cite: 17], 7 to 10 Marla requires 60 to 124 cu.ft[cite: 17], and 1 Kanal residential units require at least 200 cu.ft (1,200 Gal) capacity[cite: 17].</p>
+        </div>
+
+        <!-- 4. Rainwater Harvesting -->
+        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+          <h4 class="font-bold text-emerald-400 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-cloud-rain"></i> Rainwater Harvesting & Recharge Pits
+          </h4>
+          <p>Rooftop rainwater harvesting systems are mandatory for all plots 5 Marla and above[cite: 18]. Houses measuring 15 Marla or greater must construct an on-site aquifer recharge well/pit to preserve underground water tables[cite: 18].</p>
+        </div>
+
+        <!-- 5. Amalgamation -->
+        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+          <h4 class="font-bold text-purple-400 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-object-group"></i> Plot Amalgamation Rules
+          </h4>
+          <p>Two or more adjacent plots of the same land use category may be amalgamated side-by-side or back-to-back[cite: 2, 14]. The building regulations of the resultant aggregate plot size become applicable to the development[cite: 5].</p>
+        </div>
+
+        <!-- 6. Sub-Division -->
+        <div class="bg-slate-900/90 p-5 rounded-2xl border border-slate-700 space-y-2">
+          <h4 class="font-bold text-rose-400 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-scissors"></i> Subdivision Restrictions
+          </h4>
+          <p>Subdivision is strictly prohibited for plots smaller than 1 Kanal in approved housing schemes[cite: 15]. For 2 Kanal plots, subdivision is permitted provided the resultant divided plots are at least 1 Kanal with a minimum front width of 35 ft[cite: 15].</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 20 LDA Official Forms Download Grid -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-3xl p-6 sm:p-8 gold-glow space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-700/80 pb-4">
+        <div>
+          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs font-black uppercase px-3 py-1 rounded-full tracking-wider">Direct Repository</span>
+          <h3 class="text-xl font-black text-white mt-1">20 Verified Official LDA PDF Forms (Direct Download)</h3>
+        </div>
+        <span class="text-xs text-amber-400 font-bold">Single-Click Instant Download</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs font-bold">
+        
+        <!-- 1 -->
+        <a href="lda-forms/APPLICATION FOR ATTESTED or Duplicate or Certified Copy.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">01. Attested or Duplicate Certified Copy</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 2 -->
+        <a href="lda-forms/APPLICATION FOR BUILDING PERIOD EXTENTION.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">02. Building Period Extension</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 3 -->
+        <a href="lda-forms/APPLICATION FOR COURT ORDER.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">03. Application for Court Order</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 4 -->
+        <a href="lda-forms/APPLICATION FOR FILE CHECKING.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">04. Official File Checking & Verification</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 5 -->
+        <a href="lda-forms/APPLICATION FOR INCORPORATION OF LEGAL HEIRS IN LDA RECORD.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">05. Incorporation of Legal Heirs</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 6 -->
+        <a href="lda-forms/APPLICATION FOR LIEN MARKING.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">06. Property Lien Marking</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 7 -->
+        <a href="lda-forms/APPLICATION FOR LIEN REMOVAL.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">07. Lien Removal Clearance</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 8 -->
+        <a href="lda-forms/APPLICATION FOR NO OBJECTION CERTIFICATE.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">08. No Objection Certificate (NOC)</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 9 -->
+        <a href="lda-forms/APPLICATION FOR PAYMENT OF EXCESS AREA.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">09. Payment of Excess Area Dues</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 10 -->
+        <a href="lda-forms/APPLICATION FOR PERMISSION TO MORTGAGE.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">10. Permission to Mortgage Property</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 11 -->
+        <a href="lda-forms/APPLICATION FOR PHYSICAL POSSESSION.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">11. Physical Possession Application</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 12 -->
+        <a href="lda-forms/APPLICATION FOR POSSESSION ORDER.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">12. Issuance of Possession Order</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 13 -->
+        <a href="lda-forms/APPLICATION FOR PUBLICATION OF GPA.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">13. Public Notice for General Power of Attorney</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 14 -->
+        <a href="lda-forms/APPLICATION FOR REPLY TO NOTICE.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">14. Formal Reply to LDA Show-Cause Notice</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 15 -->
+        <a href="lda-forms/APPLICATION FOR TRANSFER OF PLOT.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">15. Transfer of Plot Ownership</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 16 -->
+        <a href="lda-forms/APPLICATION FOR TRANSFER PROPERTY THROUGH COURT ORDER.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">16. Property Transfer Under Court Decree</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 17 -->
+        <a href="lda-forms/MWL. APPLICATION FOR ALLOCATION OF PLOT MOHLANWAL.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">17. Plot Allocation (Mohlanwal Scheme)</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 18 -->
+        <a href="lda-forms/MWL. APPLICATION FOR EXEMPTION OF PLOT.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">18. Plot Exemption Application</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 19 -->
+        <a href="lda-forms/MWL.APPLICATION FOR EXEMPTION LETTER OF PLOT MOHLANWAL.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">19. Exemption Letter (Mohlanwal)</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+        <!-- 20 -->
+        <a href="lda-forms/MWL.APPLICATION FOR FINAL DEMAND NOTICE MOHLANWAL.pdf" download class="p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-amber-400 rounded-2xl transition flex flex-col justify-between gap-3 group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center font-black group-hover:scale-110 transition"><i class="fa-solid fa-file-pdf"></i></div>
+            <strong class="text-white text-xs">20. Final Demand Notice (Mohlanwal)</strong>
+          </div>
+          <span class="text-amber-400 text-[10px] flex items-center gap-1 font-bold">Download PDF <i class="fa-solid fa-download"></i></span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- About Consultant Footer Callout -->
+    <div class="bg-slate-800/90 border border-amber-500/30 rounded-3xl p-6 sm:p-8 gold-glow flex flex-col lg:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4">
+        <img src="logo.png" alt="Bin Taha Logo" class="h-20 w-20 object-contain moving-eagle-3d" onerror="this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=150&q=80'">
+        <div>
+          <span class="text-amber-400 text-xs font-black uppercase tracking-wider">Premier Real Estate Consultant</span>
+          <h3 class="text-2xl font-black text-white">Bin Taha Associates Real Estate Consultant</h3>
+          <p class="text-xs text-slate-300 mt-1 max-w-2xl leading-relaxed">
+            Led by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ). Registered with FBR & certified under PEC Category C. Offering transparent, authenticated file transfers, construction contracts, and verified commercial investment consultancy in Lahore.
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3 flex-wrap">
+        <a href="about.html" class="gold-btn-3d px-5 py-3 text-xs whitespace-nowrap">
+          <i class="fa-solid fa-circle-info mr-1.5"></i> Read Full Profile
+        </a>
+        <a href="https://wa.me/923219404812?text=Assalam-o-Alaikum%2C%20Bin%20Taha%20Associates%20se%20rabta%20karna%20chahta%20hoon." target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3 rounded-xl text-xs flex items-center gap-1.5 transition shadow">
+          <i class="fa-brands fa-whatsapp text-sm"></i> Direct WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer with AdSense Policy Links -->
+  <footer class="bg-slate-950 text-slate-400 py-10 text-xs border-t border-slate-800">
+    <div class="max-w-[1700px] mx-auto px-6 flex flex-col items-center gap-6">
+      
+      <div class="flex flex-wrap justify-center gap-3 text-sm">
+        <a href="https://www.facebook.com/profile.php?id=61593120180672" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-blue-500 transition" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/taha.m.bhutta/" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-500 transition" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://x.com/Tahamobeenbhut" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-white transition" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.youtube.com/@BinTahaAssociates" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-red-500 transition" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@bintahaassociates?is_from_webapp=1&sender_device=pc" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-pink-400 transition" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="https://pin.it/5LHQ1Q7fp" target="_blank" class="p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:text-red-400 transition" title="Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+      </div>
+
+      <!-- Quick Navigation & Mandatory AdSense Links -->
+      <div class="flex flex-wrap justify-center gap-3.5 text-xs font-semibold text-slate-400">
+        <a href="index.html" class="hover:text-amber-400 transition">Home</a>
+        <span>•</span>
+        <a href="about.html" class="hover:text-amber-400 transition">About Us</a>
+        <span>•</span>
+        <a href="lda-map.html" class="hover:text-amber-400 transition">LDA Map</a>
+        <span>•</span>
+        <a href="lda-forms.html" class="text-amber-400 font-bold">LDA Forms</a>
+        <span>•</span>
+        <a href="properties.html" class="hover:text-amber-400 transition">Properties</a>
+        <span>•</span>
+        <a href="add-property.html" class="hover:text-amber-400 transition">Add Property</a>
+        <span>•</span>
+        <a href="client-form.html" class="hover:text-amber-400 transition">Client Form</a>
+        <span>•</span>
+        <a href="services.html" class="hover:text-amber-400 transition">Services</a>
+        <span>•</span>
+        <a href="dream.html" class="hover:text-amber-400 transition">Our Dream</a>
+        <span>•</span>
+        <a href="privacy-policy.html" class="hover:text-amber-400 transition">Privacy Policy</a>
+        <span>•</span>
+        <a href="terms.html" class="hover:text-amber-400 transition">Terms & Conditions</a>
+        <span>•</span>
+        <a href="contact.html" class="hover:text-amber-400 transition">Contact Us</a>
+      </div>
+
+      <p class="text-slate-600 text-center">&copy; 2026 Bin Taha Associates (بن طہٰ ایسوسی ایٹس). All rights reserved. Managed by CEO Taha Mubeen Bhutta (طہٰ مبین بھٹہ) • 0321-9404812.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function updateWorldClocks() {
+      const now = new Date();
+      const pktEl = document.getElementById('livePktTime');
+      const ukEl = document.getElementById('liveUkTime');
+      const usaEl = document.getElementById('liveUsaTime');
+      if (pktEl) pktEl.innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Karachi', hour12: true });
+      if (ukEl) ukEl.innerText = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London', hour: '2-digit', minute: '2-digit', hour12: false });
+      if (usaEl) usaEl.innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
+  </script>
+  <script src="ai-engine.js"></script>
+</body>
+</html>
