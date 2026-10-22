@@ -1,27 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 1. Homepage -->
   <url>
     <loc>https://bintahaassociates.github.io/bintaha-main/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
+
+  <!-- 2. Properties Showcase -->
   <url>
     <loc>https://bintahaassociates.github.io/bintaha-main/properties.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
   </url>
+
+  <!-- 3. Official 20 LDA PDF Forms & Bylaws 2026 Hub -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/lda-forms.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- 4. LDA Avenue 1 Smart GPS Map & Navigator -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/lda-map.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 5. Construction & Real Estate Services -->
   <url>
     <loc>https://bintahaassociates.github.io/bintaha-main/services.html</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
+
+  <!-- 6. About Bin Taha Associates & CEO Profile -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/about.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 7. Direct Contact & Head Office -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/contact.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- 8. Add Property (Direct Public Listing) -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/add-property.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 9. Client Escrow & Registration Form -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/client-form.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- 10. Our Dream & Corporate Vision -->
   <url>
     <loc>https://bintahaassociates.github.io/bintaha-main/dream.html</loc>
-    <lastmod>2026-10-18</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
+
+  <!-- 11. Mandatory Privacy Policy (AdSense & GDPR) -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/privacy-policy.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- 12. Mandatory Terms & Conditions -->
+  <url>
+    <loc>https://bintahaassociates.github.io/bintaha-main/terms.html</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+
 </urlset>
